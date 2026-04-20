@@ -201,7 +201,31 @@ cython_debug/
 .cursorignore
 .cursorindexingignore
 
+# --- AI 與資料集忽略區 ---
+# 忽略模型訓練的資料
+ai_model/datasets/
+ai_model/data/
+*.h5
+*.pt
+*.pth
+
+
 # Marimo
 marimo/_static/
 marimo/_lsp/
 __marimo__/
+
+# --- 前端 (Next.js + Tailwind) 專屬區 ---
+frontend/node_modules/
+frontend/.next/        # Next.js 預設建置資料夾 (非常大，不要傳)
+frontend/out/          # 如果有使用靜態匯出 (Static Export)
+frontend/build/        # 其他建置輸出
+frontend/.env*.local   # Next.js 建議的本地環境變數檔 (包含安全資訊)
+
+# 測試與紀錄
+frontend/coverage/
+frontend/*.log
+frontend/.vercel       # 如果之後打算部署到 Vercel
+
+#忽略 mac系統隱藏設定檔
+**/.DS_Store
