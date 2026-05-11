@@ -1,11 +1,9 @@
-【架構】
+【API架構】
 先用fastapi做簡易的網站能夠運行，之後再用aws api gateway
 股價資訊引用「yahoo股市」，開源無版權問題
 
-
-
-
-【操作】
+***
+【API操作】
 cd backend
 python3 -m venv venv
 source venv/bin/activate
@@ -17,3 +15,20 @@ uvicorn main:app --reload
 
 【fastapi 自動生成的API_DEMO】
 http://127.0.0.1:8000/docs#
+
+***
+
+【ERD說明】
+為什麼password的varchar要設到255 因為，我們之後如果對密碼進行bcrypt雜湊加密，產出的亂碼隨便就會超過50字元。
+
+
+【DataBase架構】
+採用現在業界常用的「ORM驅動開發」、「MVC架構 (model-view-controller) 」
+為什麼採用這個，而不採用普通sql語法建置，,可能有資安問題、維護地獄(哪天資料表要改名要動很多東西)、物件導向思維(不需要py跟sql語法來回切換，用py即可)。
+
+
+【DataBase操作】
+pip install sqlalchemy
+
+
+可以去商店下載 SQLite Viewer 掛件，這樣stock_system.db 的表就不是亂碼了
