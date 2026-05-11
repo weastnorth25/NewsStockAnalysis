@@ -2,6 +2,11 @@ from fastapi import FastAPI, HTTPException ,Request
 from fastapi.responses import JSONResponse
 import yfinance as yf #導入yahoo股市股票資訊
 
+from database import engine  #導入engine
+import models
+
+#把models的數據轉出來
+models.Base.metadata.create_all(bind=engine)
 
 class UTF8JsonResponse(JSONResponse):
     media_type = "application/json; charset=utf-8"
