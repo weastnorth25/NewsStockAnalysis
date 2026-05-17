@@ -26,6 +26,7 @@ http://127.0.0.1:8000/docs#
 採用現在業界常用的「ORM驅動開發」、「MVC架構 (model-view-controller) 」
 為什麼採用這個，而不採用普通sql語法建置，,可能有資安問題、維護地獄(哪天資料表要改名要動很多東西)、物件導向思維(不需要py跟sql語法來回切換，用py即可)。
 
+sqlalchemy套件 會自動翻譯 String to Varchar
 
 【DataBase操作】
 pip install sqlalchemy
