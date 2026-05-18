@@ -1,15 +1,33 @@
-from fastapi import FastAPI, HTTPException ,Request
+from fastapi import FastAPI, HTTPException ,Request, Depends
 from fastapi.responses import JSONResponse
 import yfinance as yf #導入yahoo股市股票資訊
 
-from database import engine  #導入engine
-import models
+from database import engine , SessionLocal  #導入engine
+import models #database struct
+import schemas #接口
+from sqlalchemy.orm import Session
+from passlib.context import CryptContext
+
+
 
 #把models的數據轉出來
 models.Base.metadata.create_all(bind=engine)
 
+def get_db():
+    db=SessionLocal()  #開啟對話
+    try:
+        yield db    #db交給api
+    finally:
+        db.close()  #關閉db 
+
+
 class UTF8JsonResponse(JSONResponse):
     media_type = "application/json; charset=utf-8"
+
+#全域變數
+pwd_context = CryptContext(schemes=["bcrypt"], deprecated="auto") #schemes 機制 
+
+
 
 app = FastAPI(title="新聞股票分析系統 API", description="雲科資管畢業專題後端",default_response_class=UTF8JsonResponse)
 
@@ -24,6 +42,7 @@ async def custom_http_exception_handler(request: Request, exc: HTTPException):
 
 #預設首頁資訊
 @app.get("/")
+#函式-查看狀態
 def read_root():
     return {"message": "Backend Server is working !"}
 
@@ -57,3 +76,35 @@ def get_stock_info(ticker: str):
     except Exception as e:
         # 如果發生錯誤（例如代號亂打），回傳 400 錯誤代碼
         raise HTTPException(status_code=400, detail=str(e))
+    
+
+#註冊json傳給前端
+@app.post("/api/register",response_model=schemas.UserResponse)
+
+#如果資料檢查沒問題，那資料那會變成user物件，這樣就可以使用user.email 之類的 #depends(get_db)，跟資料庫借一條線來連線
+def register_user(user:schemas.UserCreate,db: Session = Depends(get_db)):
+    db_user=db.query(models.User).filter(models.User.email == user.email).first() #query 指定層、filter 搜尋條件、first 只找第一個，找到就停或是none
+    
+    #如果找到了表示此信箱己經註冊過
+    if db_user:
+        raise HTTPException(status_code=400, detail="這個 Email 已經被註冊過囉！") #raise 是強制報錯(避免系統被動報錯卡住)
+    
+    #建立要儲存的資料物件形式
+    #用雜湊來加密前端送來的密碼
+    hashed_password = pwd_context.hash(user.password)
+    #項目有 「姓名、email、密碼」、此password_hash存進去，後端還要做bcrypt加密，左邊為models.User 右邊為user.xxx(schemas.UserCreate)前端傳來的json
+    new_user=models.User(
+        username=user.username,
+        email=user.email,
+        password_hash=hashed_password
+
+    )
+
+    db.add(new_user)
+    db.commit() #寫入資料庫
+    db.refresh(new_user) # 重新從硬碟讀取一次，確保拿到自動生成的 ID 與 時間
+
+    #回傳給前端 (FastAPI 會自動把它轉換成 schemas.UserResponse 的 JSON 格式)
+    return new_user
+    
+
