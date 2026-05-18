@@ -1,3 +1,10 @@
+'''
+ERD 轉 資料庫結構
+
+'''
+
+
+
 from sqlalchemy import Column, Integer, String, DateTime, Text, Boolean, BigInteger, DECIMAL, ForeignKey, Float
 from datetime import datetime
 

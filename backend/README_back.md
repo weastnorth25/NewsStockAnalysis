@@ -1,8 +1,10 @@
+***
+
 【API架構】
 先用fastapi做簡易的網站能夠運行，之後再用aws api gateway
 股價資訊引用「yahoo股市」，開源無版權問題
 
-***
+
 【API操作】
 cd backend
 python3 -m venv venv
@@ -33,3 +35,15 @@ pip install sqlalchemy
 
 
 可以去商店下載 SQLite Viewer 掛件，這樣stock_system.db 的表就不是亂碼了
+
+***
+
+【API前端接口】
+BaseModel 是pydantic裡的套件，用於翻譯後端語言，輸入成json格式讓前端看得懂
+
+【API操作】
+因為有套件 EmailStr
+pip install "pydantic[email]"
+雜湊
+pip install "passlib[bcrypt]"
+pip install bcrypt==3.2.2 #降版，版本太高，太嚴格72byte就會報錯
