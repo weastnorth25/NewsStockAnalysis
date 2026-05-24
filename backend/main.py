@@ -8,6 +8,10 @@ import schemas #接口
 from sqlalchemy.orm import Session
 from passlib.context import CryptContext
 
+import jwt
+from datetime import timedelta,datetime
+
+
 
 
 #把models的數據轉出來
@@ -26,7 +30,9 @@ class UTF8JsonResponse(JSONResponse):
 
 #全域變數
 pwd_context = CryptContext(schemes=["bcrypt"], deprecated="auto") #schemes 機制 
-
+SECRET_KEY="weast_graduation_project_super_secret_key" #因測試先寫死，之後藏到環境變數裡
+ALGORITHM = "HS256" #加密演算法
+ACCESS_TOKEN_EXPIRE_MINUTES = 60 #通行證有效期限 (60分鐘)
 
 
 app = FastAPI(title="新聞股票分析系統 API", description="雲科資管畢業專題後端",default_response_class=UTF8JsonResponse)
@@ -107,4 +113,27 @@ def register_user(user:schemas.UserCreate,db: Session = Depends(get_db)):
     #回傳給前端 (FastAPI 會自動把它轉換成 schemas.UserResponse 的 JSON 格式)
     return new_user
     
+#登入接收口
+@app.post("/api/login",response_model=schemas.Token)
+def login(user_credentials:schemas.UserLogin,db:Session=Depends(get_db)):
+    #尋找是否有此人(信箱)
+    user=db.query(models.User).filter(models.User.email == user_credentials.email).first()
+    
+    if not user:
+        raise HTTPException(status_code=403,detail="信箱或密碼錯誤")
+    #確認明文密碼是否與雜湊過的一致
+    if not pwd_context.verify(user_credentials.password,user.password_hash):
+        raise HTTPException(status_code=403,detail="信箱或密碼錯誤")
+    
+    #計算token過期時間
+    expire=datetime.utcnow()+timedelta(minutes=ACCESS_TOKEN_EXPIRE_MINUTES)
+    
+    #識別證裡的公開資料 sub,exp為保留字
+    to_encode={"sub":user.email,"exp":expire}
+
+    #發通行證(資料+密鑰，進行加密簽章，用algorithm)
+    encoded_jwt=jwt.encode(to_encode,SECRET_KEY,algorithm=ALGORITHM)
+
+    return {"access_token":encoded_jwt,"token_type":"bearer"}
+
 
