@@ -1,5 +1,6 @@
 from fastapi import FastAPI, HTTPException ,Request, Depends
 from fastapi.responses import JSONResponse
+from fastapi.security import HTTPBearer,HTTPAuthorizationCredentials #網頁及API的檢查及限制
 import yfinance as yf #導入yahoo股市股票資訊
 
 from database import engine , SessionLocal  #導入engine
@@ -28,12 +29,12 @@ def get_db():
 class UTF8JsonResponse(JSONResponse):
     media_type = "application/json; charset=utf-8"
 
-#全域變數
+#=====全域變數=====
 pwd_context = CryptContext(schemes=["bcrypt"], deprecated="auto") #schemes 機制 
 SECRET_KEY="weast_graduation_project_super_secret_key" #因測試先寫死，之後藏到環境變數裡
 ALGORITHM = "HS256" #加密演算法
 ACCESS_TOKEN_EXPIRE_MINUTES = 60 #通行證有效期限 (60分鐘)
-
+security=HTTPBearer() #HTTP Bearer Token 檢查員
 
 app = FastAPI(title="新聞股票分析系統 API", description="雲科資管畢業專題後端",default_response_class=UTF8JsonResponse)
 
@@ -136,4 +137,31 @@ def login(user_credentials:schemas.UserLogin,db:Session=Depends(get_db)):
 
     return {"access_token":encoded_jwt,"token_type":"bearer"}
 
-
+#API_Token檢查
+def get_current_user(credentials:HTTPAuthorizationCredentials=Depends(security),db:Session=Depends(get_db)):
+    token=credentials.credentials #左邊的是上面httpauth... 容器的名字，右邊的是jwt亂碼的屬性
+    try:
+        payload=jwt.decode(token,SECRET_KEY,algorithms=[ALGORITHM])
+        eamil:str =payload.get("sub")
+        if eamil is None:
+            raise HTTPException(status_code=401,detail="無效通行證，請重新登入")
+    #如通行證jwt超時(60min)
+    except jwt.ExpiredSignatureError:
+        raise HTTPException(status_code=401,detail="通行證已過期，請重新登入")
+    #如遇假的jwt通行證
+    except jwt.InvalidTokenError:
+        raise HTTPException(status_code=401,detail="無效通行證，請重新登入")
+    
+    #確認這個帳號(使用者)是否還在
+    user=db.query(models.User).filter(models.User.email== eamil).first()
+    if user is None:
+        raise HTTPException(status_code=401,detail="未知使用者")
+    
+    return user
+    
+#確保使用者只能讀到自己的資料
+@app.get("/api/users/me",response_model=schemas.UserResponse)
+def read_users_me(current_user:models.User=Depends(get_current_user)):
+    
+    
+    return current_user
