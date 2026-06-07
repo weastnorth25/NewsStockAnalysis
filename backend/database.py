@@ -8,13 +8,23 @@ from sqlalchemy.orm import sessionmaker
 from sqlalchemy.ext.declarative import declarative_base
 
 #指定資料庫檔案位置
-DATABASE_URL="sqlite:///./stock_system.db"
+#DATABASE_URL="sqlite:///./stock_system.db"
+
+SQLALCHEMY_DATABASE_URL="postgresql://postgres.ccmymqfcrauvnzefhfav:yuntech112230@aws-1-ap-southeast-1.pooler.supabase.com:5432/postgres"
+
 
 # 建立資料庫引擎 (Engine)，是python跟sql的橋梁
 # connect_args={"check_same_thread": False} 是 SQLite 特有的設定，其他資料庫不需要
+
+#換成supabase就不用check了
+'''
 engine = create_engine(
     DATABASE_URL, connect_args={"check_same_thread": False}
 )
+'''
+
+# 建立資料庫引擎 (Engine)，是python跟sql的橋梁
+engine = create_engine(SQLALCHEMY_DATABASE_URL)
 
 # 建立對話的 Session(ai的) 工廠 ( 以後 API 要存取資料，都要跟這個工廠拿 Session )
 SessionLocal = sessionmaker(autocommit=False, autoflush=False, bind=engine)

@@ -12,6 +12,8 @@ from passlib.context import CryptContext
 import jwt
 from datetime import timedelta,datetime
 
+from fastapi.middleware.cors import CORSMiddleware #CORS 跨域請求
+
 
 
 
@@ -37,6 +39,20 @@ ACCESS_TOKEN_EXPIRE_MINUTES = 60 #通行證有效期限 (60分鐘)
 security=HTTPBearer() #HTTP Bearer Token 檢查員
 
 app = FastAPI(title="新聞股票分析系統 API", description="雲科資管畢業專題後端",default_response_class=UTF8JsonResponse)
+
+
+# 加入 CORS 中介軟體，允許前端跨域請求
+app.add_middleware(
+    CORSMiddleware,
+    # 允許所有的來源 (開發期為了方便先設為 "*"，上線後可以改成前端的真實網址)
+    allow_origins=["*"], 
+    allow_credentials=True,
+    # 允許所有的 HTTP 方法 (GET, POST, PUT, DELETE)
+    allow_methods=["*"], 
+    # 允許所有的 Header (包含我們需要的 Authorization)
+    allow_headers=["*"], 
+)
+
 
 #攔下報錯的訊息，轉成utf-8
 @app.exception_handler(HTTPException)
