@@ -47,3 +47,12 @@ pip install "pydantic[email]"
 雜湊
 pip install "passlib[bcrypt]"
 pip install bcrypt==3.2.2 #降版，版本太高，太嚴格72byte就會報錯
+
+***
+【API 登入】
+用JWT 
+及為什麼在schemas中要分登入跟創建的api，主要符合 「最小權限原則」
+
+
+【API 操作】
+pip install PyJWT

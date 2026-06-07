@@ -93,3 +93,11 @@ class AiChatMessage(Base):
     sender_type=Column(String(10)) #對話者(只會出現'ai'或'user')
     message_text=Column(Text) #內容
     created_at=Column(DateTime,default=datetime.utcnow) #建立時間
+
+
+class Watchlist(Base):
+    __tablename__ = "watchlists"
+
+    id = Column(Integer, primary_key=True, index=True)
+    user_id = Column(Integer, ForeignKey("user.id")) 
+    symbol = Column(String, index=True)    # 股票代號
