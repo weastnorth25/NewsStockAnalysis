@@ -23,19 +23,8 @@ function calcSentiment(score) {
   return               { label: '大賣',   ringColor: '#818cf8', dash: 60,   textColor: 'text-indigo-400' }
 }
 
-// ─── 單一指數卡片（會把 data 回傳給父層算加權）──────────────────
-function IndexCard({ label, ticker, weight, onData }) {
-  const [data,    setData]    = useState(null)
-  const [loading, setLoading] = useState(true)
-  const [error,   setError]   = useState(false)
-
-  useEffect(() => {
-    fetchStockInfo(ticker)
-      .then(d => { setData(d); onData(ticker, d.change_pct, weight) })
-      .catch(() => { setError(true); onData(ticker, null, weight) })
-      .finally(() => setLoading(false))
-  }, [ticker])
-
+// ─── 單一指數卡片（資料由父層順序載入後傳入）─────────────────────
+function IndexCard({ label, data, loading, error }) {
   const isUp = (data?.change_pct ?? 0) >= 0
 
   return (
@@ -112,22 +101,38 @@ function SentimentRing({ score }) {
 export default function Dashboard() {
   const navigate = useNavigate()
 
-  // 收集各指數回傳的 change_pct，算加權分數
-  const [indexResults, setIndexResults] = useState({})
+  // 各指數狀態：{ '^TWII': { data, error, loading }, ... }
+  // 順序載入避免後端 yfinance 內建 SQLite 快取被並行請求鎖住
+  const [indexState, setIndexState] = useState(
+    Object.fromEntries(INDICES.map(i => [i.ticker, { loading: true }]))
+  )
 
-  const handleData = (ticker, changePct, weight) => {
-    setIndexResults(prev => ({ ...prev, [ticker]: { changePct, weight } }))
-  }
+  useEffect(() => {
+    let cancelled = false
+    ;(async () => {
+      for (const idx of INDICES) {
+        if (cancelled) return
+        try {
+          const data = await fetchStockInfo(idx.ticker)
+          if (!cancelled) {
+            setIndexState(prev => ({ ...prev, [idx.ticker]: { data, loading: false } }))
+          }
+        } catch {
+          if (!cancelled) {
+            setIndexState(prev => ({ ...prev, [idx.ticker]: { error: true, loading: false } }))
+          }
+        }
+      }
+    })()
+    return () => { cancelled = true }
+  }, [])
 
-  // 三個都回來才算（有任一個失敗就顯示可用的部分）
+  // 有資料的指數依權重重新正規化加權平均
   const weightedScore = (() => {
-    const entries = Object.values(indexResults)
-    if (entries.length === 0) return null
-    const validEntries = entries.filter(e => e.changePct !== null)
-    if (validEntries.length === 0) return null
-    // 重新正規化權重（避免有指數失敗時分母不足1）
-    const totalWeight = validEntries.reduce((s, e) => s + e.weight, 0)
-    const score = validEntries.reduce((s, e) => s + (e.changePct * e.weight), 0) / totalWeight
+    const valid = INDICES.filter(idx => indexState[idx.ticker]?.data)
+    if (!valid.length) return null
+    const totalWeight = valid.reduce((s, idx) => s + idx.weight, 0)
+    const score = valid.reduce((s, idx) => s + (indexState[idx.ticker].data.change_pct * idx.weight), 0) / totalWeight
     return Math.round(score * 100) / 100
   })()
 
@@ -135,7 +140,7 @@ export default function Dashboard() {
 
   return (
     <div>
-      <h1 className="text-2xl font-semibold text-gray-900 mb-6">Dashboard</h1>
+      <h1 className="text-2xl font-semibold text-gray-900 mb-6">首頁</h1>
 
       <div className="grid grid-cols-2 gap-4 mb-4">
 
@@ -143,7 +148,11 @@ export default function Dashboard() {
         <div className="bg-white rounded-xl border border-gray-200 p-6">
           <p className="text-xs text-gray-400 mb-2">市場指數</p>
           {INDICES.map(idx => (
-            <IndexCard key={idx.ticker} {...idx} onData={handleData} />
+            <IndexCard
+              key={idx.ticker}
+              label={idx.label}
+              {...indexState[idx.ticker]}
+            />
           ))}
         </div>
 

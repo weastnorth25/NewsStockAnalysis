@@ -1,22 +1,40 @@
-// MoneyATM Logo 組件：簡潔文字設計，Money 白字 + ATM 金字，暗底圓角
+// MoneyATM Logo：深色漸層底 + 走勢圖示 + 雙色字（點擊回首頁）
+import { Link } from 'react-router-dom'
+
 export default function Logo() {
   return (
-    <div
-      className="inline-flex items-baseline px-4 py-2 rounded-lg"
-      style={{ background: '#3b82f6' }}
+    <Link
+      to="/dashboard"
+      className="inline-flex items-center gap-2 px-3 py-1.5 rounded-xl shadow-sm hover:opacity-90 transition-opacity"
+      style={{ background: 'linear-gradient(135deg, #1e293b 0%, #0f172a 100%)' }}
     >
-      <span
-        className="text-[18px] font-black tracking-tight"
-        style={{ color: '#ffffff', letterSpacing: '-0.02em' }}
-      >
-        Money
-      </span>
-      <span
-        className="text-[18px] font-black tracking-tight"
-        style={{ color: '#F59E0B', letterSpacing: '-0.02em' }}
-      >
-        ATM
-      </span>
-    </div>
+      {/* 走勢圖示 */}
+      <svg viewBox="0 0 24 24" className="w-5 h-5" fill="none" aria-hidden="true">
+        {/* 上升趨勢線 */}
+        <path
+          d="M3 17l5-5 4 4 8-9"
+          stroke="#F59E0B"
+          strokeWidth="2.5"
+          strokeLinecap="round"
+          strokeLinejoin="round"
+        />
+        {/* 右上箭頭 */}
+        <path
+          d="M16 7h4v4"
+          stroke="#F59E0B"
+          strokeWidth="2.5"
+          strokeLinecap="round"
+          strokeLinejoin="round"
+        />
+        {/* 高點圓點 */}
+        <circle cx="20" cy="7" r="1.5" fill="#FCD34D" />
+      </svg>
+
+      {/* 文字 */}
+      <div className="flex items-baseline" style={{ letterSpacing: '-0.02em' }}>
+        <span className="text-[15px] font-black text-white">Money</span>
+        <span className="text-[15px] font-black" style={{ color: '#F59E0B' }}>ATM</span>
+      </div>
+    </Link>
   )
 }
