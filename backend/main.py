@@ -165,3 +165,89 @@ def read_users_me(current_user:models.User=Depends(get_current_user)):
     
     
     return current_user
+
+
+# 新增股票到個人的收藏清單 (POST)
+@app.post("/api/watchlist", response_model=schemas.WatchlistResponse)
+def add_to_watchlist(item: schemas.WatchlistCreate,db: Session = Depends(get_db),current_user: models.User = Depends(get_current_user)): #驗證身份 JWT
+    # 檢查該使用者是否已經收藏過這檔股票
+    existing_item = db.query(models.Watchlist).filter(
+        models.Watchlist.user_id == current_user.id, 
+        models.Watchlist.symbol == item.symbol #確認是否已加入過
+    ).first()
+
+    if existing_item:
+        raise HTTPException(status_code=400, detail="這檔股票已經在你的收藏清單囉！")
+
+    # 建立新紀錄並寫入資料庫
+    new_item = models.Watchlist(
+        user_id=current_user.id,
+        symbol=item.symbol
+    )
+    db.add(new_item)
+    db.commit()
+    db.refresh(new_item)
+    
+    return new_item
+
+
+#受保護的 API：取得個人股票收藏清單與即時報價 (GET)
+@app.get("/api/watchlist", response_model=list[schemas.WatchlistItemWithPrice])
+def get_user_watchlist(db: Session = Depends(get_db),current_user: models.User = Depends(get_current_user)): #驗證身份 JWT
+    #撈出該名使用者的所有收藏紀錄
+    watchlist_items = db.query(models.Watchlist).filter(
+        models.Watchlist.user_id == current_user.id
+    ).all()
+
+    result_list = []
+
+    #抓取每一檔股票，透過 yfinance 抓取即時價格與名稱
+    for item in watchlist_items:
+        try:
+            stock = yf.Ticker(item.symbol)
+            hist = stock.history(period="1d")
+            
+            #確保資料表不是空的，且裡面真的有 Close 欄位
+            if not hist.empty and 'Close' in hist.columns and len(hist['Close']) > 0:
+                #拿最後一筆資料 (iloc[-1] 比 iloc[0] 更安全，確保是最新價)
+                current_price = round(float(hist['Close'].iloc[-1]), 2) 
+            else:
+                current_price = 0.0 #處置股或無交易時，預設為 0
+                
+            #有些處置股連 info 都會抓不到，所以也要加上防禦
+            company_name = stock.info.get('shortName', '暫無名稱') if stock.info else '暫無名稱'
+
+            #正常組合資料
+            result_list.append({
+                "id": item.id,
+                "symbol": item.symbol,
+                "company_name": company_name,
+                "current_price": current_price
+            })
+            
+        except Exception as e:
+            # 出現錯誤還是要把資料塞給前端，只是標示為無資料
+            print(f"抓取 {item.symbol} 失敗: {e}")
+            result_list.append({
+                "id": item.id,
+                "symbol": item.symbol,
+                "company_name": "無報價資料 (處置/暫停交易)",
+                "current_price": 0.0
+            })
+
+    return result_list
+
+#刪除自選股
+@app.delete("/api/watchlist/{symbol}")
+def remove_from_watchlist(symbol:str,db:Session=Depends(get_db),current_user:models.User=Depends(get_current_user)): #身份驗份 JWT
+    item_to_delete= db.query(models.Watchlist).filter(
+        models.Watchlist.user_id==current_user.id,
+        models.Watchlist.symbol== symbol
+    ).first()
+    
+    if not item_to_delete:
+        raise HTTPException(status_code=404,detail="你的自選股中沒有這檔股票哦!")
+    db.delete(item_to_delete)
+    db.commit()
+
+    return {"message":f"成功將{symbol}從自選清單中移除!"}

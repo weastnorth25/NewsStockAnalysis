@@ -32,3 +32,26 @@ class UserLogin(BaseModel):
 class Token(BaseModel):
     access_token: str  
     token_type: str
+
+
+# 前端要「新增自選股」時傳過來的格式
+class WatchlistCreate(BaseModel):
+    symbol: str
+
+# 新增成功後，我們回傳給前端的確認格式
+class WatchlistResponse(BaseModel):
+    id: int
+    user_id: int
+    symbol: str
+
+    class Config:
+        from_attributes = True # 啟用雙語字典，讓 Pydantic 看得懂 SQLAlchemy 物件
+
+# 前端「查詢自選股清單」時，我們回傳帶有最新股價的格式
+class WatchlistItemWithPrice(BaseModel):
+    id: int 
+    symbol: str
+    company_name:str
+    current_price: float
+    class Config:
+        from_attributes = True
