@@ -1,0 +1,2 @@
+/* 全域樣式入口，引入 Tailwind CSS，所有頁面共用 */
+@import "tailwindcss";

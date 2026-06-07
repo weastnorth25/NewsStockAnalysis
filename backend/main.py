@@ -76,28 +76,41 @@ def get_stock_info(ticker: str):
     透過股票代號 (例如：2330.TW, AAPL) 取得股票基本資訊與最新價格。
     """
     try:
-        # 使用 yfinance 抓取股票資料
         stock = yf.Ticker(ticker)
-        
-        # 取得昨天或最近一個交易日的收盤價
-        # history(period="1d") 會回傳一個 DataFrame，我們要抓取 Close 欄位的值
-        hist = stock.history(period="1d")
-        
+
+        # 抓取近兩日歷史，用來計算今日漲跌
+        hist = stock.history(period="2d")
+
         if hist.empty:
             raise HTTPException(status_code=404, detail="找不到該股票的交易資料，請確認代號是否正確。")
-            
-        current_price = round(hist['Close'].iloc[0], 2)
-        
-        # 整理要回傳給前端的 JSON 格式
+
+        current_price = round(float(hist['Close'].iloc[-1]), 2)
+
+        # 計算漲跌金額與漲跌幅
+        if len(hist) >= 2:
+            prev_close   = round(float(hist['Close'].iloc[-2]), 2)
+            change       = round(current_price - prev_close, 2)
+            change_pct   = round((change / prev_close) * 100, 2) if prev_close else 0
+        else:
+            # 只有一筆資料時，從 info 取 previousClose
+            prev_close   = stock.info.get('previousClose') or current_price
+            change       = round(current_price - prev_close, 2)
+            change_pct   = round((change / prev_close) * 100, 2) if prev_close else 0
+
+        volume = int(hist['Volume'].iloc[-1]) if 'Volume' in hist.columns else 0
+
         return {
-            "symbol": ticker,
-            "company_name": stock.info.get('shortName', '未知名稱'),
+            "symbol":        ticker,
+            "company_name":  stock.info.get('shortName', '未知名稱'),
             "current_price": current_price,
-            "currency": stock.info.get('currency', 'TWD'),
-            "sector": stock.info.get('sector', '未知產業')
+            "prev_close":    prev_close,
+            "change":        change,
+            "change_pct":    change_pct,   # 正數=漲, 負數=跌
+            "volume":        volume,
+            "currency":      stock.info.get('currency', 'TWD'),
+            "sector":        stock.info.get('sector', '未知產業'),
         }
     except Exception as e:
-        # 如果發生錯誤（例如代號亂打），回傳 400 錯誤代碼
         raise HTTPException(status_code=400, detail=str(e))
     
 
