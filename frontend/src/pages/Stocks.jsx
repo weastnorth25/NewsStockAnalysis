@@ -1,9 +1,9 @@
 // 股票頁面：左側為股票列表，右側顯示選中股票的即時價格、線圖（1H/4H/日線/週線）、基本資料、相關新聞
 import { useState, useEffect, useMemo } from 'react'
 import { useSearchParams, useNavigate } from 'react-router-dom'
-import { AreaChart, Area, XAxis, YAxis, Tooltip, ResponsiveContainer } from 'recharts'
+import { AreaChart, Area, LineChart, Line, CartesianGrid, ReferenceLine, XAxis, YAxis, Tooltip, ResponsiveContainer } from 'recharts'
 import { fetchStockInfo } from '../api/stock'
-import { mockStockList, mockStockDetail, mockNews } from '../data/mockData'
+import { mockStockList, mockStockDetail, mockNews, mockCompanyInfo, getSentimentHistory } from '../data/mockData'
 import { getStockName } from '../data/stockNames'
 
 // ─── 時間框架設定 ────────────────────────────────────────────────
@@ -83,6 +83,143 @@ function CustomTooltip({ active, payload, label }) {
   return null
 }
 
+function SentimentTrendTooltip({ active, payload, label }) {
+  if (!active || !payload?.length) return null
+  const d = payload[0].payload
+  return (
+    <div className="bg-gray-800 text-white text-xs px-3 py-2 rounded-lg shadow-lg max-w-xs">
+      <p className="text-gray-400 mb-1">{label}・{d.count} 篇新聞</p>
+      <p className="font-semibold mb-1.5">情緒分數 {(d.sentiment * 100).toFixed(0)}</p>
+      {d.items.slice(0, 3).map(item => (
+        <p key={item.id} className="text-gray-300 mt-0.5 truncate">
+          ・{item.title}
+        </p>
+      ))}
+    </div>
+  )
+}
+
+function SentimentTrendChart({ data }) {
+  if (!data.length) {
+    return (
+      <div className="bg-gray-50 border border-gray-200 rounded-xl h-48 flex items-center justify-center text-sm text-gray-400">
+        過去 30 天內無相關新聞，暫無情緒走勢
+      </div>
+    )
+  }
+
+  return (
+    <div className="bg-gray-50 border border-gray-200 rounded-xl p-4">
+      <ResponsiveContainer width="100%" height={200}>
+        <LineChart data={data} margin={{ top: 10, right: 16, left: 0, bottom: 0 }}>
+          <CartesianGrid strokeDasharray="3 3" stroke="#e5e7eb" vertical={false} />
+          <XAxis
+            dataKey="date"
+            tick={{ fill: '#9ca3af', fontSize: 10 }}
+            axisLine={false}
+            tickLine={false}
+          />
+          <YAxis
+            domain={[0, 1]}
+            ticks={[0, 0.5, 0.7, 1]}
+            tickFormatter={v => Math.round(v * 100)}
+            tick={{ fill: '#9ca3af', fontSize: 10 }}
+            axisLine={false}
+            tickLine={false}
+            width={32}
+          />
+          <ReferenceLine y={0.7} stroke="#f87171" strokeDasharray="3 3" />
+          <ReferenceLine y={0.5} stroke="#fbbf24" strokeDasharray="3 3" />
+          <Tooltip content={<SentimentTrendTooltip />} />
+          <Line
+            type="monotone"
+            dataKey="sentiment"
+            stroke="#6366f1"
+            strokeWidth={2}
+            dot={{ r: 4, fill: '#6366f1', strokeWidth: 2, stroke: '#fff' }}
+            activeDot={{ r: 6 }}
+          />
+        </LineChart>
+      </ResponsiveContainer>
+
+      <div className="flex items-center gap-4 mt-2 text-xs text-gray-500 px-1">
+        <span className="flex items-center gap-1">
+          <span className="w-2.5 h-0.5 bg-red-400" />正向門檻 70
+        </span>
+        <span className="flex items-center gap-1">
+          <span className="w-2.5 h-0.5 bg-yellow-400" />中性門檻 50
+        </span>
+      </div>
+    </div>
+  )
+}
+
+function SentimentBlock({ news, navigate }) {
+  if (!news.length) return <p className="text-sm text-gray-400">尚無相關新聞可分析</p>
+
+  const avg      = news.reduce((s, n) => s + n.sentiment, 0) / news.length
+  const positive = news.filter(n => n.sentiment >= 0.7).length
+  const neutral  = news.filter(n => n.sentiment >= 0.5 && n.sentiment < 0.7).length
+  const negative = news.filter(n => n.sentiment < 0.5).length
+
+  const label      = avg >= 0.7 ? '偏多' : avg >= 0.5 ? '觀望' : '偏空'
+  const labelColor = avg >= 0.7 ? 'text-red-500' : avg >= 0.5 ? 'text-yellow-600' : 'text-emerald-600'
+  const barColor   = avg >= 0.7 ? 'bg-red-400'   : avg >= 0.5 ? 'bg-yellow-400'   : 'bg-emerald-400'
+
+  return (
+    <div className="space-y-3">
+      <div className="flex items-center gap-3 p-3 bg-gray-50 rounded-lg">
+        <span className={`text-base font-bold shrink-0 ${labelColor}`}>{label}</span>
+        <div className="flex-1">
+          <div className="relative h-2 bg-gray-200 rounded-full overflow-hidden">
+            <div className={`h-full rounded-full ${barColor}`} style={{ width: `${avg * 100}%` }} />
+            <div className="absolute left-1/2 top-0 h-full w-px bg-gray-400 -translate-x-1/2" />
+          </div>
+          <p className="text-xs text-gray-400 mt-1">
+            綜合分數 {(avg * 100).toFixed(0)}%・共 {news.length} 篇新聞
+          </p>
+        </div>
+      </div>
+
+      <div className="grid grid-cols-3 gap-2 text-center">
+        <div className="py-2 bg-red-50 rounded-lg">
+          <p className="text-base font-bold text-red-500">{positive}</p>
+          <p className="text-xs text-gray-500">正向</p>
+        </div>
+        <div className="py-2 bg-yellow-50 rounded-lg">
+          <p className="text-base font-bold text-yellow-600">{neutral}</p>
+          <p className="text-xs text-gray-500">中性</p>
+        </div>
+        <div className="py-2 bg-emerald-50 rounded-lg">
+          <p className="text-base font-bold text-emerald-600">{negative}</p>
+          <p className="text-xs text-gray-500">負向</p>
+        </div>
+      </div>
+
+      <div className="space-y-2">
+        {news.slice(0, 3).map(n => (
+          <div
+            key={n.id}
+            onClick={() => navigate('/news', { state: { selectedId: n.id } })}
+            className="flex items-start gap-2 cursor-pointer group"
+          >
+            <span className={`mt-0.5 shrink-0 text-xs px-1.5 py-0.5 rounded-full ${
+              n.sentiment >= 0.7 ? 'bg-red-50 text-red-500'
+              : n.sentiment >= 0.5 ? 'bg-yellow-50 text-yellow-600'
+              : 'bg-emerald-50 text-emerald-600'
+            }`}>
+              {n.sentiment >= 0.7 ? '正向' : n.sentiment >= 0.5 ? '中性' : '負向'}
+            </span>
+            <p className="text-xs text-gray-600 group-hover:text-blue-500 transition-colors line-clamp-2">
+              {n.title}
+            </p>
+          </div>
+        ))}
+      </div>
+    </div>
+  )
+}
+
 // ─── 主頁面 ──────────────────────────────────────────────────────
 export default function Stocks() {
   const [searchParams] = useSearchParams()
@@ -125,11 +262,16 @@ export default function Stocks() {
                  || getStockName(selectedSymbol, liveData?.company_name)
                  || selectedSymbol
   const relatedNews = mockNews.filter(n => n.relatedStocks?.includes(selectedSymbol))
+  const sentimentHistory = useMemo(
+    () => getSentimentHistory(selectedSymbol, 30),
+    [selectedSymbol]
+  )
+  const companyInfo = mockCompanyInfo[selectedSymbol]
   const isUp = (liveData?.change_pct ?? 0) >= 0
 
   return (
     <div>
-      <h1 className="text-2xl font-semibold text-gray-900 mb-6">Stocks</h1>
+      <h1 className="text-2xl font-semibold text-gray-900 mb-6">股票</h1>
 
       <div className="flex gap-4">
 
@@ -273,6 +415,19 @@ export default function Stocks() {
             </div>
           )}
 
+          {/* 情緒走勢圖 */}
+          <div className="mb-6">
+            <div className="flex items-baseline justify-between mb-3">
+              <h3 className="text-sm font-semibold text-gray-900">情緒走勢（過去 30 天）</h3>
+              <span className="text-xs text-gray-400">
+                {sentimentHistory.length > 0
+                  ? `共 ${sentimentHistory.reduce((s, d) => s + d.count, 0)} 篇新聞・${sentimentHistory.length} 個有效日期`
+                  : ''}
+              </span>
+            </div>
+            <SentimentTrendChart data={sentimentHistory} />
+          </div>
+
           {/* 相關新聞 + AI 分析 */}
           <div className="grid grid-cols-2 gap-6">
             <div>
@@ -294,10 +449,54 @@ export default function Stocks() {
               )}
             </div>
             <div>
-              <h3 className="text-sm font-semibold text-gray-900 mb-3">AI 分析</h3>
-              <p className="text-sm text-gray-400">AI 分析功能開發中，敬請期待。</p>
+              <h3 className="text-sm font-semibold text-gray-900 mb-3">AI 情緒分析</h3>
+              <SentimentBlock news={relatedNews} navigate={navigate} />
             </div>
           </div>
+
+          {/* 公司基本資料 */}
+          {companyInfo && (
+            <div className="mt-6 pt-6 border-t border-gray-100">
+              <h3 className="text-sm font-semibold text-gray-900 mb-3">公司基本資料</h3>
+              <div className="bg-gray-50 rounded-xl p-5">
+                <p className="text-sm font-semibold text-gray-900 mb-1.5">{companyInfo.fullName}</p>
+                <p className="text-sm text-gray-600 leading-relaxed mb-4">{companyInfo.description}</p>
+                <div className="grid grid-cols-2 gap-x-8 gap-y-2.5 text-sm">
+                  <div className="flex justify-between">
+                    <span className="text-gray-500">創立</span>
+                    <span className="text-gray-900 font-medium">{companyInfo.founded}</span>
+                  </div>
+                  <div className="flex justify-between">
+                    <span className="text-gray-500">員工人數</span>
+                    <span className="text-gray-900 font-medium">{companyInfo.employees}</span>
+                  </div>
+                  <div className="flex justify-between">
+                    <span className="text-gray-500">董事長</span>
+                    <span className="text-gray-900 font-medium">{companyInfo.chairman}</span>
+                  </div>
+                  <div className="flex justify-between">
+                    <span className="text-gray-500">產業</span>
+                    <span className="text-gray-900 font-medium">{liveData?.sector || '—'}</span>
+                  </div>
+                  <div className="flex justify-between col-span-2">
+                    <span className="text-gray-500">總部</span>
+                    <span className="text-gray-900 font-medium">{companyInfo.address}</span>
+                  </div>
+                  <div className="flex justify-between col-span-2">
+                    <span className="text-gray-500">官網</span>
+                    <a
+                      href={`https://${companyInfo.website}`}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="text-blue-500 hover:text-blue-600 hover:underline"
+                    >
+                      {companyInfo.website}
+                    </a>
+                  </div>
+                </div>
+              </div>
+            </div>
+          )}
 
         </div>
       </div>

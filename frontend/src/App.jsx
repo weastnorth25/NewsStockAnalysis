@@ -1,4 +1,4 @@
-// 路由設定中心，定義所有頁面路徑與 Auth Guard（未登入自動跳轉登入頁）
+// 路由設定中心，定義所有頁面路徑與Auth Guard（未登入自動跳轉登入頁）
 import { BrowserRouter, Routes, Route, Navigate } from 'react-router-dom'
 import MainLayout from './components/Layout/MainLayout'
 import Login from './pages/Login'
@@ -6,6 +6,7 @@ import Dashboard from './pages/Dashboard'
 import News from './pages/News'
 import Stocks from './pages/Stocks'
 import Favourites from './pages/Favourites'
+import Sentiment from './pages/Sentiment'
 import Settings from './pages/Settings'
 
 // 簡單的 Auth Guard：沒有 token 就跳回登入頁
@@ -36,6 +37,7 @@ export default function App() {
           <Route path="news"       element={<News />} />
           <Route path="stocks"     element={<Stocks />} />
           <Route path="favourites" element={<Favourites />} />
+          <Route path="sentiment"  element={<Sentiment />} />
           <Route path="settings"   element={<Settings />} />
         </Route>
 

@@ -91,7 +91,7 @@ export default function Favourites() {
 
   return (
     <div>
-      <h1 className="text-2xl font-semibold text-gray-900 mb-6">Favourites</h1>
+      <h1 className="text-2xl font-semibold text-gray-900 mb-6">自選</h1>
 
       <div className="bg-white rounded-xl border border-gray-200 overflow-hidden">
         <table className="w-full">
