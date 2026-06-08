@@ -1,7 +1,7 @@
 // 登入 / 註冊頁面：使用者輸入帳密後打後端 API，登入成功則將 JWT token 存入 localStorage
 import { useState } from 'react'
 import { useNavigate } from 'react-router-dom'
-import { loginUser, registerUser } from '../api/stock'
+import { loginUser, registerUser, fetchCurrentUser } from '../api/stock'
 
 export default function Login() {
   const navigate = useNavigate()
@@ -35,7 +35,13 @@ export default function Login() {
       } else {
         const data = await loginUser(form.email, form.password)
         localStorage.setItem('token', data.access_token)
-        localStorage.setItem('displayName', form.email)   // 先存 email，等 /api/users/me 做好再換
+        // 拿到 token 後立刻打 /api/users/me 取得真正的 username
+        try {
+          const me = await fetchCurrentUser()
+          localStorage.setItem('displayName', me.username)
+        } catch {
+          localStorage.setItem('displayName', form.email)
+        }
         navigate('/dashboard')
       }
     } catch (err) {
