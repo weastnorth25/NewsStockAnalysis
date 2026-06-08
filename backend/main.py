@@ -40,12 +40,18 @@ security=HTTPBearer() #HTTP Bearer Token 檢查員
 
 app = FastAPI(title="新聞股票分析系統 API", description="雲科資管畢業專題後端",default_response_class=UTF8JsonResponse)
 
+#CORS 白名單
+origins = [
+    "https://stock-analysis-api-f1aw.onrender.com",  #  render 後端
+    "https://news-stock-analysis-frontend.vercel.app",  #  Vercel 前端
+]
+
 
 # 加入 CORS 中介軟體，允許前端跨域請求
 app.add_middleware(
     CORSMiddleware,
     # 允許所有的來源 (開發期為了方便先設為 "*"，上線後可以改成前端的真實網址)
-    allow_origins=["*"], 
+    allow_origins=origins, 
     allow_credentials=True,
     # 允許所有的 HTTP 方法 (GET, POST, PUT, DELETE)
     allow_methods=["*"], 
