@@ -20,14 +20,14 @@ class User(Base):
     password_hash = Column(String(255))
     #utcnow 自動填入當前時間
     created_at = Column(DateTime,default=datetime.utcnow) #註冊時間
-
+'''    
 class UserWatchlist(Base):
     __tablename__="user_watchlist"
 
     id=Column(Integer,primary_key=True,index=True)
     user_id=Column(Integer,ForeignKey('user.id'))
     stock_id=Column(Integer,ForeignKey('stock.id'))
-
+'''
 
 class Stock(Base):
     __tablename__="stock"
