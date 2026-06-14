@@ -56,12 +56,33 @@ export default function Login() {
       <div className="bg-white rounded-2xl shadow-sm border border-gray-200 w-full max-w-md p-8">
 
         {/* Logo */}
-        <div className="text-center mb-8">
-          <h1 className="text-3xl font-bold">
-            <span className="text-blue-500">Dash</span>
-            <span className="text-gray-800">Stack</span>
-          </h1>
-          <p className="text-sm text-gray-500 mt-2">新聞股票分析系統</p>
+        <div className="flex flex-col items-center mb-8">
+          <div
+            className="inline-flex items-center gap-3 px-5 py-3 rounded-2xl shadow-sm"
+            style={{ background: 'linear-gradient(135deg, #1e293b 0%, #0f172a 100%)' }}
+          >
+            <svg viewBox="0 0 24 24" className="w-8 h-8" fill="none" aria-hidden="true">
+              <path
+                d="M3 17l5-5 4 4 8-9"
+                stroke="#F59E0B"
+                strokeWidth="2.5"
+                strokeLinecap="round"
+                strokeLinejoin="round"
+              />
+              <path
+                d="M16 7h4v4"
+                stroke="#F59E0B"
+                strokeWidth="2.5"
+                strokeLinecap="round"
+                strokeLinejoin="round"
+              />
+              <circle cx="20" cy="7" r="1.5" fill="#FCD34D" />
+            </svg>
+            <div className="flex items-baseline" style={{ letterSpacing: '-0.02em' }}>
+              <span className="text-2xl font-black text-white">Money</span>
+              <span className="text-2xl font-black" style={{ color: '#F59E0B' }}>ATM</span>
+            </div>
+          </div>
         </div>
 
         {/* 切換 登入 / 註冊 */}
