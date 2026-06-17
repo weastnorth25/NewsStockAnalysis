@@ -76,4 +76,9 @@ uvicorn==0.39.0
 websockets==15.0.1
 yarl==1.22.0
 yfinance==1.2.0
-dotenv==1.2.1
+dotenv==0.9.9
+
+
+
+
+
