@@ -72,9 +72,11 @@ class News(Base):
 
     id=Column(Integer,primary_key=True,index=True)
     stock_id=Column(Integer,ForeignKey('stock.id'))
-    title=Column(String(255))
-    content=Column(Text)
+    title=Column(String,nullable=False) 
+    content=Column(Text,nullable=False) #存完整內文
+    url = Column(String, unique=True)   #網址 
     sentiment_score=Column(Float) #ai情緒分
+    related_stocks=Column(String) #存放關聯股的代號
     published_at=Column(DateTime,default=datetime.utcnow) #新聞時間
 
 class AiChatSession(Base):

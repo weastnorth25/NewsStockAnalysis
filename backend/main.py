@@ -290,7 +290,16 @@ def remove_from_watchlist(symbol:str,db:Session=Depends(get_db),current_user:mod
 
     return {"message":f"成功將{symbol}從自選清單中移除!"}
 
-#網路爬蟲
+'''======後期ai端完成新聞分析才做直接取用
+@app.get("/api/news")
+def get_news_from_db(db: Session = Depends(get_db)):
+    # 直接去 Supabase 撈最新的 20 筆新聞 (包含內文跟分析結果)
+    news_records = db.query(models.News).order_by(models.News.published_at.desc()).limit(20).all()
+    return {"status": "success", "data": news_records}
+'''
+
+
+#網路爬蟲 先自取
 @app.get("/api/news")
 def get_stock_news():
     #爬蟲目標 改用google rss 新聞

@@ -2,15 +2,21 @@
 
 '''
 
-
+import os
+from dotenv import load_load_env
 from sqlalchemy import create_engine
 from sqlalchemy.orm import sessionmaker
 from sqlalchemy.ext.declarative import declarative_base
 
+# 載入本機的 .env 檔案
+load_dotenv()
 #指定資料庫檔案位置
 #DATABASE_URL="sqlite:///./stock_system.db"
 
-SQLALCHEMY_DATABASE_URL="postgresql://postgres.ccmymqfcrauvnzefhfav:yuntech112230@aws-1-ap-southeast-1.pooler.supabase.com:5432/postgres"
+
+#因github公開，隱藏機密
+#從環境變數中讀取連線網址，如果讀不到就維持空值或報錯
+SQLALCHEMY_DATABASE_URL = os.getenv("DATABASE_URL")
 
 
 # 建立資料庫引擎 (Engine)，是python跟sql的橋梁
