@@ -18,17 +18,27 @@ async def classify_industry(news_title: str):
     傳入新聞標題，AI 會自動幫你算出它屬於哪個產業
     """
     try:
-        # 使用官方提供的零樣本分類方法
+        # 1. 優化標籤：加上關聯字詞，給 AI 更明確的指引
+        candidate_labels = ["電子科技與半導體", "金融與銀行", "機械與製造", "生技與醫療", "傳統產業"]
+        
         results = await client.zero_shot_classification(
             text=news_title,
-            candidate_labels=["科技", "銀行", "機械", "生技", "傳產"],
+            candidate_labels=candidate_labels,
             model=MODEL_ID
         )
         
-        # results 會回傳一個列表，依機率由高到低排序，我們取第一個最高分的標籤
+        # 2. 測試階段：印出 AI 計算的所有機率，觀察它有沒有在瞎猜
+        print(f"📊 AI 原始機率分析: {results}")
+        
         best_match = results[0]
-        # 兼容物件與字典兩種讀取格式防呆
-        return getattr(best_match, "label", best_match.get("label", "未分類")) if isinstance(best_match, dict) else best_match.label
+        full_category = getattr(best_match, "label", best_match.get("label", "未分類")) if isinstance(best_match, dict) else best_match.label
+        
+        # 3. 將詳細標籤對應回你資料庫需要的簡稱
+        if "科技" in full_category: return "科技"
+        if "金融" in full_category: return "銀行"
+        if "機械" in full_category: return "機械"
+        if "生技" in full_category: return "生技"
+        return "傳產"
         
     except Exception as e:
         print(f"Hugging Face 呼叫錯誤: {e}")
