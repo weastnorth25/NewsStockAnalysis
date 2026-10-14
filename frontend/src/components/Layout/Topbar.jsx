@@ -1,13 +1,15 @@
-// 頂部列：漢堡選單 + 搜尋欄 + 置中 Logo + 右側帳戶下拉選單（含 Settings / Logout）
+// 頂部列：漢堡選單 + 搜尋欄 + 置中 Logo + 新手/專業模式切換 + 右側帳戶下拉選單（含 Settings / Logout）
 import { useState, useRef, useEffect } from 'react'
 import { useNavigate, NavLink } from 'react-router-dom'
 import Logo from '../Logo'
+import { useMode } from '../../context/mode'
 
 export default function Topbar({ onToggleSidebar }) {
   const [query, setQuery] = useState('')
   const [menuOpen, setMenuOpen] = useState(false)
   const menuRef = useRef(null)
   const navigate = useNavigate()
+  const { isPro, toggleMode } = useMode()
 
   const displayName = localStorage.getItem('displayName') || '使用者'
   const isGuest     = localStorage.getItem('token') === 'guest'
@@ -73,6 +75,26 @@ export default function Topbar({ onToggleSidebar }) {
 
       {/* 推到右邊 */}
       <div className="flex-1" />
+
+      {/* 新手／專業模式切換 */}
+      <div className="flex bg-gray-100 rounded-full p-0.5 text-xs font-medium shrink-0">
+        <button
+          onClick={() => isPro && toggleMode()}
+          className={`px-3 py-1 rounded-full transition-colors ${
+            !isPro ? 'bg-white text-blue-500 shadow-sm' : 'text-gray-500 hover:text-gray-700'
+          }`}
+        >
+          新手
+        </button>
+        <button
+          onClick={() => !isPro && toggleMode()}
+          className={`px-3 py-1 rounded-full transition-colors ${
+            isPro ? 'bg-white text-blue-500 shadow-sm' : 'text-gray-500 hover:text-gray-700'
+          }`}
+        >
+          專業
+        </button>
+      </div>
 
       {/* 帳戶下拉選單 */}
       <div className="relative shrink-0" ref={menuRef}>
