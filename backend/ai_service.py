@@ -1,59 +1,77 @@
 import os
-import asyncio
-from dotenv import load_dotenv
-from huggingface_hub import AsyncInferenceClient
+from transformers import pipeline
 
-# 精準定位：告訴系統往上一層去找 .env 檔案
-dotenv_path = os.path.join(os.path.dirname(__file__), '..', '.env')
-load_dotenv(dotenv_path)
+# ==========================================
+# 🧠 載入本地端 AI 模型 (第一次執行會自動下載)
+# ==========================================
+print("⏳ 正在將 AI 模型載入記憶體，請稍候...")
+# 使用本地 pipeline 進行零樣本分類
+classifier = pipeline(
+    "zero-shot-classification", 
+    model="MoritzLaurer/mDeBERTa-v3-base-mnli-xnli"
+)
+print("✅ 本地模型載入完成！")
 
-HF_TOKEN = os.getenv("HF_TOKEN")
+# 這裡移除 async，因為本地運算不需要等待網路回應
+def classify_industry(news_text: str):
+    # ==========================================
+    # 🌟 1. 專家規則攔截網 (Rule-based Override)
+    # ==========================================
+    market_keywords = ["台指期", "加權指數", "台股大盤", "0050", "006208", "央行", "台指"]
+    if any(keyword in news_text for keyword in market_keywords):
+        return {"category": "大盤總經", "score": 1.0, "details": "專家關鍵字直接命中"}
 
-# 透過官方套件初始化 AI 客戶端 (它會自動幫我們找到目前最新、正確的底層連線網址)
-client = AsyncInferenceClient(token=HF_TOKEN)
-MODEL_ID = "MoritzLaurer/mDeBERTa-v3-base-mnli-xnli"
-
-async def classify_industry(news_title: str):
-    """
-    傳入新聞標題，AI 會自動幫你算出它屬於哪個產業
-    """
+    # ==========================================
+    # 🤖 2. 模糊地帶交給本地 AI 運算
+    # ==========================================
+    candidate_labels = [
+        "大盤指數、期貨與總體經濟",
+        "電子科技與半導體",
+        "通訊網路與軟體服務",
+        "金融與保險業",
+        "航運與物流",
+        "生技與醫療",
+        "營建與房地產",
+        "民生消費與零售",
+        "再生能源與永續發展",
+        "傳統製造與原物料",
+        "其他產業或綜合新聞"
+    ]
+    
     try:
-        # 1. 優化標籤：加上關聯字詞，給 AI 更明確的指引
-        candidate_labels = ["電子科技與半導體", "金融與銀行", "機械與製造", "生技與醫療", "傳統產業"]
+        # 呼叫本地模型進行預測
+        results = classifier(news_text, candidate_labels)
         
-        results = await client.zero_shot_classification(
-            text=news_title,
-            candidate_labels=candidate_labels,
-            model=MODEL_ID
-        )
+        # 組合詳細分數
+        details_list = []
+        for i in range(len(results["labels"])):
+            lbl = results["labels"][i]
+            scr = results["scores"][i]
+            details_list.append(f"{lbl}: {round(scr, 4)}")
+        all_scores_str = " | ".join(details_list)
         
-        # 2. 測試階段：印出 AI 計算的所有機率，觀察它有沒有在瞎猜
-        print(f"📊 AI 原始機率分析: {results}")
+        # 取得最高分
+        full_category = results["labels"][0]
+        score = round(results["scores"][0], 4)
         
-        best_match = results[0]
-        full_category = getattr(best_match, "label", best_match.get("label", "未分類")) if isinstance(best_match, dict) else best_match.label
+        # 30% 門檻防護與對應邏輯
+        if score < 0.30:
+            category = "未分類"
+        else:
+            if "大盤" in full_category or "經濟" in full_category or "期貨" in full_category: category = "大盤總經"
+            elif "科技" in full_category or "半導體" in full_category: category = "科技半導體"
+            elif "通訊" in full_category or "軟體" in full_category: category = "軟體服務"
+            elif "金融" in full_category: category = "金融保險"
+            elif "航運" in full_category: category = "航運物流"
+            elif "生技" in full_category: category = "生技醫療"
+            elif "營建" in full_category: category = "營建地產"
+            elif "消費" in full_category or "零售" in full_category: category = "民生消費"
+            elif "再生能源" in full_category: category = "再生能源"
+            elif "其他" in full_category: category = "未分類"
+            else: category = "傳統產業"
         
-        # 3. 將詳細標籤對應回你資料庫需要的簡稱
-        if "科技" in full_category: return "科技"
-        if "金融" in full_category: return "銀行"
-        if "機械" in full_category: return "機械"
-        if "生技" in full_category: return "生技"
-        return "傳產"
+        return {"category": category, "score": score, "details": all_scores_str}
         
     except Exception as e:
-        print(f"Hugging Face 呼叫錯誤: {e}")
-        return "未分類"
-
-# ==========================================
-# 本機直接測試區塊
-# ==========================================
-if __name__ == "__main__":
-    async def test_ai():
-        print("🚀 正在呼叫 Hugging Face 官方 AI 模組進行測試...")
-        title = "台積電今日法說會釋出利多，半導體供應鏈大漲"
-        print(f"📰 測試新聞標題：{title}")
-        
-        category = await classify_industry(title)
-        print(f"🎯 AI 判定產業類別：{category}")
-        
-    asyncio.run(test_ai())
+        print(f"本地模型運算錯誤: {e}")
+        return {"category": "未分類", "score": 0.0, "details": f"發生錯誤: {str(e)}"}
