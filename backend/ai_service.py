@@ -75,3 +75,54 @@ def classify_industry(news_text: str):
     except Exception as e:
         print(f"本地模型運算錯誤: {e}")
         return {"category": "未分類", "score": 0.0, "details": f"發生錯誤: {str(e)}"}
+
+def classify_news_type(news_text: str):
+    """
+    分析新聞屬於哪種財經事件（財報、法說會、股利等）
+    """
+    # ==========================================
+    # 🌟 1. 事件關鍵字攔截網 (處理速度最快，準確率最高)
+    # ==========================================
+    if any(k in news_text for k in ["法說會", "股東會", "法說"]):
+        return "法說與股東會"
+    if any(k in news_text for k in ["財報", "營收", "季報", "年報", "獲利", "EPS", "每股純益"]):
+        return "財報與營收"
+    if any(k in news_text for k in ["除權息", "配息", "股利", "殖利率", "填息"]):
+        return "股利與除權息"
+    if any(k in news_text for k in ["買超", "賣超", "漲停", "跌停", "三大法人", "外資"]):
+        return "籌碼與股價動態"
+
+    # ==========================================
+    # 🤖 2. 沒有明確關鍵字的，交給 AI 判斷
+    # ==========================================
+    candidate_labels = [
+        "財務報表與營收數據",
+        "法說會與股東會議",
+        "股利發放與除權息",
+        "產品發表與業務合作", # 涵蓋新產品、併購、大訂單
+        "人事異動與公司治理", # 涵蓋董事長換人、高層變動
+        "股市籌碼與股價波動",
+        "總體經濟與產業政策",
+        "一般綜合報導"
+    ]
+    
+    try:
+        results = classifier(news_text, candidate_labels)
+        full_category = results["labels"][0]
+        score = round(results["scores"][0], 4)
+        
+        # 門檻設為 25%，低於此分數代表不是特定重大事件
+        if score < 0.25:
+            return "一般新聞"
+            
+        if "財務" in full_category or "營收" in full_category: return "財報與營收"
+        elif "法說" in full_category or "股東" in full_category: return "法說與股東會"
+        elif "股利" in full_category or "除權息" in full_category: return "股利與除權息"
+        elif "合作" in full_category or "產品" in full_category: return "業務與產品"
+        elif "人事" in full_category or "治理" in full_category: return "人事異動"
+        elif "籌碼" in full_category or "股價" in full_category: return "籌碼與股價動態"
+        elif "經濟" in full_category or "政策" in full_category: return "總經與政策"
+        else: return "一般新聞"
+        
+    except Exception as e:
+        return "一般新聞"
