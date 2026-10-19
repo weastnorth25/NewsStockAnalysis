@@ -1,3 +1,5 @@
+import os 
+
 from fastapi import FastAPI, HTTPException ,Request, Depends
 from fastapi.responses import JSONResponse
 from fastapi.security import HTTPBearer,HTTPAuthorizationCredentials #網頁及API的檢查及限制
@@ -36,7 +38,11 @@ class UTF8JsonResponse(JSONResponse):
 
 #=====全域變數=====
 pwd_context = CryptContext(schemes=["bcrypt"], deprecated="auto") #schemes 機制 
-SECRET_KEY="weast_graduation_project_super_secret_key" #因測試先寫死，之後藏到環境變數裡
+
+SECRET_KEY=os.getenv("SECRET_KEY") #因測試先寫死，之後藏到環境變數裡
+if not SECRET_KEY:
+    raise RuntimeError("SECRET_KEY 未設定")
+
 ALGORITHM = "HS256" #加密演算法
 ACCESS_TOKEN_EXPIRE_MINUTES = 60 #通行證有效期限 (60分鐘)
 security=HTTPBearer() #HTTP Bearer Token 檢查員
