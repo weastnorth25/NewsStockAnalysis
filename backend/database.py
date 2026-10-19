@@ -32,7 +32,7 @@ engine = create_engine(
 '''
 
 # 建立資料庫引擎 (Engine)，是python跟sql的橋梁
-engine = create_engine(DATABASE_URL)
+engine = create_engine(SQLALCHEMY_DATABASE_URL)
 
 # 建立對話的 Session(ai的) 工廠 ( 以後 API 要存取資料，都要跟這個工廠拿 Session )
 SessionLocal = sessionmaker(autocommit=False, autoflush=False, bind=engine)
