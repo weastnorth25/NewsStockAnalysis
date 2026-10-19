@@ -2,7 +2,7 @@
 import { useState, useEffect, useMemo } from 'react'
 import { useSearchParams, useNavigate } from 'react-router-dom'
 import { AreaChart, Area, LineChart, Line, CartesianGrid, ReferenceLine, XAxis, YAxis, Tooltip, ResponsiveContainer } from 'recharts'
-import { fetchStockInfo } from '../api/stock'
+import { fetchStockInfo, fetchWatchlist, addToWatchlist, removeFromWatchlist, toFullTicker, toDisplaySymbol } from '../api/stock'
 import { mockStockList, mockStockDetail, mockNews, mockCompanyInfo, getSentimentHistory } from '../data/mockData'
 import { getStockName } from '../data/stockNames'
 
@@ -269,6 +269,37 @@ export default function Stocks() {
   const companyInfo = mockCompanyInfo[selectedSymbol]
   const isUp = (liveData?.change_pct ?? 0) >= 0
 
+  // 自選股狀態（用 Set 存所有 symbol，本地判斷 + 切換）
+  const [watchlistSymbols, setWatchlistSymbols] = useState(new Set())
+  const [watchlistBusy,    setWatchlistBusy]    = useState(false)
+  const isGuest    = localStorage.getItem('token') === 'guest'
+  const inWatchlist = watchlistSymbols.has(selectedSymbol)
+
+  // 載入一次自選股清單（後端存的是 .TW 格式，前端統一 strip 後存）
+  useEffect(() => {
+    if (isGuest) return
+    fetchWatchlist()
+      .then(items => setWatchlistSymbols(new Set(items.map(i => toDisplaySymbol(i.symbol)))))
+      .catch(() => {})
+  }, [])
+
+  const handleToggleWatchlist = async () => {
+    setWatchlistBusy(true)
+    try {
+      if (inWatchlist) {
+        await removeFromWatchlist(toFullTicker(selectedSymbol))
+        setWatchlistSymbols(prev => { const n = new Set(prev); n.delete(selectedSymbol); return n })
+      } else {
+        await addToWatchlist(toFullTicker(selectedSymbol))
+        setWatchlistSymbols(prev => new Set(prev).add(selectedSymbol))
+      }
+    } catch (err) {
+      alert('操作失敗：' + (err.response?.data?.detail || err.message))
+    } finally {
+      setWatchlistBusy(false)
+    }
+  }
+
   return (
     <div>
       <h1 className="text-2xl font-semibold text-gray-900 mb-6">股票</h1>
@@ -304,7 +335,22 @@ export default function Stocks() {
           {/* 股票名稱 + 即時價格 + 漲跌 */}
           <div className="flex items-start justify-between mb-4">
             <div>
-              <h2 className="text-2xl font-bold text-gray-900">{selectedSymbol}</h2>
+              <div className="flex items-center gap-3">
+                <h2 className="text-2xl font-bold text-gray-900">{selectedSymbol}</h2>
+                {!isGuest && (
+                  <button
+                    onClick={handleToggleWatchlist}
+                    disabled={watchlistBusy}
+                    className={`px-3 py-1 text-xs font-medium rounded-full transition-colors disabled:opacity-50 ${
+                      inWatchlist
+                        ? 'bg-yellow-50 text-yellow-600 hover:bg-yellow-100 border border-yellow-200'
+                        : 'bg-gray-50 text-gray-600 hover:bg-blue-50 hover:text-blue-500 border border-gray-200'
+                    }`}
+                  >
+                    {watchlistBusy ? '處理中...' : inWatchlist ? '★ 已加入自選' : '☆ 加入自選'}
+                  </button>
+                )}
+              </div>
               <p className="text-sm text-gray-500">{stockName}</p>
             </div>
             <div className="text-right">
