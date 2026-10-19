@@ -12,7 +12,7 @@ from sqlalchemy.ext.declarative import declarative_base
 load_dotenv()
 #指定資料庫檔案位置
 #DATABASE_URL="sqlite:///./stock_system.db"
-SQLALCHEMY_DATABASE_URL=os.getenv("SQLALCHEMY_DATABASE_URL")
+SQLALCHEMY_DATABASE_URL=os.getenv("DATABASE_URL")
 if not SQLALCHEMY_DATABASE_URL:
     raise RuntimeError("DATABASE_URL 未設定")
 

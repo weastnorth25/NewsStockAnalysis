@@ -78,6 +78,11 @@ class News(Base):
     sentiment_score=Column(Float) #ai情緒分
     related_stocks=Column(String) #存放關聯股的代號
     published_at=Column(DateTime,default=datetime.utcnow) #新聞時間
+    
+    category = Column(String(20))        # 分類結果，如 科技半導體
+    category_score = Column(Float)       # 分類信心分數
+    sentiment = Column(String(20))       # 情緒標籤（匯入 xlsx 用，爬蟲暫不填）
+    source = Column(String(30))          # ctee / cnyes / yahoo
 
 class AiChatSession(Base):
     __tablename__="ai_chat_session"
