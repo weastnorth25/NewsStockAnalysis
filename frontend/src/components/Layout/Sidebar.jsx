@@ -16,8 +16,6 @@ const toolItems = [
   { to: '/financials',    label: '財報分析' },
   { to: '/chips',         label: '法人籌碼' },
   { to: '/institutions',  label: '法人績效' },
-  { to: '/paper-trading', label: '模擬交易' },
-  { to: '/portfolio',     label: '投資組合分析' },
 ]
 
 const linkClass = ({ isActive }) =>
