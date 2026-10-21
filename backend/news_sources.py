@@ -44,7 +44,7 @@ SM_NS = {
     "news": "http://www.google.com/schemas/sitemap-news/0.9",
 }
 
-CTEE_SITEMAP = "https://www.ctee.com.tw/sitemaps/sitemap_newstoday.xml"
+#CTEE_SITEMAP = "https://www.ctee.com.tw/sitemaps/sitemap_newstoday.xml"
 YAHOO_SITEMAP_INDEX = "https://tw.stock.yahoo.com/news-sitemap-index.xml"
 # 預設用「全部新聞」。這個 feed 會混入很多外匯速報這類短訊，
 # 想只抓特定分類，可在環境變數 CNYES_RSS_URLS 填入其他分類的 RSS（逗號分隔）。
@@ -190,11 +190,11 @@ def parse_rss(xml_bytes: bytes, source: str) -> list[Article]:
             arts.append(Article(source, link, title, _parse_rfc822(item.findtext("pubDate")), summary))
     return arts
 
-
+''' 移除
 def list_ctee(f: Fetcher) -> list[Article]:
     r = f.get(CTEE_SITEMAP)
     return parse_news_sitemap(r.content, "ctee") if r else []
-
+'''
 
 def list_cnyes(f: Fetcher) -> list[Article]:
     arts: list[Article] = []

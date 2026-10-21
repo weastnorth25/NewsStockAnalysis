@@ -95,6 +95,10 @@ def run(args) -> int:
         if db is not None:
             db.close()
 
+    if fetcher.blocked_hosts:
+        print("\n⚠ 以下網站拒絕存取（HTTP 403），已停止對它們發請求：" + "、".join(sorted(fetcher.blocked_hosts)))
+        print("  這是網站端的限制，請不要偽裝成瀏覽器；建議改用其他來源，或向該媒體詢問授權。")
+
     print("\n===== 結果 =====")
     for src, s in all_stats.items():
         print(f"{src:6s} 清單 {s['listed']:4d}｜新文章 {s['new']:3d}｜抓不到內文 {s['no_content']:3d}｜寫入 {s['inserted']:3d}")
