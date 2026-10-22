@@ -1,9 +1,11 @@
 """
-新聞來源模組：工商時報 (ctee)、鉅亨網 (cnyes)、Yahoo奇摩股市 (yahoo)
+新聞來源模組：鉅亨網 (cnyes)、Yahoo奇摩股市 (yahoo)、自由時報財經 (ltn)、中央社 (cna)
 
 做法（不需要模擬瀏覽器，也沒有用到各網站的內部 API）：
-  - ctee / yahoo：Google News Sitemap（robots.txt 公開列出），內含 網址 + 標題 + 發布時間
-  - cnyes       ：官方 RSS（robots.txt 公開列出），內含 標題 + 連結 + 發布時間 + 摘要
+  - yahoo / cna       ：Google News Sitemap（robots.txt 公開列出），內含 網址 + 標題 + 發布時間
+  - cnyes / ltn       ：官方 RSS，內含 標題 + 連結 + 發布時間 + 摘要
+
+註：工商時報（ctee）的伺服器會對程式請求回 403，已移除；資料庫裡舊的 ctee 新聞不受影響。
   - 三者的全文  ：進入文章頁，用 extract_body() 從 HTML 抽出內文
 
 禮貌規則：
@@ -44,10 +46,20 @@ SM_NS = {
     "news": "http://www.google.com/schemas/sitemap-news/0.9",
 }
 
-#CTEE_SITEMAP = "https://www.ctee.com.tw/sitemaps/sitemap_newstoday.xml"
 YAHOO_SITEMAP_INDEX = "https://tw.stock.yahoo.com/news-sitemap-index.xml"
 # 預設用「全部新聞」。這個 feed 會混入很多外匯速報這類短訊，
 # 想只抓特定分類，可在環境變數 CNYES_RSS_URLS 填入其他分類的 RSS（逗號分隔）。
+# 自由時報財經 RSS（可用環境變數 LTN_RSS_URLS 換成其他分類，逗號分隔）
+LTN_RSS_URLS = [
+    u.strip()
+    for u in os.getenv("LTN_RSS_URLS", "https://news.ltn.com.tw/rss/business.xml").split(",")
+    if u.strip()
+]
+# 中央社：官方 Google News sitemap 涵蓋所有類別（政治、體育...），所以要用網址裡的版面代碼篩選。
+# afe = 產經／財經（這是我從網址與內容推斷的，中央社沒有公開說明；若發現漏掉或混入，改這個環境變數即可）
+CNA_SITEMAP = "https://www.cna.com.tw/GoogleNewsSitemap_fromRemote_cfp.xml"
+CNA_SECTIONS = [s.strip() for s in os.getenv("CNA_SECTIONS", "afe").split(",") if s.strip()]
+
 CNYES_RSS_URLS = [
     u.strip()
     for u in os.getenv("CNYES_RSS_URLS", "https://news.cnyes.com/rss/v1/news/category/all").split(",")
@@ -57,7 +69,7 @@ CNYES_RSS_URLS = [
 
 @dataclass
 class Article:
-    source: str                       # ctee / cnyes / yahoo
+    source: str                       # cnyes / yahoo / ltn / cna
     url: str
     title: str
     published_at: datetime | None     # UTC、不帶時區（與資料庫 DateTime 欄位一致）
@@ -104,6 +116,8 @@ class Fetcher:
         self.timeout = timeout
         self._last_request: dict[str, float] = {}
         self._robots: dict[str, RobotFileParser | None] = {}
+        self._forbidden: dict[str, int] = {}     # 每個網站累計收到幾次 403
+        self.blocked_hosts: set[str] = set()     # 已確定拒絕我們的網站（不再對它發請求）
 
     def _wait(self, host: str) -> None:
         gap = time.monotonic() - self._last_request.get(host, 0.0)
@@ -143,6 +157,8 @@ class Fetcher:
             log.warning("robots.txt 不允許或無法確認，略過：%s", url)
             return None
         host = urlparse(url).netloc
+        if host in self.blocked_hosts:
+            return None
         for attempt in range(2):
             self._wait(host)
             try:
@@ -157,6 +173,12 @@ class Fetcher:
                 time.sleep(self.delay * 2)
                 continue
             log.warning("HTTP %s，放棄：%s", r.status_code, url)
+            if r.status_code == 403:
+                self._forbidden[host] = self._forbidden.get(host, 0) + 1
+                if self._forbidden[host] >= 3 and host not in self.blocked_hosts:
+                    self.blocked_hosts.add(host)
+                    log.error("%s 連續拒絕存取（403），判定網站不允許自動抓取，本次不再對它發請求。"
+                              "這是網站端的限制，請不要用偽裝瀏覽器的方式繞過。", host)
             return None
         return None
 
@@ -190,11 +212,6 @@ def parse_rss(xml_bytes: bytes, source: str) -> list[Article]:
             arts.append(Article(source, link, title, _parse_rfc822(item.findtext("pubDate")), summary))
     return arts
 
-''' 移除
-def list_ctee(f: Fetcher) -> list[Article]:
-    r = f.get(CTEE_SITEMAP)
-    return parse_news_sitemap(r.content, "ctee") if r else []
-'''
 
 def list_cnyes(f: Fetcher) -> list[Article]:
     arts: list[Article] = []
@@ -226,7 +243,25 @@ def list_yahoo(f: Fetcher, days: int = 2) -> list[Article]:
     return arts
 
 
-SOURCES = {"ctee": list_ctee, "cnyes": list_cnyes, "yahoo": list_yahoo}
+def list_ltn(f: Fetcher) -> list[Article]:
+    arts: list[Article] = []
+    for url in LTN_RSS_URLS:
+        r = f.get(url)
+        if r:
+            arts.extend(parse_rss(r.content, "ltn"))
+    return arts
+
+
+def list_cna(f: Fetcher) -> list[Article]:
+    """中央社：讀 Google News sitemap，只留下財經版面（網址含 /news/<版面代碼>/）。"""
+    r = f.get(CNA_SITEMAP)
+    if not r:
+        return []
+    arts = parse_news_sitemap(r.content, "cna")
+    return [a for a in arts if any(f"/news/{s}/" in a.url for s in CNA_SECTIONS)]
+
+
+SOURCES = {"cnyes": list_cnyes, "yahoo": list_yahoo, "ltn": list_ltn, "cna": list_cna}
 
 
 def list_articles(source: str, f: Fetcher) -> list[Article]:
@@ -245,7 +280,15 @@ def list_articles(source: str, f: Fetcher) -> list[Article]:
 # 抽出文章內文
 # ----------------------------------------------------------------------------
 # 這些開頭的段落通常是「延伸閱讀、圖說」之類，不是內文
-_JUNK_PREFIXES = ("延伸閱讀", "相關新聞", "推薦閱讀", "熱門新聞", "責任編輯", "圖／", "圖:", "圖：", "※")
+_JUNK_PREFIXES = (
+    "延伸閱讀", "相關新聞", "推薦閱讀", "熱門新聞", "責任編輯", "圖／", "圖:", "圖：", "※",
+    # 自由時報：訂閱、下載 APP 的宣傳句、「請繼續往下閱讀」、圖說
+    "一手掌握", "不用抽", "請繼續往下閱讀", "（示意圖", "(示意圖",
+    # 中央社：文末的編輯署名，例如「（編輯：王小明）1141021」
+    "（編輯", "(編輯",
+)
+# 內文開頭的電頭，例如 〔財經頻道／綜合報導〕（自由時報）
+_DATELINE_RE = re.compile(r"^〔[^〕]{1,30}〕\s*")
 
 
 def _iter_json_objects(data):
@@ -308,6 +351,7 @@ def fill_content(f: Fetcher, art: Article) -> bool:
     body = extract_body(r.content)   # 傳 bytes，讓 BeautifulSoup 依網頁宣告的編碼解碼
     if len(body) < MIN_BODY_CHARS:
         return False
+    body = _DATELINE_RE.sub("", body, count=1)
     art.content = body[:MAX_BODY_CHARS]
     return True
 

@@ -61,3 +61,9 @@ pip install PyJWT
 判斷新聞類別
 api_免費token不足，改用本地端執行
 PyTorch 與 Hugging Face 的本地執行套件 transformers
+
+【資料庫supabase】
+清除
+TRUNCATE news RESTART IDENTITY;
+查分類
+SELECT source, category, count(*) FROM news GROUP BY source, category ORDER BY source ;
