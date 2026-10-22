@@ -1,5 +1,8 @@
+from __future__ import annotations   # 讓 `str | None` 這種寫法在 Python 3.9 也能用
 import os
 from transformers import pipeline
+
+from industry_lookup import classify_by_stocks   # 股票代號 -> 產業別（不需要模型）
 
 # ==========================================
 # 🧠 載入本地端 AI 模型 (第一次執行會自動下載)
@@ -13,7 +16,7 @@ classifier = pipeline(
 print("✅ 本地模型載入完成！")
 
 # 這裡移除 async，因為本地運算不需要等待網路回應
-def classify_industry(news_text: str):
+def classify_industry(news_text: str, related_stocks: str | None = None):
     # ==========================================
     # 🌟 1. 專家規則攔截網 (Rule-based Override)
     # ==========================================
@@ -22,7 +25,15 @@ def classify_industry(news_text: str):
         return {"category": "大盤總經", "score": 1.0, "details": "專家關鍵字直接命中"}
 
     # ==========================================
-    # 🤖 2. 模糊地帶交給本地 AI 運算
+    # 🏷️ 2. 股票代號對應產業（比模型猜準；沒有對照表、找不到、或代號分屬不同產業時自動略過）
+    # ==========================================
+    if related_stocks:
+        hit = classify_by_stocks(related_stocks)
+        if hit:
+            return hit
+
+    # ==========================================
+    # 🤖 3. 模糊地帶交給本地 AI 運算
     # ==========================================
     candidate_labels = [
         "大盤指數、期貨與總體經濟",

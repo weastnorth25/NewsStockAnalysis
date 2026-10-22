@@ -15,6 +15,7 @@ import argparse
 import logging
 import sys
 
+import industry_lookup as il
 import news_sources as ns
 import news_store as store
 
@@ -51,16 +52,19 @@ def crawl_one(src: str, fetcher: ns.Fetcher, classify, db, args) -> dict:
             log.warning("[%s] 抓不到內文，略過：%s", src, a.url)
             continue
 
+        tickers = ns.extract_tickers(f"{a.title}\n{a.content}")   # 用完整內文抽，不受 800 字截斷影響
+
         category = score = None
         if classify:
-            # 與 process_cvs.py 相同的輸入格式與 800 字截斷
-            res = classify(f"標題：{a.title}\n內文：{a.content}"[:800])
+            # 與 process_cvs.py 相同的輸入格式與 800 字截斷；股票代號另外傳入，可直接對應產業
+            codes = il.codes_for_classification(a.title, a.content, tickers)   # 沒寫代號就用公司名稱找
+            res = classify(f"標題：{a.title}\n內文：{a.content}"[:800], related_stocks=codes)
             category, score = res["category"], res["score"]
 
         rows.append(store.make_row(
             title=a.title, content=a.content, url=a.url, published_at=a.published_at,
             source=src, category=category, category_score=score,
-            related_stocks=ns.extract_tickers(f"{a.title}\n{a.content}"),
+            related_stocks=tickers,
         ))
         log.info("[%s] %d/%d  %s  %s", src, i, len(arts), f"{category}({score})" if classify else "-", a.title[:40])
         if args.dry_run:
@@ -94,6 +98,10 @@ def run(args) -> int:
     finally:
         if db is not None:
             db.close()
+
+    if fetcher.blocked_hosts:
+        print("\n⚠ 以下網站拒絕存取（HTTP 403），已停止對它們發請求：" + "、".join(sorted(fetcher.blocked_hosts)))
+        print("  這是網站端的限制，請不要偽裝成瀏覽器；建議改用其他來源，或向該媒體詢問授權。")
 
     print("\n===== 結果 =====")
     for src, s in all_stats.items():

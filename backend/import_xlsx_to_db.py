@@ -42,7 +42,7 @@ def _ticker(v) -> str | None:
     return s[:-2] if s.endswith(".0") else s     # Excel 有時會把 1216 存成 1216.0
 
 
-def load_rows(path: str, source: str = "ctee") -> tuple[list[dict], dict]:
+def load_rows(path: str, source: str = "ctee", reclassify: bool = False) -> tuple[list[dict], dict]:
     """讀 xlsx -> 回傳 (要寫入的資料列, 統計)。不碰資料庫，方便單獨測試。"""
     df = pd.read_excel(path)
     missing = [c for c in REQUIRED if c not in df.columns]
@@ -84,7 +84,19 @@ def load_rows(path: str, source: str = "ctee") -> tuple[list[dict], dict]:
             sentiment=(_text(r.get("sentiment")) or "")[:20] or None,
             related_stocks=_ticker(r.get("stock_id")),
         ))
+    if reclassify:
+        # 原本被判成「未分類」、但有股票代號的，改用該公司的產業別（需要 industry_map.json）
+        import industry_lookup
+
+        stats["reclassified"] = 0
+        for row in rows:
+            if row["category"] == "未分類" and row["related_stocks"]:
+                hit = industry_lookup.classify_by_stocks(row["related_stocks"])
+                if hit:
+                    row["category"], row["category_score"] = hit["category"], hit["score"]
+                    stats["reclassified"] += 1
     stats["imported"] = len(rows)
+    stats["unclassified"] = sum(r["category"] == "未分類" for r in rows)
     return rows, stats
 
 
@@ -93,10 +105,14 @@ def main(argv=None) -> int:
     ap.add_argument("--file", default=DEFAULT_FILE)
     ap.add_argument("--source", default="ctee", help="寫入 news.source 的值（預設 ctee）")
     ap.add_argument("--dry-run", action="store_true")
+    ap.add_argument("--reclassify", action="store_true",
+                    help="把「未分類」且有股票代號的新聞，改用公司產業別重新分類（需先執行 build_industry_map.py）")
     args = ap.parse_args(argv)
 
-    rows, stats = load_rows(args.file, args.source)
+    rows, stats = load_rows(args.file, args.source, args.reclassify)
     print(f"讀取 {stats['rows']} 列 -> 可匯入 {stats['imported']}｜內容不全略過 {stats['skipped_empty']}｜檔內重複略過 {stats['skipped_dup']}")
+    if args.reclassify:
+        print(f"重新分類：{stats['reclassified']} 筆從「未分類」改成有分類｜目前未分類剩 {stats['unclassified']} / {stats['imported']} 筆")
     if rows:
         s = rows[0]
         print(f"範例：{s['published_at']}｜{s['category']}({s['category_score']})｜{s['related_stocks']}｜{s['title'][:30]}")

@@ -1,0 +1,11732 @@
+{
+"1101": {
+"industry": "水泥工業",
+"market": "上市",
+"name": "台泥"
+},
+"1102": {
+"industry": "水泥工業",
+"market": "上市",
+"name": "亞泥"
+},
+"1103": {
+"industry": "水泥工業",
+"market": "上市",
+"name": "嘉泥"
+},
+"1104": {
+"industry": "水泥工業",
+"market": "上市",
+"name": "環泥"
+},
+"1108": {
+"industry": "水泥工業",
+"market": "上市",
+"name": "幸福"
+},
+"1109": {
+"industry": "水泥工業",
+"market": "上市",
+"name": "信大"
+},
+"1110": {
+"industry": "水泥工業",
+"market": "上市",
+"name": "東泥"
+},
+"1201": {
+"industry": "食品工業",
+"market": "上市",
+"name": "味全"
+},
+"1203": {
+"industry": "食品工業",
+"market": "上市",
+"name": "味王"
+},
+"1210": {
+"industry": "食品工業",
+"market": "上市",
+"name": "大成"
+},
+"1213": {
+"industry": "食品工業",
+"market": "上市",
+"name": "大飲"
+},
+"1215": {
+"industry": "食品工業",
+"market": "上市",
+"name": "卜蜂"
+},
+"1216": {
+"industry": "食品工業",
+"market": "上市",
+"name": "統一"
+},
+"1217": {
+"industry": "食品工業",
+"market": "上市",
+"name": "愛之味"
+},
+"1218": {
+"industry": "食品工業",
+"market": "上市",
+"name": "泰山"
+},
+"1219": {
+"industry": "食品工業",
+"market": "上市",
+"name": "福壽"
+},
+"1220": {
+"industry": "食品工業",
+"market": "上市",
+"name": "台榮"
+},
+"1225": {
+"industry": "食品工業",
+"market": "上市",
+"name": "福懋油"
+},
+"1227": {
+"industry": "食品工業",
+"market": "上市",
+"name": "佳格"
+},
+"1229": {
+"industry": "食品工業",
+"market": "上市",
+"name": "聯華"
+},
+"1231": {
+"industry": "食品工業",
+"market": "上市",
+"name": "聯華食"
+},
+"1232": {
+"industry": "食品工業",
+"market": "上市",
+"name": "大統益"
+},
+"1233": {
+"industry": "食品工業",
+"market": "上市",
+"name": "天仁"
+},
+"1234": {
+"industry": "食品工業",
+"market": "上市",
+"name": "黑松"
+},
+"1235": {
+"industry": "食品工業",
+"market": "上市",
+"name": "興泰"
+},
+"1236": {
+"industry": "食品工業",
+"market": "上市",
+"name": "宏亞"
+},
+"1240": {
+"industry": "農業科技業",
+"market": "上櫃",
+"name": "茂生農經"
+},
+"1256": {
+"industry": "食品工業",
+"market": "上市",
+"name": "鮮活果汁-KY"
+},
+"1259": {
+"industry": "觀光餐旅",
+"market": "上櫃",
+"name": "安心"
+},
+"1260": {
+"industry": "食品工業",
+"market": "興櫃",
+"name": "富味鄉"
+},
+"1264": {
+"industry": "食品工業",
+"market": "上櫃",
+"name": "德麥"
+},
+"1268": {
+"industry": "觀光餐旅",
+"market": "上櫃",
+"name": "漢來美食"
+},
+"1269": {
+"industry": "觀光餐旅",
+"market": "興櫃",
+"name": "乾杯"
+},
+"1271": {
+"industry": "生技醫療業",
+"market": "興櫃",
+"name": "晨暉生技"
+},
+"1293": {
+"industry": "食品工業",
+"market": "興櫃",
+"name": "利統"
+},
+"1294": {
+"industry": "食品工業",
+"market": "上櫃",
+"name": "漢田生技"
+},
+"1295": {
+"industry": "食品工業",
+"market": "上櫃",
+"name": "生合"
+},
+"1301": {
+"industry": "塑膠工業",
+"market": "上市",
+"name": "台塑"
+},
+"1303": {
+"industry": "塑膠工業",
+"market": "上市",
+"name": "南亞"
+},
+"1304": {
+"industry": "塑膠工業",
+"market": "上市",
+"name": "台聚"
+},
+"1305": {
+"industry": "塑膠工業",
+"market": "上市",
+"name": "華夏"
+},
+"1307": {
+"industry": "塑膠工業",
+"market": "上市",
+"name": "三芳"
+},
+"1308": {
+"industry": "塑膠工業",
+"market": "上市",
+"name": "亞聚"
+},
+"1309": {
+"industry": "塑膠工業",
+"market": "上市",
+"name": "台達化"
+},
+"1310": {
+"industry": "塑膠工業",
+"market": "上市",
+"name": "台苯"
+},
+"1312": {
+"industry": "塑膠工業",
+"market": "上市",
+"name": "國喬"
+},
+"1313": {
+"industry": "塑膠工業",
+"market": "上市",
+"name": "聯成"
+},
+"1314": {
+"industry": "塑膠工業",
+"market": "上市",
+"name": "中石化"
+},
+"1315": {
+"industry": "塑膠工業",
+"market": "上市",
+"name": "達新"
+},
+"1316": {
+"industry": "建材營造業",
+"market": "上市",
+"name": "上曜"
+},
+"1319": {
+"industry": "汽車工業",
+"market": "上市",
+"name": "東陽"
+},
+"1321": {
+"industry": "塑膠工業",
+"market": "上市",
+"name": "大洋"
+},
+"1323": {
+"industry": "塑膠工業",
+"market": "上市",
+"name": "永裕"
+},
+"1324": {
+"industry": "塑膠工業",
+"market": "上市",
+"name": "地球"
+},
+"1325": {
+"industry": "塑膠工業",
+"market": "上市",
+"name": "恆大"
+},
+"1326": {
+"industry": "塑膠工業",
+"market": "上市",
+"name": "台化"
+},
+"1336": {
+"industry": "電子零組件業",
+"market": "上櫃",
+"name": "台翰"
+},
+"1337": {
+"industry": "塑膠工業",
+"market": "上市",
+"name": "再生-KY"
+},
+"1338": {
+"industry": "汽車工業",
+"market": "上市",
+"name": "廣華-KY"
+},
+"1339": {
+"industry": "汽車工業",
+"market": "上市",
+"name": "昭輝"
+},
+"1340": {
+"industry": "塑膠工業",
+"market": "上市",
+"name": "勝悅-KY"
+},
+"1341": {
+"industry": "塑膠工業",
+"market": "上市",
+"name": "富林-KY"
+},
+"1342": {
+"industry": "其他業",
+"market": "上市",
+"name": "八貫"
+},
+"1343": {
+"industry": "綠能環保",
+"market": "興櫃",
+"name": "旭東環保"
+},
+"1402": {
+"industry": "紡織纖維",
+"market": "上市",
+"name": "遠東新"
+},
+"1409": {
+"industry": "紡織纖維",
+"market": "上市",
+"name": "新纖"
+},
+"1410": {
+"industry": "紡織纖維",
+"market": "上市",
+"name": "南染"
+},
+"1413": {
+"industry": "紡織纖維",
+"market": "上市",
+"name": "宏洲"
+},
+"1414": {
+"industry": "紡織纖維",
+"market": "上市",
+"name": "東和"
+},
+"1416": {
+"industry": "其他業",
+"market": "上市",
+"name": "廣豐"
+},
+"1417": {
+"industry": "紡織纖維",
+"market": "上市",
+"name": "嘉裕"
+},
+"1418": {
+"industry": "紡織纖維",
+"market": "上市",
+"name": "東華"
+},
+"1419": {
+"industry": "紡織纖維",
+"market": "上市",
+"name": "新紡"
+},
+"1423": {
+"industry": "紡織纖維",
+"market": "上市",
+"name": "利華"
+},
+"1432": {
+"industry": "運動休閒",
+"market": "上市",
+"name": "大魯閣"
+},
+"1434": {
+"industry": "紡織纖維",
+"market": "上市",
+"name": "福懋"
+},
+"1435": {
+"industry": "其他業",
+"market": "上市",
+"name": "中福"
+},
+"1436": {
+"industry": "建材營造業",
+"market": "上市",
+"name": "華友聯"
+},
+"1437": {
+"industry": "其他業",
+"market": "上市",
+"name": "勤益控"
+},
+"1438": {
+"industry": "建材營造業",
+"market": "上市",
+"name": "三地開發"
+},
+"1439": {
+"industry": "建材營造業",
+"market": "上市",
+"name": "雋揚"
+},
+"1440": {
+"industry": "紡織纖維",
+"market": "上市",
+"name": "南紡"
+},
+"1441": {
+"industry": "紡織纖維",
+"market": "上市",
+"name": "大東"
+},
+"1442": {
+"industry": "建材營造業",
+"market": "上市",
+"name": "名軒"
+},
+"1443": {
+"industry": "其他業",
+"market": "上市",
+"name": "立益物流"
+},
+"1444": {
+"industry": "紡織纖維",
+"market": "上市",
+"name": "力麗"
+},
+"1445": {
+"industry": "紡織纖維",
+"market": "上市",
+"name": "大宇"
+},
+"1446": {
+"industry": "紡織纖維",
+"market": "上市",
+"name": "宏和"
+},
+"1447": {
+"industry": "紡織纖維",
+"market": "上市",
+"name": "力鵬"
+},
+"1449": {
+"industry": "紡織纖維",
+"market": "上市",
+"name": "佳和"
+},
+"1451": {
+"industry": "紡織纖維",
+"market": "上市",
+"name": "年興"
+},
+"1452": {
+"industry": "紡織纖維",
+"market": "上市",
+"name": "宏益"
+},
+"1453": {
+"industry": "建材營造業",
+"market": "上市",
+"name": "大將"
+},
+"1454": {
+"industry": "紡織纖維",
+"market": "上市",
+"name": "台富"
+},
+"1455": {
+"industry": "紡織纖維",
+"market": "上市",
+"name": "集盛"
+},
+"1456": {
+"industry": "建材營造業",
+"market": "上市",
+"name": "怡華"
+},
+"1457": {
+"industry": "紡織纖維",
+"market": "上市",
+"name": "宜進"
+},
+"1459": {
+"industry": "紡織纖維",
+"market": "上市",
+"name": "聯發"
+},
+"1460": {
+"industry": "紡織纖維",
+"market": "上市",
+"name": "宏遠"
+},
+"1463": {
+"industry": "紡織纖維",
+"market": "上市",
+"name": "強盛新"
+},
+"1464": {
+"industry": "紡織纖維",
+"market": "上市",
+"name": "得力"
+},
+"1465": {
+"industry": "紡織纖維",
+"market": "上市",
+"name": "偉全"
+},
+"1466": {
+"industry": "紡織纖維",
+"market": "上市",
+"name": "聚隆"
+},
+"1467": {
+"industry": "紡織纖維",
+"market": "上市",
+"name": "南緯"
+},
+"1468": {
+"industry": "紡織纖維",
+"market": "上市",
+"name": "昶和"
+},
+"1470": {
+"industry": "紡織纖維",
+"market": "上市",
+"name": "大統新創"
+},
+"1471": {
+"industry": "電子零組件業",
+"market": "上市",
+"name": "首利"
+},
+"1472": {
+"industry": "建材營造業",
+"market": "上市",
+"name": "三洋實業"
+},
+"1473": {
+"industry": "紡織纖維",
+"market": "上市",
+"name": "台南"
+},
+"1474": {
+"industry": "紡織纖維",
+"market": "上市",
+"name": "弘裕"
+},
+"1475": {
+"industry": "紡織纖維",
+"market": "上市",
+"name": "業旺"
+},
+"1476": {
+"industry": "紡織纖維",
+"market": "上市",
+"name": "儒鴻"
+},
+"1477": {
+"industry": "紡織纖維",
+"market": "上市",
+"name": "聚陽"
+},
+"1480": {
+"industry": "鋼鐵工業",
+"market": "興櫃",
+"name": "東盟開發"
+},
+"1503": {
+"industry": "電機機械",
+"market": "上市",
+"name": "士電"
+},
+"1504": {
+"industry": "電機機械",
+"market": "上市",
+"name": "東元"
+},
+"1506": {
+"industry": "電機機械",
+"market": "上市",
+"name": "正道"
+},
+"1512": {
+"industry": "汽車工業",
+"market": "上市",
+"name": "瑞利"
+},
+"1513": {
+"industry": "電機機械",
+"market": "上市",
+"name": "中興電"
+},
+"1514": {
+"industry": "電機機械",
+"market": "上市",
+"name": "亞力"
+},
+"1515": {
+"industry": "電機機械",
+"market": "上市",
+"name": "力山"
+},
+"1516": {
+"industry": "其他業",
+"market": "上市",
+"name": "川飛"
+},
+"1517": {
+"industry": "電機機械",
+"market": "上市",
+"name": "利奇"
+},
+"1519": {
+"industry": "電機機械",
+"market": "上市",
+"name": "華城"
+},
+"1521": {
+"industry": "汽車工業",
+"market": "上市",
+"name": "大億"
+},
+"1522": {
+"industry": "汽車工業",
+"market": "上市",
+"name": "堤維西"
+},
+"1524": {
+"industry": "汽車工業",
+"market": "上市",
+"name": "耿鼎"
+},
+"1525": {
+"industry": "汽車工業",
+"market": "上市",
+"name": "江申"
+},
+"1526": {
+"industry": "電機機械",
+"market": "上市",
+"name": "日馳"
+},
+"1527": {
+"industry": "電機機械",
+"market": "上市",
+"name": "鑽全"
+},
+"1528": {
+"industry": "電機機械",
+"market": "上市",
+"name": "恩德"
+},
+"1529": {
+"industry": "電機機械",
+"market": "上市",
+"name": "樂事綠能"
+},
+"1530": {
+"industry": "電機機械",
+"market": "上市",
+"name": "亞崴"
+},
+"1531": {
+"industry": "電機機械",
+"market": "上市",
+"name": "高林股"
+},
+"1532": {
+"industry": "電機機械",
+"market": "上市",
+"name": "勤美"
+},
+"1533": {
+"industry": "汽車工業",
+"market": "上市",
+"name": "車王電"
+},
+"1535": {
+"industry": "電機機械",
+"market": "上市",
+"name": "中宇"
+},
+"1536": {
+"industry": "汽車工業",
+"market": "上市",
+"name": "和大"
+},
+"1537": {
+"industry": "電機機械",
+"market": "上市",
+"name": "廣隆"
+},
+"1538": {
+"industry": "電機機械",
+"market": "上市",
+"name": "正峰"
+},
+"1539": {
+"industry": "電機機械",
+"market": "上市",
+"name": "巨庭"
+},
+"1540": {
+"industry": "電機機械",
+"market": "上市",
+"name": "喬福"
+},
+"1541": {
+"industry": "電機機械",
+"market": "上市",
+"name": "錩泰"
+},
+"1558": {
+"industry": "電機機械",
+"market": "上市",
+"name": "伸興"
+},
+"1560": {
+"industry": "電機機械",
+"market": "上市",
+"name": "中砂"
+},
+"1563": {
+"industry": "汽車工業",
+"market": "上市",
+"name": "巧新"
+},
+"1565": {
+"industry": "生技醫療業",
+"market": "上櫃",
+"name": "精華"
+},
+"1568": {
+"industry": "汽車工業",
+"market": "上市",
+"name": "倉佑"
+},
+"1569": {
+"industry": "電腦及週邊設備業",
+"market": "上櫃",
+"name": "濱川"
+},
+"1570": {
+"industry": "電機機械",
+"market": "上櫃",
+"name": "力肯"
+},
+"1580": {
+"industry": "電機機械",
+"market": "上櫃",
+"name": "新麥"
+},
+"1582": {
+"industry": "電子零組件業",
+"market": "上市",
+"name": "信錦"
+},
+"1583": {
+"industry": "電機機械",
+"market": "上市",
+"name": "程泰"
+},
+"1584": {
+"industry": "其他業",
+"market": "上櫃",
+"name": "精剛"
+},
+"1586": {
+"industry": "電機機械",
+"market": "上櫃",
+"name": "和勤"
+},
+"1587": {
+"industry": "汽車工業",
+"market": "上市",
+"name": "吉茂"
+},
+"1589": {
+"industry": "電機機械",
+"market": "上市",
+"name": "永冠-KY"
+},
+"1590": {
+"industry": "電機機械",
+"market": "上市",
+"name": "亞德客-KY"
+},
+"1591": {
+"industry": "電機機械",
+"market": "上櫃",
+"name": "駿吉-KY"
+},
+"1593": {
+"industry": "運動休閒",
+"market": "上櫃",
+"name": "祺驊"
+},
+"1594": {
+"industry": "電機機械",
+"market": "興櫃",
+"name": "日高"
+},
+"1595": {
+"industry": "半導體業",
+"market": "上櫃",
+"name": "川寶"
+},
+"1597": {
+"industry": "電機機械",
+"market": "上市",
+"name": "直得"
+},
+"1598": {
+"industry": "運動休閒",
+"market": "上市",
+"name": "岱宇"
+},
+"1599": {
+"industry": "電機機械",
+"market": "上櫃",
+"name": "宏佳騰"
+},
+"1603": {
+"industry": "電器電纜",
+"market": "上市",
+"name": "華電"
+},
+"1604": {
+"industry": "電器電纜",
+"market": "上市",
+"name": "聲寶"
+},
+"1605": {
+"industry": "電器電纜",
+"market": "上市",
+"name": "華新"
+},
+"1608": {
+"industry": "電器電纜",
+"market": "上市",
+"name": "華榮"
+},
+"1609": {
+"industry": "電器電纜",
+"market": "上市",
+"name": "大亞"
+},
+"1611": {
+"industry": "電器電纜",
+"market": "上市",
+"name": "中電"
+},
+"1612": {
+"industry": "電器電纜",
+"market": "上市",
+"name": "宏泰"
+},
+"1614": {
+"industry": "電器電纜",
+"market": "上市",
+"name": "三洋電"
+},
+"1615": {
+"industry": "電器電纜",
+"market": "上市",
+"name": "大山"
+},
+"1616": {
+"industry": "電器電纜",
+"market": "上市",
+"name": "億泰"
+},
+"1617": {
+"industry": "電器電纜",
+"market": "上市",
+"name": "榮星"
+},
+"1618": {
+"industry": "電器電纜",
+"market": "上市",
+"name": "合機"
+},
+"1623": {
+"industry": "電器電纜",
+"market": "上市",
+"name": "大東電"
+},
+"1626": {
+"industry": "電器電纜",
+"market": "上市",
+"name": "艾美特-KY"
+},
+"1702": {
+"industry": "食品工業",
+"market": "上市",
+"name": "南僑"
+},
+"1707": {
+"industry": "生技醫療業",
+"market": "上市",
+"name": "葡萄王"
+},
+"1708": {
+"industry": "化學工業",
+"market": "上市",
+"name": "東鹼"
+},
+"1709": {
+"industry": "化學工業",
+"market": "上市",
+"name": "和益"
+},
+"1710": {
+"industry": "化學工業",
+"market": "上市",
+"name": "東聯"
+},
+"1711": {
+"industry": "化學工業",
+"market": "上市",
+"name": "永光"
+},
+"1712": {
+"industry": "化學工業",
+"market": "上市",
+"name": "興農"
+},
+"1713": {
+"industry": "化學工業",
+"market": "上市",
+"name": "國化"
+},
+"1714": {
+"industry": "化學工業",
+"market": "上市",
+"name": "和桐"
+},
+"1717": {
+"industry": "化學工業",
+"market": "上市",
+"name": "長興"
+},
+"1718": {
+"industry": "化學工業",
+"market": "上市",
+"name": "中纖"
+},
+"1720": {
+"industry": "生技醫療業",
+"market": "上市",
+"name": "生達"
+},
+"1721": {
+"industry": "化學工業",
+"market": "上市",
+"name": "國慶科技"
+},
+"1722": {
+"industry": "化學工業",
+"market": "上市",
+"name": "台肥"
+},
+"1723": {
+"industry": "化學工業",
+"market": "上市",
+"name": "中碳"
+},
+"1725": {
+"industry": "化學工業",
+"market": "上市",
+"name": "元禎"
+},
+"1726": {
+"industry": "化學工業",
+"market": "上市",
+"name": "永記"
+},
+"1727": {
+"industry": "化學工業",
+"market": "上市",
+"name": "中華化"
+},
+"1730": {
+"industry": "化學工業",
+"market": "上市",
+"name": "花仙子"
+},
+"1731": {
+"industry": "生技醫療業",
+"market": "上市",
+"name": "美吾華"
+},
+"1732": {
+"industry": "化學工業",
+"market": "上市",
+"name": "毛寶"
+},
+"1733": {
+"industry": "生技醫療業",
+"market": "上市",
+"name": "五鼎"
+},
+"1734": {
+"industry": "生技醫療業",
+"market": "上市",
+"name": "杏輝"
+},
+"1735": {
+"industry": "化學工業",
+"market": "上市",
+"name": "日勝化"
+},
+"1736": {
+"industry": "運動休閒",
+"market": "上市",
+"name": "喬山"
+},
+"1737": {
+"industry": "食品工業",
+"market": "上市",
+"name": "臺鹽"
+},
+"1742": {
+"industry": "化學工業",
+"market": "上櫃",
+"name": "台蠟"
+},
+"1752": {
+"industry": "生技醫療業",
+"market": "上市",
+"name": "南光"
+},
+"1760": {
+"industry": "生技醫療業",
+"market": "上市",
+"name": "寶齡富錦"
+},
+"1762": {
+"industry": "生技醫療業",
+"market": "上市",
+"name": "中化生"
+},
+"1773": {
+"industry": "化學工業",
+"market": "上市",
+"name": "勝一"
+},
+"1776": {
+"industry": "化學工業",
+"market": "上市",
+"name": "展宇"
+},
+"1777": {
+"industry": "生技醫療業",
+"market": "上櫃",
+"name": "生泰"
+},
+"1780": {
+"industry": "食品工業",
+"market": "上櫃",
+"name": "立弘"
+},
+"1781": {
+"industry": "生技醫療業",
+"market": "上櫃",
+"name": "合世"
+},
+"1783": {
+"industry": "生技醫療業",
+"market": "上市",
+"name": "和康生"
+},
+"1784": {
+"industry": "生技醫療業",
+"market": "上櫃",
+"name": "訊聯"
+},
+"1785": {
+"industry": "其他電子業",
+"market": "上櫃",
+"name": "光洋科"
+},
+"1786": {
+"industry": "生技醫療業",
+"market": "上市",
+"name": "科妍"
+},
+"1788": {
+"industry": "生技醫療業",
+"market": "上櫃",
+"name": "杏昌"
+},
+"1789": {
+"industry": "生技醫療業",
+"market": "上市",
+"name": "神隆"
+},
+"1795": {
+"industry": "生技醫療業",
+"market": "上市",
+"name": "美時"
+},
+"1796": {
+"industry": "食品工業",
+"market": "上櫃",
+"name": "金穎生技"
+},
+"1799": {
+"industry": "生技醫療業",
+"market": "上櫃",
+"name": "易威"
+},
+"1802": {
+"industry": "玻璃陶瓷",
+"market": "上市",
+"name": "台玻"
+},
+"1805": {
+"industry": "建材營造業",
+"market": "上市",
+"name": "寶徠"
+},
+"1806": {
+"industry": "玻璃陶瓷",
+"market": "上市",
+"name": "冠軍"
+},
+"1808": {
+"industry": "建材營造業",
+"market": "上市",
+"name": "潤隆"
+},
+"1809": {
+"industry": "玻璃陶瓷",
+"market": "上市",
+"name": "中釉"
+},
+"1810": {
+"industry": "玻璃陶瓷",
+"market": "上市",
+"name": "和成"
+},
+"1813": {
+"industry": "生技醫療業",
+"market": "上櫃",
+"name": "寶利徠"
+},
+"1815": {
+"industry": "電子零組件業",
+"market": "上櫃",
+"name": "富喬"
+},
+"1817": {
+"industry": "玻璃陶瓷",
+"market": "上市",
+"name": "凱撒衛"
+},
+"1903": {
+"industry": "造紙工業",
+"market": "上市",
+"name": "士紙"
+},
+"1904": {
+"industry": "造紙工業",
+"market": "上市",
+"name": "正隆"
+},
+"1905": {
+"industry": "造紙工業",
+"market": "上市",
+"name": "華紙"
+},
+"1906": {
+"industry": "造紙工業",
+"market": "上市",
+"name": "寶隆"
+},
+"1907": {
+"industry": "造紙工業",
+"market": "上市",
+"name": "永豐餘"
+},
+"1909": {
+"industry": "造紙工業",
+"market": "上市",
+"name": "榮成"
+},
+"2002": {
+"industry": "鋼鐵工業",
+"market": "上市",
+"name": "中鋼"
+},
+"2006": {
+"industry": "鋼鐵工業",
+"market": "上市",
+"name": "東和鋼鐵"
+},
+"2007": {
+"industry": "鋼鐵工業",
+"market": "上市",
+"name": "燁興"
+},
+"2008": {
+"industry": "鋼鐵工業",
+"market": "上市",
+"name": "高興昌"
+},
+"2009": {
+"industry": "鋼鐵工業",
+"market": "上市",
+"name": "第一銅"
+},
+"2010": {
+"industry": "鋼鐵工業",
+"market": "上市",
+"name": "春源"
+},
+"2012": {
+"industry": "鋼鐵工業",
+"market": "上市",
+"name": "春雨"
+},
+"2013": {
+"industry": "鋼鐵工業",
+"market": "上市",
+"name": "中鋼構"
+},
+"2014": {
+"industry": "鋼鐵工業",
+"market": "上市",
+"name": "中鴻"
+},
+"2015": {
+"industry": "鋼鐵工業",
+"market": "上市",
+"name": "豐興"
+},
+"2017": {
+"industry": "鋼鐵工業",
+"market": "上市",
+"name": "官田鋼"
+},
+"2020": {
+"industry": "鋼鐵工業",
+"market": "上市",
+"name": "美亞"
+},
+"2022": {
+"industry": "鋼鐵工業",
+"market": "上市",
+"name": "聚亨"
+},
+"2023": {
+"industry": "鋼鐵工業",
+"market": "上市",
+"name": "燁輝"
+},
+"2024": {
+"industry": "鋼鐵工業",
+"market": "上市",
+"name": "志聯"
+},
+"2025": {
+"industry": "鋼鐵工業",
+"market": "上市",
+"name": "千興"
+},
+"2027": {
+"industry": "鋼鐵工業",
+"market": "上市",
+"name": "大成鋼"
+},
+"2028": {
+"industry": "鋼鐵工業",
+"market": "上市",
+"name": "威致"
+},
+"2029": {
+"industry": "鋼鐵工業",
+"market": "上市",
+"name": "盛餘"
+},
+"2030": {
+"industry": "鋼鐵工業",
+"market": "上市",
+"name": "彰源"
+},
+"2031": {
+"industry": "鋼鐵工業",
+"market": "上市",
+"name": "新光鋼"
+},
+"2032": {
+"industry": "鋼鐵工業",
+"market": "上市",
+"name": "新鋼"
+},
+"2033": {
+"industry": "鋼鐵工業",
+"market": "上市",
+"name": "佳大"
+},
+"2034": {
+"industry": "鋼鐵工業",
+"market": "上市",
+"name": "允強"
+},
+"2035": {
+"industry": "鋼鐵工業",
+"market": "上櫃",
+"name": "唐榮"
+},
+"2038": {
+"industry": "鋼鐵工業",
+"market": "上市",
+"name": "海光"
+},
+"2049": {
+"industry": "電機機械",
+"market": "上市",
+"name": "上銀"
+},
+"2059": {
+"industry": "電子零組件業",
+"market": "上市",
+"name": "川湖"
+},
+"2061": {
+"industry": "電器電纜",
+"market": "上櫃",
+"name": "風青"
+},
+"2062": {
+"industry": "居家生活",
+"market": "上市",
+"name": "橋椿"
+},
+"2063": {
+"industry": "鋼鐵工業",
+"market": "上櫃",
+"name": "世鎧"
+},
+"2064": {
+"industry": "鋼鐵工業",
+"market": "上櫃",
+"name": "晉椿"
+},
+"2065": {
+"industry": "鋼鐵工業",
+"market": "上櫃",
+"name": "世豐"
+},
+"2066": {
+"industry": "電機機械",
+"market": "上櫃",
+"name": "世德"
+},
+"2067": {
+"industry": "電機機械",
+"market": "上櫃",
+"name": "嘉鋼"
+},
+"2069": {
+"industry": "鋼鐵工業",
+"market": "上市",
+"name": "運錩"
+},
+"2070": {
+"industry": "電機機械",
+"market": "上櫃",
+"name": "精湛"
+},
+"2071": {
+"industry": "鋼鐵工業",
+"market": "興櫃",
+"name": "震南鐵"
+},
+"2072": {
+"industry": "綠能環保",
+"market": "上市",
+"name": "世紀風電"
+},
+"2073": {
+"industry": "鋼鐵工業",
+"market": "上櫃",
+"name": "雄順"
+},
+"2101": {
+"industry": "橡膠工業",
+"market": "上市",
+"name": "南港"
+},
+"2102": {
+"industry": "橡膠工業",
+"market": "上市",
+"name": "泰豐"
+},
+"2103": {
+"industry": "橡膠工業",
+"market": "上市",
+"name": "台橡"
+},
+"2104": {
+"industry": "橡膠工業",
+"market": "上市",
+"name": "國際中橡"
+},
+"2105": {
+"industry": "橡膠工業",
+"market": "上市",
+"name": "正新"
+},
+"2106": {
+"industry": "橡膠工業",
+"market": "上市",
+"name": "建大"
+},
+"2107": {
+"industry": "橡膠工業",
+"market": "上市",
+"name": "厚生"
+},
+"2108": {
+"industry": "橡膠工業",
+"market": "上市",
+"name": "南帝"
+},
+"2109": {
+"industry": "橡膠工業",
+"market": "上市",
+"name": "華豐"
+},
+"2114": {
+"industry": "橡膠工業",
+"market": "上市",
+"name": "鑫永銓"
+},
+"2115": {
+"industry": "汽車工業",
+"market": "上市",
+"name": "六暉-KY"
+},
+"2201": {
+"industry": "汽車工業",
+"market": "上市",
+"name": "裕隆"
+},
+"2204": {
+"industry": "汽車工業",
+"market": "上市",
+"name": "中華"
+},
+"2206": {
+"industry": "汽車工業",
+"market": "上市",
+"name": "三陽工業"
+},
+"2207": {
+"industry": "汽車工業",
+"market": "上市",
+"name": "和泰車"
+},
+"2208": {
+"industry": "航運業",
+"market": "上市",
+"name": "台船"
+},
+"2211": {
+"industry": "鋼鐵工業",
+"market": "上市",
+"name": "長榮鋼"
+},
+"2221": {
+"industry": "其他業",
+"market": "上櫃",
+"name": "大甲"
+},
+"2227": {
+"industry": "汽車工業",
+"market": "上市",
+"name": "裕日車"
+},
+"2228": {
+"industry": "汽車工業",
+"market": "上市",
+"name": "劍麟"
+},
+"2230": {
+"industry": "居家生活",
+"market": "上櫃",
+"name": "泰茂"
+},
+"2231": {
+"industry": "汽車工業",
+"market": "上市",
+"name": "為升"
+},
+"2233": {
+"industry": "汽車工業",
+"market": "上市",
+"name": "宇隆"
+},
+"2235": {
+"industry": "電機機械",
+"market": "上櫃",
+"name": "謚源"
+},
+"2236": {
+"industry": "汽車工業",
+"market": "上市",
+"name": "百達-KY"
+},
+"2237": {
+"industry": "汽車工業",
+"market": "上市臺灣創新板",
+"name": "華德動能-創"
+},
+"2239": {
+"industry": "汽車工業",
+"market": "上市",
+"name": "英利-KY"
+},
+"2241": {
+"industry": "汽車工業",
+"market": "上市",
+"name": "艾姆勒"
+},
+"2243": {
+"industry": "汽車工業",
+"market": "上市",
+"name": "宏旭-KY"
+},
+"2245": {
+"industry": "電機機械",
+"market": "興櫃",
+"name": "詠勝昌*"
+},
+"2247": {
+"industry": "汽車工業",
+"market": "上市",
+"name": "汎德永業"
+},
+"2248": {
+"industry": "汽車工業",
+"market": "上市",
+"name": "華勝-KY"
+},
+"2249": {
+"industry": "電機機械",
+"market": "興櫃",
+"name": "湧盛"
+},
+"2250": {
+"industry": "汽車工業",
+"market": "上市",
+"name": "IKKA-KY"
+},
+"2252": {
+"industry": "其他電子業",
+"market": "興櫃",
+"name": "為昇科"
+},
+"2254": {
+"industry": "汽車工業",
+"market": "上市臺灣創新板",
+"name": "巨鎧精密-創"
+},
+"2255": {
+"industry": "其他電子業",
+"market": "興櫃",
+"name": "凱銳光電"
+},
+"2256": {
+"industry": "其他電子業",
+"market": "興櫃",
+"name": "歐特明"
+},
+"2258": {
+"industry": "汽車工業",
+"market": "上市臺灣創新板",
+"name": "鴻華先進-創"
+},
+"2301": {
+"industry": "電腦及週邊設備業",
+"market": "上市",
+"name": "光寶科"
+},
+"2302": {
+"industry": "半導體業",
+"market": "上市",
+"name": "麗正"
+},
+"2303": {
+"industry": "半導體業",
+"market": "上市",
+"name": "聯電"
+},
+"2305": {
+"industry": "電腦及週邊設備業",
+"market": "上市",
+"name": "全友"
+},
+"2308": {
+"industry": "電子零組件業",
+"market": "上市",
+"name": "台達電"
+},
+"2312": {
+"industry": "其他電子業",
+"market": "上市",
+"name": "金寶"
+},
+"2313": {
+"industry": "電子零組件業",
+"market": "上市",
+"name": "華通"
+},
+"2314": {
+"industry": "通信網路業",
+"market": "上市",
+"name": "台揚"
+},
+"2316": {
+"industry": "電子零組件業",
+"market": "上市",
+"name": "楠梓電"
+},
+"2317": {
+"industry": "其他電子業",
+"market": "上市",
+"name": "鴻海"
+},
+"2321": {
+"industry": "通信網路業",
+"market": "上市",
+"name": "東訊"
+},
+"2323": {
+"industry": "光電業",
+"market": "上市",
+"name": "中環"
+},
+"2324": {
+"industry": "電腦及週邊設備業",
+"market": "上市",
+"name": "仁寶"
+},
+"2327": {
+"industry": "電子零組件業",
+"market": "上市",
+"name": "國巨*"
+},
+"2328": {
+"industry": "電子零組件業",
+"market": "上市",
+"name": "廣宇"
+},
+"2329": {
+"industry": "半導體業",
+"market": "上市",
+"name": "華泰"
+},
+"2330": {
+"industry": "半導體業",
+"market": "上市",
+"name": "台積電"
+},
+"2331": {
+"industry": "電腦及週邊設備業",
+"market": "上市",
+"name": "精英"
+},
+"2332": {
+"industry": "通信網路業",
+"market": "上市",
+"name": "友訊"
+},
+"2337": {
+"industry": "半導體業",
+"market": "上市",
+"name": "旺宏"
+},
+"2338": {
+"industry": "半導體業",
+"market": "上市",
+"name": "光罩"
+},
+"2340": {
+"industry": "半導體業",
+"market": "上市",
+"name": "台亞"
+},
+"2342": {
+"industry": "半導體業",
+"market": "上市",
+"name": "茂矽"
+},
+"2344": {
+"industry": "半導體業",
+"market": "上市",
+"name": "華邦電"
+},
+"2345": {
+"industry": "通信網路業",
+"market": "上市",
+"name": "智邦"
+},
+"2347": {
+"industry": "電子通路業",
+"market": "上市",
+"name": "聯強"
+},
+"2348": {
+"industry": "其他業",
+"market": "上市",
+"name": "海悅"
+},
+"2349": {
+"industry": "光電業",
+"market": "上市",
+"name": "錸德"
+},
+"2351": {
+"industry": "半導體業",
+"market": "上市",
+"name": "順德"
+},
+"2352": {
+"industry": "電腦及週邊設備業",
+"market": "上市",
+"name": "佳世達"
+},
+"2353": {
+"industry": "電腦及週邊設備業",
+"market": "上市",
+"name": "宏碁"
+},
+"2354": {
+"industry": "其他電子業",
+"market": "上市",
+"name": "鴻準"
+},
+"2355": {
+"industry": "電子零組件業",
+"market": "上市",
+"name": "敬鵬"
+},
+"2356": {
+"industry": "電腦及週邊設備業",
+"market": "上市",
+"name": "英業達"
+},
+"2357": {
+"industry": "電腦及週邊設備業",
+"market": "上市",
+"name": "華碩"
+},
+"2359": {
+"industry": "其他電子業",
+"market": "上市",
+"name": "所羅門"
+},
+"2360": {
+"industry": "其他電子業",
+"market": "上市",
+"name": "致茂"
+},
+"2362": {
+"industry": "電腦及週邊設備業",
+"market": "上市",
+"name": "藍天"
+},
+"2363": {
+"industry": "半導體業",
+"market": "上市",
+"name": "矽統"
+},
+"2364": {
+"industry": "電腦及週邊設備業",
+"market": "上市",
+"name": "倫飛"
+},
+"2365": {
+"industry": "電腦及週邊設備業",
+"market": "上市",
+"name": "昆盈"
+},
+"2367": {
+"industry": "電子零組件業",
+"market": "上市",
+"name": "燿華"
+},
+"2368": {
+"industry": "電子零組件業",
+"market": "上市",
+"name": "金像電"
+},
+"2369": {
+"industry": "半導體業",
+"market": "上市",
+"name": "菱生"
+},
+"2371": {
+"industry": "電機機械",
+"market": "上市",
+"name": "大同"
+},
+"2373": {
+"industry": "其他電子業",
+"market": "上市",
+"name": "震旦行"
+},
+"2374": {
+"industry": "光電業",
+"market": "上市",
+"name": "佳能"
+},
+"2375": {
+"industry": "電子零組件業",
+"market": "上市",
+"name": "凱美"
+},
+"2376": {
+"industry": "電腦及週邊設備業",
+"market": "上市",
+"name": "技嘉"
+},
+"2377": {
+"industry": "電腦及週邊設備業",
+"market": "上市",
+"name": "微星"
+},
+"2379": {
+"industry": "半導體業",
+"market": "上市",
+"name": "瑞昱"
+},
+"2380": {
+"industry": "電腦及週邊設備業",
+"market": "上市",
+"name": "虹光"
+},
+"2382": {
+"industry": "電腦及週邊設備業",
+"market": "上市",
+"name": "廣達"
+},
+"2383": {
+"industry": "電子零組件業",
+"market": "上市",
+"name": "台光電"
+},
+"2385": {
+"industry": "電子零組件業",
+"market": "上市",
+"name": "群光"
+},
+"2387": {
+"industry": "電腦及週邊設備業",
+"market": "上市",
+"name": "精元"
+},
+"2388": {
+"industry": "半導體業",
+"market": "上市",
+"name": "威盛"
+},
+"2390": {
+"industry": "其他電子業",
+"market": "上市",
+"name": "云辰"
+},
+"2392": {
+"industry": "電子零組件業",
+"market": "上市",
+"name": "正崴"
+},
+"2393": {
+"industry": "光電業",
+"market": "上市",
+"name": "億光"
+},
+"2395": {
+"industry": "電腦及週邊設備業",
+"market": "上市",
+"name": "研華"
+},
+"2397": {
+"industry": "電腦及週邊設備業",
+"market": "上市",
+"name": "友通"
+},
+"2399": {
+"industry": "電腦及週邊設備業",
+"market": "上市",
+"name": "映泰"
+},
+"2401": {
+"industry": "半導體業",
+"market": "上市",
+"name": "凌陽"
+},
+"2402": {
+"industry": "電子零組件業",
+"market": "上市",
+"name": "毅嘉"
+},
+"2404": {
+"industry": "其他電子業",
+"market": "上市",
+"name": "漢唐"
+},
+"2405": {
+"industry": "電腦及週邊設備業",
+"market": "上市",
+"name": "輔信"
+},
+"2406": {
+"industry": "光電業",
+"market": "上市",
+"name": "國碩"
+},
+"2408": {
+"industry": "半導體業",
+"market": "上市",
+"name": "南亞科"
+},
+"2409": {
+"industry": "光電業",
+"market": "上市",
+"name": "友達"
+},
+"2412": {
+"industry": "通信網路業",
+"market": "上市",
+"name": "中華電"
+},
+"2413": {
+"industry": "電子零組件業",
+"market": "上市",
+"name": "環科"
+},
+"2414": {
+"industry": "電子通路業",
+"market": "上市",
+"name": "精技"
+},
+"2415": {
+"industry": "電子零組件業",
+"market": "上市",
+"name": "錩新"
+},
+"2417": {
+"industry": "電腦及週邊設備業",
+"market": "上市",
+"name": "圓剛"
+},
+"2419": {
+"industry": "通信網路業",
+"market": "上市",
+"name": "仲琦"
+},
+"2420": {
+"industry": "電子零組件業",
+"market": "上市",
+"name": "新巨"
+},
+"2421": {
+"industry": "電子零組件業",
+"market": "上市",
+"name": "建準"
+},
+"2423": {
+"industry": "其他電子業",
+"market": "上市",
+"name": "固緯"
+},
+"2424": {
+"industry": "通信網路業",
+"market": "上市",
+"name": "隴華"
+},
+"2425": {
+"industry": "電腦及週邊設備業",
+"market": "上市",
+"name": "承啟"
+},
+"2426": {
+"industry": "光電業",
+"market": "上市",
+"name": "鼎元"
+},
+"2427": {
+"industry": "資訊服務業",
+"market": "上市",
+"name": "三商電"
+},
+"2428": {
+"industry": "電子零組件業",
+"market": "上市",
+"name": "興勤"
+},
+"2429": {
+"industry": "光電業",
+"market": "上市",
+"name": "銘旺科"
+},
+"2430": {
+"industry": "電子通路業",
+"market": "上市",
+"name": "燦坤"
+},
+"2431": {
+"industry": "電子零組件業",
+"market": "上市",
+"name": "聯昌"
+},
+"2432": {
+"industry": "電腦及週邊設備業",
+"market": "上市臺灣創新板",
+"name": "倚天酷碁-創"
+},
+"2433": {
+"industry": "其他電子業",
+"market": "上市",
+"name": "互盛電"
+},
+"2434": {
+"industry": "半導體業",
+"market": "上市",
+"name": "統懋"
+},
+"2436": {
+"industry": "半導體業",
+"market": "上市",
+"name": "偉詮電"
+},
+"2438": {
+"industry": "光電業",
+"market": "上市",
+"name": "翔耀"
+},
+"2439": {
+"industry": "通信網路業",
+"market": "上市",
+"name": "美律"
+},
+"2440": {
+"industry": "電子零組件業",
+"market": "上市",
+"name": "太空梭"
+},
+"2441": {
+"industry": "半導體業",
+"market": "上市",
+"name": "超豐"
+},
+"2442": {
+"industry": "建材營造業",
+"market": "上市",
+"name": "新美齊"
+},
+"2444": {
+"industry": "通信網路業",
+"market": "上市",
+"name": "兆勁"
+},
+"2449": {
+"industry": "半導體業",
+"market": "上市",
+"name": "京元電子"
+},
+"2450": {
+"industry": "通信網路業",
+"market": "上市",
+"name": "神腦"
+},
+"2451": {
+"industry": "半導體業",
+"market": "上市",
+"name": "創見"
+},
+"2453": {
+"industry": "資訊服務業",
+"market": "上市",
+"name": "凌群"
+},
+"2454": {
+"industry": "半導體業",
+"market": "上市",
+"name": "聯發科"
+},
+"2455": {
+"industry": "通信網路業",
+"market": "上市",
+"name": "全新"
+},
+"2457": {
+"industry": "電子零組件業",
+"market": "上市",
+"name": "飛宏"
+},
+"2458": {
+"industry": "半導體業",
+"market": "上市",
+"name": "義隆"
+},
+"2459": {
+"industry": "其他電子業",
+"market": "上市",
+"name": "敦吉"
+},
+"2460": {
+"industry": "電子零組件業",
+"market": "上市",
+"name": "建通"
+},
+"2461": {
+"industry": "其他電子業",
+"market": "上市",
+"name": "光群雷"
+},
+"2462": {
+"industry": "電子零組件業",
+"market": "上市",
+"name": "良得電"
+},
+"2464": {
+"industry": "其他電子業",
+"market": "上市",
+"name": "盟立"
+},
+"2465": {
+"industry": "電腦及週邊設備業",
+"market": "上市",
+"name": "麗臺"
+},
+"2466": {
+"industry": "光電業",
+"market": "上市",
+"name": "冠西電"
+},
+"2467": {
+"industry": "電子零組件業",
+"market": "上市",
+"name": "志聖"
+},
+"2468": {
+"industry": "資訊服務業",
+"market": "上市",
+"name": "華經"
+},
+"2471": {
+"industry": "資訊服務業",
+"market": "上市",
+"name": "資通"
+},
+"2472": {
+"industry": "電子零組件業",
+"market": "上市",
+"name": "立隆電"
+},
+"2474": {
+"industry": "其他電子業",
+"market": "上市",
+"name": "可成"
+},
+"2476": {
+"industry": "電子零組件業",
+"market": "上市",
+"name": "鉅祥"
+},
+"2477": {
+"industry": "其他電子業",
+"market": "上市",
+"name": "美隆電"
+},
+"2478": {
+"industry": "電子零組件業",
+"market": "上市",
+"name": "大毅"
+},
+"2480": {
+"industry": "資訊服務業",
+"market": "上市",
+"name": "敦陽科"
+},
+"2481": {
+"industry": "半導體業",
+"market": "上市",
+"name": "強茂"
+},
+"2482": {
+"industry": "其他電子業",
+"market": "上市",
+"name": "連宇"
+},
+"2483": {
+"industry": "電子零組件業",
+"market": "上市",
+"name": "百容"
+},
+"2484": {
+"industry": "電子零組件業",
+"market": "上市",
+"name": "希華"
+},
+"2485": {
+"industry": "通信網路業",
+"market": "上市",
+"name": "兆赫"
+},
+"2486": {
+"industry": "光電業",
+"market": "上市",
+"name": "一詮"
+},
+"2488": {
+"industry": "其他電子業",
+"market": "上市",
+"name": "漢平"
+},
+"2489": {
+"industry": "光電業",
+"market": "上市",
+"name": "瑞軒"
+},
+"2491": {
+"industry": "光電業",
+"market": "上市",
+"name": "吉祥全"
+},
+"2492": {
+"industry": "電子零組件業",
+"market": "上市",
+"name": "華新科"
+},
+"2493": {
+"industry": "電子零組件業",
+"market": "上市",
+"name": "揚博"
+},
+"2495": {
+"industry": "電腦及週邊設備業",
+"market": "上市",
+"name": "普安"
+},
+"2496": {
+"industry": "其他業",
+"market": "上市",
+"name": "卓越"
+},
+"2497": {
+"industry": "汽車工業",
+"market": "上市",
+"name": "怡利電"
+},
+"2498": {
+"industry": "通信網路業",
+"market": "上市",
+"name": "宏達電"
+},
+"2501": {
+"industry": "建材營造業",
+"market": "上市",
+"name": "國建"
+},
+"2504": {
+"industry": "建材營造業",
+"market": "上市",
+"name": "國產"
+},
+"2505": {
+"industry": "建材營造業",
+"market": "上市",
+"name": "國揚"
+},
+"2506": {
+"industry": "建材營造業",
+"market": "上市",
+"name": "太設"
+},
+"2509": {
+"industry": "建材營造業",
+"market": "上市",
+"name": "全坤建"
+},
+"2511": {
+"industry": "建材營造業",
+"market": "上市",
+"name": "太子"
+},
+"2514": {
+"industry": "其他業",
+"market": "上市",
+"name": "龍邦"
+},
+"2515": {
+"industry": "建材營造業",
+"market": "上市",
+"name": "中工"
+},
+"2516": {
+"industry": "建材營造業",
+"market": "上市",
+"name": "新建"
+},
+"2520": {
+"industry": "建材營造業",
+"market": "上市",
+"name": "冠德"
+},
+"2524": {
+"industry": "建材營造業",
+"market": "上市",
+"name": "京城"
+},
+"2527": {
+"industry": "建材營造業",
+"market": "上市",
+"name": "宏璟"
+},
+"2528": {
+"industry": "建材營造業",
+"market": "上市",
+"name": "皇普"
+},
+"2530": {
+"industry": "建材營造業",
+"market": "上市",
+"name": "華建"
+},
+"2534": {
+"industry": "建材營造業",
+"market": "上市",
+"name": "宏盛"
+},
+"2535": {
+"industry": "建材營造業",
+"market": "上市",
+"name": "達欣工"
+},
+"2536": {
+"industry": "建材營造業",
+"market": "上市",
+"name": "宏普"
+},
+"2537": {
+"industry": "建材營造業",
+"market": "上市",
+"name": "聯上發"
+},
+"2538": {
+"industry": "建材營造業",
+"market": "上市",
+"name": "基泰"
+},
+"2539": {
+"industry": "建材營造業",
+"market": "上市",
+"name": "櫻花建"
+},
+"2540": {
+"industry": "建材營造業",
+"market": "上市",
+"name": "愛山林"
+},
+"2542": {
+"industry": "建材營造業",
+"market": "上市",
+"name": "興富發"
+},
+"2543": {
+"industry": "建材營造業",
+"market": "上市",
+"name": "皇昌"
+},
+"2545": {
+"industry": "建材營造業",
+"market": "上市",
+"name": "皇翔"
+},
+"2546": {
+"industry": "建材營造業",
+"market": "上市",
+"name": "根基"
+},
+"2547": {
+"industry": "建材營造業",
+"market": "上市",
+"name": "日勝生"
+},
+"2548": {
+"industry": "建材營造業",
+"market": "上市",
+"name": "華固"
+},
+"2596": {
+"industry": "建材營造業",
+"market": "上櫃",
+"name": "綠意"
+},
+"2597": {
+"industry": "建材營造業",
+"market": "上市",
+"name": "潤弘"
+},
+"2601": {
+"industry": "航運業",
+"market": "上市",
+"name": "益航"
+},
+"2603": {
+"industry": "航運業",
+"market": "上市",
+"name": "長榮"
+},
+"2605": {
+"industry": "航運業",
+"market": "上市",
+"name": "新興"
+},
+"2606": {
+"industry": "航運業",
+"market": "上市",
+"name": "裕民"
+},
+"2607": {
+"industry": "航運業",
+"market": "上市",
+"name": "榮運"
+},
+"2608": {
+"industry": "航運業",
+"market": "上市",
+"name": "嘉里大榮"
+},
+"2609": {
+"industry": "航運業",
+"market": "上市",
+"name": "陽明"
+},
+"2610": {
+"industry": "航運業",
+"market": "上市",
+"name": "華航"
+},
+"2611": {
+"industry": "航運業",
+"market": "上市",
+"name": "志信"
+},
+"2612": {
+"industry": "航運業",
+"market": "上市",
+"name": "中航"
+},
+"2613": {
+"industry": "航運業",
+"market": "上市",
+"name": "中櫃"
+},
+"2614": {
+"industry": "其他業",
+"market": "上市",
+"name": "東森"
+},
+"2615": {
+"industry": "航運業",
+"market": "上市",
+"name": "萬海"
+},
+"2616": {
+"industry": "油電燃氣業",
+"market": "上市",
+"name": "山隆"
+},
+"2617": {
+"industry": "航運業",
+"market": "上市",
+"name": "台航"
+},
+"2618": {
+"industry": "航運業",
+"market": "上市",
+"name": "長榮航"
+},
+"2630": {
+"industry": "航運業",
+"market": "上市",
+"name": "亞航"
+},
+"2633": {
+"industry": "航運業",
+"market": "上市",
+"name": "台灣高鐵"
+},
+"2634": {
+"industry": "航運業",
+"market": "上市",
+"name": "漢翔"
+},
+"2636": {
+"industry": "航運業",
+"market": "上市",
+"name": "台驊控股"
+},
+"2637": {
+"industry": "航運業",
+"market": "上市",
+"name": "慧洋-KY"
+},
+"2640": {
+"industry": "數位雲端",
+"market": "上櫃",
+"name": "大車隊"
+},
+"2641": {
+"industry": "航運業",
+"market": "上櫃",
+"name": "正德"
+},
+"2642": {
+"industry": "航運業",
+"market": "上市",
+"name": "宅配通"
+},
+"2643": {
+"industry": "航運業",
+"market": "上櫃",
+"name": "捷迅"
+},
+"2644": {
+"industry": "航運業",
+"market": "興櫃",
+"name": "中信造船"
+},
+"2645": {
+"industry": "航運業",
+"market": "上市",
+"name": "長榮航太"
+},
+"2646": {
+"industry": "航運業",
+"market": "上市",
+"name": "星宇航空"
+},
+"2701": {
+"industry": "觀光餐旅",
+"market": "上市",
+"name": "萬企"
+},
+"2702": {
+"industry": "觀光餐旅",
+"market": "上市",
+"name": "華園"
+},
+"2704": {
+"industry": "觀光餐旅",
+"market": "上市",
+"name": "國賓"
+},
+"2705": {
+"industry": "觀光餐旅",
+"market": "上市",
+"name": "六福"
+},
+"2706": {
+"industry": "觀光餐旅",
+"market": "上市",
+"name": "第一店"
+},
+"2707": {
+"industry": "觀光餐旅",
+"market": "上市",
+"name": "晶華"
+},
+"2712": {
+"industry": "觀光餐旅",
+"market": "上市",
+"name": "遠雄來"
+},
+"2718": {
+"industry": "建材營造業",
+"market": "上櫃",
+"name": "全心投控"
+},
+"2719": {
+"industry": "觀光餐旅",
+"market": "上櫃",
+"name": "燦星旅"
+},
+"2722": {
+"industry": "觀光餐旅",
+"market": "上市",
+"name": "夏都"
+},
+"2723": {
+"industry": "觀光餐旅",
+"market": "上市",
+"name": "美食-KY"
+},
+"2724": {
+"industry": "其他業",
+"market": "上櫃",
+"name": "藝舍-KY"
+},
+"2726": {
+"industry": "觀光餐旅",
+"market": "上櫃",
+"name": "雅茗-KY"
+},
+"2727": {
+"industry": "觀光餐旅",
+"market": "上市",
+"name": "王品"
+},
+"2729": {
+"industry": "觀光餐旅",
+"market": "上櫃",
+"name": "瓦城"
+},
+"2731": {
+"industry": "觀光餐旅",
+"market": "上市",
+"name": "雄獅"
+},
+"2732": {
+"industry": "觀光餐旅",
+"market": "上櫃",
+"name": "六角"
+},
+"2734": {
+"industry": "觀光餐旅",
+"market": "上櫃",
+"name": "易飛網"
+},
+"2736": {
+"industry": "觀光餐旅",
+"market": "上櫃",
+"name": "富野"
+},
+"2739": {
+"industry": "觀光餐旅",
+"market": "上市",
+"name": "寒舍"
+},
+"2740": {
+"industry": "觀光餐旅",
+"market": "上櫃",
+"name": "華軒"
+},
+"2741": {
+"industry": "觀光餐旅",
+"market": "興櫃",
+"name": "老四川"
+},
+"2743": {
+"industry": "觀光餐旅",
+"market": "上櫃",
+"name": "山富"
+},
+"2745": {
+"industry": "觀光餐旅",
+"market": "上櫃",
+"name": "五福"
+},
+"2748": {
+"industry": "觀光餐旅",
+"market": "上市",
+"name": "雲品"
+},
+"2751": {
+"industry": "觀光餐旅",
+"market": "上櫃",
+"name": "王座"
+},
+"2752": {
+"industry": "觀光餐旅",
+"market": "上櫃",
+"name": "豆府"
+},
+"2753": {
+"industry": "觀光餐旅",
+"market": "上市",
+"name": "八方雲集"
+},
+"2754": {
+"industry": "觀光餐旅",
+"market": "上櫃",
+"name": "亞洲藏壽司"
+},
+"2755": {
+"industry": "觀光餐旅",
+"market": "上櫃",
+"name": "揚秦"
+},
+"2756": {
+"industry": "觀光餐旅",
+"market": "上櫃",
+"name": "聯發國際"
+},
+"2758": {
+"industry": "觀光餐旅",
+"market": "興櫃",
+"name": "路易莎咖啡"
+},
+"2760": {
+"industry": "觀光餐旅",
+"market": "興櫃",
+"name": "巨宇翔"
+},
+"2761": {
+"industry": "觀光餐旅",
+"market": "興櫃",
+"name": "橘焱胡同"
+},
+"2762": {
+"industry": "運動休閒",
+"market": "上市",
+"name": "世界健身-KY"
+},
+"2801": {
+"industry": "金融保險業",
+"market": "上市",
+"name": "彰銀"
+},
+"2812": {
+"industry": "金融保險業",
+"market": "上市",
+"name": "台中銀"
+},
+"2816": {
+"industry": "金融保險業",
+"market": "上市",
+"name": "旺旺保"
+},
+"2820": {
+"industry": "金融保險業",
+"market": "上市",
+"name": "華票"
+},
+"2832": {
+"industry": "金融保險業",
+"market": "上市",
+"name": "台產"
+},
+"2834": {
+"industry": "金融保險業",
+"market": "上市",
+"name": "臺企銀"
+},
+"2836": {
+"industry": "金融保險業",
+"market": "上市",
+"name": "高雄銀"
+},
+"2838": {
+"industry": "金融保險業",
+"market": "上市",
+"name": "聯邦銀"
+},
+"2845": {
+"industry": "金融保險業",
+"market": "上市",
+"name": "遠東銀"
+},
+"2849": {
+"industry": "金融保險業",
+"market": "上市",
+"name": "安泰銀"
+},
+"2850": {
+"industry": "金融保險業",
+"market": "上市",
+"name": "新產"
+},
+"2851": {
+"industry": "金融保險業",
+"market": "上市",
+"name": "中再保"
+},
+"2852": {
+"industry": "金融保險業",
+"market": "上市",
+"name": "第一保"
+},
+"2855": {
+"industry": "金融保險業",
+"market": "上市",
+"name": "統一證"
+},
+"2880": {
+"industry": "金融保險業",
+"market": "上市",
+"name": "華南金"
+},
+"2881": {
+"industry": "金融保險業",
+"market": "上市",
+"name": "富邦金"
+},
+"2882": {
+"industry": "金融保險業",
+"market": "上市",
+"name": "國泰金"
+},
+"2883": {
+"industry": "金融保險業",
+"market": "上市",
+"name": "凱基金"
+},
+"2884": {
+"industry": "金融保險業",
+"market": "上市",
+"name": "玉山金"
+},
+"2885": {
+"industry": "金融保險業",
+"market": "上市",
+"name": "元大金"
+},
+"2886": {
+"industry": "金融保險業",
+"market": "上市",
+"name": "兆豐金"
+},
+"2887": {
+"industry": "金融保險業",
+"market": "上市",
+"name": "台新新光金"
+},
+"2889": {
+"industry": "金融保險業",
+"market": "上市",
+"name": "國票金"
+},
+"2890": {
+"industry": "金融保險業",
+"market": "上市",
+"name": "永豐金"
+},
+"2891": {
+"industry": "金融保險業",
+"market": "上市",
+"name": "中信金"
+},
+"2892": {
+"industry": "金融保險業",
+"market": "上市",
+"name": "第一金"
+},
+"2897": {
+"industry": "金融保險業",
+"market": "上市",
+"name": "王道銀行"
+},
+"2901": {
+"industry": "貿易百貨業",
+"market": "上市",
+"name": "欣欣"
+},
+"2903": {
+"industry": "貿易百貨業",
+"market": "上市",
+"name": "遠百"
+},
+"2904": {
+"industry": "其他業",
+"market": "上市",
+"name": "匯僑"
+},
+"2905": {
+"industry": "貿易百貨業",
+"market": "上市",
+"name": "三商"
+},
+"2906": {
+"industry": "貿易百貨業",
+"market": "上市",
+"name": "高林"
+},
+"2908": {
+"industry": "貿易百貨業",
+"market": "上市",
+"name": "特力"
+},
+"2910": {
+"industry": "貿易百貨業",
+"market": "上市",
+"name": "統領"
+},
+"2911": {
+"industry": "貿易百貨業",
+"market": "上市",
+"name": "麗嬰房"
+},
+"2912": {
+"industry": "貿易百貨業",
+"market": "上市",
+"name": "統一超"
+},
+"2913": {
+"industry": "貿易百貨業",
+"market": "上市",
+"name": "農林"
+},
+"2915": {
+"industry": "貿易百貨業",
+"market": "上市",
+"name": "潤泰全"
+},
+"2916": {
+"industry": "居家生活",
+"market": "上櫃",
+"name": "滿心"
+},
+"2923": {
+"industry": "建材營造業",
+"market": "上市",
+"name": "鼎固-KY"
+},
+"2924": {
+"industry": "居家生活",
+"market": "上櫃",
+"name": "宏太-KY"
+},
+"2926": {
+"industry": "文化創意業",
+"market": "上櫃",
+"name": "誠品生活"
+},
+"2929": {
+"industry": "貿易百貨業",
+"market": "上市",
+"name": "淘帝-KY"
+},
+"2937": {
+"industry": "居家生活",
+"market": "上櫃",
+"name": "集雅社"
+},
+"2938": {
+"industry": "居家生活",
+"market": "上櫃",
+"name": "床的世界"
+},
+"2939": {
+"industry": "貿易百貨業",
+"market": "上市",
+"name": "永邑-KY"
+},
+"2940": {
+"industry": "運動休閒",
+"market": "興櫃",
+"name": "歐都納"
+},
+"2941": {
+"industry": "居家生活",
+"market": "上櫃",
+"name": "米斯特"
+},
+"2942": {
+"industry": "居家生活",
+"market": "興櫃",
+"name": "京站"
+},
+"2945": {
+"industry": "貿易百貨業",
+"market": "上市",
+"name": "三商家購"
+},
+"2947": {
+"industry": "居家生活",
+"market": "上櫃",
+"name": "振宇五金"
+},
+"2948": {
+"industry": "居家生活",
+"market": "上櫃",
+"name": "寶陞"
+},
+"2949": {
+"industry": "數位雲端",
+"market": "上櫃",
+"name": "欣新網"
+},
+"3002": {
+"industry": "電腦及週邊設備業",
+"market": "上市",
+"name": "歐格"
+},
+"3003": {
+"industry": "電子零組件業",
+"market": "上市",
+"name": "健和興"
+},
+"3004": {
+"industry": "鋼鐵工業",
+"market": "上市",
+"name": "豐達科"
+},
+"3005": {
+"industry": "電腦及週邊設備業",
+"market": "上市",
+"name": "神基"
+},
+"3006": {
+"industry": "半導體業",
+"market": "上市",
+"name": "晶豪科"
+},
+"3008": {
+"industry": "光電業",
+"market": "上市",
+"name": "大立光"
+},
+"3010": {
+"industry": "電子通路業",
+"market": "上市",
+"name": "華立"
+},
+"3011": {
+"industry": "電子零組件業",
+"market": "上市",
+"name": "今皓"
+},
+"3013": {
+"industry": "電腦及週邊設備業",
+"market": "上市",
+"name": "晟銘電"
+},
+"3014": {
+"industry": "半導體業",
+"market": "上市",
+"name": "聯陽"
+},
+"3015": {
+"industry": "電子零組件業",
+"market": "上市",
+"name": "全漢"
+},
+"3016": {
+"industry": "半導體業",
+"market": "上市",
+"name": "嘉晶"
+},
+"3017": {
+"industry": "電腦及週邊設備業",
+"market": "上市",
+"name": "奇鋐"
+},
+"3018": {
+"industry": "其他電子業",
+"market": "上市",
+"name": "隆銘綠能"
+},
+"3019": {
+"industry": "光電業",
+"market": "上市",
+"name": "亞光"
+},
+"3021": {
+"industry": "電子零組件業",
+"market": "上市",
+"name": "鴻名"
+},
+"3022": {
+"industry": "電腦及週邊設備業",
+"market": "上市",
+"name": "威強電"
+},
+"3023": {
+"industry": "電子零組件業",
+"market": "上市",
+"name": "信邦"
+},
+"3024": {
+"industry": "光電業",
+"market": "上市",
+"name": "憶聲"
+},
+"3025": {
+"industry": "通信網路業",
+"market": "上市",
+"name": "星通"
+},
+"3026": {
+"industry": "電子零組件業",
+"market": "上市",
+"name": "禾伸堂"
+},
+"3027": {
+"industry": "通信網路業",
+"market": "上市",
+"name": "盛達"
+},
+"3028": {
+"industry": "電子通路業",
+"market": "上市",
+"name": "增你強"
+},
+"3029": {
+"industry": "資訊服務業",
+"market": "上市",
+"name": "零壹"
+},
+"3030": {
+"industry": "其他電子業",
+"market": "上市",
+"name": "德律"
+},
+"3031": {
+"industry": "光電業",
+"market": "上市",
+"name": "佰鴻"
+},
+"3032": {
+"industry": "電子零組件業",
+"market": "上市",
+"name": "偉訓"
+},
+"3033": {
+"industry": "電子通路業",
+"market": "上市",
+"name": "威健"
+},
+"3034": {
+"industry": "半導體業",
+"market": "上市",
+"name": "聯詠"
+},
+"3035": {
+"industry": "半導體業",
+"market": "上市",
+"name": "智原"
+},
+"3036": {
+"industry": "電子通路業",
+"market": "上市",
+"name": "文曄"
+},
+"3037": {
+"industry": "電子零組件業",
+"market": "上市",
+"name": "欣興"
+},
+"3038": {
+"industry": "光電業",
+"market": "上市",
+"name": "全台"
+},
+"3040": {
+"industry": "其他業",
+"market": "上市",
+"name": "遠見"
+},
+"3041": {
+"industry": "半導體業",
+"market": "上市",
+"name": "揚智"
+},
+"3042": {
+"industry": "電子零組件業",
+"market": "上市",
+"name": "晶技"
+},
+"3043": {
+"industry": "其他電子業",
+"market": "上市",
+"name": "科風"
+},
+"3044": {
+"industry": "電子零組件業",
+"market": "上市",
+"name": "健鼎"
+},
+"3045": {
+"industry": "通信網路業",
+"market": "上市",
+"name": "台灣大"
+},
+"3046": {
+"industry": "電腦及週邊設備業",
+"market": "上市",
+"name": "建碁"
+},
+"3047": {
+"industry": "通信網路業",
+"market": "上市",
+"name": "訊舟"
+},
+"3048": {
+"industry": "電子通路業",
+"market": "上市",
+"name": "益登"
+},
+"3049": {
+"industry": "光電業",
+"market": "上市",
+"name": "精金"
+},
+"3050": {
+"industry": "光電業",
+"market": "上市",
+"name": "鈺德"
+},
+"3051": {
+"industry": "光電業",
+"market": "上市",
+"name": "力特"
+},
+"3052": {
+"industry": "建材營造業",
+"market": "上市",
+"name": "夆典"
+},
+"3054": {
+"industry": "電子通路業",
+"market": "上市",
+"name": "立萬利"
+},
+"3055": {
+"industry": "電子通路業",
+"market": "上市",
+"name": "蔚華科"
+},
+"3056": {
+"industry": "建材營造業",
+"market": "上市",
+"name": "富華新"
+},
+"3057": {
+"industry": "電腦及週邊設備業",
+"market": "上市",
+"name": "喬鼎"
+},
+"3058": {
+"industry": "電子零組件業",
+"market": "上市",
+"name": "立德"
+},
+"3059": {
+"industry": "光電業",
+"market": "上市",
+"name": "華晶科"
+},
+"3060": {
+"industry": "電腦及週邊設備業",
+"market": "上市",
+"name": "銘異"
+},
+"3062": {
+"industry": "通信網路業",
+"market": "上市",
+"name": "建漢"
+},
+"3064": {
+"industry": "文化創意業",
+"market": "上櫃",
+"name": "泰偉"
+},
+"3066": {
+"industry": "光電業",
+"market": "上櫃",
+"name": "李洲"
+},
+"3067": {
+"industry": "居家生活",
+"market": "上櫃",
+"name": "全域"
+},
+"3071": {
+"industry": "電腦及週邊設備業",
+"market": "上櫃",
+"name": "協禧"
+},
+"3073": {
+"industry": "綠能環保",
+"market": "上櫃",
+"name": "天方能源"
+},
+"3078": {
+"industry": "電子零組件業",
+"market": "上櫃",
+"name": "僑威"
+},
+"3081": {
+"industry": "通信網路業",
+"market": "上櫃",
+"name": "聯亞"
+},
+"3083": {
+"industry": "文化創意業",
+"market": "上櫃",
+"name": "網龍"
+},
+"3085": {
+"industry": "數位雲端",
+"market": "上櫃",
+"name": "新零售"
+},
+"3086": {
+"industry": "文化創意業",
+"market": "上櫃",
+"name": "華義*"
+},
+"3088": {
+"industry": "電腦及週邊設備業",
+"market": "上櫃",
+"name": "艾訊"
+},
+"3090": {
+"industry": "電子零組件業",
+"market": "上市",
+"name": "日電貿"
+},
+"3092": {
+"industry": "電子零組件業",
+"market": "上市",
+"name": "鴻碩"
+},
+"3093": {
+"industry": "其他電子業",
+"market": "上櫃",
+"name": "港建*"
+},
+"3094": {
+"industry": "半導體業",
+"market": "上市",
+"name": "聯傑"
+},
+"3095": {
+"industry": "通信網路業",
+"market": "上櫃",
+"name": "及成"
+},
+"3097": {
+"industry": "電腦及週邊設備業",
+"market": "興櫃",
+"name": "拍檔"
+},
+"3105": {
+"industry": "半導體業",
+"market": "上櫃",
+"name": "穩懋"
+},
+"3114": {
+"industry": "電子零組件業",
+"market": "上櫃",
+"name": "好德"
+},
+"3115": {
+"industry": "電子零組件業",
+"market": "上櫃",
+"name": "富榮綱"
+},
+"3117": {
+"industry": "電子零組件業",
+"market": "興櫃",
+"name": "年程"
+},
+"3118": {
+"industry": "生技醫療業",
+"market": "上櫃",
+"name": "進階"
+},
+"3122": {
+"industry": "半導體業",
+"market": "上櫃",
+"name": "笙泉"
+},
+"3128": {
+"industry": "光電業",
+"market": "上櫃",
+"name": "昇銳"
+},
+"3130": {
+"industry": "數位雲端",
+"market": "上市",
+"name": "一零四"
+},
+"3131": {
+"industry": "半導體業",
+"market": "上櫃",
+"name": "弘塑"
+},
+"3135": {
+"industry": "半導體業",
+"market": "上市",
+"name": "凌航"
+},
+"3138": {
+"industry": "通信網路業",
+"market": "上市",
+"name": "耀登"
+},
+"3141": {
+"industry": "半導體業",
+"market": "上櫃",
+"name": "晶宏"
+},
+"3147": {
+"industry": "資訊服務業",
+"market": "上櫃",
+"name": "大綜"
+},
+"3149": {
+"industry": "光電業",
+"market": "上市",
+"name": "正達"
+},
+"3150": {
+"industry": "半導體業",
+"market": "上市臺灣創新板",
+"name": "鈺寶-創"
+},
+"3152": {
+"industry": "通信網路業",
+"market": "上櫃",
+"name": "璟德"
+},
+"3158": {
+"industry": "資訊服務業",
+"market": "上櫃",
+"name": "嘉實"
+},
+"3162": {
+"industry": "電機機械",
+"market": "上櫃",
+"name": "精確"
+},
+"3163": {
+"industry": "通信網路業",
+"market": "上櫃",
+"name": "波若威"
+},
+"3164": {
+"industry": "生技醫療業",
+"market": "上市",
+"name": "景岳"
+},
+"3167": {
+"industry": "電機機械",
+"market": "上市",
+"name": "大量"
+},
+"3168": {
+"industry": "光電業",
+"market": "上市",
+"name": "眾福科"
+},
+"3169": {
+"industry": "半導體業",
+"market": "上櫃",
+"name": "亞信"
+},
+"3171": {
+"industry": "居家生活",
+"market": "上櫃",
+"name": "炎洲流通"
+},
+"3176": {
+"industry": "生技醫療業",
+"market": "上櫃",
+"name": "基亞"
+},
+"3178": {
+"industry": "半導體業",
+"market": "上櫃",
+"name": "公準"
+},
+"3184": {
+"industry": "生技醫療業",
+"market": "興櫃",
+"name": "微邦"
+},
+"3188": {
+"industry": "建材營造業",
+"market": "上櫃",
+"name": "鑫龍騰"
+},
+"3189": {
+"industry": "半導體業",
+"market": "上市",
+"name": "景碩"
+},
+"3191": {
+"industry": "電子零組件業",
+"market": "上櫃",
+"name": "雲嘉南"
+},
+"3194": {
+"industry": "資訊服務業",
+"market": "興櫃",
+"name": "圓方科技"
+},
+"3205": {
+"industry": "生技醫療業",
+"market": "上櫃",
+"name": "佰研"
+},
+"3206": {
+"industry": "電子零組件業",
+"market": "上櫃",
+"name": "志豐"
+},
+"3207": {
+"industry": "電子零組件業",
+"market": "上櫃",
+"name": "耀勝"
+},
+"3209": {
+"industry": "電子通路業",
+"market": "上市",
+"name": "全科"
+},
+"3211": {
+"industry": "電腦及週邊設備業",
+"market": "上櫃",
+"name": "順達"
+},
+"3213": {
+"industry": "電腦及週邊設備業",
+"market": "上櫃",
+"name": "茂訊"
+},
+"3217": {
+"industry": "電子零組件業",
+"market": "上櫃",
+"name": "優群"
+},
+"3218": {
+"industry": "生技醫療業",
+"market": "上櫃",
+"name": "大學光"
+},
+"3219": {
+"industry": "其他電子業",
+"market": "上櫃",
+"name": "倚強科"
+},
+"3221": {
+"industry": "通信網路業",
+"market": "上櫃",
+"name": "台嘉碩"
+},
+"3224": {
+"industry": "電子通路業",
+"market": "上櫃",
+"name": "三顧"
+},
+"3226": {
+"industry": "電機機械",
+"market": "上櫃",
+"name": "龍鋒"
+},
+"3227": {
+"industry": "半導體業",
+"market": "上櫃",
+"name": "原相"
+},
+"3228": {
+"industry": "半導體業",
+"market": "上櫃",
+"name": "金麗科"
+},
+"3229": {
+"industry": "電子零組件業",
+"market": "上市",
+"name": "晟鈦"
+},
+"3230": {
+"industry": "光電業",
+"market": "上櫃",
+"name": "錦明"
+},
+"3231": {
+"industry": "電腦及週邊設備業",
+"market": "上市",
+"name": "緯創"
+},
+"3232": {
+"industry": "電子通路業",
+"market": "上櫃",
+"name": "昱捷"
+},
+"3234": {
+"industry": "通信網路業",
+"market": "上櫃",
+"name": "光環"
+},
+"3236": {
+"industry": "電子零組件業",
+"market": "上櫃",
+"name": "千如"
+},
+"3252": {
+"industry": "觀光餐旅",
+"market": "上櫃",
+"name": "海灣"
+},
+"3257": {
+"industry": "半導體業",
+"market": "上市",
+"name": "虹冠電"
+},
+"3259": {
+"industry": "半導體業",
+"market": "上櫃",
+"name": "鑫創"
+},
+"3260": {
+"industry": "半導體業",
+"market": "上櫃",
+"name": "威剛"
+},
+"3264": {
+"industry": "半導體業",
+"market": "上櫃",
+"name": "欣銓"
+},
+"3265": {
+"industry": "半導體業",
+"market": "上櫃",
+"name": "台星科"
+},
+"3266": {
+"industry": "建材營造業",
+"market": "上市",
+"name": "昇陽"
+},
+"3268": {
+"industry": "半導體業",
+"market": "上櫃",
+"name": "海德威"
+},
+"3272": {
+"industry": "電腦及週邊設備業",
+"market": "上櫃",
+"name": "東碩"
+},
+"3276": {
+"industry": "電子零組件業",
+"market": "上櫃",
+"name": "宇環"
+},
+"3284": {
+"industry": "其他業",
+"market": "上櫃",
+"name": "太普高"
+},
+"3285": {
+"industry": "其他電子業",
+"market": "上櫃",
+"name": "微端"
+},
+"3287": {
+"industry": "電腦及週邊設備業",
+"market": "上櫃",
+"name": "廣寰科"
+},
+"3288": {
+"industry": "電子零組件業",
+"market": "上櫃",
+"name": "點晶"
+},
+"3289": {
+"industry": "其他電子業",
+"market": "上櫃",
+"name": "宜特"
+},
+"3290": {
+"industry": "電子零組件業",
+"market": "上櫃",
+"name": "東浦"
+},
+"3293": {
+"industry": "文化創意業",
+"market": "上櫃",
+"name": "鈊象"
+},
+"3294": {
+"industry": "電子零組件業",
+"market": "上櫃",
+"name": "英濟"
+},
+"3296": {
+"industry": "電子零組件業",
+"market": "上市",
+"name": "勝德"
+},
+"3297": {
+"industry": "光電業",
+"market": "上櫃",
+"name": "杭特"
+},
+"3303": {
+"industry": "其他電子業",
+"market": "上櫃",
+"name": "岱稜"
+},
+"3305": {
+"industry": "其他電子業",
+"market": "上市",
+"name": "昇貿"
+},
+"3306": {
+"industry": "通信網路業",
+"market": "上櫃",
+"name": "鼎天"
+},
+"3308": {
+"industry": "電子零組件業",
+"market": "上市",
+"name": "聯德"
+},
+"3310": {
+"industry": "電子零組件業",
+"market": "上櫃",
+"name": "佳穎"
+},
+"3311": {
+"industry": "通信網路業",
+"market": "上市",
+"name": "閎暉"
+},
+"3312": {
+"industry": "電子通路業",
+"market": "上市",
+"name": "弘憶股"
+},
+"3313": {
+"industry": "建材營造業",
+"market": "上櫃",
+"name": "斐成"
+},
+"3317": {
+"industry": "半導體業",
+"market": "上櫃",
+"name": "尼克森"
+},
+"3321": {
+"industry": "電子零組件業",
+"market": "上市",
+"name": "同泰"
+},
+"3322": {
+"industry": "電子零組件業",
+"market": "上櫃",
+"name": "建舜電"
+},
+"3323": {
+"industry": "電腦及週邊設備業",
+"market": "上櫃",
+"name": "加百裕"
+},
+"3324": {
+"industry": "其他電子業",
+"market": "上櫃",
+"name": "雙鴻"
+},
+"3325": {
+"industry": "電腦及週邊設備業",
+"market": "上櫃",
+"name": "旭品"
+},
+"3332": {
+"industry": "電子零組件業",
+"market": "上櫃",
+"name": "幸康"
+},
+"3338": {
+"industry": "電子零組件業",
+"market": "上市",
+"name": "泰碩"
+},
+"3339": {
+"industry": "光電業",
+"market": "上櫃",
+"name": "泰谷"
+},
+"3346": {
+"industry": "汽車工業",
+"market": "上市",
+"name": "麗清"
+},
+"3349": {
+"industry": "電腦及週邊設備業",
+"market": "上櫃",
+"name": "寶德"
+},
+"3354": {
+"industry": "電子零組件業",
+"market": "上櫃",
+"name": "律勝"
+},
+"3356": {
+"industry": "光電業",
+"market": "上市",
+"name": "奇偶"
+},
+"3357": {
+"industry": "電子零組件業",
+"market": "上櫃",
+"name": "臺慶科"
+},
+"3360": {
+"industry": "電子通路業",
+"market": "上櫃",
+"name": "尚立"
+},
+"3362": {
+"industry": "光電業",
+"market": "上櫃",
+"name": "先進光"
+},
+"3363": {
+"industry": "通信網路業",
+"market": "上櫃",
+"name": "上詮"
+},
+"3372": {
+"industry": "半導體業",
+"market": "上櫃",
+"name": "典範"
+},
+"3373": {
+"industry": "其他電子業",
+"market": "上櫃",
+"name": "熱映"
+},
+"3374": {
+"industry": "半導體業",
+"market": "上櫃",
+"name": "精材"
+},
+"3376": {
+"industry": "電子零組件業",
+"market": "上市",
+"name": "新日興"
+},
+"3379": {
+"industry": "電機機械",
+"market": "上櫃",
+"name": "彬台"
+},
+"3380": {
+"industry": "通信網路業",
+"market": "上市",
+"name": "明泰"
+},
+"3388": {
+"industry": "電子零組件業",
+"market": "上櫃",
+"name": "崇越電"
+},
+"3390": {
+"industry": "電子零組件業",
+"market": "上櫃",
+"name": "旭軟"
+},
+"3402": {
+"industry": "其他電子業",
+"market": "上櫃",
+"name": "漢科"
+},
+"3406": {
+"industry": "光電業",
+"market": "上市",
+"name": "玉晶光"
+},
+"3413": {
+"industry": "半導體業",
+"market": "上市",
+"name": "京鼎"
+},
+"3416": {
+"industry": "電腦及週邊設備業",
+"market": "上市",
+"name": "融程電"
+},
+"3419": {
+"industry": "通信網路業",
+"market": "上市",
+"name": "譁裕"
+},
+"3430": {
+"industry": "化學工業",
+"market": "上櫃",
+"name": "奇鈦科"
+},
+"3432": {
+"industry": "電子零組件業",
+"market": "上市",
+"name": "台端"
+},
+"3434": {
+"industry": "光電業",
+"market": "上櫃",
+"name": "哲固"
+},
+"3437": {
+"industry": "光電業",
+"market": "上市",
+"name": "榮創"
+},
+"3438": {
+"industry": "半導體業",
+"market": "上櫃",
+"name": "類比科"
+},
+"3441": {
+"industry": "光電業",
+"market": "上櫃",
+"name": "聯一光"
+},
+"3443": {
+"industry": "半導體業",
+"market": "上市",
+"name": "創意"
+},
+"3444": {
+"industry": "電子通路業",
+"market": "上櫃",
+"name": "利機"
+},
+"3447": {
+"industry": "通信網路業",
+"market": "上市",
+"name": "展達"
+},
+"3450": {
+"industry": "半導體業",
+"market": "上市",
+"name": "聯鈞"
+},
+"3455": {
+"industry": "光電業",
+"market": "上櫃",
+"name": "由田"
+},
+"3465": {
+"industry": "其他電子業",
+"market": "上櫃",
+"name": "進泰電子"
+},
+"3466": {
+"industry": "通信網路業",
+"market": "上櫃",
+"name": "德晉"
+},
+"3467": {
+"industry": "半導體業",
+"market": "上櫃",
+"name": "台灣精材"
+},
+"3473": {
+"industry": "通信網路業",
+"market": "興櫃",
+"name": "智通聯網"
+},
+"3479": {
+"industry": "電腦及週邊設備業",
+"market": "上櫃",
+"name": "安勤"
+},
+"3481": {
+"industry": "光電業",
+"market": "上市",
+"name": "群創"
+},
+"3483": {
+"industry": "電腦及週邊設備業",
+"market": "上櫃",
+"name": "力致"
+},
+"3484": {
+"industry": "電子零組件業",
+"market": "上櫃",
+"name": "崧騰"
+},
+"3485": {
+"industry": "電子零組件業",
+"market": "上櫃",
+"name": "敘豐"
+},
+"3489": {
+"industry": "建材營造業",
+"market": "上櫃",
+"name": "森寶"
+},
+"3490": {
+"industry": "光電業",
+"market": "上櫃",
+"name": "單井"
+},
+"3491": {
+"industry": "通信網路業",
+"market": "上櫃",
+"name": "昇達科"
+},
+"3492": {
+"industry": "電子零組件業",
+"market": "上櫃",
+"name": "長盛"
+},
+"3494": {
+"industry": "電腦及週邊設備業",
+"market": "上市",
+"name": "誠研"
+},
+"3498": {
+"industry": "其他電子業",
+"market": "上櫃",
+"name": "陽程"
+},
+"3499": {
+"industry": "通信網路業",
+"market": "上櫃",
+"name": "環天科"
+},
+"3501": {
+"industry": "電子零組件業",
+"market": "上市",
+"name": "維熹"
+},
+"3504": {
+"industry": "光電業",
+"market": "上市",
+"name": "揚明光"
+},
+"3508": {
+"industry": "其他電子業",
+"market": "上櫃",
+"name": "位速"
+},
+"3511": {
+"industry": "電子零組件業",
+"market": "上櫃",
+"name": "矽瑪"
+},
+"3512": {
+"industry": "建材營造業",
+"market": "上櫃",
+"name": "皇龍"
+},
+"3515": {
+"industry": "電腦及週邊設備業",
+"market": "上市",
+"name": "華擎"
+},
+"3516": {
+"industry": "光電業",
+"market": "上櫃",
+"name": "亞帝歐"
+},
+"3518": {
+"industry": "其他電子業",
+"market": "上市",
+"name": "柏騰"
+},
+"3520": {
+"industry": "電子零組件業",
+"market": "上櫃",
+"name": "華盈"
+},
+"3521": {
+"industry": "建材營造業",
+"market": "上櫃",
+"name": "台鋼建設"
+},
+"3522": {
+"industry": "觀光餐旅",
+"market": "上櫃",
+"name": "御嵿"
+},
+"3523": {
+"industry": "光電業",
+"market": "上櫃",
+"name": "迎輝"
+},
+"3526": {
+"industry": "電子零組件業",
+"market": "上櫃",
+"name": "凡甲"
+},
+"3527": {
+"industry": "半導體業",
+"market": "上櫃",
+"name": "聚積"
+},
+"3528": {
+"industry": "電子通路業",
+"market": "上市",
+"name": "安馳"
+},
+"3529": {
+"industry": "半導體業",
+"market": "上櫃",
+"name": "力旺"
+},
+"3530": {
+"industry": "半導體業",
+"market": "上市",
+"name": "晶相光"
+},
+"3531": {
+"industry": "光電業",
+"market": "上櫃",
+"name": "先益"
+},
+"3532": {
+"industry": "半導體業",
+"market": "上市",
+"name": "台勝科"
+},
+"3533": {
+"industry": "電子零組件業",
+"market": "上市",
+"name": "嘉澤"
+},
+"3535": {
+"industry": "光電業",
+"market": "上市",
+"name": "晶彩科"
+},
+"3537": {
+"industry": "電子零組件業",
+"market": "上櫃",
+"name": "堡達"
+},
+"3540": {
+"industry": "電腦及週邊設備業",
+"market": "上櫃",
+"name": "曜越"
+},
+"3541": {
+"industry": "其他電子業",
+"market": "上櫃",
+"name": "西柏"
+},
+"3543": {
+"industry": "光電業",
+"market": "上市",
+"name": "州巧"
+},
+"3545": {
+"industry": "半導體業",
+"market": "上市",
+"name": "敦泰"
+},
+"3546": {
+"industry": "文化創意業",
+"market": "上櫃",
+"name": "宇峻"
+},
+"3548": {
+"industry": "電子零組件業",
+"market": "上櫃",
+"name": "兆利"
+},
+"3550": {
+"industry": "電子零組件業",
+"market": "上市",
+"name": "聯穎"
+},
+"3551": {
+"industry": "綠能環保",
+"market": "上櫃",
+"name": "世禾"
+},
+"3552": {
+"industry": "其他電子業",
+"market": "上櫃",
+"name": "同致"
+},
+"3555": {
+"industry": "半導體業",
+"market": "上櫃",
+"name": "博士旺"
+},
+"3556": {
+"industry": "半導體業",
+"market": "上櫃",
+"name": "禾瑞亞"
+},
+"3557": {
+"industry": "居家生活",
+"market": "上市",
+"name": "嘉威"
+},
+"3558": {
+"industry": "通信網路業",
+"market": "上櫃",
+"name": "神準"
+},
+"3563": {
+"industry": "光電業",
+"market": "上市",
+"name": "牧德"
+},
+"3564": {
+"industry": "通信網路業",
+"market": "上櫃",
+"name": "其陽"
+},
+"3567": {
+"industry": "半導體業",
+"market": "上櫃",
+"name": "逸昌"
+},
+"3570": {
+"industry": "資訊服務業",
+"market": "上櫃",
+"name": "大塚"
+},
+"3576": {
+"industry": "光電業",
+"market": "上市",
+"name": "聯合再生"
+},
+"3577": {
+"industry": "電腦及週邊設備業",
+"market": "上櫃",
+"name": "泓格"
+},
+"3580": {
+"industry": "其他電子業",
+"market": "上櫃",
+"name": "友威科"
+},
+"3581": {
+"industry": "半導體業",
+"market": "上櫃",
+"name": "博磊"
+},
+"3583": {
+"industry": "半導體業",
+"market": "上市",
+"name": "辛耘"
+},
+"3585": {
+"industry": "電子零組件業",
+"market": "興櫃",
+"name": "聯致"
+},
+"3587": {
+"industry": "其他電子業",
+"market": "上櫃",
+"name": "閎康"
+},
+"3588": {
+"industry": "半導體業",
+"market": "上市",
+"name": "通嘉"
+},
+"3591": {
+"industry": "光電業",
+"market": "上市",
+"name": "艾笛森"
+},
+"3592": {
+"industry": "半導體業",
+"market": "上市",
+"name": "瑞鼎"
+},
+"3593": {
+"industry": "電子零組件業",
+"market": "上市",
+"name": "力銘"
+},
+"3594": {
+"industry": "電腦及週邊設備業",
+"market": "上櫃",
+"name": "磐儀"
+},
+"3595": {
+"industry": "光電業",
+"market": "興櫃",
+"name": "山太士"
+},
+"3596": {
+"industry": "通信網路業",
+"market": "上市",
+"name": "智易"
+},
+"3597": {
+"industry": "電子零組件業",
+"market": "上櫃",
+"name": "映興"
+},
+"3603": {
+"industry": "電子通路業",
+"market": "興櫃",
+"name": "建祥國際"
+},
+"3605": {
+"industry": "電子零組件業",
+"market": "上市",
+"name": "宏致"
+},
+"3607": {
+"industry": "電子零組件業",
+"market": "上市",
+"name": "谷崧"
+},
+"3609": {
+"industry": "電子零組件業",
+"market": "上櫃",
+"name": "三一東林"
+},
+"3611": {
+"industry": "電腦及週邊設備業",
+"market": "上櫃",
+"name": "鼎翰"
+},
+"3615": {
+"industry": "光電業",
+"market": "上櫃",
+"name": "安可"
+},
+"3617": {
+"industry": "其他電子業",
+"market": "上市",
+"name": "碩天"
+},
+"3622": {
+"industry": "光電業",
+"market": "上市",
+"name": "洋華"
+},
+"3623": {
+"industry": "光電業",
+"market": "上櫃",
+"name": "富晶通"
+},
+"3624": {
+"industry": "電子零組件業",
+"market": "上櫃",
+"name": "光頡"
+},
+"3625": {
+"industry": "電腦及週邊設備業",
+"market": "上櫃",
+"name": "西勝"
+},
+"3628": {
+"industry": "其他電子業",
+"market": "上櫃",
+"name": "盈正"
+},
+"3629": {
+"industry": "文化創意業",
+"market": "上櫃",
+"name": "地心引力"
+},
+"3630": {
+"industry": "光電業",
+"market": "上櫃",
+"name": "新鉅科"
+},
+"3631": {
+"industry": "電子零組件業",
+"market": "上櫃",
+"name": "晟楠"
+},
+"3632": {
+"industry": "通信網路業",
+"market": "上櫃",
+"name": "研勤"
+},
+"3633": {
+"industry": "光電業",
+"market": "興櫃",
+"name": "云光"
+},
+"3644": {
+"industry": "半導體業",
+"market": "興櫃",
+"name": "凌嘉科"
+},
+"3645": {
+"industry": "電子零組件業",
+"market": "上市",
+"name": "達邁"
+},
+"3646": {
+"industry": "電子零組件業",
+"market": "上櫃",
+"name": "艾恩特"
+},
+"3652": {
+"industry": "電腦及週邊設備業",
+"market": "上市",
+"name": "精聯"
+},
+"3653": {
+"industry": "電子零組件業",
+"market": "上市",
+"name": "健策"
+},
+"3661": {
+"industry": "半導體業",
+"market": "上市",
+"name": "世芯-KY"
+},
+"3663": {
+"industry": "其他電子業",
+"market": "上櫃",
+"name": "鑫科"
+},
+"3664": {
+"industry": "通信網路業",
+"market": "上櫃",
+"name": "安瑞-KY"
+},
+"3665": {
+"industry": "其他電子業",
+"market": "上市",
+"name": "貿聯-KY"
+},
+"3666": {
+"industry": "光電業",
+"market": "上櫃",
+"name": "光耀"
+},
+"3669": {
+"industry": "通信網路業",
+"market": "上市",
+"name": "圓展"
+},
+"3672": {
+"industry": "通信網路業",
+"market": "上櫃",
+"name": "康聯訊"
+},
+"3673": {
+"industry": "光電業",
+"market": "上市",
+"name": "TPK-KY"
+},
+"3675": {
+"industry": "半導體業",
+"market": "上櫃",
+"name": "德微"
+},
+"3678": {
+"industry": "光電業",
+"market": "興櫃",
+"name": "聯享"
+},
+"3679": {
+"industry": "電子零組件業",
+"market": "上市",
+"name": "新至陞"
+},
+"3680": {
+"industry": "半導體業",
+"market": "上櫃",
+"name": "家登"
+},
+"3684": {
+"industry": "通信網路業",
+"market": "上櫃",
+"name": "榮昌"
+},
+"3685": {
+"industry": "電機機械",
+"market": "上櫃",
+"name": "元創精密"
+},
+"3686": {
+"industry": "半導體業",
+"market": "上市",
+"name": "達能"
+},
+"3687": {
+"industry": "數位雲端",
+"market": "上櫃",
+"name": "歐買尬"
+},
+"3689": {
+"industry": "電子零組件業",
+"market": "上櫃",
+"name": "湧德"
+},
+"3691": {
+"industry": "光電業",
+"market": "上櫃",
+"name": "碩禾"
+},
+"3693": {
+"industry": "電腦及週邊設備業",
+"market": "上櫃",
+"name": "營邦"
+},
+"3694": {
+"industry": "通信網路業",
+"market": "上市",
+"name": "海華"
+},
+"3701": {
+"industry": "電腦及週邊設備業",
+"market": "上市",
+"name": "大眾控"
+},
+"3702": {
+"industry": "電子通路業",
+"market": "上市",
+"name": "大聯大"
+},
+"3703": {
+"industry": "建材營造業",
+"market": "上市",
+"name": "欣陸"
+},
+"3704": {
+"industry": "通信網路業",
+"market": "上市",
+"name": "合勤控"
+},
+"3705": {
+"industry": "生技醫療業",
+"market": "上市",
+"name": "永信"
+},
+"3706": {
+"industry": "電腦及週邊設備業",
+"market": "上市",
+"name": "神達"
+},
+"3707": {
+"industry": "半導體業",
+"market": "上櫃",
+"name": "漢磊"
+},
+"3708": {
+"industry": "綠能環保",
+"market": "上市",
+"name": "上緯投控"
+},
+"3709": {
+"industry": "電腦及週邊設備業",
+"market": "上櫃",
+"name": "鑫聯大投控"
+},
+"3710": {
+"industry": "電子零組件業",
+"market": "上櫃",
+"name": "連展投控"
+},
+"3711": {
+"industry": "半導體業",
+"market": "上市",
+"name": "日月光投控"
+},
+"3712": {
+"industry": "電腦及週邊設備業",
+"market": "上市",
+"name": "永崴投控"
+},
+"3713": {
+"industry": "綠能環保",
+"market": "上櫃",
+"name": "新晶投控"
+},
+"3714": {
+"industry": "光電業",
+"market": "上市",
+"name": "富采"
+},
+"3715": {
+"industry": "電子零組件業",
+"market": "上市",
+"name": "定穎投控"
+},
+"3716": {
+"industry": "生技醫療業",
+"market": "上市",
+"name": "中化控股"
+},
+"3717": {
+"industry": "汽車工業",
+"market": "上市",
+"name": "聯嘉投控"
+},
+"3718": {
+"industry": "光電業",
+"market": "上櫃",
+"name": "中光電投控"
+},
+"4102": {
+"industry": "生技醫療業",
+"market": "上櫃",
+"name": "永日"
+},
+"4104": {
+"industry": "生技醫療業",
+"market": "上市",
+"name": "佳醫"
+},
+"4105": {
+"industry": "生技醫療業",
+"market": "上櫃",
+"name": "東洋"
+},
+"4106": {
+"industry": "生技醫療業",
+"market": "上市",
+"name": "雃博"
+},
+"4107": {
+"industry": "生技醫療業",
+"market": "上櫃",
+"name": "邦特"
+},
+"4108": {
+"industry": "生技醫療業",
+"market": "上市",
+"name": "懷特"
+},
+"4109": {
+"industry": "生技醫療業",
+"market": "上櫃",
+"name": "加捷生醫"
+},
+"4111": {
+"industry": "生技醫療業",
+"market": "上櫃",
+"name": "濟生"
+},
+"4113": {
+"industry": "建材營造業",
+"market": "上櫃",
+"name": "聯上"
+},
+"4114": {
+"industry": "生技醫療業",
+"market": "上櫃",
+"name": "健喬"
+},
+"4115": {
+"industry": "生技醫療業",
+"market": "興櫃",
+"name": "善德生技"
+},
+"4116": {
+"industry": "生技醫療業",
+"market": "上櫃",
+"name": "明基醫"
+},
+"4117": {
+"industry": "生技醫療業",
+"market": "興櫃",
+"name": "普生"
+},
+"4119": {
+"industry": "生技醫療業",
+"market": "上市",
+"name": "旭富"
+},
+"4120": {
+"industry": "生技醫療業",
+"market": "上櫃",
+"name": "友華"
+},
+"4121": {
+"industry": "生技醫療業",
+"market": "上櫃",
+"name": "優盛"
+},
+"4123": {
+"industry": "生技醫療業",
+"market": "上櫃",
+"name": "晟德"
+},
+"4126": {
+"industry": "生技醫療業",
+"market": "上櫃",
+"name": "太醫"
+},
+"4127": {
+"industry": "生技醫療業",
+"market": "上櫃",
+"name": "天良"
+},
+"4128": {
+"industry": "生技醫療業",
+"market": "上櫃",
+"name": "中天"
+},
+"4129": {
+"industry": "生技醫療業",
+"market": "上櫃",
+"name": "聯合"
+},
+"4131": {
+"industry": "生技醫療業",
+"market": "上櫃",
+"name": "浩泰"
+},
+"4133": {
+"industry": "生技醫療業",
+"market": "上市",
+"name": "亞諾法"
+},
+"4137": {
+"industry": "生技醫療業",
+"market": "上市",
+"name": "麗豐-KY"
+},
+"4138": {
+"industry": "生技醫療業",
+"market": "上櫃",
+"name": "曜亞"
+},
+"4139": {
+"industry": "生技醫療業",
+"market": "上櫃",
+"name": "馬光-KY"
+},
+"4142": {
+"industry": "生技醫療業",
+"market": "上市",
+"name": "國光生"
+},
+"4147": {
+"industry": "生技醫療業",
+"market": "上櫃",
+"name": "中裕"
+},
+"4148": {
+"industry": "生技醫療業",
+"market": "上市",
+"name": "全宇生技-KY"
+},
+"4153": {
+"industry": "生技醫療業",
+"market": "上櫃",
+"name": "鈺緯"
+},
+"4154": {
+"industry": "其他業",
+"market": "上櫃",
+"name": "樂威科-KY"
+},
+"4155": {
+"industry": "生技醫療業",
+"market": "上市",
+"name": "訊映"
+},
+"4157": {
+"industry": "生技醫療業",
+"market": "上櫃",
+"name": "太景*-KY"
+},
+"4160": {
+"industry": "生技醫療業",
+"market": "上櫃",
+"name": "訊聯基因"
+},
+"4161": {
+"industry": "生技醫療業",
+"market": "上櫃",
+"name": "聿新科"
+},
+"4162": {
+"industry": "生技醫療業",
+"market": "上櫃",
+"name": "智擎"
+},
+"4163": {
+"industry": "生技醫療業",
+"market": "上櫃",
+"name": "鐿鈦"
+},
+"4164": {
+"industry": "生技醫療業",
+"market": "上市",
+"name": "承業醫"
+},
+"4166": {
+"industry": "生技醫療業",
+"market": "上櫃",
+"name": "友霖"
+},
+"4167": {
+"industry": "生技醫療業",
+"market": "上櫃",
+"name": "松瑞藥"
+},
+"4168": {
+"industry": "生技醫療業",
+"market": "上櫃",
+"name": "醣聯"
+},
+"4169": {
+"industry": "生技醫療業",
+"market": "上市",
+"name": "泰宗"
+},
+"4170": {
+"industry": "生技醫療業",
+"market": "興櫃",
+"name": "鑫品生醫"
+},
+"4171": {
+"industry": "農業科技業",
+"market": "上櫃",
+"name": "瑞基"
+},
+"4172": {
+"industry": "生技醫療業",
+"market": "興櫃",
+"name": "因華"
+},
+"4173": {
+"industry": "生技醫療業",
+"market": "上櫃",
+"name": "久裕"
+},
+"4174": {
+"industry": "生技醫療業",
+"market": "上櫃",
+"name": "浩鼎"
+},
+"4175": {
+"industry": "生技醫療業",
+"market": "上櫃",
+"name": "杏一"
+},
+"4178": {
+"industry": "生技醫療業",
+"market": "上市",
+"name": "永笙-KY"
+},
+"4183": {
+"industry": "生技醫療業",
+"market": "上櫃",
+"name": "福永生技"
+},
+"4186": {
+"industry": "生技醫療業",
+"market": "興櫃",
+"name": "尖端醫"
+},
+"4188": {
+"industry": "生技醫療業",
+"market": "上櫃",
+"name": "安克"
+},
+"4190": {
+"industry": "生技醫療業",
+"market": "上市",
+"name": "佐登-KY"
+},
+"4192": {
+"industry": "生技醫療業",
+"market": "上櫃",
+"name": "杏國"
+},
+"4194": {
+"industry": "生技醫療業",
+"market": "興櫃",
+"name": "禾生技"
+},
+"4195": {
+"industry": "生技醫療業",
+"market": "上市臺灣創新板",
+"name": "基米-創"
+},
+"4197": {
+"industry": "生技醫療業",
+"market": "興櫃",
+"name": "暐世"
+},
+"4198": {
+"industry": "生技醫療業",
+"market": "上櫃",
+"name": "欣大健康"
+},
+"4205": {
+"industry": "食品工業",
+"market": "上櫃",
+"name": "中華食"
+},
+"4207": {
+"industry": "食品工業",
+"market": "上櫃",
+"name": "環泰"
+},
+"4303": {
+"industry": "塑膠工業",
+"market": "上櫃",
+"name": "信立"
+},
+"4304": {
+"industry": "塑膠工業",
+"market": "上櫃",
+"name": "勝昱"
+},
+"4305": {
+"industry": "塑膠工業",
+"market": "上櫃",
+"name": "世坤"
+},
+"4306": {
+"industry": "塑膠工業",
+"market": "上市",
+"name": "炎洲"
+},
+"4401": {
+"industry": "紡織纖維",
+"market": "上櫃",
+"name": "東隆興"
+},
+"4402": {
+"industry": "紡織纖維",
+"market": "上櫃",
+"name": "郡都開發"
+},
+"4406": {
+"industry": "紡織纖維",
+"market": "上櫃",
+"name": "新昕纖"
+},
+"4413": {
+"industry": "紡織纖維",
+"market": "上櫃",
+"name": "飛寶企業"
+},
+"4414": {
+"industry": "紡織纖維",
+"market": "上市",
+"name": "如興"
+},
+"4416": {
+"industry": "建材營造業",
+"market": "上櫃",
+"name": "三圓"
+},
+"4417": {
+"industry": "紡織纖維",
+"market": "上櫃",
+"name": "金洲"
+},
+"4419": {
+"industry": "觀光餐旅",
+"market": "上櫃",
+"name": "皇家美食"
+},
+"4420": {
+"industry": "紡織纖維",
+"market": "上櫃",
+"name": "光明"
+},
+"4426": {
+"industry": "紡織纖維",
+"market": "上市",
+"name": "利勤"
+},
+"4430": {
+"industry": "其他業",
+"market": "上櫃",
+"name": "耀億"
+},
+"4431": {
+"industry": "其他業",
+"market": "興櫃",
+"name": "敏成健康"
+},
+"4432": {
+"industry": "紡織纖維",
+"market": "上櫃",
+"name": "銘旺實"
+},
+"4433": {
+"industry": "紡織纖維",
+"market": "上櫃",
+"name": "興采"
+},
+"4438": {
+"industry": "紡織纖維",
+"market": "上市",
+"name": "廣越"
+},
+"4439": {
+"industry": "紡織纖維",
+"market": "上市",
+"name": "冠星-KY"
+},
+"4440": {
+"industry": "紡織纖維",
+"market": "上市",
+"name": "宜新實業"
+},
+"4441": {
+"industry": "紡織纖維",
+"market": "上市",
+"name": "振大環球"
+},
+"4442": {
+"industry": "紡織纖維",
+"market": "上櫃",
+"name": "竣邦-KY"
+},
+"4502": {
+"industry": "電機機械",
+"market": "上櫃",
+"name": "健信"
+},
+"4503": {
+"industry": "電機機械",
+"market": "上櫃",
+"name": "金雨"
+},
+"4506": {
+"industry": "電機機械",
+"market": "上櫃",
+"name": "崇友"
+},
+"4510": {
+"industry": "電機機械",
+"market": "上櫃",
+"name": "高鋒"
+},
+"4513": {
+"industry": "電機機械",
+"market": "上櫃",
+"name": "福裕"
+},
+"4523": {
+"industry": "電機機械",
+"market": "上櫃",
+"name": "永彰"
+},
+"4526": {
+"industry": "電機機械",
+"market": "上市",
+"name": "東台"
+},
+"4527": {
+"industry": "電機機械",
+"market": "上櫃",
+"name": "方土霖"
+},
+"4528": {
+"industry": "電機機械",
+"market": "上櫃",
+"name": "江興鍛"
+},
+"4529": {
+"industry": "其他業",
+"market": "上櫃",
+"name": "淳紳"
+},
+"4530": {
+"industry": "觀光餐旅",
+"market": "上櫃",
+"name": "天意能創"
+},
+"4532": {
+"industry": "電機機械",
+"market": "上市",
+"name": "瑞智"
+},
+"4533": {
+"industry": "電機機械",
+"market": "上櫃",
+"name": "協易機"
+},
+"4534": {
+"industry": "電機機械",
+"market": "上櫃",
+"name": "慶騰"
+},
+"4535": {
+"industry": "電機機械",
+"market": "上櫃",
+"name": "至興"
+},
+"4536": {
+"industry": "運動休閒",
+"market": "上市",
+"name": "拓凱"
+},
+"4537": {
+"industry": "光電業",
+"market": "興櫃",
+"name": "旭東"
+},
+"4538": {
+"industry": "電機機械",
+"market": "上櫃",
+"name": "大詠城"
+},
+"4540": {
+"industry": "電機機械",
+"market": "上市",
+"name": "全球傳動"
+},
+"4541": {
+"industry": "其他業",
+"market": "上櫃",
+"name": "晟田"
+},
+"4542": {
+"industry": "電子零組件業",
+"market": "上櫃",
+"name": "科嶠"
+},
+"4543": {
+"industry": "電機機械",
+"market": "上櫃",
+"name": "萬在"
+},
+"4544": {
+"industry": "電機機械",
+"market": "興櫃",
+"name": "春日"
+},
+"4545": {
+"industry": "電子零組件業",
+"market": "上市",
+"name": "銘鈺"
+},
+"4549": {
+"industry": "電機機械",
+"market": "上櫃",
+"name": "桓達"
+},
+"4550": {
+"industry": "電機機械",
+"market": "上櫃",
+"name": "長佳"
+},
+"4551": {
+"industry": "汽車工業",
+"market": "上市",
+"name": "智伸科"
+},
+"4552": {
+"industry": "電機機械",
+"market": "上市",
+"name": "力達-KY"
+},
+"4553": {
+"industry": "電機機械",
+"market": "興櫃",
+"name": "盛復"
+},
+"4554": {
+"industry": "其他電子業",
+"market": "上櫃",
+"name": "橙的"
+},
+"4555": {
+"industry": "電機機械",
+"market": "上市",
+"name": "氣立"
+},
+"4556": {
+"industry": "其他業",
+"market": "上櫃",
+"name": "旭然"
+},
+"4557": {
+"industry": "汽車工業",
+"market": "上市",
+"name": "永新-KY"
+},
+"4558": {
+"industry": "電機機械",
+"market": "上櫃",
+"name": "寶緯"
+},
+"4559": {
+"industry": "運動休閒",
+"market": "興櫃",
+"name": "久裕興"
+},
+"4560": {
+"industry": "電機機械",
+"market": "上市",
+"name": "強信-KY"
+},
+"4561": {
+"industry": "電機機械",
+"market": "上櫃",
+"name": "健椿"
+},
+"4562": {
+"industry": "電機機械",
+"market": "上市",
+"name": "穎漢"
+},
+"4563": {
+"industry": "電機機械",
+"market": "上櫃",
+"name": "百德"
+},
+"4564": {
+"industry": "電機機械",
+"market": "上市",
+"name": "元翎"
+},
+"4565": {
+"industry": "電機機械",
+"market": "興櫃",
+"name": "宏偉"
+},
+"4566": {
+"industry": "電機機械",
+"market": "上市",
+"name": "時碩工業"
+},
+"4568": {
+"industry": "電機機械",
+"market": "上櫃",
+"name": "科際精密"
+},
+"4569": {
+"industry": "汽車工業",
+"market": "上市",
+"name": "六方科-KY"
+},
+"4570": {
+"industry": "電機機械",
+"market": "興櫃",
+"name": "傑生"
+},
+"4571": {
+"industry": "電機機械",
+"market": "上市",
+"name": "鈞興-KY"
+},
+"4572": {
+"industry": "電機機械",
+"market": "上市",
+"name": "駐龍"
+},
+"4573": {
+"industry": "電機機械",
+"market": "興櫃",
+"name": "高明鐵"
+},
+"4575": {
+"industry": "電機機械",
+"market": "興櫃",
+"name": "銓寶"
+},
+"4576": {
+"industry": "電機機械",
+"market": "上市",
+"name": "大銀微系統"
+},
+"4577": {
+"industry": "其他電子業",
+"market": "上櫃",
+"name": "達航科技"
+},
+"4580": {
+"industry": "電機機械",
+"market": "上櫃",
+"name": "捷流閥業"
+},
+"4581": {
+"industry": "汽車工業",
+"market": "上市",
+"name": "光隆精密-KY"
+},
+"4582": {
+"industry": "綠能環保",
+"market": "上市臺灣創新板",
+"name": "聚恆-創"
+},
+"4583": {
+"industry": "電機機械",
+"market": "上市",
+"name": "台灣精銳"
+},
+"4584": {
+"industry": "電機機械",
+"market": "上櫃",
+"name": "君帆"
+},
+"4585": {
+"industry": "其他電子業",
+"market": "上市",
+"name": "達明"
+},
+"4587": {
+"industry": "電機機械",
+"market": "興櫃",
+"name": "寶元數控"
+},
+"4588": {
+"industry": "其他電子業",
+"market": "上市",
+"name": "玖鼎電力"
+},
+"4589": {
+"industry": "電機機械",
+"market": "興櫃",
+"name": "碩陽電機"
+},
+"4590": {
+"industry": "電機機械",
+"market": "上市臺灣創新板",
+"name": "富田-創"
+},
+"4609": {
+"industry": "居家生活",
+"market": "上櫃",
+"name": "唐鋒"
+},
+"4702": {
+"industry": "居家生活",
+"market": "上櫃",
+"name": "中美實"
+},
+"4706": {
+"industry": "化學工業",
+"market": "上櫃",
+"name": "大恭"
+},
+"4707": {
+"industry": "化學工業",
+"market": "上櫃",
+"name": "磐亞"
+},
+"4711": {
+"industry": "化學工業",
+"market": "上櫃",
+"name": "永純"
+},
+"4714": {
+"industry": "化學工業",
+"market": "上櫃",
+"name": "永捷"
+},
+"4716": {
+"industry": "化學工業",
+"market": "上櫃",
+"name": "大立"
+},
+"4720": {
+"industry": "化學工業",
+"market": "上市",
+"name": "德淵"
+},
+"4721": {
+"industry": "化學工業",
+"market": "上櫃",
+"name": "美琪瑪"
+},
+"4722": {
+"industry": "化學工業",
+"market": "上市",
+"name": "國精化"
+},
+"4724": {
+"industry": "生技醫療業",
+"market": "興櫃",
+"name": "宣捷幹細胞"
+},
+"4726": {
+"industry": "生技醫療業",
+"market": "上櫃",
+"name": "永昕"
+},
+"4728": {
+"industry": "生技醫療業",
+"market": "上櫃",
+"name": "雙美"
+},
+"4729": {
+"industry": "光電業",
+"market": "上櫃",
+"name": "熒茂"
+},
+"4732": {
+"industry": "生技醫療業",
+"market": "興櫃",
+"name": "彥臣"
+},
+"4735": {
+"industry": "生技醫療業",
+"market": "上櫃",
+"name": "豪展"
+},
+"4736": {
+"industry": "生技醫療業",
+"market": "上市",
+"name": "泰博"
+},
+"4737": {
+"industry": "生技醫療業",
+"market": "上市",
+"name": "華廣"
+},
+"4738": {
+"industry": "化學工業",
+"market": "興櫃",
+"name": "大同精化"
+},
+"4739": {
+"industry": "化學工業",
+"market": "上市",
+"name": "康普"
+},
+"4741": {
+"industry": "化學工業",
+"market": "上櫃",
+"name": "泓瀚"
+},
+"4743": {
+"industry": "生技醫療業",
+"market": "上櫃",
+"name": "合一"
+},
+"4744": {
+"industry": "生技醫療業",
+"market": "上櫃",
+"name": "皇將"
+},
+"4745": {
+"industry": "生技醫療業",
+"market": "上櫃",
+"name": "合富-KY"
+},
+"4746": {
+"industry": "生技醫療業",
+"market": "上市",
+"name": "台耀"
+},
+"4747": {
+"industry": "生技醫療業",
+"market": "上櫃",
+"name": "強生*"
+},
+"4749": {
+"industry": "半導體業",
+"market": "上櫃",
+"name": "新應材"
+},
+"4754": {
+"industry": "化學工業",
+"market": "上櫃",
+"name": "國碳科"
+},
+"4755": {
+"industry": "化學工業",
+"market": "上市",
+"name": "三福化"
+},
+"4760": {
+"industry": "其他電子業",
+"market": "上櫃",
+"name": "勤凱"
+},
+"4763": {
+"industry": "化學工業",
+"market": "上市",
+"name": "材料*-KY"
+},
+"4764": {
+"industry": "化學工業",
+"market": "上市",
+"name": "雙鍵"
+},
+"4765": {
+"industry": "化學工業",
+"market": "興櫃",
+"name": "磐采"
+},
+"4766": {
+"industry": "化學工業",
+"market": "上市",
+"name": "南寶"
+},
+"4767": {
+"industry": "化學工業",
+"market": "上櫃",
+"name": "誠泰科技"
+},
+"4768": {
+"industry": "化學工業",
+"market": "上櫃",
+"name": "晶呈科技"
+},
+"4770": {
+"industry": "化學工業",
+"market": "上市",
+"name": "上品"
+},
+"4771": {
+"industry": "生技醫療業",
+"market": "上市",
+"name": "望隼"
+},
+"4772": {
+"industry": "化學工業",
+"market": "上櫃",
+"name": "台特化"
+},
+"4804": {
+"industry": "觀光餐旅",
+"market": "上櫃",
+"name": "大略-KY"
+},
+"4806": {
+"industry": "文化創意業",
+"market": "上櫃",
+"name": "桂田文創"
+},
+"4807": {
+"industry": "貿易百貨業",
+"market": "上市",
+"name": "日成-KY"
+},
+"4903": {
+"industry": "通信網路業",
+"market": "上櫃",
+"name": "聯光通"
+},
+"4904": {
+"industry": "通信網路業",
+"market": "上市",
+"name": "遠傳"
+},
+"4905": {
+"industry": "生技醫療業",
+"market": "上櫃",
+"name": "台聯電"
+},
+"4906": {
+"industry": "通信網路業",
+"market": "上市",
+"name": "正文"
+},
+"4907": {
+"industry": "建材營造業",
+"market": "上櫃",
+"name": "富宇"
+},
+"4908": {
+"industry": "通信網路業",
+"market": "上櫃",
+"name": "前鼎"
+},
+"4909": {
+"industry": "通信網路業",
+"market": "上櫃",
+"name": "新復興"
+},
+"4911": {
+"industry": "生技醫療業",
+"market": "上櫃",
+"name": "德英"
+},
+"4912": {
+"industry": "電子零組件業",
+"market": "上市",
+"name": "聯德控股-KY"
+},
+"4915": {
+"industry": "電子零組件業",
+"market": "上市",
+"name": "致伸"
+},
+"4916": {
+"industry": "電腦及週邊設備業",
+"market": "上市",
+"name": "事欣科"
+},
+"4919": {
+"industry": "半導體業",
+"market": "上市",
+"name": "新唐"
+},
+"4923": {
+"industry": "半導體業",
+"market": "上櫃",
+"name": "力士"
+},
+"4924": {
+"industry": "綠能環保",
+"market": "上櫃",
+"name": "欣厚-KY"
+},
+"4925": {
+"industry": "半導體業",
+"market": "興櫃",
+"name": "智微"
+},
+"4927": {
+"industry": "電子零組件業",
+"market": "上市",
+"name": "泰鼎-KY"
+},
+"4930": {
+"industry": "電器電纜",
+"market": "上市",
+"name": "燦星網"
+},
+"4931": {
+"industry": "電腦及週邊設備業",
+"market": "上櫃",
+"name": "新盛力"
+},
+"4933": {
+"industry": "光電業",
+"market": "上櫃",
+"name": "友輝"
+},
+"4934": {
+"industry": "光電業",
+"market": "上市",
+"name": "太極"
+},
+"4935": {
+"industry": "光電業",
+"market": "上市",
+"name": "茂林-KY"
+},
+"4938": {
+"industry": "電腦及週邊設備業",
+"market": "上市",
+"name": "和碩"
+},
+"4939": {
+"industry": "電子零組件業",
+"market": "上櫃",
+"name": "亞電"
+},
+"4942": {
+"industry": "光電業",
+"market": "上市",
+"name": "嘉彰"
+},
+"4943": {
+"industry": "電子零組件業",
+"market": "上市",
+"name": "康控-KY"
+},
+"4946": {
+"industry": "文化創意業",
+"market": "上櫃",
+"name": "辣椒"
+},
+"4949": {
+"industry": "光電業",
+"market": "上市",
+"name": "有成精密"
+},
+"4950": {
+"industry": "鋼鐵工業",
+"market": "上櫃",
+"name": "金耘國際"
+},
+"4951": {
+"industry": "半導體業",
+"market": "上櫃",
+"name": "精拓科"
+},
+"4952": {
+"industry": "半導體業",
+"market": "上市",
+"name": "凌通"
+},
+"4953": {
+"industry": "資訊服務業",
+"market": "上櫃",
+"name": "緯致"
+},
+"4956": {
+"industry": "光電業",
+"market": "上市",
+"name": "光鋐"
+},
+"4958": {
+"industry": "電子零組件業",
+"market": "上市",
+"name": "臻鼎-KY"
+},
+"4960": {
+"industry": "光電業",
+"market": "上市",
+"name": "誠美材"
+},
+"4961": {
+"industry": "半導體業",
+"market": "上市",
+"name": "天鈺"
+},
+"4966": {
+"industry": "半導體業",
+"market": "上櫃",
+"name": "譜瑞-KY"
+},
+"4967": {
+"industry": "半導體業",
+"market": "上市",
+"name": "十銓"
+},
+"4968": {
+"industry": "半導體業",
+"market": "上市",
+"name": "立積"
+},
+"4971": {
+"industry": "半導體業",
+"market": "上櫃",
+"name": "IET-KY"
+},
+"4972": {
+"industry": "光電業",
+"market": "上櫃",
+"name": "湯石照明"
+},
+"4973": {
+"industry": "半導體業",
+"market": "上櫃",
+"name": "廣穎"
+},
+"4974": {
+"industry": "電子零組件業",
+"market": "上櫃",
+"name": "亞泰"
+},
+"4976": {
+"industry": "光電業",
+"market": "上市",
+"name": "佳凌"
+},
+"4977": {
+"industry": "通信網路業",
+"market": "上市",
+"name": "眾達-KY"
+},
+"4979": {
+"industry": "通信網路業",
+"market": "上櫃",
+"name": "華星光"
+},
+"4980": {
+"industry": "電子零組件業",
+"market": "興櫃",
+"name": "佐臻"
+},
+"4989": {
+"industry": "電子零組件業",
+"market": "上市",
+"name": "榮科"
+},
+"4991": {
+"industry": "半導體業",
+"market": "上櫃",
+"name": "環宇-KY"
+},
+"4994": {
+"industry": "資訊服務業",
+"market": "上市",
+"name": "傳奇"
+},
+"4995": {
+"industry": "光電業",
+"market": "上櫃",
+"name": "晶達"
+},
+"4999": {
+"industry": "電子零組件業",
+"market": "上市",
+"name": "鑫禾"
+},
+"5007": {
+"industry": "鋼鐵工業",
+"market": "上市",
+"name": "三星"
+},
+"5009": {
+"industry": "鋼鐵工業",
+"market": "上櫃",
+"name": "榮剛"
+},
+"5011": {
+"industry": "鋼鐵工業",
+"market": "上櫃",
+"name": "久陽"
+},
+"5013": {
+"industry": "鋼鐵工業",
+"market": "上櫃",
+"name": "強新"
+},
+"5014": {
+"industry": "鋼鐵工業",
+"market": "上櫃",
+"name": "建錩"
+},
+"5015": {
+"industry": "鋼鐵工業",
+"market": "上櫃",
+"name": "華祺"
+},
+"5016": {
+"industry": "鋼鐵工業",
+"market": "上櫃",
+"name": "松和"
+},
+"5201": {
+"industry": "資訊服務業",
+"market": "上櫃",
+"name": "凱衛"
+},
+"5202": {
+"industry": "資訊服務業",
+"market": "上櫃",
+"name": "力新"
+},
+"5203": {
+"industry": "資訊服務業",
+"market": "上市",
+"name": "訊連"
+},
+"5205": {
+"industry": "綠能環保",
+"market": "上櫃",
+"name": "中茂"
+},
+"5206": {
+"industry": "建材營造業",
+"market": "上櫃",
+"name": "坤悅"
+},
+"5209": {
+"industry": "其他業",
+"market": "上櫃",
+"name": "新鼎"
+},
+"5210": {
+"industry": "資訊服務業",
+"market": "上櫃",
+"name": "寶碩"
+},
+"5211": {
+"industry": "資訊服務業",
+"market": "上櫃",
+"name": "蒙恬"
+},
+"5212": {
+"industry": "資訊服務業",
+"market": "上櫃",
+"name": "凌網"
+},
+"5213": {
+"industry": "建材營造業",
+"market": "上櫃",
+"name": "亞昕"
+},
+"5215": {
+"industry": "電腦及週邊設備業",
+"market": "上市",
+"name": "科嘉-KY"
+},
+"5220": {
+"industry": "光電業",
+"market": "上櫃",
+"name": "萬達光電"
+},
+"5222": {
+"industry": "半導體業",
+"market": "上市",
+"name": "全訊"
+},
+"5223": {
+"industry": "電腦及週邊設備業",
+"market": "上櫃",
+"name": "安力-KY"
+},
+"5225": {
+"industry": "其他電子業",
+"market": "上市",
+"name": "東科-KY"
+},
+"5227": {
+"industry": "電子零組件業",
+"market": "上櫃",
+"name": "立凱-KY"
+},
+"5228": {
+"industry": "電子零組件業",
+"market": "上櫃",
+"name": "鈺鎧"
+},
+"5230": {
+"industry": "光電業",
+"market": "上櫃",
+"name": "雷笛克光學"
+},
+"5234": {
+"industry": "光電業",
+"market": "上市",
+"name": "達興材料"
+},
+"5236": {
+"industry": "半導體業",
+"market": "上市",
+"name": "凌陽創新"
+},
+"5240": {
+"industry": "光電業",
+"market": "興櫃",
+"name": "建騰"
+},
+"5243": {
+"industry": "光電業",
+"market": "上市",
+"name": "乙盛-KY"
+},
+"5244": {
+"industry": "光電業",
+"market": "上市",
+"name": "弘凱"
+},
+"5245": {
+"industry": "光電業",
+"market": "上櫃",
+"name": "智晶"
+},
+"5246": {
+"industry": "半導體業",
+"market": "興櫃",
+"name": "勵威"
+},
+"5248": {
+"industry": "光電業",
+"market": "興櫃",
+"name": "景傳"
+},
+"5251": {
+"industry": "光電業",
+"market": "上櫃",
+"name": "天鉞電"
+},
+"5254": {
+"industry": "電子零組件業",
+"market": "興櫃",
+"name": "欣訊科技"
+},
+"5258": {
+"industry": "電腦及週邊設備業",
+"market": "上市",
+"name": "虹堡"
+},
+"5262": {
+"industry": "半導體業",
+"market": "興櫃",
+"name": "立達"
+},
+"5263": {
+"industry": "文化創意業",
+"market": "上櫃",
+"name": "智崴"
+},
+"5267": {
+"industry": "光電業",
+"market": "興櫃",
+"name": "龍翩"
+},
+"5269": {
+"industry": "半導體業",
+"market": "上市",
+"name": "祥碩"
+},
+"5271": {
+"industry": "電子零組件業",
+"market": "興櫃",
+"name": "紘通"
+},
+"5272": {
+"industry": "半導體業",
+"market": "上櫃",
+"name": "笙科"
+},
+"5274": {
+"industry": "半導體業",
+"market": "上櫃",
+"name": "信驊"
+},
+"5276": {
+"industry": "其他業",
+"market": "上櫃",
+"name": "達輝-KY"
+},
+"5278": {
+"industry": "數位雲端",
+"market": "上櫃",
+"name": "尚凡*"
+},
+"5283": {
+"industry": "電器電纜",
+"market": "上市",
+"name": "禾聯碩"
+},
+"5284": {
+"industry": "其他業",
+"market": "上市",
+"name": "jpp-KY"
+},
+"5285": {
+"industry": "半導體業",
+"market": "上市",
+"name": "界霖"
+},
+"5287": {
+"industry": "數位雲端",
+"market": "上櫃",
+"name": "數字"
+},
+"5288": {
+"industry": "電機機械",
+"market": "上市",
+"name": "豐祥-KY"
+},
+"5289": {
+"industry": "電腦及週邊設備業",
+"market": "上櫃",
+"name": "宜鼎"
+},
+"5291": {
+"industry": "電子零組件業",
+"market": "上櫃",
+"name": "邑昇"
+},
+"5292": {
+"industry": "綠能環保",
+"market": "上市",
+"name": "華懋"
+},
+"5297": {
+"industry": "半導體業",
+"market": "興櫃",
+"name": "廣化"
+},
+"5299": {
+"industry": "半導體業",
+"market": "上櫃",
+"name": "杰力"
+},
+"5301": {
+"industry": "觀光餐旅",
+"market": "上櫃",
+"name": "寶得利"
+},
+"5302": {
+"industry": "半導體業",
+"market": "上櫃",
+"name": "太欣"
+},
+"5306": {
+"industry": "運動休閒",
+"market": "上市",
+"name": "桂盟"
+},
+"5309": {
+"industry": "電子零組件業",
+"market": "上櫃",
+"name": "系統電"
+},
+"5310": {
+"industry": "資訊服務業",
+"market": "上櫃",
+"name": "天剛"
+},
+"5312": {
+"industry": "生技醫療業",
+"market": "上櫃",
+"name": "寶島科"
+},
+"5314": {
+"industry": "其他業",
+"market": "上櫃",
+"name": "世紀*"
+},
+"5315": {
+"industry": "光電業",
+"market": "上櫃",
+"name": "光聯"
+},
+"5321": {
+"industry": "數位雲端",
+"market": "上櫃",
+"name": "美而快"
+},
+"5324": {
+"industry": "建材營造業",
+"market": "上櫃",
+"name": "士開"
+},
+"5328": {
+"industry": "電子零組件業",
+"market": "上櫃",
+"name": "華容"
+},
+"5340": {
+"industry": "電子零組件業",
+"market": "上櫃",
+"name": "建榮"
+},
+"5344": {
+"industry": "半導體業",
+"market": "上櫃",
+"name": "立衛"
+},
+"5345": {
+"industry": "其他業",
+"market": "上櫃",
+"name": "馥鴻"
+},
+"5347": {
+"industry": "半導體業",
+"market": "上櫃",
+"name": "世界"
+},
+"5348": {
+"industry": "運動休閒",
+"market": "上櫃",
+"name": "正能量智能"
+},
+"5351": {
+"industry": "半導體業",
+"market": "上櫃",
+"name": "鈺創"
+},
+"5353": {
+"industry": "通信網路業",
+"market": "上櫃",
+"name": "台林"
+},
+"5355": {
+"industry": "電子零組件業",
+"market": "上櫃",
+"name": "佳總"
+},
+"5356": {
+"industry": "電腦及週邊設備業",
+"market": "上櫃",
+"name": "協益"
+},
+"5364": {
+"industry": "觀光餐旅",
+"market": "上櫃",
+"name": "力麗店"
+},
+"5381": {
+"industry": "電機機械",
+"market": "上櫃",
+"name": "光譜"
+},
+"5386": {
+"industry": "電腦及週邊設備業",
+"market": "上櫃",
+"name": "青雲"
+},
+"5388": {
+"industry": "通信網路業",
+"market": "上市",
+"name": "中磊"
+},
+"5392": {
+"industry": "光電業",
+"market": "上櫃",
+"name": "能率"
+},
+"5398": {
+"industry": "其他業",
+"market": "上櫃",
+"name": "慕康生醫"
+},
+"5403": {
+"industry": "資訊服務業",
+"market": "上櫃",
+"name": "中菲"
+},
+"5410": {
+"industry": "資訊服務業",
+"market": "上櫃",
+"name": "國眾"
+},
+"5425": {
+"industry": "半導體業",
+"market": "上櫃",
+"name": "台半"
+},
+"5426": {
+"industry": "電腦及週邊設備業",
+"market": "上櫃",
+"name": "振發"
+},
+"5432": {
+"industry": "綠能環保",
+"market": "上櫃",
+"name": "新門"
+},
+"5434": {
+"industry": "電子通路業",
+"market": "上市",
+"name": "崇越"
+},
+"5438": {
+"industry": "電腦及週邊設備業",
+"market": "上櫃",
+"name": "東友"
+},
+"5439": {
+"industry": "電子零組件業",
+"market": "上櫃",
+"name": "高技"
+},
+"5443": {
+"industry": "半導體業",
+"market": "上櫃",
+"name": "均豪"
+},
+"5450": {
+"industry": "其他業",
+"market": "上櫃",
+"name": "南良"
+},
+"5452": {
+"industry": "其他電子業",
+"market": "上櫃",
+"name": "佶優"
+},
+"5455": {
+"industry": "建材營造業",
+"market": "上櫃",
+"name": "昇益"
+},
+"5457": {
+"industry": "電子零組件業",
+"market": "上櫃",
+"name": "宣德"
+},
+"5460": {
+"industry": "電子零組件業",
+"market": "上櫃",
+"name": "同協"
+},
+"5464": {
+"industry": "電子零組件業",
+"market": "上櫃",
+"name": "霖宏"
+},
+"5465": {
+"industry": "電腦及週邊設備業",
+"market": "上櫃",
+"name": "富驊"
+},
+"5468": {
+"industry": "半導體業",
+"market": "上櫃",
+"name": "凱鈺"
+},
+"5469": {
+"industry": "電子零組件業",
+"market": "上市",
+"name": "瀚宇博"
+},
+"5471": {
+"industry": "半導體業",
+"market": "上市",
+"name": "松翰"
+},
+"5474": {
+"industry": "電腦及週邊設備業",
+"market": "上櫃",
+"name": "聰泰"
+},
+"5475": {
+"industry": "電子零組件業",
+"market": "上櫃",
+"name": "德宏"
+},
+"5478": {
+"industry": "文化創意業",
+"market": "上櫃",
+"name": "智冠"
+},
+"5481": {
+"industry": "其他業",
+"market": "上櫃",
+"name": "新華"
+},
+"5483": {
+"industry": "半導體業",
+"market": "上櫃",
+"name": "中美晶"
+},
+"5484": {
+"industry": "光電業",
+"market": "上市",
+"name": "慧友"
+},
+"5487": {
+"industry": "半導體業",
+"market": "上櫃",
+"name": "通泰"
+},
+"5488": {
+"industry": "電子零組件業",
+"market": "上櫃",
+"name": "松普"
+},
+"5489": {
+"industry": "其他電子業",
+"market": "上櫃",
+"name": "彩富"
+},
+"5490": {
+"industry": "電腦及週邊設備業",
+"market": "上櫃",
+"name": "同亨"
+},
+"5493": {
+"industry": "其他電子業",
+"market": "上櫃",
+"name": "三聯"
+},
+"5498": {
+"industry": "電子零組件業",
+"market": "上櫃",
+"name": "凱崴"
+},
+"5508": {
+"industry": "建材營造業",
+"market": "上櫃",
+"name": "永信建"
+},
+"5511": {
+"industry": "建材營造業",
+"market": "上櫃",
+"name": "德昌"
+},
+"5512": {
+"industry": "建材營造業",
+"market": "上櫃",
+"name": "力麒"
+},
+"5514": {
+"industry": "建材營造業",
+"market": "上櫃",
+"name": "三豐"
+},
+"5515": {
+"industry": "建材營造業",
+"market": "上市",
+"name": "建國"
+},
+"5516": {
+"industry": "建材營造業",
+"market": "上櫃",
+"name": "雙喜"
+},
+"5519": {
+"industry": "建材營造業",
+"market": "上市",
+"name": "隆大"
+},
+"5520": {
+"industry": "建材營造業",
+"market": "上櫃",
+"name": "力泰"
+},
+"5521": {
+"industry": "建材營造業",
+"market": "上市",
+"name": "工信"
+},
+"5522": {
+"industry": "建材營造業",
+"market": "上市",
+"name": "遠雄"
+},
+"5523": {
+"industry": "建材營造業",
+"market": "上櫃",
+"name": "豐謙"
+},
+"5525": {
+"industry": "建材營造業",
+"market": "上市",
+"name": "順天"
+},
+"5529": {
+"industry": "建材營造業",
+"market": "上櫃",
+"name": "鉅陞"
+},
+"5530": {
+"industry": "其他業",
+"market": "上櫃",
+"name": "龍巖"
+},
+"5531": {
+"industry": "建材營造業",
+"market": "上市",
+"name": "鄉林"
+},
+"5533": {
+"industry": "建材營造業",
+"market": "上市",
+"name": "皇鼎"
+},
+"5534": {
+"industry": "建材營造業",
+"market": "上市",
+"name": "長虹"
+},
+"5536": {
+"industry": "其他電子業",
+"market": "上櫃",
+"name": "聖暉*"
+},
+"5538": {
+"industry": "鋼鐵工業",
+"market": "上市",
+"name": "東明-KY"
+},
+"5543": {
+"industry": "建材營造業",
+"market": "上櫃",
+"name": "桓鼎-KY"
+},
+"5546": {
+"industry": "建材營造業",
+"market": "上市",
+"name": "永固-KY"
+},
+"5547": {
+"industry": "建材營造業",
+"market": "上櫃",
+"name": "久舜"
+},
+"5548": {
+"industry": "建材營造業",
+"market": "上櫃",
+"name": "安倉"
+},
+"5601": {
+"industry": "航運業",
+"market": "上櫃",
+"name": "台聯櫃"
+},
+"5603": {
+"industry": "航運業",
+"market": "上櫃",
+"name": "陸海"
+},
+"5604": {
+"industry": "其他業",
+"market": "上櫃",
+"name": "中連"
+},
+"5607": {
+"industry": "航運業",
+"market": "上市",
+"name": "遠雄港"
+},
+"5608": {
+"industry": "航運業",
+"market": "上市",
+"name": "四維航"
+},
+"5609": {
+"industry": "航運業",
+"market": "上櫃",
+"name": "中菲行"
+},
+"5701": {
+"industry": "觀光餐旅",
+"market": "上櫃",
+"name": "劍湖山"
+},
+"5703": {
+"industry": "觀光餐旅",
+"market": "上櫃",
+"name": "亞都"
+},
+"5704": {
+"industry": "觀光餐旅",
+"market": "上櫃",
+"name": "老爺知"
+},
+"5706": {
+"industry": "觀光餐旅",
+"market": "上市",
+"name": "鳳凰"
+},
+"5859": {
+"industry": "金融保險業",
+"market": "興櫃",
+"name": "遠壽"
+},
+"5863": {
+"industry": "金融保險業",
+"market": "興櫃",
+"name": "瑞興銀"
+},
+"5864": {
+"industry": "金融保險業",
+"market": "上櫃",
+"name": "致和證"
+},
+"5871": {
+"industry": "其他業",
+"market": "上市",
+"name": "中租-KY"
+},
+"5876": {
+"industry": "金融保險業",
+"market": "上市",
+"name": "上海商銀"
+},
+"5878": {
+"industry": "金融保險業",
+"market": "上櫃",
+"name": "台名"
+},
+"5880": {
+"industry": "金融保險業",
+"market": "上市",
+"name": "合庫金"
+},
+"5902": {
+"industry": "居家生活",
+"market": "上櫃",
+"name": "德記"
+},
+"5903": {
+"industry": "居家生活",
+"market": "上櫃",
+"name": "全家"
+},
+"5904": {
+"industry": "居家生活",
+"market": "上櫃",
+"name": "寶雅*"
+},
+"5905": {
+"industry": "觀光餐旅",
+"market": "上櫃",
+"name": "南仁湖"
+},
+"5906": {
+"industry": "貿易百貨業",
+"market": "上市",
+"name": "台南-KY"
+},
+"5907": {
+"industry": "貿易百貨業",
+"market": "上市",
+"name": "大洋-KY"
+},
+"6005": {
+"industry": "金融保險業",
+"market": "上市",
+"name": "群益證"
+},
+"6015": {
+"industry": "金融保險業",
+"market": "上櫃",
+"name": "宏遠證"
+},
+"6016": {
+"industry": "金融保險業",
+"market": "上櫃",
+"name": "康和證"
+},
+"6020": {
+"industry": "金融保險業",
+"market": "上櫃",
+"name": "大展證"
+},
+"6021": {
+"industry": "金融保險業",
+"market": "上櫃",
+"name": "美好證"
+},
+"6023": {
+"industry": "金融保險業",
+"market": "上櫃",
+"name": "元大期"
+},
+"6024": {
+"industry": "金融保險業",
+"market": "上市",
+"name": "群益期"
+},
+"6026": {
+"industry": "金融保險業",
+"market": "上櫃",
+"name": "福邦證"
+},
+"6027": {
+"industry": "金融保險業",
+"market": "興櫃",
+"name": "德信"
+},
+"6028": {
+"industry": "金融保險業",
+"market": "上櫃",
+"name": "公勝保經"
+},
+"6035": {
+"industry": "金融保險業",
+"market": "興櫃",
+"name": "悠遊卡"
+},
+"6101": {
+"industry": "文化創意業",
+"market": "上櫃",
+"name": "寬魚國際"
+},
+"6103": {
+"industry": "半導體業",
+"market": "上櫃",
+"name": "合邦"
+},
+"6104": {
+"industry": "半導體業",
+"market": "上櫃",
+"name": "創惟"
+},
+"6108": {
+"industry": "電子零組件業",
+"market": "上市",
+"name": "競國"
+},
+"6109": {
+"industry": "通信網路業",
+"market": "上櫃",
+"name": "亞元"
+},
+"6111": {
+"industry": "文化創意業",
+"market": "上櫃",
+"name": "光聚晶電"
+},
+"6112": {
+"industry": "資訊服務業",
+"market": "上市",
+"name": "邁達特"
+},
+"6113": {
+"industry": "電子通路業",
+"market": "上櫃",
+"name": "亞矽"
+},
+"6114": {
+"industry": "電子零組件業",
+"market": "上櫃",
+"name": "久威"
+},
+"6115": {
+"industry": "電子零組件業",
+"market": "上市",
+"name": "鎰勝"
+},
+"6116": {
+"industry": "光電業",
+"market": "上市",
+"name": "彩晶"
+},
+"6117": {
+"industry": "電腦及週邊設備業",
+"market": "上市",
+"name": "迎廣"
+},
+"6118": {
+"industry": "電子通路業",
+"market": "上櫃",
+"name": "建達"
+},
+"6120": {
+"industry": "光電業",
+"market": "上市",
+"name": "達運"
+},
+"6121": {
+"industry": "電腦及週邊設備業",
+"market": "上櫃",
+"name": "新普"
+},
+"6122": {
+"industry": "電機機械",
+"market": "上櫃",
+"name": "擎邦"
+},
+"6123": {
+"industry": "資訊服務業",
+"market": "上櫃",
+"name": "上奇"
+},
+"6124": {
+"industry": "電子零組件業",
+"market": "上櫃",
+"name": "業強"
+},
+"6125": {
+"industry": "電機機械",
+"market": "上櫃",
+"name": "廣運"
+},
+"6126": {
+"industry": "電子零組件業",
+"market": "上櫃",
+"name": "信音"
+},
+"6127": {
+"industry": "電子零組件業",
+"market": "上櫃",
+"name": "九豪"
+},
+"6128": {
+"industry": "電腦及週邊設備業",
+"market": "上市",
+"name": "上福"
+},
+"6129": {
+"industry": "半導體業",
+"market": "上櫃",
+"name": "普誠"
+},
+"6130": {
+"industry": "生技醫療業",
+"market": "上櫃",
+"name": "上亞科技"
+},
+"6133": {
+"industry": "電子零組件業",
+"market": "上市",
+"name": "金橋"
+},
+"6134": {
+"industry": "電子零組件業",
+"market": "上櫃",
+"name": "萬旭"
+},
+"6136": {
+"industry": "通信網路業",
+"market": "上市",
+"name": "富爾特"
+},
+"6138": {
+"industry": "半導體業",
+"market": "上櫃",
+"name": "茂達"
+},
+"6139": {
+"industry": "其他電子業",
+"market": "上市",
+"name": "亞翔"
+},
+"6140": {
+"industry": "資訊服務業",
+"market": "上櫃",
+"name": "訊達"
+},
+"6141": {
+"industry": "電子零組件業",
+"market": "上市",
+"name": "柏承"
+},
+"6142": {
+"industry": "通信網路業",
+"market": "上市",
+"name": "友勁"
+},
+"6143": {
+"industry": "通信網路業",
+"market": "上櫃",
+"name": "振曜"
+},
+"6144": {
+"industry": "文化創意業",
+"market": "上櫃",
+"name": "得利影"
+},
+"6146": {
+"industry": "其他電子業",
+"market": "上櫃",
+"name": "耕興"
+},
+"6147": {
+"industry": "半導體業",
+"market": "上櫃",
+"name": "頎邦"
+},
+"6148": {
+"industry": "資訊服務業",
+"market": "上櫃",
+"name": "驊宏資"
+},
+"6150": {
+"industry": "電腦及週邊設備業",
+"market": "上櫃",
+"name": "撼訊"
+},
+"6151": {
+"industry": "其他電子業",
+"market": "上櫃",
+"name": "晉倫"
+},
+"6152": {
+"industry": "通信網路業",
+"market": "上市",
+"name": "百一"
+},
+"6153": {
+"industry": "電子零組件業",
+"market": "上市",
+"name": "嘉聯益"
+},
+"6154": {
+"industry": "電子通路業",
+"market": "上櫃",
+"name": "順發"
+},
+"6155": {
+"industry": "電子零組件業",
+"market": "上市",
+"name": "鈞寶"
+},
+"6156": {
+"industry": "電子零組件業",
+"market": "上櫃",
+"name": "松上"
+},
+"6158": {
+"industry": "電子零組件業",
+"market": "上櫃",
+"name": "禾昌"
+},
+"6160": {
+"industry": "電腦及週邊設備業",
+"market": "上櫃",
+"name": "欣技"
+},
+"6161": {
+"industry": "電腦及週邊設備業",
+"market": "上櫃",
+"name": "捷波"
+},
+"6163": {
+"industry": "資訊服務業",
+"market": "上櫃",
+"name": "華電網"
+},
+"6164": {
+"industry": "光電業",
+"market": "上市",
+"name": "華興"
+},
+"6165": {
+"industry": "數位雲端",
+"market": "上市",
+"name": "浪凡"
+},
+"6166": {
+"industry": "電腦及週邊設備業",
+"market": "上市",
+"name": "凌華"
+},
+"6167": {
+"industry": "光電業",
+"market": "上櫃",
+"name": "久正"
+},
+"6168": {
+"industry": "光電業",
+"market": "上市",
+"name": "宏齊"
+},
+"6169": {
+"industry": "文化創意業",
+"market": "上櫃",
+"name": "昱泉"
+},
+"6170": {
+"industry": "通信網路業",
+"market": "上櫃",
+"name": "統振"
+},
+"6171": {
+"industry": "建材營造業",
+"market": "上櫃",
+"name": "大城地產"
+},
+"6173": {
+"industry": "電子零組件業",
+"market": "上櫃",
+"name": "信昌電"
+},
+"6174": {
+"industry": "電子零組件業",
+"market": "上櫃",
+"name": "安碁"
+},
+"6175": {
+"industry": "電子零組件業",
+"market": "上櫃",
+"name": "立敦"
+},
+"6176": {
+"industry": "光電業",
+"market": "上市",
+"name": "瑞儀"
+},
+"6177": {
+"industry": "建材營造業",
+"market": "上市",
+"name": "達麗"
+},
+"6179": {
+"industry": "其他業",
+"market": "上櫃",
+"name": "亞通"
+},
+"6180": {
+"industry": "文化創意業",
+"market": "上櫃",
+"name": "橘子"
+},
+"6182": {
+"industry": "半導體業",
+"market": "上櫃",
+"name": "合晶"
+},
+"6183": {
+"industry": "資訊服務業",
+"market": "上市",
+"name": "關貿"
+},
+"6184": {
+"industry": "其他業",
+"market": "上市",
+"name": "大豐電"
+},
+"6185": {
+"industry": "電子零組件業",
+"market": "上櫃",
+"name": "幃翔"
+},
+"6186": {
+"industry": "建材營造業",
+"market": "上櫃",
+"name": "新潤"
+},
+"6187": {
+"industry": "半導體業",
+"market": "上櫃",
+"name": "萬潤"
+},
+"6188": {
+"industry": "電腦及週邊設備業",
+"market": "上櫃",
+"name": "廣明"
+},
+"6189": {
+"industry": "電子通路業",
+"market": "上市",
+"name": "豐藝"
+},
+"6190": {
+"industry": "通信網路業",
+"market": "上櫃",
+"name": "萬泰科"
+},
+"6191": {
+"industry": "電子零組件業",
+"market": "上市",
+"name": "精成科"
+},
+"6192": {
+"industry": "其他電子業",
+"market": "上市",
+"name": "巨路"
+},
+"6194": {
+"industry": "電子零組件業",
+"market": "上櫃",
+"name": "育富"
+},
+"6195": {
+"industry": "居家生活",
+"market": "上櫃",
+"name": "詩肯"
+},
+"6196": {
+"industry": "其他電子業",
+"market": "上市",
+"name": "帆宣"
+},
+"6197": {
+"industry": "電子零組件業",
+"market": "上市",
+"name": "佳必琪"
+},
+"6198": {
+"industry": "建材營造業",
+"market": "上櫃",
+"name": "瑞築"
+},
+"6199": {
+"industry": "其他業",
+"market": "上櫃",
+"name": "天品"
+},
+"6201": {
+"industry": "其他電子業",
+"market": "上市",
+"name": "亞弘電"
+},
+"6202": {
+"industry": "半導體業",
+"market": "上市",
+"name": "盛群"
+},
+"6203": {
+"industry": "電子零組件業",
+"market": "上櫃",
+"name": "海韻電"
+},
+"6204": {
+"industry": "電子零組件業",
+"market": "上櫃",
+"name": "艾華"
+},
+"6205": {
+"industry": "電子零組件業",
+"market": "上市",
+"name": "詮欣"
+},
+"6206": {
+"industry": "電腦及週邊設備業",
+"market": "上市",
+"name": "飛捷"
+},
+"6207": {
+"industry": "電子零組件業",
+"market": "上櫃",
+"name": "雷科"
+},
+"6208": {
+"industry": "半導體業",
+"market": "上櫃",
+"name": "日揚"
+},
+"6209": {
+"industry": "光電業",
+"market": "上市",
+"name": "今國光"
+},
+"6210": {
+"industry": "電子零組件業",
+"market": "上櫃",
+"name": "慶生"
+},
+"6212": {
+"industry": "建材營造業",
+"market": "上櫃",
+"name": "理銘"
+},
+"6213": {
+"industry": "電子零組件業",
+"market": "上市",
+"name": "聯茂"
+},
+"6214": {
+"industry": "資訊服務業",
+"market": "上市",
+"name": "精誠"
+},
+"6215": {
+"industry": "其他電子業",
+"market": "上市",
+"name": "和椿"
+},
+"6216": {
+"industry": "通信網路業",
+"market": "上市",
+"name": "居易"
+},
+"6217": {
+"industry": "電子零組件業",
+"market": "上櫃",
+"name": "中探針"
+},
+"6218": {
+"industry": "通信網路業",
+"market": "上櫃",
+"name": "豪勉"
+},
+"6219": {
+"industry": "建材營造業",
+"market": "上櫃",
+"name": "富旺"
+},
+"6220": {
+"industry": "電子零組件業",
+"market": "上櫃",
+"name": "岳豐"
+},
+"6221": {
+"industry": "資訊服務業",
+"market": "上櫃",
+"name": "晉泰"
+},
+"6222": {
+"industry": "光電業",
+"market": "上櫃",
+"name": "立軒"
+},
+"6223": {
+"industry": "半導體業",
+"market": "上櫃",
+"name": "旺矽"
+},
+"6224": {
+"industry": "電子零組件業",
+"market": "上市",
+"name": "聚鼎"
+},
+"6225": {
+"industry": "光電業",
+"market": "上市",
+"name": "天瀚"
+},
+"6226": {
+"industry": "光電業",
+"market": "上市",
+"name": "光鼎"
+},
+"6227": {
+"industry": "電子通路業",
+"market": "上櫃",
+"name": "茂綸"
+},
+"6228": {
+"industry": "電腦及週邊設備業",
+"market": "上櫃",
+"name": "全譜"
+},
+"6229": {
+"industry": "半導體業",
+"market": "上櫃",
+"name": "研通"
+},
+"6230": {
+"industry": "電腦及週邊設備業",
+"market": "上市",
+"name": "尼得科超眾"
+},
+"6231": {
+"industry": "資訊服務業",
+"market": "上櫃",
+"name": "系微"
+},
+"6233": {
+"industry": "半導體業",
+"market": "上櫃",
+"name": "旺玖"
+},
+"6234": {
+"industry": "光電業",
+"market": "上櫃",
+"name": "高僑"
+},
+"6235": {
+"industry": "電腦及週邊設備業",
+"market": "上市",
+"name": "華孚"
+},
+"6236": {
+"industry": "數位雲端",
+"market": "上櫃",
+"name": "中湛"
+},
+"6237": {
+"industry": "半導體業",
+"market": "上櫃",
+"name": "驊訊"
+},
+"6239": {
+"industry": "半導體業",
+"market": "上市",
+"name": "力成"
+},
+"6240": {
+"industry": "資訊服務業",
+"market": "上櫃",
+"name": "松崗"
+},
+"6241": {
+"industry": "通信網路業",
+"market": "上櫃",
+"name": "鑫永洋"
+},
+"6242": {
+"industry": "生技醫療業",
+"market": "上櫃",
+"name": "立康"
+},
+"6243": {
+"industry": "半導體業",
+"market": "上市",
+"name": "迅杰"
+},
+"6244": {
+"industry": "光電業",
+"market": "上櫃",
+"name": "茂迪"
+},
+"6245": {
+"industry": "通信網路業",
+"market": "上櫃",
+"name": "立端"
+},
+"6246": {
+"industry": "光電業",
+"market": "上櫃",
+"name": "臺龍"
+},
+"6248": {
+"industry": "鋼鐵工業",
+"market": "上櫃",
+"name": "沛波"
+},
+"6257": {
+"industry": "半導體業",
+"market": "上市",
+"name": "矽格"
+},
+"6259": {
+"industry": "電子零組件業",
+"market": "上櫃",
+"name": "百徽"
+},
+"6261": {
+"industry": "半導體業",
+"market": "上櫃",
+"name": "久元"
+},
+"6263": {
+"industry": "通信網路業",
+"market": "上櫃",
+"name": "普萊德"
+},
+"6264": {
+"industry": "建材營造業",
+"market": "上櫃",
+"name": "富裔"
+},
+"6265": {
+"industry": "電子通路業",
+"market": "上櫃",
+"name": "方土昶"
+},
+"6266": {
+"industry": "電子零組件業",
+"market": "上櫃",
+"name": "泰詠"
+},
+"6269": {
+"industry": "電子零組件業",
+"market": "上市",
+"name": "台郡"
+},
+"6270": {
+"industry": "電子通路業",
+"market": "上櫃",
+"name": "倍微"
+},
+"6271": {
+"industry": "半導體業",
+"market": "上市",
+"name": "同欣電"
+},
+"6272": {
+"industry": "電子零組件業",
+"market": "上市",
+"name": "驊陞"
+},
+"6274": {
+"industry": "電子零組件業",
+"market": "上櫃",
+"name": "台燿"
+},
+"6275": {
+"industry": "電子零組件業",
+"market": "上櫃",
+"name": "元山"
+},
+"6276": {
+"industry": "電腦及週邊設備業",
+"market": "上櫃",
+"name": "安鈦克"
+},
+"6277": {
+"industry": "電腦及週邊設備業",
+"market": "上市",
+"name": "宏正"
+},
+"6278": {
+"industry": "光電業",
+"market": "上市",
+"name": "台表科"
+},
+"6279": {
+"industry": "電子零組件業",
+"market": "上櫃",
+"name": "胡連"
+},
+"6281": {
+"industry": "電子通路業",
+"market": "上市",
+"name": "全國電"
+},
+"6282": {
+"industry": "電子零組件業",
+"market": "上市",
+"name": "康舒"
+},
+"6283": {
+"industry": "其他電子業",
+"market": "上市",
+"name": "淳安"
+},
+"6284": {
+"industry": "電子零組件業",
+"market": "上櫃",
+"name": "佳邦"
+},
+"6285": {
+"industry": "通信網路業",
+"market": "上市",
+"name": "啟碁"
+},
+"6290": {
+"industry": "電子零組件業",
+"market": "上櫃",
+"name": "良維"
+},
+"6291": {
+"industry": "半導體業",
+"market": "上櫃",
+"name": "沛亨"
+},
+"6292": {
+"industry": "電子零組件業",
+"market": "上櫃",
+"name": "迅德"
+},
+"6294": {
+"industry": "文化創意業",
+"market": "上櫃",
+"name": "智基"
+},
+"6405": {
+"industry": "光電業",
+"market": "上市",
+"name": "悅城"
+},
+"6407": {
+"industry": "電子零組件業",
+"market": "興櫃",
+"name": "相互"
+},
+"6409": {
+"industry": "其他電子業",
+"market": "上市",
+"name": "旭隼"
+},
+"6411": {
+"industry": "半導體業",
+"market": "上櫃",
+"name": "晶焱"
+},
+"6412": {
+"industry": "電子零組件業",
+"market": "上市",
+"name": "群電"
+},
+"6414": {
+"industry": "電腦及週邊設備業",
+"market": "上市",
+"name": "樺漢"
+},
+"6415": {
+"industry": "半導體業",
+"market": "上市",
+"name": "矽力*-KY"
+},
+"6416": {
+"industry": "通信網路業",
+"market": "上市",
+"name": "瑞祺電通"
+},
+"6417": {
+"industry": "通信網路業",
+"market": "上櫃",
+"name": "韋僑"
+},
+"6418": {
+"industry": "電子零組件業",
+"market": "上櫃",
+"name": "詠昇"
+},
+"6419": {
+"industry": "光電業",
+"market": "上櫃",
+"name": "京晨科"
+},
+"6423": {
+"industry": "半導體業",
+"market": "上櫃",
+"name": "億而得"
+},
+"6425": {
+"industry": "電機機械",
+"market": "上櫃",
+"name": "易發"
+},
+"6426": {
+"industry": "通信網路業",
+"market": "上市",
+"name": "統新"
+},
+"6428": {
+"industry": "文化創意業",
+"market": "興櫃",
+"name": "淘米"
+},
+"6431": {
+"industry": "生技醫療業",
+"market": "上市",
+"name": "光麗-KY"
+},
+"6432": {
+"industry": "電子零組件業",
+"market": "上櫃",
+"name": "今展科"
+},
+"6434": {
+"industry": "光電業",
+"market": "興櫃",
+"name": "達輝光電"
+},
+"6435": {
+"industry": "半導體業",
+"market": "上櫃",
+"name": "大中"
+},
+"6438": {
+"industry": "其他電子業",
+"market": "上市",
+"name": "迅得"
+},
+"6441": {
+"industry": "電腦及週邊設備業",
+"market": "上櫃",
+"name": "廣錠"
+},
+"6442": {
+"industry": "通信網路業",
+"market": "上市",
+"name": "光聖"
+},
+"6443": {
+"industry": "光電業",
+"market": "上市",
+"name": "元晶"
+},
+"6446": {
+"industry": "生技醫療業",
+"market": "上市",
+"name": "藥華藥"
+},
+"6449": {
+"industry": "電子零組件業",
+"market": "上市",
+"name": "鈺邦"
+},
+"6451": {
+"industry": "半導體業",
+"market": "上市",
+"name": "訊芯-KY"
+},
+"6456": {
+"industry": "光電業",
+"market": "上市",
+"name": "GIS-KY"
+},
+"6461": {
+"industry": "生技醫療業",
+"market": "上櫃",
+"name": "益得"
+},
+"6462": {
+"industry": "半導體業",
+"market": "上櫃",
+"name": "神盾"
+},
+"6464": {
+"industry": "其他業",
+"market": "上市",
+"name": "台數科"
+},
+"6465": {
+"industry": "通信網路業",
+"market": "上櫃",
+"name": "威潤"
+},
+"6467": {
+"industry": "生技醫療業",
+"market": "上市",
+"name": "泰合"
+},
+"6469": {
+"industry": "生技醫療業",
+"market": "上櫃",
+"name": "大樹"
+},
+"6470": {
+"industry": "通信網路業",
+"market": "上櫃",
+"name": "宇智"
+},
+"6472": {
+"industry": "生技醫療業",
+"market": "上市",
+"name": "保瑞"
+},
+"6473": {
+"industry": "數位雲端",
+"market": "興櫃",
+"name": "美賣*"
+},
+"6474": {
+"industry": "電子通路業",
+"market": "上櫃",
+"name": "華豫寧"
+},
+"6477": {
+"industry": "光電業",
+"market": "上市",
+"name": "安集"
+},
+"6482": {
+"industry": "文化創意業",
+"market": "上櫃",
+"name": "弘煜科"
+},
+"6483": {
+"industry": "生技醫療業",
+"market": "興櫃",
+"name": "原創生醫"
+},
+"6485": {
+"industry": "半導體業",
+"market": "上櫃",
+"name": "點序"
+},
+"6486": {
+"industry": "通信網路業",
+"market": "上櫃",
+"name": "互動"
+},
+"6488": {
+"industry": "半導體業",
+"market": "上櫃",
+"name": "環球晶"
+},
+"6491": {
+"industry": "生技醫療業",
+"market": "上市",
+"name": "晶碩"
+},
+"6492": {
+"industry": "生技醫療業",
+"market": "上櫃",
+"name": "生華科"
+},
+"6493": {
+"industry": "生技醫療業",
+"market": "興櫃",
+"name": "雷虎生"
+},
+"6494": {
+"industry": "半導體業",
+"market": "上櫃",
+"name": "九齊"
+},
+"6496": {
+"industry": "生技醫療業",
+"market": "上櫃",
+"name": "科懋"
+},
+"6498": {
+"industry": "光電業",
+"market": "上櫃",
+"name": "久禾光"
+},
+"6499": {
+"industry": "生技醫療業",
+"market": "上櫃",
+"name": "益安"
+},
+"6504": {
+"industry": "其他業",
+"market": "上市",
+"name": "南六"
+},
+"6505": {
+"industry": "油電燃氣業",
+"market": "上市",
+"name": "台塑化"
+},
+"6506": {
+"industry": "紡織纖維",
+"market": "上櫃",
+"name": "雙邦"
+},
+"6508": {
+"industry": "農業科技業",
+"market": "上櫃",
+"name": "惠光"
+},
+"6509": {
+"industry": "化學工業",
+"market": "上櫃",
+"name": "聚和"
+},
+"6510": {
+"industry": "半導體業",
+"market": "上櫃",
+"name": "精測"
+},
+"6512": {
+"industry": "其他電子業",
+"market": "上櫃",
+"name": "啟發電"
+},
+"6515": {
+"industry": "半導體業",
+"market": "上市",
+"name": "穎崴"
+},
+"6516": {
+"industry": "資訊服務業",
+"market": "上櫃",
+"name": "勤崴國際"
+},
+"6517": {
+"industry": "光電業",
+"market": "上櫃",
+"name": "保勝光學"
+},
+"6518": {
+"industry": "生技醫療業",
+"market": "興櫃",
+"name": "康科特"
+},
+"6523": {
+"industry": "生技醫療業",
+"market": "上櫃",
+"name": "達爾膚"
+},
+"6525": {
+"industry": "半導體業",
+"market": "上市",
+"name": "捷敏-KY"
+},
+"6526": {
+"industry": "半導體業",
+"market": "上市",
+"name": "達發"
+},
+"6527": {
+"industry": "生技醫療業",
+"market": "上櫃",
+"name": "明達醫"
+},
+"6530": {
+"industry": "通信網路業",
+"market": "上櫃",
+"name": "創威"
+},
+"6531": {
+"industry": "半導體業",
+"market": "上市",
+"name": "愛普*"
+},
+"6532": {
+"industry": "半導體業",
+"market": "上櫃",
+"name": "瑞耘"
+},
+"6533": {
+"industry": "半導體業",
+"market": "上市",
+"name": "晶心科"
+},
+"6534": {
+"industry": "生技醫療業",
+"market": "上市臺灣創新板",
+"name": "正瀚-創"
+},
+"6535": {
+"industry": "生技醫療業",
+"market": "上櫃",
+"name": "順藥"
+},
+"6536": {
+"industry": "資訊服務業",
+"market": "興櫃",
+"name": "碩豐"
+},
+"6538": {
+"industry": "電子零組件業",
+"market": "上櫃",
+"name": "倉和"
+},
+"6539": {
+"industry": "生技醫療業",
+"market": "興櫃",
+"name": "麗彤"
+},
+"6541": {
+"industry": "生技醫療業",
+"market": "上市",
+"name": "泰福-KY"
+},
+"6542": {
+"industry": "文化創意業",
+"market": "上櫃",
+"name": "隆中"
+},
+"6543": {
+"industry": "生技醫療業",
+"market": "興櫃",
+"name": "普惠醫工"
+},
+"6546": {
+"industry": "通信網路業",
+"market": "上櫃",
+"name": "正基"
+},
+"6547": {
+"industry": "生技醫療業",
+"market": "上櫃",
+"name": "高端疫苗"
+},
+"6548": {
+"industry": "半導體業",
+"market": "上櫃",
+"name": "長科*"
+},
+"6549": {
+"industry": "生技醫療業",
+"market": "興櫃",
+"name": "景凱"
+},
+"6550": {
+"industry": "生技醫療業",
+"market": "上市",
+"name": "北極星藥業-KY"
+},
+"6552": {
+"industry": "半導體業",
+"market": "上市",
+"name": "易華電"
+},
+"6555": {
+"industry": "電子零組件業",
+"market": "興櫃",
+"name": "榮炭"
+},
+"6556": {
+"industry": "光電業",
+"market": "上櫃",
+"name": "勝品"
+},
+"6558": {
+"industry": "其他電子業",
+"market": "上市",
+"name": "興能高"
+},
+"6559": {
+"industry": "光電業",
+"market": "興櫃",
+"name": "研晶"
+},
+"6560": {
+"industry": "光電業",
+"market": "上櫃",
+"name": "欣普羅"
+},
+"6561": {
+"industry": "通信網路業",
+"market": "上櫃",
+"name": "是方"
+},
+"6563": {
+"industry": "半導體業",
+"market": "興櫃",
+"name": "映智"
+},
+"6564": {
+"industry": "生技醫療業",
+"market": "興櫃",
+"name": "安特羅"
+},
+"6565": {
+"industry": "數位雲端",
+"market": "興櫃",
+"name": "物聯"
+},
+"6568": {
+"industry": "半導體業",
+"market": "上櫃",
+"name": "宏觀"
+},
+"6569": {
+"industry": "生技醫療業",
+"market": "上櫃",
+"name": "醫揚"
+},
+"6570": {
+"industry": "電腦及週邊設備業",
+"market": "上櫃",
+"name": "維田"
+},
+"6572": {
+"industry": "生技醫療業",
+"market": "興櫃",
+"name": "博錸"
+},
+"6573": {
+"industry": "半導體業",
+"market": "上市",
+"name": "虹揚-KY"
+},
+"6574": {
+"industry": "生技醫療業",
+"market": "上櫃",
+"name": "霈方"
+},
+"6576": {
+"industry": "生技醫療業",
+"market": "上櫃",
+"name": "逸達"
+},
+"6577": {
+"industry": "電腦及週邊設備業",
+"market": "上櫃",
+"name": "勁豐"
+},
+"6578": {
+"industry": "農業科技業",
+"market": "上櫃",
+"name": "達邦蛋白"
+},
+"6579": {
+"industry": "電腦及週邊設備業",
+"market": "上市",
+"name": "研揚"
+},
+"6580": {
+"industry": "生技醫療業",
+"market": "興櫃",
+"name": "台睿"
+},
+"6581": {
+"industry": "綠能環保",
+"market": "上市",
+"name": "鋼聯"
+},
+"6582": {
+"industry": "橡膠工業",
+"market": "上市",
+"name": "申豐"
+},
+"6583": {
+"industry": "文化創意業",
+"market": "興櫃",
+"name": "友松"
+},
+"6584": {
+"industry": "電子零組件業",
+"market": "上櫃",
+"name": "南俊國際"
+},
+"6585": {
+"industry": "其他業",
+"market": "上市",
+"name": "鼎基"
+},
+"6586": {
+"industry": "生技醫療業",
+"market": "興櫃",
+"name": "醣基"
+},
+"6588": {
+"industry": "通信網路業",
+"market": "上櫃",
+"name": "東典光電"
+},
+"6589": {
+"industry": "生技醫療業",
+"market": "上市",
+"name": "台康生技"
+},
+"6590": {
+"industry": "資訊服務業",
+"market": "上櫃",
+"name": "普鴻"
+},
+"6591": {
+"industry": "電腦及週邊設備業",
+"market": "上市",
+"name": "動力-KY"
+},
+"6592": {
+"industry": "其他業",
+"market": "上市",
+"name": "和潤企業"
+},
+"6593": {
+"industry": "資訊服務業",
+"market": "上櫃",
+"name": "台灣銘板"
+},
+"6595": {
+"industry": "文化創意業",
+"market": "興櫃",
+"name": "光禹國際"
+},
+"6596": {
+"industry": "文化創意業",
+"market": "上櫃",
+"name": "寬宏藝術"
+},
+"6597": {
+"industry": "電子零組件業",
+"market": "上櫃",
+"name": "立誠"
+},
+"6598": {
+"industry": "生技醫療業",
+"market": "上市",
+"name": "ABC-KY"
+},
+"6599": {
+"industry": "電腦及週邊設備業",
+"market": "興櫃",
+"name": "普達系統"
+},
+"6603": {
+"industry": "電機機械",
+"market": "上櫃",
+"name": "富強鑫"
+},
+"6604": {
+"industry": "電機機械",
+"market": "上櫃",
+"name": "儒億"
+},
+"6605": {
+"industry": "汽車工業",
+"market": "上市",
+"name": "帝寶"
+},
+"6606": {
+"industry": "電機機械",
+"market": "上市",
+"name": "建德工業"
+},
+"6609": {
+"industry": "電機機械",
+"market": "上櫃",
+"name": "瀧澤科"
+},
+"6610": {
+"industry": "生技醫療業",
+"market": "興櫃",
+"name": "安成生技"
+},
+"6612": {
+"industry": "生技醫療業",
+"market": "上櫃",
+"name": "奈米醫材"
+},
+"6613": {
+"industry": "其他電子業",
+"market": "上櫃",
+"name": "朋億*"
+},
+"6614": {
+"industry": "數位雲端",
+"market": "上市",
+"name": "資拓宏宇"
+},
+"6615": {
+"industry": "生技醫療業",
+"market": "上櫃",
+"name": "慧智"
+},
+"6616": {
+"industry": "居家生活",
+"market": "上櫃",
+"name": "特昇-KY"
+},
+"6617": {
+"industry": "生技醫療業",
+"market": "上櫃",
+"name": "共信-KY"
+},
+"6620": {
+"industry": "生技醫療業",
+"market": "上櫃",
+"name": "漢達"
+},
+"6621": {
+"industry": "生技醫療業",
+"market": "興櫃",
+"name": "華宇藥"
+},
+"6622": {
+"industry": "文化創意業",
+"market": "興櫃",
+"name": "百聿數碼"
+},
+"6624": {
+"industry": "綠能環保",
+"market": "上櫃",
+"name": "萬年清"
+},
+"6625": {
+"industry": "其他業",
+"market": "上市",
+"name": "必應"
+},
+"6629": {
+"industry": "居家生活",
+"market": "上櫃",
+"name": "泰金-KY"
+},
+"6634": {
+"industry": "生技醫療業",
+"market": "興櫃",
+"name": "欣耀"
+},
+"6637": {
+"industry": "生技醫療業",
+"market": "上櫃",
+"name": "醫影"
+},
+"6638": {
+"industry": "電腦及週邊設備業",
+"market": "興櫃",
+"name": "沅聖"
+},
+"6639": {
+"industry": "油電燃氣業",
+"market": "興櫃",
+"name": "源大環能"
+},
+"6640": {
+"industry": "半導體業",
+"market": "上櫃",
+"name": "均華"
+},
+"6641": {
+"industry": "綠能環保",
+"market": "上市",
+"name": "基士德-KY"
+},
+"6642": {
+"industry": "電子零組件業",
+"market": "上櫃",
+"name": "富致"
+},
+"6643": {
+"industry": "半導體業",
+"market": "上櫃",
+"name": "M31"
+},
+"6645": {
+"industry": "生技醫療業",
+"market": "上市臺灣創新板",
+"name": "金萬林-創"
+},
+"6648": {
+"industry": "其他電子業",
+"market": "興櫃",
+"name": "斯其大"
+},
+"6649": {
+"industry": "生技醫療業",
+"market": "上櫃",
+"name": "台生材"
+},
+"6650": {
+"industry": "文化創意業",
+"market": "興櫃",
+"name": "帝圖"
+},
+"6651": {
+"industry": "半導體業",
+"market": "上櫃",
+"name": "全宇昕"
+},
+"6654": {
+"industry": "其他電子業",
+"market": "上櫃",
+"name": "天正國際"
+},
+"6655": {
+"industry": "其他業",
+"market": "上市",
+"name": "科定"
+},
+"6657": {
+"industry": "生技醫療業",
+"market": "上市",
+"name": "華安"
+},
+"6658": {
+"industry": "其他電子業",
+"market": "上市",
+"name": "聯策"
+},
+"6659": {
+"industry": "生技醫療業",
+"market": "興櫃",
+"name": "天明製藥"
+},
+"6660": {
+"industry": "生技醫療業",
+"market": "興櫃",
+"name": "厚美德"
+},
+"6661": {
+"industry": "生技醫療業",
+"market": "上櫃",
+"name": "威健生技"
+},
+"6662": {
+"industry": "生技醫療業",
+"market": "上櫃",
+"name": "樂斯科"
+},
+"6664": {
+"industry": "電子零組件業",
+"market": "上櫃",
+"name": "群翊"
+},
+"6665": {
+"industry": "生技醫療業",
+"market": "興櫃",
+"name": "康聯生醫"
+},
+"6666": {
+"industry": "生技醫療業",
+"market": "上市",
+"name": "羅麗芬-KY"
+},
+"6667": {
+"industry": "其他電子業",
+"market": "上櫃",
+"name": "信紘科"
+},
+"6668": {
+"industry": "光電業",
+"market": "上市",
+"name": "中揚光"
+},
+"6669": {
+"industry": "電腦及週邊設備業",
+"market": "上市",
+"name": "緯穎"
+},
+"6670": {
+"industry": "運動休閒",
+"market": "上市",
+"name": "復盛應用"
+},
+"6671": {
+"industry": "居家生活",
+"market": "上市",
+"name": "三能-KY"
+},
+"6672": {
+"industry": "電子零組件業",
+"market": "上市",
+"name": "騰輝電子-KY"
+},
+"6673": {
+"industry": "光電業",
+"market": "興櫃",
+"name": "和詮"
+},
+"6674": {
+"industry": "通信網路業",
+"market": "上市",
+"name": "鋐寶科技"
+},
+"6676": {
+"industry": "生技醫療業",
+"market": "興櫃",
+"name": "祥翊"
+},
+"6677": {
+"industry": "生技醫療業",
+"market": "興櫃",
+"name": "瑩碩生技"
+},
+"6679": {
+"industry": "半導體業",
+"market": "上櫃",
+"name": "鈺太"
+},
+"6680": {
+"industry": "電腦及週邊設備業",
+"market": "上櫃",
+"name": "鑫創電子"
+},
+"6682": {
+"industry": "光電業",
+"market": "興櫃",
+"name": "華旭先進"
+},
+"6683": {
+"industry": "半導體業",
+"market": "上櫃",
+"name": "雍智科技"
+},
+"6684": {
+"industry": "半導體業",
+"market": "上櫃",
+"name": "安格"
+},
+"6689": {
+"industry": "數位雲端",
+"market": "上市",
+"name": "伊雲谷"
+},
+"6690": {
+"industry": "數位雲端",
+"market": "上櫃",
+"name": "安碁資訊"
+},
+"6691": {
+"industry": "其他電子業",
+"market": "上市",
+"name": "洋基工程"
+},
+"6692": {
+"industry": "綠能環保",
+"market": "上櫃",
+"name": "進能服"
+},
+"6693": {
+"industry": "半導體業",
+"market": "上櫃",
+"name": "廣閎科"
+},
+"6695": {
+"industry": "半導體業",
+"market": "上市",
+"name": "芯鼎"
+},
+"6696": {
+"industry": "生技醫療業",
+"market": "興櫃",
+"name": "仁新*"
+},
+"6697": {
+"industry": "資訊服務業",
+"market": "上櫃",
+"name": "東捷資訊"
+},
+"6698": {
+"industry": "其他電子業",
+"market": "上市",
+"name": "旭暉應材"
+},
+"6703": {
+"industry": "生技醫療業",
+"market": "上櫃",
+"name": "軒郁"
+},
+"6704": {
+"industry": "生技醫療業",
+"market": "興櫃",
+"name": "國璽幹細胞"
+},
+"6705": {
+"industry": "電機機械",
+"market": "興櫃",
+"name": "振躍精密"
+},
+"6706": {
+"industry": "光電業",
+"market": "上市",
+"name": "惠特"
+},
+"6707": {
+"industry": "電子通路業",
+"market": "興櫃",
+"name": "富基電通"
+},
+"6708": {
+"industry": "半導體業",
+"market": "上櫃",
+"name": "天擎"
+},
+"6709": {
+"industry": "生技醫療業",
+"market": "興櫃",
+"name": "昱厚生技"
+},
+"6712": {
+"industry": "生技醫療業",
+"market": "上櫃",
+"name": "長聖"
+},
+"6715": {
+"industry": "電子零組件業",
+"market": "上市",
+"name": "嘉基"
+},
+"6716": {
+"industry": "半導體業",
+"market": "上櫃",
+"name": "應廣"
+},
+"6719": {
+"industry": "半導體業",
+"market": "上市",
+"name": "力智"
+},
+"6720": {
+"industry": "半導體業",
+"market": "上櫃",
+"name": "久昌"
+},
+"6721": {
+"industry": "其他業",
+"market": "上櫃",
+"name": "信實"
+},
+"6722": {
+"industry": "其他電子業",
+"market": "上市",
+"name": "輝創"
+},
+"6723": {
+"industry": "綠能環保",
+"market": "興櫃",
+"name": "傑智環境"
+},
+"6725": {
+"industry": "其他電子業",
+"market": "上櫃",
+"name": "矽科宏晟"
+},
+"6727": {
+"industry": "電子零組件業",
+"market": "上櫃",
+"name": "亞泰金屬"
+},
+"6728": {
+"industry": "居家生活",
+"market": "上櫃",
+"name": "上洋"
+},
+"6729": {
+"industry": "光電業",
+"market": "興櫃",
+"name": "機光科技"
+},
+"6730": {
+"industry": "生技醫療業",
+"market": "上櫃",
+"name": "常廣"
+},
+"6732": {
+"industry": "半導體業",
+"market": "上櫃",
+"name": "昇佳電子"
+},
+"6733": {
+"industry": "生技醫療業",
+"market": "上櫃",
+"name": "博晟生醫"
+},
+"6734": {
+"industry": "生技醫療業",
+"market": "興櫃",
+"name": "安盛生"
+},
+"6735": {
+"industry": "其他電子業",
+"market": "上櫃",
+"name": "美達科技"
+},
+"6737": {
+"industry": "電腦及週邊設備業",
+"market": "興櫃",
+"name": "秀育"
+},
+"6738": {
+"industry": "資訊服務業",
+"market": "興櫃",
+"name": "鼎恒"
+},
+"6739": {
+"industry": "其他電子業",
+"market": "上櫃",
+"name": "竹陞科技"
+},
+"6741": {
+"industry": "數位雲端",
+"market": "上櫃",
+"name": "91APP*-KY"
+},
+"6742": {
+"industry": "光電業",
+"market": "上市",
+"name": "澤米"
+},
+"6743": {
+"industry": "其他電子業",
+"market": "上市",
+"name": "安普新"
+},
+"6744": {
+"industry": "生技醫療業",
+"market": "興櫃",
+"name": "豐技生技"
+},
+"6748": {
+"industry": "生技醫療業",
+"market": "興櫃",
+"name": "亞果生醫"
+},
+"6750": {
+"industry": "其他電子業",
+"market": "興櫃",
+"name": "泰創工程"
+},
+"6751": {
+"industry": "資訊服務業",
+"market": "上櫃",
+"name": "智聯服務"
+},
+"6752": {
+"industry": "資訊服務業",
+"market": "上櫃",
+"name": "叡揚"
+},
+"6753": {
+"industry": "航運業",
+"market": "上市",
+"name": "龍德造船"
+},
+"6754": {
+"industry": "居家生活",
+"market": "上市",
+"name": "匯僑設計"
+},
+"6755": {
+"industry": "電子零組件業",
+"market": "興櫃",
+"name": "連鋐科技"
+},
+"6756": {
+"industry": "半導體業",
+"market": "上市",
+"name": "威鋒電子"
+},
+"6757": {
+"industry": "航運業",
+"market": "上市",
+"name": "台灣虎航"
+},
+"6758": {
+"industry": "生技醫療業",
+"market": "興櫃",
+"name": "冠亞"
+},
+"6761": {
+"industry": "電子零組件業",
+"market": "上櫃",
+"name": "穩得"
+},
+"6762": {
+"industry": "生技醫療業",
+"market": "上櫃",
+"name": "達亞"
+},
+"6763": {
+"industry": "數位雲端",
+"market": "上櫃",
+"name": "綠界科技*"
+},
+"6767": {
+"industry": "生技醫療業",
+"market": "上櫃",
+"name": "台微醫"
+},
+"6768": {
+"industry": "運動休閒",
+"market": "上市",
+"name": "志強-KY"
+},
+"6770": {
+"industry": "半導體業",
+"market": "上市",
+"name": "力積電"
+},
+"6771": {
+"industry": "綠能環保",
+"market": "上市臺灣創新板",
+"name": "平和環保-創"
+},
+"6775": {
+"industry": "光電業",
+"market": "興櫃",
+"name": "穎台科技"
+},
+"6776": {
+"industry": "電子通路業",
+"market": "上市",
+"name": "展碁國際"
+},
+"6780": {
+"industry": "文化創意業",
+"market": "興櫃",
+"name": "學習王"
+},
+"6781": {
+"industry": "電子零組件業",
+"market": "上市",
+"name": "AES-KY"
+},
+"6782": {
+"industry": "生技醫療業",
+"market": "上市",
+"name": "視陽"
+},
+"6784": {
+"industry": "通信網路業",
+"market": "興櫃",
+"name": "天凱科技"
+},
+"6785": {
+"industry": "生技醫療業",
+"market": "上櫃",
+"name": "昱展新藥"
+},
+"6786": {
+"industry": "半導體業",
+"market": "興櫃",
+"name": "芯測"
+},
+"6787": {
+"industry": "光電業",
+"market": "興櫃",
+"name": "晶瑞光"
+},
+"6788": {
+"industry": "半導體業",
+"market": "上櫃",
+"name": "華景電"
+},
+"6789": {
+"industry": "半導體業",
+"market": "上市",
+"name": "采鈺"
+},
+"6790": {
+"industry": "造紙工業",
+"market": "上市",
+"name": "永豐實"
+},
+"6791": {
+"industry": "資訊服務業",
+"market": "上櫃",
+"name": "虎門科技"
+},
+"6792": {
+"industry": "通信網路業",
+"market": "上市",
+"name": "詠業"
+},
+"6793": {
+"industry": "其他業",
+"market": "興櫃",
+"name": "天力離岸"
+},
+"6794": {
+"industry": "生技醫療業",
+"market": "上市",
+"name": "向榮生技"
+},
+"6796": {
+"industry": "生技醫療業",
+"market": "上市",
+"name": "晉弘"
+},
+"6797": {
+"industry": "生技醫療業",
+"market": "興櫃",
+"name": "圓點奈米"
+},
+"6798": {
+"industry": "運動休閒",
+"market": "興櫃",
+"name": "展逸"
+},
+"6799": {
+"industry": "半導體業",
+"market": "上市",
+"name": "來頡"
+},
+"6803": {
+"industry": "綠能環保",
+"market": "上櫃",
+"name": "崑鼎"
+},
+"6804": {
+"industry": "運動休閒",
+"market": "上櫃",
+"name": "明係"
+},
+"6805": {
+"industry": "電子零組件業",
+"market": "上市",
+"name": "富世達"
+},
+"6807": {
+"industry": "居家生活",
+"market": "上市",
+"name": "峰源-KY"
+},
+"6808": {
+"industry": "生技醫療業",
+"market": "興櫃",
+"name": "三鼎生技"
+},
+"6810": {
+"industry": "生技醫療業",
+"market": "興櫃",
+"name": "新穎生醫"
+},
+"6811": {
+"industry": "數位雲端",
+"market": "上櫃",
+"name": "宏碁資訊"
+},
+"6812": {
+"industry": "光電業",
+"market": "興櫃",
+"name": "梭特"
+},
+"6814": {
+"industry": "生技醫療業",
+"market": "興櫃",
+"name": "路迦生醫"
+},
+"6815": {
+"industry": "生技醫療業",
+"market": "興櫃",
+"name": "晶鑽生醫"
+},
+"6816": {
+"industry": "資訊服務業",
+"market": "興櫃",
+"name": "捷智商訊"
+},
+"6817": {
+"industry": "生技醫療業",
+"market": "興櫃",
+"name": "溫士頓"
+},
+"6818": {
+"industry": "通信網路業",
+"market": "興櫃",
+"name": "連騰"
+},
+"6819": {
+"industry": "半導體業",
+"market": "興櫃",
+"name": "眾智"
+},
+"6820": {
+"industry": "通信網路業",
+"market": "興櫃",
+"name": "連訊"
+},
+"6821": {
+"industry": "電子零組件業",
+"market": "上櫃",
+"name": "聯寶"
+},
+"6823": {
+"industry": "半導體業",
+"market": "上櫃",
+"name": "濾能"
+},
+"6825": {
+"industry": "電腦及週邊設備業",
+"market": "興櫃",
+"name": "和暢科技"
+},
+"6826": {
+"industry": "其他電子業",
+"market": "興櫃",
+"name": "和淞"
+},
+"6827": {
+"industry": "生技醫療業",
+"market": "興櫃",
+"name": "巨生醫"
+},
+"6829": {
+"industry": "半導體業",
+"market": "上櫃",
+"name": "千附精密"
+},
+"6830": {
+"industry": "其他電子業",
+"market": "上市",
+"name": "汎銓"
+},
+"6831": {
+"industry": "電腦及週邊設備業",
+"market": "上市",
+"name": "邁科"
+},
+"6832": {
+"industry": "其他業",
+"market": "興櫃",
+"name": "金鼎科"
+},
+"6833": {
+"industry": "電子零組件業",
+"market": "興櫃",
+"name": "太康精密"
+},
+"6834": {
+"industry": "電子零組件業",
+"market": "上市",
+"name": "天二科技"
+},
+"6835": {
+"industry": "電子零組件業",
+"market": "上市",
+"name": "圓裕"
+},
+"6838": {
+"industry": "生技醫療業",
+"market": "上市",
+"name": "台新藥"
+},
+"6839": {
+"industry": "綠能環保",
+"market": "興櫃",
+"name": "開陽能源"
+},
+"6840": {
+"industry": "其他電子業",
+"market": "上櫃",
+"name": "東研信超"
+},
+"6841": {
+"industry": "生技醫療業",
+"market": "上櫃",
+"name": "長佳智能"
+},
+"6842": {
+"industry": "半導體業",
+"market": "興櫃",
+"name": "瑞宇"
+},
+"6843": {
+"industry": "電機機械",
+"market": "上櫃",
+"name": "進典"
+},
+"6844": {
+"industry": "生技醫療業",
+"market": "上櫃",
+"name": "諾貝兒"
+},
+"6846": {
+"industry": "食品工業",
+"market": "上櫃",
+"name": "綠茵"
+},
+"6847": {
+"industry": "生技醫療業",
+"market": "興櫃",
+"name": "普瑞博"
+},
+"6848": {
+"industry": "生技醫療業",
+"market": "興櫃",
+"name": "拉法醫"
+},
+"6849": {
+"industry": "其他電子業",
+"market": "興櫃",
+"name": "奇鼎科技"
+},
+"6850": {
+"industry": "生技醫療業",
+"market": "興櫃",
+"name": "光鼎生技"
+},
+"6854": {
+"industry": "半導體業",
+"market": "上市臺灣創新板",
+"name": "錼創科技-KY創"
+},
+"6855": {
+"industry": "其他電子業",
+"market": "上櫃",
+"name": "數泓科"
+},
+"6856": {
+"industry": "文化創意業",
+"market": "上櫃",
+"name": "鑫傳"
+},
+"6857": {
+"industry": "生技醫療業",
+"market": "興櫃",
+"name": "宏碁智醫"
+},
+"6858": {
+"industry": "電腦及週邊設備業",
+"market": "興櫃",
+"name": "愛比科技"
+},
+"6859": {
+"industry": "光電業",
+"market": "上櫃",
+"name": "伯特光"
+},
+"6861": {
+"industry": "生技醫療業",
+"market": "上市",
+"name": "睿生光電"
+},
+"6862": {
+"industry": "電子零組件業",
+"market": "上市",
+"name": "三集瑞-KY"
+},
+"6863": {
+"industry": "通信網路業",
+"market": "上市",
+"name": "永道-KY"
+},
+"6864": {
+"industry": "生技醫療業",
+"market": "興櫃",
+"name": "元樟生技"
+},
+"6865": {
+"industry": "數位雲端",
+"market": "上櫃",
+"name": "偉康科技"
+},
+"6867": {
+"industry": "光電業",
+"market": "興櫃",
+"name": "坦德科技"
+},
+"6868": {
+"industry": "資訊服務業",
+"market": "興櫃",
+"name": "采威國際"
+},
+"6869": {
+"industry": "綠能環保",
+"market": "上市",
+"name": "雲豹能源"
+},
+"6870": {
+"industry": "數位雲端",
+"market": "上櫃",
+"name": "騰雲"
+},
+"6872": {
+"industry": "生技醫療業",
+"market": "上櫃",
+"name": "浩宇生醫"
+},
+"6873": {
+"industry": "綠能環保",
+"market": "上市",
+"name": "泓德能源"
+},
+"6874": {
+"industry": "資訊服務業",
+"market": "上櫃",
+"name": "倍力"
+},
+"6875": {
+"industry": "生技醫療業",
+"market": "上櫃",
+"name": "國邑*"
+},
+"6876": {
+"industry": "生技醫療業",
+"market": "興櫃",
+"name": "朗齊生醫*"
+},
+"6877": {
+"industry": "其他電子業",
+"market": "上櫃",
+"name": "鏵友益"
+},
+"6878": {
+"industry": "金融保險業",
+"market": "興櫃",
+"name": "歐付寶"
+},
+"6879": {
+"industry": "生技醫療業",
+"market": "興櫃",
+"name": "大江基因"
+},
+"6881": {
+"industry": "其他業",
+"market": "上櫃",
+"name": "潤德"
+},
+"6882": {
+"industry": "資訊服務業",
+"market": "興櫃",
+"name": "甲尚"
+},
+"6884": {
+"industry": "資訊服務業",
+"market": "上櫃",
+"name": "海柏特"
+},
+"6885": {
+"industry": "生技醫療業",
+"market": "上市",
+"name": "全福生技"
+},
+"6886": {
+"industry": "食品工業",
+"market": "興櫃",
+"name": "遠東生技"
+},
+"6887": {
+"industry": "綠能環保",
+"market": "上市",
+"name": "寶綠特-KY"
+},
+"6890": {
+"industry": "運動休閒",
+"market": "上市",
+"name": "來億-KY"
+},
+"6891": {
+"industry": "生技醫療業",
+"market": "興櫃",
+"name": "樂迦再生"
+},
+"6892": {
+"industry": "生技醫療業",
+"market": "興櫃",
+"name": "台寶生醫"
+},
+"6894": {
+"industry": "綠能環保",
+"market": "上櫃",
+"name": "衛司特"
+},
+"6895": {
+"industry": "半導體業",
+"market": "上櫃",
+"name": "宏碩系統"
+},
+"6898": {
+"industry": "資訊服務業",
+"market": "興櫃",
+"name": "程曦資訊"
+},
+"6899": {
+"industry": "光電業",
+"market": "上櫃",
+"name": "創為精密"
+},
+"6901": {
+"industry": "其他業",
+"market": "上市",
+"name": "鑽石投資"
+},
+"6902": {
+"industry": "數位雲端",
+"market": "上市",
+"name": "GOGOLOOK"
+},
+"6903": {
+"industry": "其他電子業",
+"market": "上櫃",
+"name": "巨漢"
+},
+"6904": {
+"industry": "其他業",
+"market": "上櫃",
+"name": "伯鑫"
+},
+"6906": {
+"industry": "數位雲端",
+"market": "上市",
+"name": "現觀科"
+},
+"6907": {
+"industry": "半導體業",
+"market": "上櫃",
+"name": "雅特力-KY"
+},
+"6908": {
+"industry": "電子通路業",
+"market": "上市臺灣創新板",
+"name": "宏碁遊戲-創"
+},
+"6909": {
+"industry": "半導體業",
+"market": "上市",
+"name": "創控"
+},
+"6910": {
+"industry": "數位雲端",
+"market": "上櫃",
+"name": "德鴻"
+},
+"6911": {
+"industry": "其他業",
+"market": "興櫃",
+"name": "群運"
+},
+"6912": {
+"industry": "綠能環保",
+"market": "興櫃",
+"name": "益鈞環科*"
+},
+"6913": {
+"industry": "電子零組件業",
+"market": "上櫃",
+"name": "鴻呈"
+},
+"6914": {
+"industry": "其他業",
+"market": "上市",
+"name": "阜爾運通"
+},
+"6915": {
+"industry": "電子零組件業",
+"market": "興櫃",
+"name": "美強光"
+},
+"6916": {
+"industry": "光電業",
+"market": "上市",
+"name": "華凌"
+},
+"6917": {
+"industry": "生技醫療業",
+"market": "興櫃",
+"name": "竟天"
+},
+"6918": {
+"industry": "生技醫療業",
+"market": "上市",
+"name": "愛派司"
+},
+"6919": {
+"industry": "生技醫療業",
+"market": "上市",
+"name": "康霈*"
+},
+"6920": {
+"industry": "半導體業",
+"market": "興櫃",
+"name": "恆勁科技"
+},
+"6921": {
+"industry": "半導體業",
+"market": "上市臺灣創新板",
+"name": "嘉雨思-創"
+},
+"6922": {
+"industry": "電腦及週邊設備業",
+"market": "上櫃",
+"name": "宸曜"
+},
+"6923": {
+"industry": "綠能環保",
+"market": "上市",
+"name": "中台"
+},
+"6924": {
+"industry": "電子零組件業",
+"market": "上市臺灣創新板",
+"name": "榮惠-KY創"
+},
+"6925": {
+"industry": "數位雲端",
+"market": "上櫃",
+"name": "意藍"
+},
+"6926": {
+"industry": "生技醫療業",
+"market": "興櫃",
+"name": "聖安生醫"
+},
+"6927": {
+"industry": "半導體業",
+"market": "興櫃",
+"name": "聯合聚晶"
+},
+"6928": {
+"industry": "電腦及週邊設備業",
+"market": "上市",
+"name": "攸泰科技"
+},
+"6929": {
+"industry": "生技醫療業",
+"market": "上櫃",
+"name": "佑全"
+},
+"6930": {
+"industry": "半導體業",
+"market": "興櫃",
+"name": "盛新"
+},
+"6931": {
+"industry": "生技醫療業",
+"market": "上市",
+"name": "青松健康"
+},
+"6932": {
+"industry": "生技醫療業",
+"market": "興櫃",
+"name": "水星生醫*"
+},
+"6933": {
+"industry": "電腦及週邊設備業",
+"market": "上市",
+"name": "AMAX-KY"
+},
+"6934": {
+"industry": "生技醫療業",
+"market": "上市",
+"name": "心誠鎂"
+},
+"6935": {
+"industry": "食品工業",
+"market": "興櫃",
+"name": "王子製藥"
+},
+"6936": {
+"industry": "生技醫療業",
+"market": "上市",
+"name": "永鴻生技"
+},
+"6937": {
+"industry": "半導體業",
+"market": "上市",
+"name": "天虹"
+},
+"6938": {
+"industry": "資訊服務業",
+"market": "興櫃",
+"name": "藍新資訊"
+},
+"6939": {
+"industry": "生技醫療業",
+"market": "興櫃",
+"name": "啟弘生技"
+},
+"6940": {
+"industry": "電子零組件業",
+"market": "興櫃",
+"name": "格斯科技*"
+},
+"6944": {
+"industry": "綠能環保",
+"market": "上市",
+"name": "兆聯實業"
+},
+"6945": {
+"industry": "生技醫療業",
+"market": "上櫃",
+"name": "圓祥生技"
+},
+"6946": {
+"industry": "綠能環保",
+"market": "興櫃",
+"name": "三地能源"
+},
+"6947": {
+"industry": "綠能環保",
+"market": "上市",
+"name": "台鎔科技"
+},
+"6949": {
+"industry": "生技醫療業",
+"market": "上市臺灣創新板",
+"name": "沛爾生醫*-創"
+},
+"6950": {
+"industry": "數位雲端",
+"market": "興櫃",
+"name": "科科科技-KY"
+},
+"6951": {
+"industry": "綠能環保",
+"market": "上市臺灣創新板",
+"name": "青新-創"
+},
+"6952": {
+"industry": "其他業",
+"market": "上市",
+"name": "大武山"
+},
+"6953": {
+"industry": "半導體業",
+"market": "上櫃",
+"name": "家碩"
+},
+"6955": {
+"industry": "生技醫療業",
+"market": "上市臺灣創新板",
+"name": "邦睿生技-創"
+},
+"6957": {
+"industry": "其他業",
+"market": "上市",
+"name": "裕慶-KY"
+},
+"6958": {
+"industry": "其他業",
+"market": "上市",
+"name": "日盛台駿"
+},
+"6959": {
+"industry": "化學工業",
+"market": "興櫃",
+"name": "兆捷科技"
+},
+"6961": {
+"industry": "觀光餐旅",
+"market": "上櫃",
+"name": "旅天下"
+},
+"6962": {
+"industry": "半導體業",
+"market": "上市",
+"name": "奕力-KY"
+},
+"6963": {
+"industry": "食品工業",
+"market": "興櫃",
+"name": "品元"
+},
+"6965": {
+"industry": "運動休閒",
+"market": "上市",
+"name": "中傑-KY"
+},
+"6967": {
+"industry": "電子零組件業",
+"market": "上櫃",
+"name": "汎瑋材料"
+},
+"6968": {
+"industry": "居家生活",
+"market": "上櫃",
+"name": "萬達寵物"
+},
+"6969": {
+"industry": "綠能環保",
+"market": "上市臺灣創新板",
+"name": "成信實業*-創"
+},
+"6971": {
+"industry": "綠能環保",
+"market": "上櫃",
+"name": "惠民實業"
+},
+"6972": {
+"industry": "化學工業",
+"market": "興櫃",
+"name": "博瑞達應材"
+},
+"6973": {
+"industry": "生技醫療業",
+"market": "興櫃",
+"name": "永立榮"
+},
+"6976": {
+"industry": "生技醫療業",
+"market": "興櫃",
+"name": "育世博-KY"
+},
+"6977": {
+"industry": "綠能環保",
+"market": "興櫃",
+"name": "聯純"
+},
+"6979": {
+"industry": "光電業",
+"market": "興櫃",
+"name": "勝釩"
+},
+"6980": {
+"industry": "通信網路業",
+"market": "興櫃",
+"name": "鐳洋科技"
+},
+"6982": {
+"industry": "電機機械",
+"market": "上櫃",
+"name": "大井泵浦"
+},
+"6983": {
+"industry": "其他電子業",
+"market": "上櫃",
+"name": "華洋精機"
+},
+"6984": {
+"industry": "數位雲端",
+"market": "興櫃",
+"name": "ACPAY"
+},
+"6986": {
+"industry": "生技醫療業",
+"market": "上櫃",
+"name": "和迅"
+},
+"6987": {
+"industry": "綠能環保",
+"market": "興櫃",
+"name": "寶晶能源*"
+},
+"6988": {
+"industry": "汽車工業",
+"market": "上市臺灣創新板",
+"name": "威力暘-創"
+},
+"6990": {
+"industry": "綠能環保",
+"market": "興櫃",
+"name": "華鉬"
+},
+"6992": {
+"industry": "半導體業",
+"market": "興櫃",
+"name": "萬勝發科技"
+},
+"6994": {
+"industry": "綠能環保",
+"market": "上市",
+"name": "富威電力"
+},
+"6995": {
+"industry": "其他業",
+"market": "興櫃",
+"name": "野獸國"
+},
+"6996": {
+"industry": "半導體業",
+"market": "上櫃",
+"name": "力領科技"
+},
+"6997": {
+"industry": "數位雲端",
+"market": "上櫃",
+"name": "博弘"
+},
+"6999": {
+"industry": "生技醫療業",
+"market": "興櫃",
+"name": "瀚醫生技"
+},
+"7402": {
+"industry": "光電業",
+"market": "上櫃",
+"name": "邑錡"
+},
+"7415": {
+"industry": "半導體業",
+"market": "興櫃",
+"name": "元澄半導體"
+},
+"7418": {
+"industry": "觀光餐旅",
+"market": "興櫃",
+"name": "香繼光"
+},
+"7419": {
+"industry": "電子零組件業",
+"market": "興櫃",
+"name": "達勝"
+},
+"7422": {
+"industry": "生技醫療業",
+"market": "興櫃",
+"name": "鴻林堂"
+},
+"7427": {
+"industry": "生技醫療業",
+"market": "興櫃",
+"name": "華上生醫"
+},
+"7443": {
+"industry": "其他業",
+"market": "興櫃",
+"name": "凡事康"
+},
+"7455": {
+"industry": "電腦及週邊設備業",
+"market": "興櫃",
+"name": "樺緯物聯"
+},
+"7507": {
+"industry": "綠能環保",
+"market": "興櫃",
+"name": "環拓科技"
+},
+"7516": {
+"industry": "其他業",
+"market": "興櫃",
+"name": "清淨海"
+},
+"7530": {
+"industry": "半導體業",
+"market": "興櫃",
+"name": "鋒魁科技"
+},
+"7547": {
+"industry": "數位雲端",
+"market": "上櫃",
+"name": "碩網"
+},
+"7551": {
+"industry": "數位雲端",
+"market": "興櫃",
+"name": "知識科技"
+},
+"7556": {
+"industry": "半導體業",
+"market": "上櫃",
+"name": "意德士"
+},
+"7558": {
+"industry": "其他業",
+"market": "興櫃",
+"name": "群利"
+},
+"7561": {
+"industry": "生技醫療業",
+"market": "興櫃",
+"name": "光晟生技"
+},
+"7562": {
+"industry": "電腦及週邊設備業",
+"market": "興櫃",
+"name": "博來科技"
+},
+"7566": {
+"industry": "觀光餐旅",
+"market": "興櫃",
+"name": "亞果遊艇"
+},
+"7578": {
+"industry": "其他業",
+"market": "興櫃",
+"name": "利百景"
+},
+"7583": {
+"industry": "綠能環保",
+"market": "興櫃",
+"name": "國際海洋"
+},
+"7584": {
+"industry": "文化創意業",
+"market": "上櫃",
+"name": "樂意"
+},
+"7590": {
+"industry": "其他業",
+"market": "興櫃",
+"name": "怡和國際"
+},
+"7595": {
+"industry": "生技醫療業",
+"market": "興櫃",
+"name": "世基生醫"
+},
+"7607": {
+"industry": "生技醫療業",
+"market": "興櫃",
+"name": "通用幹細胞*"
+},
+"7610": {
+"industry": "綠能環保",
+"market": "上市臺灣創新板",
+"name": "聯友金屬-創"
+},
+"7631": {
+"industry": "其他電子業",
+"market": "上市臺灣創新板",
+"name": "聚賢研發-創"
+},
+"7642": {
+"industry": "電機機械",
+"market": "上櫃",
+"name": "昶瑞機電"
+},
+"7669": {
+"industry": "半導體業",
+"market": "興櫃",
+"name": "碩正科技"
+},
+"7686": {
+"industry": "生技醫療業",
+"market": "興櫃",
+"name": "捷立康"
+},
+"7689": {
+"industry": "通信網路業",
+"market": "上市",
+"name": "大鵬科CLMX"
+},
+"7702": {
+"industry": "綠能環保",
+"market": "興櫃",
+"name": "前端風電"
+},
+"7703": {
+"industry": "其他電子業",
+"market": "上櫃",
+"name": "銳澤"
+},
+"7704": {
+"industry": "半導體業",
+"market": "上櫃",
+"name": "明遠精密"
+},
+"7705": {
+"industry": "觀光餐旅",
+"market": "上市",
+"name": "三商餐飲"
+},
+"7706": {
+"industry": "其他業",
+"market": "興櫃",
+"name": "宏碁創達"
+},
+"7707": {
+"industry": "半導體業",
+"market": "興櫃",
+"name": "益芯科"
+},
+"7708": {
+"industry": "觀光餐旅",
+"market": "上櫃",
+"name": "全家餐飲"
+},
+"7709": {
+"industry": "電機機械",
+"market": "上櫃",
+"name": "榮田"
+},
+"7710": {
+"industry": "電腦及週邊設備業",
+"market": "興櫃",
+"name": "東擎科技"
+},
+"7711": {
+"industry": "電腦及週邊設備業",
+"market": "上市",
+"name": "永擎"
+},
+"7712": {
+"industry": "半導體業",
+"market": "上櫃",
+"name": "博盛半導體"
+},
+"7713": {
+"industry": "生技醫療業",
+"market": "上櫃",
+"name": "威力德生醫"
+},
+"7714": {
+"industry": "數位雲端",
+"market": "上櫃",
+"name": "創泓科技"
+},
+"7715": {
+"industry": "綠能環保",
+"market": "上櫃",
+"name": "裕山"
+},
+"7716": {
+"industry": "航運業",
+"market": "上櫃",
+"name": "昱臺國際"
+},
+"7717": {
+"industry": "通信網路業",
+"market": "上櫃",
+"name": "萊德光電-KY"
+},
+"7718": {
+"industry": "電機機械",
+"market": "上櫃",
+"name": "友鋮"
+},
+"7719": {
+"industry": "其他業",
+"market": "興櫃",
+"name": "碳基"
+},
+"7721": {
+"industry": "數位雲端",
+"market": "上市",
+"name": "微程式"
+},
+"7722": {
+"industry": "數位雲端",
+"market": "上市",
+"name": "LINEPAY"
+},
+"7723": {
+"industry": "觀光餐旅",
+"market": "上櫃",
+"name": "築間"
+},
+"7724": {
+"industry": "生技醫療業",
+"market": "興櫃",
+"name": "諾亞克"
+},
+"7725": {
+"industry": "生技醫療業",
+"market": "興櫃",
+"name": "列特博"
+},
+"7726": {
+"industry": "生技醫療業",
+"market": "興櫃",
+"name": "暄達"
+},
+"7728": {
+"industry": "其他電子業",
+"market": "上櫃",
+"name": "光焱科技"
+},
+"7729": {
+"industry": "生技醫療業",
+"market": "興櫃",
+"name": "仲恩生醫"
+},
+"7730": {
+"industry": "半導體業",
+"market": "上市臺灣創新板",
+"name": "暉盛-創"
+},
+"7731": {
+"industry": "食品工業",
+"market": "興櫃",
+"name": "火星生技*"
+},
+"7732": {
+"industry": "汽車工業",
+"market": "上市",
+"name": "金興精密"
+},
+"7734": {
+"industry": "半導體業",
+"market": "上櫃",
+"name": "印能科技"
+},
+"7735": {
+"industry": "資訊服務業",
+"market": "興櫃",
+"name": "台智雲"
+},
+"7736": {
+"industry": "汽車工業",
+"market": "上市",
+"name": "虎山"
+},
+"7737": {
+"industry": "數位雲端",
+"market": "興櫃",
+"name": "凱鈿"
+},
+"7738": {
+"industry": "數位雲端",
+"market": "上櫃",
+"name": "東聯互動"
+},
+"7740": {
+"industry": "綠能環保",
+"market": "上市臺灣創新板",
+"name": "熙特爾-創"
+},
+"7742": {
+"industry": "化學工業",
+"market": "興櫃",
+"name": "天弘化"
+},
+"7743": {
+"industry": "食品工業",
+"market": "上櫃",
+"name": "金利食安"
+},
+"7744": {
+"industry": "電子零組件業",
+"market": "上櫃",
+"name": "崴寶"
+},
+"7745": {
+"industry": "數位雲端",
+"market": "興櫃",
+"name": "紅陽"
+},
+"7747": {
+"industry": "數位雲端",
+"market": "上櫃",
+"name": "昕奇雲端"
+},
+"7748": {
+"industry": "其他業",
+"market": "興櫃",
+"name": "鑫囍創業"
+},
+"7749": {
+"industry": "半導體業",
+"market": "上市",
+"name": "意騰-KY"
+},
+"7750": {
+"industry": "電機機械",
+"market": "上市",
+"name": "新代"
+},
+"7751": {
+"industry": "半導體業",
+"market": "上櫃",
+"name": "竑騰"
+},
+"7752": {
+"industry": "綠能環保",
+"market": "興櫃",
+"name": "世紀樺欣"
+},
+"7753": {
+"industry": "光電業",
+"market": "上櫃",
+"name": "星亞"
+},
+"7754": {
+"industry": "生技醫療業",
+"market": "興櫃",
+"name": "安基生技"
+},
+"7756": {
+"industry": "觀光餐旅",
+"market": "興櫃",
+"name": "多那之"
+},
+"7757": {
+"industry": "觀光餐旅",
+"market": "上櫃",
+"name": "金色三麥"
+},
+"7758": {
+"industry": "電子零組件業",
+"market": "興櫃",
+"name": "睿騰能源"
+},
+"7759": {
+"industry": "生技醫療業",
+"market": "興櫃",
+"name": "視航生醫"
+},
+"7760": {
+"industry": "觀光餐旅",
+"market": "上市",
+"name": "享溫馨"
+},
+"7761": {
+"industry": "綠能環保",
+"market": "興櫃",
+"name": "三大未來"
+},
+"7762": {
+"industry": "生技醫療業",
+"market": "興櫃",
+"name": "吉晟生"
+},
+"7763": {
+"industry": "化學工業",
+"market": "興櫃",
+"name": "崇舜"
+},
+"7764": {
+"industry": "其他業",
+"market": "興櫃",
+"name": "聖州"
+},
+"7765": {
+"industry": "數位雲端",
+"market": "上市",
+"name": "中華資安"
+},
+"7767": {
+"industry": "資訊服務業",
+"market": "上櫃",
+"name": "仁大資訊"
+},
+"7768": {
+"industry": "半導體業",
+"market": "上市",
+"name": "頌勝科技"
+},
+"7769": {
+"industry": "半導體業",
+"market": "上市",
+"name": "鴻勁"
+},
+"7770": {
+"industry": "半導體業",
+"market": "上櫃",
+"name": "君曜"
+},
+"7771": {
+"industry": "光電業",
+"market": "興櫃",
+"name": "綠基"
+},
+"7772": {
+"industry": "半導體業",
+"market": "上櫃",
+"name": "耀穎"
+},
+"7773": {
+"industry": "生技醫療業",
+"market": "興櫃",
+"name": "富禾生醫"
+},
+"7776": {
+"industry": "生技醫療業",
+"market": "興櫃",
+"name": "奧孟亞"
+},
+"7777": {
+"industry": "其他業",
+"market": "上櫃",
+"name": "能率亞洲"
+},
+"7779": {
+"industry": "運動休閒",
+"market": "興櫃",
+"name": "鍇睿國際"
+},
+"7780": {
+"industry": "食品工業",
+"market": "上市",
+"name": "大研生醫*"
+},
+"7781": {
+"industry": "數位雲端",
+"market": "興櫃",
+"name": "昕力資*"
+},
+"7782": {
+"industry": "居家生活",
+"market": "上櫃",
+"name": "光速火箭"
+},
+"7783": {
+"industry": "綠能環保",
+"market": "興櫃",
+"name": "佳運"
+},
+"7784": {
+"industry": "生技醫療業",
+"market": "興櫃",
+"name": "安邦生技*"
+},
+"7785": {
+"industry": "數位雲端",
+"market": "興櫃",
+"name": "北祥科服"
+},
+"7786": {
+"industry": "綠能環保",
+"market": "上市",
+"name": "東方風能"
+},
+"7788": {
+"industry": "電子零組件業",
+"market": "上市",
+"name": "松川精密"
+},
+"7789": {
+"industry": "觀光餐旅",
+"market": "興櫃",
+"name": "開展"
+},
+"7790": {
+"industry": "生技醫療業",
+"market": "興櫃",
+"name": "思必瑞特"
+},
+"7791": {
+"industry": "食品工業",
+"market": "上市",
+"name": "皇家可口"
+},
+"7792": {
+"industry": "其他電子業",
+"market": "上櫃",
+"name": "安葆"
+},
+"7794": {
+"industry": "居家生活",
+"market": "上櫃",
+"name": "宏碁智新"
+},
+"7795": {
+"industry": "電子零組件業",
+"market": "上市",
+"name": "長廣"
+},
+"7796": {
+"industry": "半導體業",
+"market": "興櫃",
+"name": "擷發科"
+},
+"7797": {
+"industry": "觀光餐旅",
+"market": "興櫃",
+"name": "Q BURGER"
+},
+"7798": {
+"industry": "建材營造業",
+"market": "興櫃",
+"name": "將捷"
+},
+"7799": {
+"industry": "生技醫療業",
+"market": "上市",
+"name": "禾榮科"
+},
+"7801": {
+"industry": "資訊服務業",
+"market": "興櫃",
+"name": "華芸科技"
+},
+"7803": {
+"industry": "生技醫療業",
+"market": "上市臺灣創新板",
+"name": "雲象科技-創"
+},
+"7805": {
+"industry": "數位雲端",
+"market": "上櫃",
+"name": "威聯通"
+},
+"7806": {
+"industry": "食品工業",
+"market": "上櫃",
+"name": "精華生醫"
+},
+"7808": {
+"industry": "生技醫療業",
+"market": "興櫃",
+"name": "訊聯智藥"
+},
+"7810": {
+"industry": "半導體業",
+"market": "上櫃",
+"name": "捷創科技"
+},
+"7811": {
+"industry": "運動休閒",
+"market": "上櫃",
+"name": "民盛"
+},
+"7812": {
+"industry": "通信網路業",
+"market": "上市臺灣創新板",
+"name": "稜研科技*-創"
+},
+"7813": {
+"industry": "其他電子業",
+"market": "興櫃",
+"name": "宇辰系統"
+},
+"7814": {
+"industry": "生技醫療業",
+"market": "上櫃",
+"name": "海昌生技"
+},
+"7815": {
+"industry": "半導體業",
+"market": "興櫃",
+"name": "新特"
+},
+"7816": {
+"industry": "電子零組件業",
+"market": "興櫃",
+"name": "來穎"
+},
+"7818": {
+"industry": "綠能環保",
+"market": "上市",
+"name": "溢泰實業"
+},
+"7819": {
+"industry": "資訊服務業",
+"market": "上櫃",
+"name": "精誠金融"
+},
+"7820": {
+"industry": "綠能環保",
+"market": "上櫃",
+"name": "立盈"
+},
+"7821": {
+"industry": "汽車工業",
+"market": "上市",
+"name": "神數"
+},
+"7822": {
+"industry": "半導體業",
+"market": "上市",
+"name": "倍利科"
+},
+"7823": {
+"industry": "數位雲端",
+"market": "上市臺灣創新板",
+"name": "奧義賽博-KY創"
+},
+"7824": {
+"industry": "其他業",
+"market": "興櫃",
+"name": "智寶"
+},
+"7825": {
+"industry": "其他電子業",
+"market": "上櫃",
+"name": "和亞智慧"
+},
+"7826": {
+"industry": "數位雲端",
+"market": "興櫃",
+"name": "極風雲創"
+},
+"7827": {
+"industry": "生技醫療業",
+"market": "上市臺灣創新板",
+"name": "漢康-KY創"
+},
+"7828": {
+"industry": "半導體業",
+"market": "上櫃",
+"name": "創新服務"
+},
+"7829": {
+"industry": "生技醫療業",
+"market": "興櫃",
+"name": "思捷優達-KY"
+},
+"7831": {
+"industry": "居家生活",
+"market": "興櫃",
+"name": "捷博"
+},
+"7832": {
+"industry": "生技醫療業",
+"market": "興櫃",
+"name": "智新生技*"
+},
+"7833": {
+"industry": "綠能環保",
+"market": "興櫃",
+"name": "綠岩能源"
+},
+"7835": {
+"industry": "數位雲端",
+"market": "上市臺灣創新板",
+"name": "永悅健康-創"
+},
+"7836": {
+"industry": "其他業",
+"market": "興櫃",
+"name": "智生活"
+},
+"7837": {
+"industry": "生技醫療業",
+"market": "興櫃",
+"name": "啟新生"
+},
+"7839": {
+"industry": "數位雲端",
+"market": "上櫃",
+"name": "達人網"
+},
+"7840": {
+"industry": "農業科技業",
+"market": "興櫃",
+"name": "祥圃"
+},
+"7841": {
+"industry": "資訊服務業",
+"market": "興櫃",
+"name": "經貿聯網"
+},
+"7842": {
+"industry": "綠能環保",
+"market": "上櫃",
+"name": "天能綠電"
+},
+"7843": {
+"industry": "半導體業",
+"market": "興櫃",
+"name": "英柏得"
+},
+"7846": {
+"industry": "綠能環保",
+"market": "興櫃",
+"name": "德揚"
+},
+"7847": {
+"industry": "觀光餐旅",
+"market": "興櫃",
+"name": "豊漁"
+},
+"7848": {
+"industry": "其他電子業",
+"market": "興櫃",
+"name": "騏億鑫"
+},
+"7849": {
+"industry": "其他電子業",
+"market": "興櫃",
+"name": "旭誼"
+},
+"7850": {
+"industry": "生技醫療業",
+"market": "興櫃",
+"name": "寶泰生醫"
+},
+"7851": {
+"industry": "生技醫療業",
+"market": "興櫃",
+"name": "慧康生技*-KY"
+},
+"7853": {
+"industry": "半導體業",
+"market": "興櫃",
+"name": "政美應用"
+},
+"7854": {
+"industry": "電腦及週邊設備業",
+"market": "興櫃",
+"name": "佐茂"
+},
+"7855": {
+"industry": "其他業",
+"market": "上市",
+"name": "和運租車"
+},
+"7856": {
+"industry": "半導體業",
+"market": "上櫃",
+"name": "漢測"
+},
+"7857": {
+"industry": "綠能環保",
+"market": "興櫃",
+"name": "合水先進"
+},
+"7858": {
+"industry": "化學工業",
+"market": "興櫃",
+"name": "芝普"
+},
+"7860": {
+"industry": "生技醫療業",
+"market": "興櫃",
+"name": "得生製藥"
+},
+"7861": {
+"industry": "電子零組件業",
+"market": "興櫃",
+"name": "貝爾威勒"
+},
+"7862": {
+"industry": "紡織纖維",
+"market": "興櫃",
+"name": "聚泰"
+},
+"7863": {
+"industry": "航運業",
+"market": "興櫃",
+"name": "中科物流"
+},
+"7865": {
+"industry": "綠能環保",
+"market": "興櫃",
+"name": "金聯成"
+},
+"7866": {
+"industry": "半導體業",
+"market": "興櫃",
+"name": "丹立"
+},
+"7867": {
+"industry": "居家生活",
+"market": "興櫃",
+"name": "特力屋"
+},
+"7868": {
+"industry": "資訊服務業",
+"market": "興櫃",
+"name": "聖育"
+},
+"7869": {
+"industry": "電機機械",
+"market": "興櫃",
+"name": "宏于電機"
+},
+"7870": {
+"industry": "其他電子業",
+"market": "興櫃",
+"name": "聯剛科技"
+},
+"7871": {
+"industry": "生技醫療業",
+"market": "興櫃",
+"name": "安立璽榮-KY"
+},
+"7872": {
+"industry": "半導體業",
+"market": "興櫃",
+"name": "登豐"
+},
+"7873": {
+"industry": "半導體業",
+"market": "興櫃",
+"name": "瑞峰"
+},
+"7875": {
+"industry": "電腦及週邊設備業",
+"market": "興櫃",
+"name": "安圖斯"
+},
+"7876": {
+"industry": "生技醫療業",
+"market": "興櫃",
+"name": "鼎晉生技"
+},
+"7877": {
+"industry": "綠能環保",
+"market": "興櫃",
+"name": "海利普"
+},
+"7878": {
+"industry": "生技醫療業",
+"market": "興櫃",
+"name": "藥祇"
+},
+"7879": {
+"industry": "電機機械",
+"market": "興櫃",
+"name": "益材科技"
+},
+"7880": {
+"industry": "半導體業",
+"market": "興櫃",
+"name": "聖凰"
+},
+"7881": {
+"industry": "生技醫療業",
+"market": "興櫃",
+"name": "科明"
+},
+"7882": {
+"industry": "其他業",
+"market": "興櫃",
+"name": "倍利創投"
+},
+"7883": {
+"industry": "觀光餐旅",
+"market": "興櫃",
+"name": "饗賓"
+},
+"7885": {
+"industry": "其他電子業",
+"market": "興櫃",
+"name": "宏羚"
+},
+"7886": {
+"industry": "半導體業",
+"market": "興櫃",
+"name": "科建"
+},
+"7887": {
+"industry": "半導體業",
+"market": "興櫃",
+"name": "宇川精材"
+},
+"7888": {
+"industry": "生技醫療業",
+"market": "興櫃",
+"name": "麗寶新藥"
+},
+"7889": {
+"industry": "食品工業",
+"market": "興櫃",
+"name": "騰勢"
+},
+"7890": {
+"industry": "綠能環保",
+"market": "興櫃",
+"name": "明曜科技"
+},
+"7891": {
+"industry": "生技醫療業",
+"market": "興櫃",
+"name": "博研醫藥"
+},
+"7892": {
+"industry": "電腦及週邊設備業",
+"market": "興櫃",
+"name": "元鈦科"
+},
+"7893": {
+"industry": "電子零組件業",
+"market": "興櫃",
+"name": "睿信"
+},
+"7894": {
+"industry": "半導體業",
+"market": "興櫃",
+"name": "瀚軒"
+},
+"7895": {
+"industry": "農業科技業",
+"market": "興櫃",
+"name": "元進莊"
+},
+"7896": {
+"industry": "電子零組件業",
+"market": "興櫃",
+"name": "喬越"
+},
+"7897": {
+"industry": "綠能環保",
+"market": "興櫃",
+"name": "禾迅綠電"
+},
+"7898": {
+"industry": "半導體業",
+"market": "興櫃",
+"name": "乾瞻"
+},
+"7899": {
+"industry": "半導體業",
+"market": "興櫃",
+"name": "景美"
+},
+"7901": {
+"industry": "通信網路業",
+"market": "興櫃",
+"name": "大大寬頻"
+},
+"7902": {
+"industry": "生技醫療業",
+"market": "興櫃",
+"name": "宇越生醫*"
+},
+"7904": {
+"industry": "數位雲端",
+"market": "興櫃",
+"name": "任開數位"
+},
+"7907": {
+"industry": "其他電子業",
+"market": "興櫃",
+"name": "錸恩帕斯"
+},
+"7909": {
+"industry": "半導體業",
+"market": "興櫃",
+"name": "鈺祥"
+},
+"7911": {
+"industry": "綠能環保",
+"market": "興櫃",
+"name": "阿波羅電力"
+},
+"7912": {
+"industry": "電子零組件業",
+"market": "興櫃",
+"name": "新聿科"
+},
+"7913": {
+"industry": "半導體業",
+"market": "興櫃",
+"name": "通寶半導體"
+},
+"7914": {
+"industry": "綠能環保",
+"market": "興櫃",
+"name": "碩明綠能"
+},
+"7915": {
+"industry": "通信網路業",
+"market": "興櫃",
+"name": "廌家"
+},
+"7917": {
+"industry": "通信網路業",
+"market": "興櫃",
+"name": "源傑科技"
+},
+"7918": {
+"industry": "半導體業",
+"market": "興櫃",
+"name": "創鉅材料"
+},
+"7919": {
+"industry": "光電業",
+"market": "興櫃",
+"name": "禾蒼"
+},
+"7920": {
+"industry": "生技醫療業",
+"market": "興櫃",
+"name": "瀚陽*"
+},
+"7921": {
+"industry": "綠能環保",
+"market": "興櫃",
+"name": "台普威"
+},
+"7922": {
+"industry": "綠能環保",
+"market": "興櫃",
+"name": "源點*"
+},
+"7924": {
+"industry": "生技醫療業",
+"market": "興櫃",
+"name": "TLC-KY"
+},
+"7925": {
+"industry": "電機機械",
+"market": "興櫃",
+"name": "健生"
+},
+"7926": {
+"industry": "光電業",
+"market": "興櫃",
+"name": "中華立鼎"
+},
+"7927": {
+"industry": "電機機械",
+"market": "興櫃",
+"name": "連距電機"
+},
+"7928": {
+"industry": "通信網路業",
+"market": "興櫃",
+"name": "合聖科技*"
+},
+"7929": {
+"industry": "電腦及週邊設備業",
+"market": "興櫃",
+"name": "碩通"
+},
+"7930": {
+"industry": "通信網路業",
+"market": "興櫃",
+"name": "威世波"
+},
+"7931": {
+"industry": "綠能環保",
+"market": "興櫃",
+"name": "續升綠能"
+},
+"7932": {
+"industry": "電子零組件業",
+"market": "興櫃",
+"name": "昱鐳應材"
+},
+"7933": {
+"industry": "數位雲端",
+"market": "興櫃",
+"name": "威旭"
+},
+"7934": {
+"industry": "綠能環保",
+"market": "興櫃",
+"name": "鋒霈環境科技"
+},
+"7935": {
+"industry": "通信網路業",
+"market": "興櫃",
+"name": "安富"
+},
+"7936": {
+"industry": "電子零組件業",
+"market": "興櫃",
+"name": "寰聖"
+},
+"7939": {
+"industry": "電腦及週邊設備業",
+"market": "興櫃",
+"name": "技宸"
+},
+"7942": {
+"industry": "電機機械",
+"market": "興櫃",
+"name": "東佑達"
+},
+"7943": {
+"industry": "數位雲端",
+"market": "興櫃",
+"name": "鴻璟科技"
+},
+"7944": {
+"industry": "綠能環保",
+"market": "興櫃",
+"name": "睿禾金碳"
+},
+"7945": {
+"industry": "電腦及週邊設備業",
+"market": "興櫃",
+"name": "廣盛科技"
+},
+"7946": {
+"industry": "綠能環保",
+"market": "興櫃",
+"name": "廣騰"
+},
+"7947": {
+"industry": "半導體業",
+"market": "興櫃",
+"name": "補丁科"
+},
+"7949": {
+"industry": "建材營造業",
+"market": "興櫃",
+"name": "耀寬"
+},
+"7950": {
+"industry": "資訊服務業",
+"market": "興櫃",
+"name": "盛大資訊"
+},
+"7951": {
+"industry": "其他電子業",
+"market": "興櫃",
+"name": "大易橙"
+},
+"7954": {
+"industry": "半導體業",
+"market": "興櫃",
+"name": "鑫詮科技"
+},
+"7955": {
+"industry": "居家生活",
+"market": "興櫃",
+"name": "車麗屋"
+},
+"7956": {
+"industry": "半導體業",
+"market": "興櫃",
+"name": "啟賦"
+},
+"7957": {
+"industry": "電機機械",
+"market": "興櫃",
+"name": "第一傳動"
+},
+"8011": {
+"industry": "通信網路業",
+"market": "上市",
+"name": "台通"
+},
+"8016": {
+"industry": "半導體業",
+"market": "上市",
+"name": "矽創"
+},
+"8021": {
+"industry": "其他電子業",
+"market": "上市",
+"name": "尖點"
+},
+"8024": {
+"industry": "半導體業",
+"market": "上櫃",
+"name": "佑華"
+},
+"8027": {
+"industry": "電機機械",
+"market": "上櫃",
+"name": "鈦昇"
+},
+"8028": {
+"industry": "半導體業",
+"market": "上市",
+"name": "昇陽半導體"
+},
+"8032": {
+"industry": "電子通路業",
+"market": "上櫃",
+"name": "光菱"
+},
+"8033": {
+"industry": "其他業",
+"market": "上市",
+"name": "雷虎"
+},
+"8034": {
+"industry": "通信網路業",
+"market": "上櫃",
+"name": "榮群"
+},
+"8038": {
+"industry": "電子零組件業",
+"market": "上櫃",
+"name": "長園科"
+},
+"8039": {
+"industry": "電子零組件業",
+"market": "上市",
+"name": "台虹"
+},
+"8040": {
+"industry": "半導體業",
+"market": "上櫃",
+"name": "九暘"
+},
+"8042": {
+"industry": "電子零組件業",
+"market": "上櫃",
+"name": "金山電"
+},
+"8043": {
+"industry": "電子零組件業",
+"market": "上櫃",
+"name": "蜜望實"
+},
+"8044": {
+"industry": "數位雲端",
+"market": "上櫃",
+"name": "網家"
+},
+"8045": {
+"industry": "通信網路業",
+"market": "上市",
+"name": "達運光電"
+},
+"8046": {
+"industry": "電子零組件業",
+"market": "上市",
+"name": "南電"
+},
+"8047": {
+"industry": "其他電子業",
+"market": "上櫃",
+"name": "星雲"
+},
+"8048": {
+"industry": "通信網路業",
+"market": "上櫃",
+"name": "德勝"
+},
+"8049": {
+"industry": "光電業",
+"market": "上櫃",
+"name": "晶采"
+},
+"8050": {
+"industry": "電腦及週邊設備業",
+"market": "上櫃",
+"name": "廣積"
+},
+"8054": {
+"industry": "半導體業",
+"market": "上櫃",
+"name": "安國"
+},
+"8058": {
+"industry": "其他電子業",
+"market": "興櫃",
+"name": "耐特"
+},
+"8059": {
+"industry": "通信網路業",
+"market": "上櫃",
+"name": "凱碩"
+},
+"8064": {
+"industry": "光電業",
+"market": "上櫃",
+"name": "東捷"
+},
+"8066": {
+"industry": "居家生活",
+"market": "上櫃",
+"name": "來思達"
+},
+"8067": {
+"industry": "電子通路業",
+"market": "上櫃",
+"name": "志旭"
+},
+"8068": {
+"industry": "電子通路業",
+"market": "上櫃",
+"name": "全達"
+},
+"8069": {
+"industry": "光電業",
+"market": "上櫃",
+"name": "元太"
+},
+"8070": {
+"industry": "電子通路業",
+"market": "上市",
+"name": "長華*"
+},
+"8071": {
+"industry": "電子零組件業",
+"market": "上櫃",
+"name": "能率網通"
+},
+"8072": {
+"industry": "電子通路業",
+"market": "上市",
+"name": "陞泰"
+},
+"8074": {
+"industry": "電子零組件業",
+"market": "上櫃",
+"name": "鉅橡"
+},
+"8076": {
+"industry": "電腦及週邊設備業",
+"market": "上櫃",
+"name": "伍豐"
+},
+"8077": {
+"industry": "觀光餐旅",
+"market": "上櫃",
+"name": "洛碁"
+},
+"8080": {
+"industry": "建材營造業",
+"market": "上櫃",
+"name": "泰霖"
+},
+"8081": {
+"industry": "半導體業",
+"market": "上市",
+"name": "致新"
+},
+"8083": {
+"industry": "電機機械",
+"market": "上櫃",
+"name": "瑞穎"
+},
+"8084": {
+"industry": "電子通路業",
+"market": "上櫃",
+"name": "巨虹"
+},
+"8085": {
+"industry": "其他電子業",
+"market": "上櫃",
+"name": "福華"
+},
+"8086": {
+"industry": "半導體業",
+"market": "上櫃",
+"name": "宏捷科"
+},
+"8087": {
+"industry": "綠能環保",
+"market": "上櫃",
+"name": "麗升能源"
+},
+"8088": {
+"industry": "半導體業",
+"market": "上櫃",
+"name": "品安"
+},
+"8089": {
+"industry": "通信網路業",
+"market": "上櫃",
+"name": "康全電訊"
+},
+"8091": {
+"industry": "半導體業",
+"market": "上櫃",
+"name": "翔名"
+},
+"8092": {
+"industry": "其他電子業",
+"market": "上櫃",
+"name": "建暐"
+},
+"8093": {
+"industry": "電子零組件業",
+"market": "上櫃",
+"name": "保銳"
+},
+"8096": {
+"industry": "電子通路業",
+"market": "上櫃",
+"name": "擎亞"
+},
+"8097": {
+"industry": "通信網路業",
+"market": "上櫃",
+"name": "常珵"
+},
+"8098": {
+"industry": "半導體業",
+"market": "興櫃",
+"name": "慶康科技"
+},
+"8099": {
+"industry": "資訊服務業",
+"market": "上櫃",
+"name": "大世科"
+},
+"8101": {
+"industry": "通信網路業",
+"market": "上市",
+"name": "華冠"
+},
+"8102": {
+"industry": "半導體業",
+"market": "上櫃",
+"name": "傑霖科技"
+},
+"8103": {
+"industry": "電子零組件業",
+"market": "上市",
+"name": "瀚荃"
+},
+"8104": {
+"industry": "光電業",
+"market": "上市",
+"name": "錸寶"
+},
+"8105": {
+"industry": "光電業",
+"market": "上市",
+"name": "凌巨"
+},
+"8107": {
+"industry": "電機機械",
+"market": "上櫃",
+"name": "大億金茂"
+},
+"8109": {
+"industry": "電子零組件業",
+"market": "上櫃",
+"name": "博大"
+},
+"8110": {
+"industry": "半導體業",
+"market": "上市",
+"name": "華東"
+},
+"8111": {
+"industry": "光電業",
+"market": "上櫃",
+"name": "立碁"
+},
+"8112": {
+"industry": "電子通路業",
+"market": "上市",
+"name": "至上"
+},
+"8114": {
+"industry": "電腦及週邊設備業",
+"market": "上市",
+"name": "振樺電"
+},
+"8119": {
+"industry": "電腦及週邊設備業",
+"market": "興櫃",
+"name": "公信"
+},
+"8121": {
+"industry": "電子零組件業",
+"market": "上櫃",
+"name": "越峰"
+},
+"8131": {
+"industry": "半導體業",
+"market": "上市",
+"name": "福懋科"
+},
+"8147": {
+"industry": "電子零組件業",
+"market": "上櫃",
+"name": "正淩"
+},
+"8150": {
+"industry": "半導體業",
+"market": "上市",
+"name": "南茂"
+},
+"8155": {
+"industry": "電子零組件業",
+"market": "上櫃",
+"name": "博智"
+},
+"8162": {
+"industry": "半導體業",
+"market": "上市臺灣創新板",
+"name": "微矽電子-創"
+},
+"8163": {
+"industry": "電腦及週邊設備業",
+"market": "上市",
+"name": "達方"
+},
+"8171": {
+"industry": "綠能環保",
+"market": "上櫃",
+"name": "天宇"
+},
+"8176": {
+"industry": "通信網路業",
+"market": "上櫃",
+"name": "智捷"
+},
+"8182": {
+"industry": "電子零組件業",
+"market": "上櫃",
+"name": "加高"
+},
+"8201": {
+"industry": "其他電子業",
+"market": "上市",
+"name": "無敵"
+},
+"8210": {
+"industry": "電腦及週邊設備業",
+"market": "上市",
+"name": "勤誠"
+},
+"8213": {
+"industry": "電子零組件業",
+"market": "上市",
+"name": "志超"
+},
+"8215": {
+"industry": "光電業",
+"market": "上市",
+"name": "明基材"
+},
+"8222": {
+"industry": "電機機械",
+"market": "上市",
+"name": "寶一"
+},
+"8227": {
+"industry": "半導體業",
+"market": "上櫃",
+"name": "巨有科技"
+},
+"8234": {
+"industry": "電腦及週邊設備業",
+"market": "上櫃",
+"name": "新漢"
+},
+"8240": {
+"industry": "光電業",
+"market": "上櫃",
+"name": "華宏"
+},
+"8244": {
+"industry": "數位雲端",
+"market": "興櫃",
+"name": "DIGITIMES"
+},
+"8249": {
+"industry": "電子零組件業",
+"market": "上市",
+"name": "菱光"
+},
+"8255": {
+"industry": "電機機械",
+"market": "上櫃",
+"name": "朋程"
+},
+"8261": {
+"industry": "半導體業",
+"market": "上市",
+"name": "富鼎"
+},
+"8271": {
+"industry": "半導體業",
+"market": "上市",
+"name": "宇瞻"
+},
+"8272": {
+"industry": "資訊服務業",
+"market": "上櫃",
+"name": "全景軟體"
+},
+"8277": {
+"industry": "半導體業",
+"market": "上櫃",
+"name": "商丞"
+},
+"8279": {
+"industry": "生技醫療業",
+"market": "上櫃",
+"name": "生展"
+},
+"8284": {
+"industry": "資訊服務業",
+"market": "上櫃",
+"name": "三竹"
+},
+"8289": {
+"industry": "電子零組件業",
+"market": "上櫃",
+"name": "泰藝"
+},
+"8291": {
+"industry": "電子零組件業",
+"market": "上櫃",
+"name": "尚茂"
+},
+"8298": {
+"industry": "資訊服務業",
+"market": "興櫃",
+"name": "威睿"
+},
+"8299": {
+"industry": "半導體業",
+"market": "上櫃",
+"name": "群聯"
+},
+"8329": {
+"industry": "文化創意業",
+"market": "興櫃",
+"name": "台視"
+},
+"8341": {
+"industry": "綠能環保",
+"market": "上市",
+"name": "日友"
+},
+"8342": {
+"industry": "其他業",
+"market": "上櫃",
+"name": "益張"
+},
+"8345": {
+"industry": "農業科技業",
+"market": "興櫃",
+"name": "超秦"
+},
+"8349": {
+"industry": "鋼鐵工業",
+"market": "上櫃",
+"name": "恒耀"
+},
+"8354": {
+"industry": "其他業",
+"market": "上櫃",
+"name": "冠好"
+},
+"8358": {
+"industry": "電子零組件業",
+"market": "上櫃",
+"name": "金居"
+},
+"8359": {
+"industry": "觀光餐旅",
+"market": "興櫃",
+"name": "錢櫃"
+},
+"8367": {
+"industry": "航運業",
+"market": "上市",
+"name": "建新國際"
+},
+"8374": {
+"industry": "電機機械",
+"market": "上市",
+"name": "羅昇"
+},
+"8383": {
+"industry": "半導體業",
+"market": "上櫃",
+"name": "千附"
+},
+"8390": {
+"industry": "綠能環保",
+"market": "上櫃",
+"name": "金益鼎"
+},
+"8401": {
+"industry": "其他業",
+"market": "上櫃",
+"name": "白紗科"
+},
+"8403": {
+"industry": "生技醫療業",
+"market": "上櫃",
+"name": "盛弘"
+},
+"8404": {
+"industry": "其他業",
+"market": "上市",
+"name": "百和興業-KY"
+},
+"8409": {
+"industry": "生技醫療業",
+"market": "上櫃",
+"name": "商之器"
+},
+"8410": {
+"industry": "電腦及週邊設備業",
+"market": "上櫃",
+"name": "森田"
+},
+"8411": {
+"industry": "其他業",
+"market": "上市",
+"name": "福貞-KY"
+},
+"8415": {
+"industry": "鋼鐵工業",
+"market": "上櫃",
+"name": "大國鋼"
+},
+"8416": {
+"industry": "資訊服務業",
+"market": "上櫃",
+"name": "實威"
+},
+"8421": {
+"industry": "其他業",
+"market": "上櫃",
+"name": "旭源"
+},
+"8422": {
+"industry": "綠能環保",
+"market": "上市",
+"name": "可寧衛*"
+},
+"8423": {
+"industry": "綠能環保",
+"market": "上櫃",
+"name": "保綠-KY"
+},
+"8424": {
+"industry": "建材營造業",
+"market": "上櫃",
+"name": "惠普"
+},
+"8426": {
+"industry": "其他業",
+"market": "上櫃",
+"name": "紅木-KY"
+},
+"8429": {
+"industry": "貿易百貨業",
+"market": "上市",
+"name": "金麗-KY"
+},
+"8431": {
+"industry": "其他電子業",
+"market": "上櫃",
+"name": "匯鑽科"
+},
+"8432": {
+"industry": "生技醫療業",
+"market": "上櫃",
+"name": "東生華"
+},
+"8433": {
+"industry": "居家生活",
+"market": "上櫃",
+"name": "弘帆"
+},
+"8435": {
+"industry": "其他業",
+"market": "上櫃",
+"name": "鉅邁"
+},
+"8436": {
+"industry": "生技醫療業",
+"market": "上櫃",
+"name": "大江"
+},
+"8437": {
+"industry": "其他業",
+"market": "上櫃",
+"name": "大地-KY"
+},
+"8438": {
+"industry": "綠能環保",
+"market": "上市",
+"name": "昶昕"
+},
+"8440": {
+"industry": "綠能環保",
+"market": "上櫃",
+"name": "綠電"
+},
+"8442": {
+"industry": "其他業",
+"market": "上市",
+"name": "威宏-KY"
+},
+"8443": {
+"industry": "貿易百貨業",
+"market": "上市",
+"name": "阿瘦"
+},
+"8444": {
+"industry": "其他業",
+"market": "上櫃",
+"name": "綠河-KY"
+},
+"8446": {
+"industry": "文化創意業",
+"market": "上櫃",
+"name": "華研"
+},
+"8450": {
+"industry": "文化創意業",
+"market": "上櫃",
+"name": "霹靂"
+},
+"8454": {
+"industry": "數位雲端",
+"market": "上市",
+"name": "富邦媒"
+},
+"8455": {
+"industry": "其他電子業",
+"market": "上櫃",
+"name": "大拓-KY"
+},
+"8458": {
+"industry": "文化創意業",
+"market": "興櫃",
+"name": "影一"
+},
+"8462": {
+"industry": "運動休閒",
+"market": "上市",
+"name": "柏文"
+},
+"8463": {
+"industry": "其他業",
+"market": "上市",
+"name": "潤泰材"
+},
+"8464": {
+"industry": "居家生活",
+"market": "上市",
+"name": "億豐"
+},
+"8466": {
+"industry": "其他業",
+"market": "上市",
+"name": "美吉吉-KY"
+},
+"8467": {
+"industry": "運動休閒",
+"market": "上市",
+"name": "波力-KY"
+},
+"8472": {
+"industry": "數位雲端",
+"market": "上櫃",
+"name": "納維康"
+},
+"8473": {
+"industry": "綠能環保",
+"market": "上市",
+"name": "山林水"
+},
+"8476": {
+"industry": "綠能環保",
+"market": "上市",
+"name": "台境*"
+},
+"8477": {
+"industry": "數位雲端",
+"market": "上櫃",
+"name": "創業家"
+},
+"8478": {
+"industry": "運動休閒",
+"market": "上市",
+"name": "東哥遊艇"
+},
+"8481": {
+"industry": "其他業",
+"market": "上市",
+"name": "政伸"
+},
+"8482": {
+"industry": "居家生活",
+"market": "上市",
+"name": "商億-KY"
+},
+"8487": {
+"industry": "數位雲端",
+"market": "上市臺灣創新板",
+"name": "愛爾達-創"
+},
+"8488": {
+"industry": "其他業",
+"market": "上市",
+"name": "吉源-KY"
+},
+"8489": {
+"industry": "其他業",
+"market": "上櫃",
+"name": "三貝德"
+},
+"8499": {
+"industry": "其他電子業",
+"market": "上市",
+"name": "鼎炫-KY"
+},
+"8905": {
+"industry": "其他業",
+"market": "上櫃",
+"name": "裕國"
+},
+"8906": {
+"industry": "其他業",
+"market": "上櫃",
+"name": "花王"
+},
+"8908": {
+"industry": "油電燃氣業",
+"market": "上市",
+"name": "欣雄"
+},
+"8916": {
+"industry": "其他業",
+"market": "上櫃",
+"name": "光隆"
+},
+"8917": {
+"industry": "油電燃氣業",
+"market": "上櫃",
+"name": "欣泰"
+},
+"8921": {
+"industry": "其他業",
+"market": "上櫃",
+"name": "沈氏"
+},
+"8923": {
+"industry": "文化創意業",
+"market": "上櫃",
+"name": "時報"
+},
+"8924": {
+"industry": "運動休閒",
+"market": "上櫃",
+"name": "大田"
+},
+"8926": {
+"industry": "油電燃氣業",
+"market": "上市",
+"name": "台汽電"
+},
+"8927": {
+"industry": "油電燃氣業",
+"market": "上櫃",
+"name": "北基"
+},
+"8928": {
+"industry": "運動休閒",
+"market": "上櫃",
+"name": "鉅明"
+},
+"8929": {
+"industry": "其他業",
+"market": "上櫃",
+"name": "富堡"
+},
+"8930": {
+"industry": "鋼鐵工業",
+"market": "上櫃",
+"name": "青鋼"
+},
+"8931": {
+"industry": "油電燃氣業",
+"market": "上櫃",
+"name": "大汽電"
+},
+"8932": {
+"industry": "數位雲端",
+"market": "上櫃",
+"name": "智通*"
+},
+"8933": {
+"industry": "運動休閒",
+"market": "上櫃",
+"name": "愛地雅"
+},
+"8935": {
+"industry": "其他業",
+"market": "上櫃",
+"name": "邦泰"
+},
+"8936": {
+"industry": "其他業",
+"market": "上櫃",
+"name": "國統"
+},
+"8937": {
+"industry": "其他業",
+"market": "上櫃",
+"name": "合騏*"
+},
+"8938": {
+"industry": "運動休閒",
+"market": "上櫃",
+"name": "明安"
+},
+"8940": {
+"industry": "觀光餐旅",
+"market": "上市",
+"name": "新天地"
+},
+"8941": {
+"industry": "居家生活",
+"market": "上櫃",
+"name": "關中"
+},
+"8942": {
+"industry": "其他業",
+"market": "上櫃",
+"name": "森鉅"
+},
+"8996": {
+"industry": "電機機械",
+"market": "上市",
+"name": "高力"
+},
+"8999": {
+"industry": "其他業",
+"market": "興櫃",
+"name": "台灣積層"
+},
+"9802": {
+"industry": "運動休閒",
+"market": "上市",
+"name": "鈺齊-KY"
+},
+"9902": {
+"industry": "其他業",
+"market": "上市",
+"name": "台火"
+},
+"9904": {
+"industry": "運動休閒",
+"market": "上市",
+"name": "寶成"
+},
+"9905": {
+"industry": "其他業",
+"market": "上市",
+"name": "大華"
+},
+"9906": {
+"industry": "建材營造業",
+"market": "上市",
+"name": "欣巴巴"
+},
+"9907": {
+"industry": "其他業",
+"market": "上市",
+"name": "統一實"
+},
+"9908": {
+"industry": "油電燃氣業",
+"market": "上市",
+"name": "大台北"
+},
+"9910": {
+"industry": "運動休閒",
+"market": "上市",
+"name": "豐泰"
+},
+"9911": {
+"industry": "居家生活",
+"market": "上市",
+"name": "櫻花"
+},
+"9912": {
+"industry": "電腦及週邊設備業",
+"market": "上市",
+"name": "偉聯"
+},
+"9914": {
+"industry": "運動休閒",
+"market": "上市",
+"name": "美利達"
+},
+"9917": {
+"industry": "其他業",
+"market": "上市",
+"name": "中保科"
+},
+"9918": {
+"industry": "油電燃氣業",
+"market": "上市",
+"name": "欣天然"
+},
+"9919": {
+"industry": "其他業",
+"market": "上市",
+"name": "康那香"
+},
+"9921": {
+"industry": "運動休閒",
+"market": "上市",
+"name": "巨大"
+},
+"9924": {
+"industry": "居家生活",
+"market": "上市",
+"name": "福興"
+},
+"9925": {
+"industry": "其他業",
+"market": "上市",
+"name": "新保"
+},
+"9926": {
+"industry": "油電燃氣業",
+"market": "上市",
+"name": "新海"
+},
+"9927": {
+"industry": "其他業",
+"market": "上市",
+"name": "泰銘"
+},
+"9928": {
+"industry": "其他業",
+"market": "上市",
+"name": "中視"
+},
+"9929": {
+"industry": "其他業",
+"market": "上市",
+"name": "秋雨"
+},
+"9930": {
+"industry": "綠能環保",
+"market": "上市",
+"name": "中聯資源"
+},
+"9931": {
+"industry": "油電燃氣業",
+"market": "上市",
+"name": "欣高"
+},
+"9933": {
+"industry": "其他業",
+"market": "上市",
+"name": "中鼎"
+},
+"9934": {
+"industry": "居家生活",
+"market": "上市",
+"name": "成霖"
+},
+"9935": {
+"industry": "居家生活",
+"market": "上市",
+"name": "慶豐富"
+},
+"9937": {
+"industry": "油電燃氣業",
+"market": "上市",
+"name": "全國"
+},
+"9938": {
+"industry": "其他業",
+"market": "上市",
+"name": "百和"
+},
+"9939": {
+"industry": "其他業",
+"market": "上市",
+"name": "宏全"
+},
+"9940": {
+"industry": "其他業",
+"market": "上市",
+"name": "信義"
+},
+"9941": {
+"industry": "其他業",
+"market": "上市",
+"name": "裕融"
+},
+"9942": {
+"industry": "其他業",
+"market": "上市",
+"name": "茂順"
+},
+"9943": {
+"industry": "觀光餐旅",
+"market": "上市",
+"name": "好樂迪"
+},
+"9944": {
+"industry": "其他業",
+"market": "上市",
+"name": "新麗"
+},
+"9945": {
+"industry": "其他業",
+"market": "上市",
+"name": "潤泰新"
+},
+"9946": {
+"industry": "建材營造業",
+"market": "上市",
+"name": "三發地產"
+},
+"9949": {
+"industry": "文化創意業",
+"market": "上櫃",
+"name": "琉園"
+},
+"9950": {
+"industry": "塑膠工業",
+"market": "上櫃",
+"name": "萬國通"
+},
+"9951": {
+"industry": "電機機械",
+"market": "上櫃",
+"name": "皇田"
+},
+"9955": {
+"industry": "綠能環保",
+"market": "上市",
+"name": "佳龍"
+},
+"9957": {
+"industry": "鋼鐵工業",
+"market": "興櫃",
+"name": "燁聯"
+},
+"9958": {
+"industry": "鋼鐵工業",
+"market": "上市",
+"name": "世紀鋼"
+},
+"9960": {
+"industry": "運動休閒",
+"market": "上櫃",
+"name": "邁達康"
+},
+"9962": {
+"industry": "鋼鐵工業",
+"market": "上櫃",
+"name": "有益"
+}
+}
