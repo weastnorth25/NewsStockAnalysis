@@ -1,0 +1,183 @@
+{
+  "model_version": "vol-logreg-alltw-20260919",
+  "horizon_days": 3,
+  "recent_window": 3,
+  "compare_windows": [
+    5,
+    10,
+    20,
+    60
+  ],
+  "feature_names": [
+    "f5",
+    "f10",
+    "f20",
+    "f60"
+  ],
+  "scaler_mean": [
+    -0.2366780748858222,
+    -0.3834017829684507,
+    -0.4712415144853342,
+    -0.5644689963765097
+  ],
+  "scaler_scale": [
+    0.8961292890191388,
+    1.0802705253295912,
+    1.1500525401906725,
+    1.1993985071651212
+  ],
+  "coef": [
+    -0.16568196248220426,
+    -0.25751149776781473,
+    -0.36352176617688264,
+    -1.112823088001769
+  ],
+  "intercept": 0.13978070826849692,
+  "training": {
+    "universe": "台灣全部上市櫃股票(四位數代號)有資料者 1976 檔",
+    "train_end": "2024-05-14",
+    "n_train": 3725258,
+    "trained_on": "2026-09-19",
+    "excluded_by_illiquid_guard": {
+      "threshold": 0.5,
+      "rows": 85936
+    }
+  },
+  "evaluation": {
+    "test_scope": "台灣上市櫃股票",
+    "test_start": "2024-05-22",
+    "n_test": 1096944,
+    "accuracy": 0.7136,
+    "majority_baseline": 0.5028,
+    "rule_rv3_lt_rv20": 0.678,
+    "illiquid_guard": {
+      "threshold": 0.5,
+      "n_blocked_test": 5081,
+      "share_blocked_test": 0.0046,
+      "accuracy_if_forced": 0.6174
+    },
+    "by_group": {
+      "台灣50": {
+        "n_tickers": 50,
+        "n_test": 28081,
+        "accuracy": 0.7139,
+        "majority_baseline": 0.5008,
+        "mean_pred_expand": 0.4582,
+        "actual_expand_rate": 0.4992,
+        "strong_share": 0.4315,
+        "strong_accuracy": 0.8438
+      },
+      "上市其他": {
+        "n_tickers": 1036,
+        "n_test": 575923,
+        "accuracy": 0.7142,
+        "majority_baseline": 0.5022,
+        "mean_pred_expand": 0.4872,
+        "actual_expand_rate": 0.4978,
+        "strong_share": 0.4467,
+        "strong_accuracy": 0.8353
+      },
+      "上櫃": {
+        "n_tickers": 890,
+        "n_test": 492940,
+        "accuracy": 0.7129,
+        "majority_baseline": 0.5037,
+        "mean_pred_expand": 0.4972,
+        "actual_expand_rate": 0.4963,
+        "strong_share": 0.4658,
+        "strong_accuracy": 0.8284
+      }
+    },
+    "calibration": [
+      {
+        "range": "0.00-0.10",
+        "n": 7697,
+        "mean_pred": 0.0879,
+        "actual_rise_rate": 0.1267
+      },
+      {
+        "range": "0.10-0.20",
+        "n": 96877,
+        "mean_pred": 0.1586,
+        "actual_rise_rate": 0.143
+      },
+      {
+        "range": "0.20-0.30",
+        "n": 162761,
+        "mean_pred": 0.2516,
+        "actual_rise_rate": 0.2197
+      },
+      {
+        "range": "0.30-0.40",
+        "n": 175437,
+        "mean_pred": 0.3498,
+        "actual_rise_rate": 0.3367
+      },
+      {
+        "range": "0.40-0.45",
+        "n": 83656,
+        "mean_pred": 0.4247,
+        "actual_rise_rate": 0.4283
+      },
+      {
+        "range": "0.45-0.55",
+        "n": 152377,
+        "mean_pred": 0.4989,
+        "actual_rise_rate": 0.5168
+      },
+      {
+        "range": "0.55-0.60",
+        "n": 67993,
+        "mean_pred": 0.5746,
+        "actual_rise_rate": 0.6058
+      },
+      {
+        "range": "0.60-0.70",
+        "n": 118488,
+        "mean_pred": 0.6484,
+        "actual_rise_rate": 0.6868
+      },
+      {
+        "range": "0.70-0.80",
+        "n": 96861,
+        "mean_pred": 0.7482,
+        "actual_rise_rate": 0.7891
+      },
+      {
+        "range": "0.80-0.90",
+        "n": 76737,
+        "mean_pred": 0.8478,
+        "actual_rise_rate": 0.8781
+      },
+      {
+        "range": "0.90-1.00",
+        "n": 58060,
+        "mean_pred": 0.9513,
+        "actual_rise_rate": 0.943
+      }
+    ],
+    "by_signal_strength": {
+      "strong": {
+        "share": 0.4549,
+        "accuracy": 0.8323
+      },
+      "moderate": {
+        "share": 0.4062,
+        "accuracy": 0.6436
+      },
+      "weak": {
+        "share": 0.1389,
+        "accuracy": 0.5297
+      }
+    },
+    "out_of_universe": {},
+    "holdout": {
+      "file": "tickers_etf_holdout.txt",
+      "n_tickers": 19,
+      "n_test": 10723,
+      "accuracy": 0.6991,
+      "mean_pred_expand": 0.4742,
+      "actual_expand_rate": 0.498
+    }
+  }
+}
