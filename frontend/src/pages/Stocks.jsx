@@ -12,17 +12,8 @@ import useAsync from '../hooks/useAsync'
 import StockHeader from '../components/stock/StockHeader'
 import ProStock from '../components/stock/ProStock'
 import BeginnerStock from '../components/stock/BeginnerStock'
-import { PEER_COLORS, BENCH_STYLES } from '../components/stock/constants'
-
-// tooltip 顯示當天股價時的貨幣符號
-function currencyOf(ticker) {
-  if (ticker.startsWith('^')) return ''
-  if (ticker.endsWith('.TW')) return 'NT$'
-  if (ticker.endsWith('.KS')) return '₩'
-  if (ticker.endsWith('.HK')) return 'HK$'
-  if (ticker.endsWith('.CO')) return 'kr '
-  return 'US$'
-}
+import { buildPeerLines } from '../utils/peerLines'
+import usePeerSelection from '../hooks/usePeerSelection'
 
 export default function Stocks() {
   const { isPro } = useMode()
@@ -37,9 +28,13 @@ export default function Stocks() {
   const quote = useAsync(symbol, () => fetchStockInfo(toFullTicker(symbol)))
   const lastClose = quote.data?.current_price ?? mockStockDetail[symbol]?.close
   const history = useAsync(settled(quote) ? `${symbol}|${range}` : null, () => fetchHistory(symbol, range, lastClose))
+  // 同業：產業預設，或使用者在「國際同業對比」頁自選過的清單（兩頁共用）
   const peerSet = getPeers(symbol, quote.data?.industry_key)
-  const peers = useAsync(settled(history) && peerSet.peers.length ? `${symbol}|${range}|peers` : null,
-    () => fetchPeers(symbol, range, peerSet, lastClose))
+  const selection = usePeerSelection(symbol, peerSet.peers)
+  const chosen = { peers: selection.peers, benchmarks: peerSet.benchmarks }
+  const peerKey = chosen.peers.map((p) => p.ticker).join(',')
+  const peers = useAsync(settled(history) && chosen.peers.length ? `${symbol}|${range}|${peerKey}` : null,
+    () => fetchPeers(symbol, range, chosen, lastClose))
 
   // 財報、籌碼、法人績效（目前是示意資料，之後走資料庫，不經過 yfinance）
   const fund = useAsync(symbol, () => fetchFundamentals(symbol))
@@ -50,11 +45,7 @@ export default function Stocks() {
   const news = mockNews.filter((n) => n.relatedStocks?.includes(symbol))
 
   // 同業圖的線條設定：主角 → 同業 → 基準指數
-  const peerLines = peerSet.peers.length ? [
-    { ticker: toFullTicker(symbol), name, color: '#2563eb', width: 2.5, currency: 'NT$' },
-    ...peerSet.peers.map((p, i) => ({ ticker: p.ticker, name: p.name, color: PEER_COLORS[i % PEER_COLORS.length], width: 2, currency: currencyOf(p.ticker) })),
-    ...peerSet.benchmarks.map((b, i) => ({ ticker: b.ticker, name: b.name, color: BENCH_STYLES[i].color, dash: BENCH_STYLES[i].dash, width: 1.5, currency: '' })),
-  ] : []
+  const peerLines = buildPeerLines(symbol, name, chosen.peers, chosen.benchmarks)
 
   // ─── 自選股 ───
   const isGuest = localStorage.getItem('token') === 'guest'

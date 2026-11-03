@@ -31,10 +31,13 @@ export const fetchHistory = (symbol, range, lastClose) =>
   )
 
 // 國際同業：{ series: [{ ticker, name, currency, points: [{ date, close }] }] }，第一個是主角
+// 比較對象由前端決定（產業預設或使用者自選），用 ?peers=NVDA,AMD,^GSPC 傳給後端
 export const fetchPeers = (symbol, range, { peers, benchmarks }, lastClose) =>
   tryReal(
     'peers',
-    () => api.get(`/api/peers/${toFullTicker(symbol)}`, { params: { period: PERIODS[range] } }),
+    () => api.get(`/api/peers/${toFullTicker(symbol)}`, {
+      params: { period: PERIODS[range], peers: [...peers, ...benchmarks].map((p) => p.ticker).join(',') },
+    }),
     () => ({
       series: [
         { ticker: toFullTicker(symbol), name: symbol, points: mockHistory(symbol, lastClose ?? 100, range) },

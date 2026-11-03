@@ -65,28 +65,76 @@ const FUNDAMENTALS_2330 = {
   quarterlyEps: [7.8, 8.7, 9.6, 9.2, 10.4, 11.6, 12.5, 13.9],
 }
 
+// 回傳的欄位就是之後後端 /api/stock/{code}/financials 的格式
 export function mockFundamentals(code) {
-  if (code === '2330') return { ...FUNDAMENTALS_2330, quarters: quarterLabels() }
   const r = seededRandom('fund' + code)
-  const base = 1 + r() * 6
-  return {
-    pe: round1(8 + r() * 22),
-    peerPe: round1(12 + r() * 10),
-    eps4q: round1(base * 4),
-    epsYoY: Math.round(-20 + r() * 60),
-    revYoY: round1(-15 + r() * 50),
-    revStreak: Math.floor(r() * 8),
-    grossMargin: round1(8 + r() * 45),
-    grossMarginChg: round1(-2 + r() * 4),
-    opMargin: round1(3 + r() * 30),
-    roe: round1(4 + r() * 22),
-    quarterlyEps: Array.from({ length: 8 }, (_, i) => round1(base * (0.8 + i * 0.04 + r() * 0.3))),
-    quarters: quarterLabels(),
+  let f
+  if (code === '2330') {
+    f = { ...FUNDAMENTALS_2330, lastRevenue: 12620, shares: 259.3, pb: 7.1, dividendYield: 1.7 }
+  } else {
+    const base = 1 + r() * 6
+    f = {
+      pe: round1(8 + r() * 22),
+      peerPe: round1(12 + r() * 10),
+      epsYoY: Math.round(-20 + r() * 60),
+      revYoY: round1(-15 + r() * 50),
+      revStreak: Math.floor(r() * 8),
+      grossMargin: round1(8 + r() * 45),
+      grossMarginChg: round1(-2 + r() * 4),
+      opMargin: round1(3 + r() * 30),
+      roe: round1(4 + r() * 22),
+      quarterlyEps: Array.from({ length: 8 }, (_, i) => round1(base * (0.8 + i * 0.04 + r() * 0.3))),
+      lastRevenue: Math.round(80 + r() * 2500),
+      shares: round1(5 + r() * 120),
+      pb: round1(0.8 + r() * 4),
+      dividendYield: round1(1 + r() * 5),
+    }
+    f.eps4q = round1(f.quarterlyEps.slice(-4).reduce((s, v) => s + v, 0))
   }
+  return { ...f, quarters: quarterLabels(), quarterly: buildQuarterly(f, r), monthly: buildMonthly(f, r) }
 }
 
 function quarterLabels() {
   return ['24Q4', '25Q1', '25Q2', '25Q3', '25Q4', '26Q1', '26Q2', '26Q3']
+}
+
+// 每季明細：最後一季對齊上面的毛利率、營益率、EPS，往前每季微幅變動
+function buildQuarterly(f, r) {
+  const n = f.quarterlyEps.length
+  return f.quarterlyEps.map((eps, i) => {
+    const back = n - 1 - i
+    const last = i === n - 1
+    const prev = i === n - 2
+    const grossMargin = last ? f.grossMargin : prev ? round1(f.grossMargin - f.grossMarginChg) : round1(f.grossMargin + (r() - 0.6) * 3)
+    const opMargin = last ? f.opMargin : round1(f.opMargin + (r() - 0.55) * 3)
+    const revenue = Math.round(f.lastRevenue / Math.pow(1 + f.revYoY / 400, back) * (0.97 + r() * 0.06))
+    const netIncome = Math.round(eps * f.shares)
+    return {
+      q: quarterLabels()[i],
+      revenue,
+      grossMargin,
+      opMargin,
+      netMargin: round1((netIncome / revenue) * 100),
+      netIncome,
+      eps,
+      roe: last ? round1(f.roe / 4) : round1((f.roe / 4) * (0.85 + r() * 0.25)),
+    }
+  })
+}
+
+// 每月營收（近 12 個月）：月營收在次月 10 日前公布，所以「最新一個月」要看今天是幾號
+function buildMonthly(f, r) {
+  const now = new Date()
+  const latest = new Date(now.getFullYear(), now.getMonth() - (now.getDate() > 10 ? 1 : 2), 1)
+  const monthRev = f.lastRevenue / 3
+  const out = []
+  for (let i = 11; i >= 0; i--) {
+    const d = new Date(latest.getFullYear(), latest.getMonth() - i, 1)
+    const yoy = i === 0 ? f.revYoY : round1(f.revYoY + (r() - 0.5) * 16)
+    const revenue = Math.round(monthRev / Math.pow(1 + f.revYoY / 1200, i) * (0.93 + r() * 0.14))
+    out.push({ month: `${d.getFullYear()}-${String(d.getMonth() + 1).padStart(2, '0')}`, revenue, yoy })
+  }
+  return out.map((m, i) => ({ ...m, mom: i === 0 ? null : round1((m.revenue / out[i - 1].revenue - 1) * 100) }))
 }
 
 const round1 = (v) => Math.round(v * 10) / 10

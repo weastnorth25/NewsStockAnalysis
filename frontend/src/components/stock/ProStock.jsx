@@ -84,7 +84,7 @@ export default function ProStock({ d }) {
       </div>
 
       <Card className="p-5">
-        <CardTitle mock={d.peers.data?.isMock} link={<span className="text-xs text-gray-500">{d.industryLabel ?? ''}</span>}>
+        <CardTitle mock={d.peers.data?.isMock} link={<button type="button" onClick={() => navigate(`/peers?ticker=${d.symbol}`)} className="text-xs text-blue-600">調整比較對象</button>}>
           國際同業股價走勢（漲跌幅 %）
         </CardTitle>
         <p className="text-xs text-gray-500 -mt-1">以區間第一天為 0% 起點・與上方區間（{d.range}）連動・滑鼠移到圖上看當天股價</p>
@@ -111,7 +111,7 @@ export default function ProStock({ d }) {
 
       <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
         <Card>
-          <CardTitle mock={d.fund.data?.isMock}>財報摘要・每季 EPS</CardTitle>
+          <CardTitle mock={d.fund.data?.isMock} link={<button type="button" onClick={() => navigate(`/financials?ticker=${d.symbol}`)} className="text-xs text-blue-600">財報分析</button>}>財報摘要・每季 EPS</CardTitle>
           {f ? <EpsBarChart quarters={f.quarters} values={f.quarterlyEps} /> : <Loading />}
           {f && (
             <div className="grid grid-cols-3 gap-2 text-xs">

@@ -5,6 +5,7 @@ import {
 } from 'recharts'
 import { movingAverage, toPctRows } from '../../utils/series'
 import { fmtNum, fmtPct } from '../../utils/market'
+import { MARGIN_LINES } from './constants'
 
 const AXIS = { fontSize: 11, fill: '#6b7280' }
 const md = (iso) => `${Number(iso.slice(5, 7))}/${Number(iso.slice(8, 10))}`
@@ -120,6 +121,51 @@ export function EpsBarChart({ quarters, values, height = 150 }) {
           {rows.map((r, i) => <Cell key={r.q} fill={i === rows.length - 1 ? '#2563eb' : '#bfdbfe'} />)}
         </Bar>
       </BarChart>
+    </ResponsiveContainer>
+  )
+}
+
+// ─── 月營收（長條，左軸，億元）＋年增率（折線，右軸，%）──────────────
+export function MonthlyRevenueChart({ monthly, height = 240, showYoY = true }) {
+  const rows = monthly.map((m) => ({ ...m, label: `${Number(m.month.slice(5, 7))}月` }))
+  return (
+    <ResponsiveContainer width="100%" height={height}>
+      <ComposedChart data={rows} margin={{ top: 5, right: showYoY ? 0 : 8, left: 0, bottom: 0 }}>
+        <CartesianGrid stroke="#f3f4f6" vertical={false} />
+        <XAxis dataKey="label" tick={AXIS} tickLine={false} axisLine={false} />
+        <YAxis yAxisId="rev" tick={AXIS} tickLine={false} axisLine={false} width={52}
+          tickFormatter={(v) => v.toLocaleString('en-US', { maximumFractionDigits: 0 })} />
+        {showYoY && <YAxis yAxisId="yoy" orientation="right" tick={AXIS} tickLine={false} axisLine={false} width={44} tickFormatter={(v) => `${v}%`} />}
+        <Tooltip
+          content={({ active, payload }) => active && payload?.length ? (
+            <TooltipBox>
+              <span className="text-gray-400">{payload[0].payload.month}</span>
+              <span>營收 {payload[0].payload.revenue.toLocaleString()} 億</span>
+              <span>年增 {fmtPct(payload[0].payload.yoy, 1)}</span>
+              {payload[0].payload.mom != null && <span className="text-gray-300">月增 {fmtPct(payload[0].payload.mom, 1)}</span>}
+            </TooltipBox>
+          ) : null}
+        />
+        <Bar yAxisId="rev" dataKey="revenue" fill="#bfdbfe" radius={[3, 3, 0, 0]} />
+        {showYoY && <Line yAxisId="yoy" type="monotone" dataKey="yoy" stroke="#dc2626" strokeWidth={2} dot={{ r: 2.5 }} />}
+      </ComposedChart>
+    </ResponsiveContainer>
+  )
+}
+
+// ─── 三率走勢：毛利率、營業利益率、淨利率 ───────────────────────
+export function MarginTrendChart({ quarterly, height = 220 }) {
+  return (
+    <ResponsiveContainer width="100%" height={height}>
+      <LineChart data={quarterly} margin={{ top: 5, right: 8, left: 0, bottom: 0 }}>
+        <CartesianGrid stroke="#f3f4f6" vertical={false} />
+        <XAxis dataKey="q" tick={AXIS} tickLine={false} axisLine={false} />
+        <YAxis tick={AXIS} tickLine={false} axisLine={false} width={40} domain={['auto', 'auto']} tickFormatter={(v) => `${v}%`} />
+        <Tooltip formatter={(v, k) => [`${v}%`, MARGIN_LINES.find((m) => m.key === k)?.label ?? k]} />
+        {MARGIN_LINES.map((m) => (
+          <Line key={m.key} type="monotone" dataKey={m.key} stroke={m.color} strokeWidth={2} dot={{ r: 2.5 }} />
+        ))}
+      </LineChart>
     </ResponsiveContainer>
   )
 }

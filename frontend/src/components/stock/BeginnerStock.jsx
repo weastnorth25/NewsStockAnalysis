@@ -1,5 +1,4 @@
 // 個股・新手模式：AI 健檢燈號（附名詞解釋）→ 股價走勢一句話 → 大戶動向、跟國外對手比、這週要注意 → 白話新聞
-import { useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 import { changeClass, fmtPct, fmtNum } from '../../utils/market'
 import { buildChecks, buildSummary } from '../../utils/stockInsights'
@@ -8,37 +7,9 @@ import { SimplePriceChart, PeerChart } from './StockCharts'
 import { RangeTabs, MockBadge } from './StockHeader'
 import { RANGES_BEGINNER } from './constants'
 import MacroUpcomingCard from '../macro/MacroUpcomingCard'
+import TermTip from '../TermTip'
 
 const RANGE_WORD = { '1M': '1 個月', '3M': '3 個月', '6M': '6 個月', '1Y': '1 年' }
-
-// 名詞解釋：滑鼠移過去、Tab 到或點一下顯示
-function TermTip({ text }) {
-  const [hover, setHover] = useState(false)
-  const [pinned, setPinned] = useState(false)
-  const open = hover || pinned
-  return (
-    <span className="relative">
-      <button
-        type="button"
-        aria-label="名詞解釋"
-        aria-expanded={open}
-        onClick={() => setPinned((p) => !p)}
-        onMouseEnter={() => setHover(true)}
-        onMouseLeave={() => setHover(false)}
-        onFocus={() => setHover(true)}
-        onBlur={() => { setHover(false); setPinned(false) }}
-        className={`w-7 h-7 rounded-full border text-[13px] ${open ? 'bg-gray-900 text-white border-gray-900' : 'bg-white text-gray-600 border-gray-300'}`}
-      >
-        ?
-      </button>
-      {open && (
-        <span role="tooltip" className="absolute right-0 bottom-9 z-20 w-60 bg-gray-900 text-gray-100 text-xs leading-relaxed rounded-lg px-3 py-2.5 shadow-xl">
-          {text}
-        </span>
-      )}
-    </span>
-  )
-}
 
 const INST_LABELS = [
   ['foreign', '外資（國外大型基金）'],
