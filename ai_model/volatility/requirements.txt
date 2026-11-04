@@ -1,0 +1,5 @@
+# 版本與 backend/requirements.txt 相同;後端已經裝過就不用再裝
+numpy==2.0.2
+pandas==2.3.3
+# 只有 demo_predict.py 需要(後端本來就有)
+yfinance==1.2.0
