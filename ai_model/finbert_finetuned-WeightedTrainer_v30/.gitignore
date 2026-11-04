@@ -1,0 +1,4 @@
+*.bin
+*.safetensors
+*.pt
+*.pth
