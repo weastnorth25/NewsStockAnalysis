@@ -5,7 +5,7 @@
 
 from pydantic import BaseModel, EmailStr #輸入資料檢查
 from datetime import datetime
-#from typing import Optional #貼標籤
+from typing import Optional, List
 
 #從前端接收的資料(新建)
 class UserCreate(BaseModel):
@@ -55,3 +55,23 @@ class WatchlistItemWithPrice(BaseModel):
     current_price: float
     class Config:
         from_attributes = True
+
+class NewsItem(BaseModel):
+    id: int
+    title: str
+    summary: str
+    url: Optional[str] = None
+    source: Optional[str] = None
+    category: Optional[str] = None
+    category_score: Optional[float] = None
+    sentiment: Optional[str] = None
+    sentiment_score: Optional[float] = None
+    related_stocks: Optional[str] = None
+    published_at: Optional[datetime] = None
+
+class NewsListResponse(BaseModel):
+       status: str
+       total: int
+       limit: int
+       offset: int
+       data: List[NewsItem]

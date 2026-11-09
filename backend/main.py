@@ -1,8 +1,8 @@
 import os 
-
-from fastapi import FastAPI, HTTPException ,Request, Depends
+from typing import Optional
+from fastapi import FastAPI, HTTPException, Request, Depends, Query
 from fastapi.responses import JSONResponse
-from fastapi.security import HTTPBearer,HTTPAuthorizationCredentials #網頁及API的檢查及限制
+from fastapi.security import HTTPBearer,HTTPAuthorizationCredentials
 import yfinance as yf #導入yahoo股市股票資訊
 
 from database import engine , SessionLocal  #導入engine
@@ -296,64 +296,45 @@ def remove_from_watchlist(symbol:str,db:Session=Depends(get_db),current_user:mod
 
     return {"message":f"成功將{symbol}從自選清單中移除!"}
 
-'''======後期ai端完成新聞分析才做直接取用
-@app.get("/api/news")
-def get_news_from_db(db: Session = Depends(get_db)):
-    # 直接去 Supabase 撈最新的 20 筆新聞 (包含內文跟分析結果)
-    news_records = db.query(models.News).order_by(models.News.published_at.desc()).limit(20).all()
-    return {"status": "success", "data": news_records}
-'''
+@app.get("/api/news", response_model=schemas.NewsListResponse)
+def get_news_from_db(
+    category: Optional[str] = None,
+    source: Optional[str] = None,
+    q: Optional[str] = None,
+    stock: Optional[str] = None,
+    limit: int = Query(20, ge=1, le=100),
+    offset: int = Query(0, ge=0),
+    db: Session = Depends(get_db),
+):
+    query = db.query(models.News)
+    if category:
+        query = query.filter(models.News.category == category)
+    if source:
+        query = query.filter(models.News.source == source)
+    if q:
+        query = query.filter(models.News.title.ilike(f"%{q}%"))
+    if stock:
+        query = query.filter(models.News.related_stocks.ilike(f"%{stock}%"))
 
+    total = query.count()
+    rows = (query.order_by(models.News.published_at.desc())
+                 .offset(offset).limit(limit).all())
 
-#網路爬蟲 先自取
-@app.get("/api/news")
-def get_stock_news():
-    #爬蟲目標 改用google rss 新聞
-    url="https://news.google.com/rss/search?q=台股+when:1d&hl=zh-TW&gl=TW&ceid=TW:zh-Hant"
-    
-    #下為抓取非rss網站所需要之偽裝
-    '''
-    #機器人偽裝成真人，不然可能會被擋掉
-    headers = {
-        "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36"
-    }
-    '''
-
-    try:
-        response=requests.get(url) #發送請求抓html原始碼下來
-        response.raise_for_status() #如果沒抓到就跳error
-
-        root = ET.fromstring(response.text)
-        #soup=BeautifulSoup(response.text,'html.parser') #用BeautifulSoup 網頁解剖刀 分割
-        news_list=[]
-        
-        #links=soup.find_all("a",href=True) #找出所有帶有 href 的超連結
-        #items =item.find_all("item") #在rss中新聞會包在<item>裡
-
-
-
-        for item in root.findall(".//item"):
-            title=item.find("title").text
-            link=item.find("link").text
-            '''
-            if len(title) >20 and "/news/" in url_path:
-
-                #如果是相對路徑，就幫它補上主網域
-                if not url_path.startswith("http"):
-                    url_path="https://tw.stock.yahoo.com" + url_path
-            '''
-            news_list.append({
-                "title":title,
-                "link":link
-            })
-        
-            #先抓10則新聞
-            if len(news_list)>=20:  
-                break
-
-        return {"status": "success", "data": news_list}
-                
-
-    except:
-        return {"status": "error", "message": f"爬取新聞失敗：{str(e)}"}
-    
+    data = []
+    for n in rows:
+        text = (n.content or "").replace("\n", " ").strip()
+        data.append({
+            "id": n.id,
+            "title": n.title,
+            "summary": text[:120] + ("…" if len(text) > 120 else ""),
+            "url": n.url,
+            "source": n.source,
+            "category": n.category,
+            "category_score": n.category_score,
+            "sentiment": n.sentiment,
+            "sentiment_score": n.sentiment_score,
+            "related_stocks": n.related_stocks,
+            "published_at": n.published_at,
+        })
+    return {"status": "success", "total": total, "limit": limit,
+            "offset": offset, "data": data}

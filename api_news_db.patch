@@ -1,0 +1,172 @@
+diff --git a/backend/main.py b/backend/main.py
+index 7c4ce17..2c5cfc2 100644
+--- a/backend/main.py
++++ b/backend/main.py
+@@ -1,4 +1,5 @@
+-from fastapi import FastAPI, HTTPException ,Request, Depends
++from typing import Optional
++from fastapi import FastAPI, HTTPException ,Request, Depends, Query
+ from fastapi.responses import JSONResponse
+ from fastapi.security import HTTPBearer,HTTPAuthorizationCredentials #網頁及API的檢查及限制
+ import yfinance as yf #導入yahoo股市股票資訊
+@@ -290,64 +291,45 @@ def remove_from_watchlist(symbol:str,db:Session=Depends(get_db),current_user:mod
+ 
+     return {"message":f"成功將{symbol}從自選清單中移除!"}
+ 
+-'''======後期ai端完成新聞分析才做直接取用
+-@app.get("/api/news")
+-def get_news_from_db(db: Session = Depends(get_db)):
+-    # 直接去 Supabase 撈最新的 20 筆新聞 (包含內文跟分析結果)
+-    news_records = db.query(models.News).order_by(models.News.published_at.desc()).limit(20).all()
+-    return {"status": "success", "data": news_records}
+-'''
+-
+-
+-#網路爬蟲 先自取
+-@app.get("/api/news")
+-def get_stock_news():
+-    #爬蟲目標 改用google rss 新聞
+-    url="https://news.google.com/rss/search?q=台股+when:1d&hl=zh-TW&gl=TW&ceid=TW:zh-Hant"
+-    
+-    #下為抓取非rss網站所需要之偽裝
+-    '''
+-    #機器人偽裝成真人，不然可能會被擋掉
+-    headers = {
+-        "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36"
+-    }
+-    '''
+-
+-    try:
+-        response=requests.get(url) #發送請求抓html原始碼下來
+-        response.raise_for_status() #如果沒抓到就跳error
+-
+-        root = ET.fromstring(response.text)
+-        #soup=BeautifulSoup(response.text,'html.parser') #用BeautifulSoup 網頁解剖刀 分割
+-        news_list=[]
+-        
+-        #links=soup.find_all("a",href=True) #找出所有帶有 href 的超連結
+-        #items =item.find_all("item") #在rss中新聞會包在<item>裡
+-
+-
+-
+-        for item in root.findall(".//item"):
+-            title=item.find("title").text
+-            link=item.find("link").text
+-            '''
+-            if len(title) >20 and "/news/" in url_path:
+-
+-                #如果是相對路徑，就幫它補上主網域
+-                if not url_path.startswith("http"):
+-                    url_path="https://tw.stock.yahoo.com" + url_path
+-            '''
+-            news_list.append({
+-                "title":title,
+-                "link":link
+-            })
+-        
+-            #先抓10則新聞
+-            if len(news_list)>=20:  
+-                break
+-
+-        return {"status": "success", "data": news_list}
+-                
+-
+-    except:
+-        return {"status": "error", "message": f"爬取新聞失敗：{str(e)}"}
+-    
+\ No newline at end of file
++#新聞：從 Supabase 讀取（爬蟲 crawl_news.py 負責寫入）
++@app.get("/api/news", response_model=schemas.NewsListResponse)
++def get_news_from_db(
++    category: Optional[str] = None,   # 例：科技半導體
++    source: Optional[str] = None,     # yahoo / ltn / cna
++    q: Optional[str] = None,          # 標題關鍵字
++    stock: Optional[str] = None,      # 股票代號，例：2330（比對 related_stocks）
++    limit: int = Query(20, ge=1, le=100),
++    offset: int = Query(0, ge=0),
++    db: Session = Depends(get_db),
++):
++    query = db.query(models.News)
++    if category:
++        query = query.filter(models.News.category == category)
++    if source:
++        query = query.filter(models.News.source == source)
++    if q:
++        query = query.filter(models.News.title.ilike(f"%{q}%"))
++    if stock:
++        query = query.filter(models.News.related_stocks.ilike(f"%{stock}%"))
++
++    total = query.count()
++    rows = (query.order_by(models.News.published_at.desc())
++                 .offset(offset).limit(limit).all())
++
++    data = []
++    for n in rows:
++        text = (n.content or "").replace("\n", " ").strip()
++        data.append({
++            "id": n.id,
++            "title": n.title,
++            "summary": text[:120] + ("…" if len(text) > 120 else ""),
++            "url": n.url,
++            "source": n.source,
++            "category": n.category,
++            "category_score": n.category_score,
++            "sentiment": n.sentiment,
++            "sentiment_score": n.sentiment_score,
++            "related_stocks": n.related_stocks,
++            "published_at": n.published_at,
++        })
++    return {"status": "success", "total": total, "limit": limit, "offset": offset, "data": data}
+diff --git a/backend/models.py b/backend/models.py
+index 8d88084..dac69f0 100644
+--- a/backend/models.py
++++ b/backend/models.py
+@@ -78,6 +78,10 @@ class News(Base):
+     sentiment_score=Column(Float) #ai情緒分
+     related_stocks=Column(String) #存放關聯股的代號
+     published_at=Column(DateTime,default=datetime.utcnow) #新聞時間
++    category=Column(String(20))       # 分類結果，如 科技半導體
++    category_score=Column(Float)      # 分類信心分數
++    sentiment=Column(String(20))      # 情緒標籤
++    source=Column(String(30))         # yahoo / ltn / cna ...
+ 
+ class AiChatSession(Base):
+     __tablename__="ai_chat_session"
+diff --git a/backend/schemas.py b/backend/schemas.py
+index f6da0e3..ce86f14 100644
+--- a/backend/schemas.py
++++ b/backend/schemas.py
+@@ -5,6 +5,7 @@
+ 
+ from pydantic import BaseModel, EmailStr #輸入資料檢查
+ from datetime import datetime
++from typing import Optional, List
+ #from typing import Optional #貼標籤
+ 
+ #從前端接收的資料(新建)
+@@ -55,3 +56,25 @@ class WatchlistItemWithPrice(BaseModel):
+     current_price: float
+     class Config:
+         from_attributes = True
++
++
++# 新聞列表（只給摘要 + 原文連結，不回傳全文）
++class NewsItem(BaseModel):
++    id: int
++    title: str
++    summary: str
++    url: Optional[str] = None
++    source: Optional[str] = None
++    category: Optional[str] = None
++    category_score: Optional[float] = None
++    sentiment: Optional[str] = None
++    sentiment_score: Optional[float] = None
++    related_stocks: Optional[str] = None
++    published_at: Optional[datetime] = None
++
++class NewsListResponse(BaseModel):
++    status: str
++    total: int
++    limit: int
++    offset: int
++    data: List[NewsItem]
