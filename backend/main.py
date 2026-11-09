@@ -38,7 +38,7 @@ class UTF8JsonResponse(JSONResponse):
 #=====全域變數=====
 pwd_context = CryptContext(schemes=["bcrypt"], deprecated="auto") #schemes 機制 
 
-SECRET_KEY=os.getenv("SECRET_KEY") #因測試先寫死，之後藏到環境變數裡
+SECRET_KEY=os.getenv("SECRET_KEY")
 if not SECRET_KEY:
     raise RuntimeError("SECRET_KEY 未設定")
 
@@ -337,4 +337,34 @@ def get_news_from_db(
         })
     return {"status": "success", "total": total, "limit": limit,
             "offset": offset, "data": data}
-            
+
+@app.get("/api/summaries", response_model=schemas.AiSummaryListResponse)
+def get_ai_summaries(
+    scope: Optional[str] = None,
+    summary_type: Optional[str] = None,
+    ref: Optional[str] = None,
+    limit: int = Query(20, ge=1, le=100),
+    db: Session = Depends(get_db),
+):
+    query = db.query(models.AiSummary)
+    if scope:
+        query = query.filter(models.AiSummary.scope == scope)
+    if summary_type:
+        query = query.filter(models.AiSummary.summary_type == summary_type)
+    if ref:
+        query = query.filter(models.AiSummary.ref == ref)
+
+    rows = query.order_by(models.AiSummary.created_at.desc()).all()
+
+    # 同一組 scope + summary_type + ref 可能有多筆(重跑或換 prompt 版本),只留最新一筆
+    seen = set()
+    latest = []
+    for r in rows:
+        key = (r.scope, r.summary_type, r.ref)
+        if key in seen:
+            continue
+        seen.add(key)
+        latest.append(r)
+    latest = latest[:limit]
+
+    return {"status": "success", "total": len(latest), "data": latest}

@@ -75,3 +75,21 @@ class NewsListResponse(BaseModel):
        limit: int
        offset: int
        data: List[NewsItem]
+
+class AiSummaryItem(BaseModel):
+    id: int
+    scope: Optional[str] = None
+    summary_type: Optional[str] = None
+    ref: Optional[str] = None
+    summary_text: str
+    model_name: Optional[str] = None
+    prompt_version: Optional[str] = None
+    created_at: Optional[datetime] = None
+
+    class Config:
+        from_attributes = True
+
+class AiSummaryListResponse(BaseModel):
+    status: str
+    total: int
+    data: List[AiSummaryItem]

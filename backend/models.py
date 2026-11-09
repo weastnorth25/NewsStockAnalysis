@@ -5,7 +5,7 @@ ERD 轉 資料庫結構
 
 
 
-from sqlalchemy import Column, Integer, String, DateTime, Text, Boolean, BigInteger, DECIMAL, ForeignKey, Float
+from sqlalchemy import Column, Integer, String, DateTime, Text, Boolean, BigInteger, DECIMAL, ForeignKey, Float, UniqueConstraint
 from datetime import datetime
 
 from database import Base #database.py
@@ -123,3 +123,24 @@ class AiSummary(Base):
     prompt_version = Column(String(10))           # 哪版 prompt 產的
     input_snapshot = Column(JSONB)                # 當時餵給模型的原始數字
     created_at = Column(DateTime, default=datetime.utcnow)
+
+class MonthlyRevenue(Base):
+    __tablename__ = "monthly_revenue"
+
+    id = Column(Integer, primary_key=True, index=True)
+    symbol = Column(String(10), index=True)         # 公司代號,如 2330
+    company_name = Column(String(100))
+    industry = Column(String(50))                   # 產業別
+    market = Column(String(10), default="listed")   # listed 上市 / otc 上櫃(之後補)
+    year_month = Column(String(7), index=True)      # 統一成 2026-09
+    revenue = Column(BigInteger)                    # 當月營收,單位:千元
+    revenue_prev_month = Column(BigInteger)         # 上月營收,千元
+    revenue_year_ago = Column(BigInteger)           # 去年當月營收,千元
+    remark = Column(Text)                           # 官方備註
+    report_date = Column(String(10))                # 官方出表日期,保留原始值
+    source = Column(String(30), default="twse_openapi")
+    fetched_at = Column(DateTime, default=datetime.utcnow)
+
+    __table_args__ = (
+        UniqueConstraint("symbol", "year_month", name="uq_monthly_revenue_symbol_month"),
+    )
