@@ -21,7 +21,6 @@ import requests
 import xml.etree.ElementTree as ET #解析網頁xml
 
 
-
 #把models的數據轉出來
 models.Base.metadata.create_all(bind=engine)
 
@@ -338,3 +337,4 @@ def get_news_from_db(
         })
     return {"status": "success", "total": total, "limit": limit,
             "offset": offset, "data": data}
+            

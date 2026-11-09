@@ -10,6 +10,8 @@ from datetime import datetime
 
 from database import Base #database.py
 
+from sqlalchemy.dialects.postgresql import JSONB
+
 class User(Base):
     __tablename__="user"
 
@@ -78,7 +80,7 @@ class News(Base):
     sentiment_score=Column(Float) #ai情緒分
     related_stocks=Column(String) #存放關聯股的代號
     published_at=Column(DateTime,default=datetime.utcnow) #新聞時間
-    
+
     category = Column(String(20))        # 分類結果，如 科技半導體
     category_score = Column(Float)       # 分類信心分數
     sentiment = Column(String(20))       # 情緒標籤（匯入 xlsx 用，爬蟲暫不填）
@@ -108,3 +110,16 @@ class Watchlist(Base):
     id = Column(Integer, primary_key=True, index=True)
     user_id = Column(Integer, ForeignKey("user.id")) 
     symbol = Column(String, index=True)    # 股票代號
+
+class AiSummary(Base):
+    __tablename__ = "ai_summaries"
+
+    id = Column(Integer, primary_key=True, index=True)
+    scope = Column(String(20), index=True)       # market / industry / stock
+    summary_type = Column(String(30), index=True) # monthly_revenue / macro_event ...
+    ref = Column(String(50), index=True)          # 期間或事件代號,如 2026-09
+    summary_text = Column(Text, nullable=False)   # 模型寫的摘要
+    model_name = Column(String(50))               # 哪個模型產的
+    prompt_version = Column(String(10))           # 哪版 prompt 產的
+    input_snapshot = Column(JSONB)                # 當時餵給模型的原始數字
+    created_at = Column(DateTime, default=datetime.utcnow)
