@@ -18,7 +18,7 @@ def save_summary(db, result: dict) -> int | None:
     row = models.AiSummary(
         scope=snapshot.get("scope"),
         summary_type=snapshot.get("type"),
-        ref=snapshot["data"].get("period"),
+                ref=snapshot.get("ref") or snapshot["data"].get("period"),
         summary_text=result["summary_text"],
         model_name=result["model_name"],
         prompt_version=result["prompt_version"],
