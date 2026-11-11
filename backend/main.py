@@ -1,4 +1,5 @@
 import os 
+from market_aggregate import market_revenue_summary, revenue_by_industry, latest_revenue_month
 from typing import Optional
 from fastapi import FastAPI, HTTPException, Request, Depends, Query
 from fastapi.responses import JSONResponse
@@ -21,7 +22,6 @@ import requests
 import xml.etree.ElementTree as ET #解析網頁xml
 
 
-
 #把models的數據轉出來
 models.Base.metadata.create_all(bind=engine)
 
@@ -39,7 +39,7 @@ class UTF8JsonResponse(JSONResponse):
 #=====全域變數=====
 pwd_context = CryptContext(schemes=["bcrypt"], deprecated="auto") #schemes 機制 
 
-SECRET_KEY=os.getenv("SECRET_KEY") #因測試先寫死，之後藏到環境變數裡
+SECRET_KEY=os.getenv("SECRET_KEY")
 if not SECRET_KEY:
     raise RuntimeError("SECRET_KEY 未設定")
 
@@ -338,3 +338,56 @@ def get_news_from_db(
         })
     return {"status": "success", "total": total, "limit": limit,
             "offset": offset, "data": data}
+
+@app.get("/api/summaries", response_model=schemas.AiSummaryListResponse)
+def get_ai_summaries(
+    scope: Optional[str] = None,
+    summary_type: Optional[str] = None,
+    ref: Optional[str] = None,
+    limit: int = Query(20, ge=1, le=100),
+    db: Session = Depends(get_db),
+):
+    query = db.query(models.AiSummary)
+    if scope:
+        query = query.filter(models.AiSummary.scope == scope)
+    if summary_type:
+        query = query.filter(models.AiSummary.summary_type == summary_type)
+    if ref:
+        query = query.filter(models.AiSummary.ref == ref)
+
+    rows = query.order_by(models.AiSummary.created_at.desc()).all()
+
+    # 同一組 scope + summary_type + ref 可能有多筆(重跑或換 prompt 版本),只留最新一筆
+    seen = set()
+    latest = []
+    for r in rows:
+        key = (r.scope, r.summary_type, r.ref)
+        if key in seen:
+            continue
+        seen.add(key)
+        latest.append(r)
+    latest = latest[:limit]
+
+    return {"status": "success", "total": len(latest), "data": latest}
+
+@app.get("/api/market/revenue", response_model=schemas.MarketRevenueResponse)
+def get_market_revenue(year_month: Optional[str] = None, db: Session = Depends(get_db)):
+    """上市公司月營收合計與各產業拆解。不帶 year_month 就取最新一個月。金額單位:千元。"""
+    if not year_month:
+        year_month = latest_revenue_month(db)
+    if not year_month:
+        raise HTTPException(status_code=404, detail="目前沒有月營收資料")
+
+    agg = market_revenue_summary(db, year_month)
+    if agg is None:
+        raise HTTPException(status_code=404, detail=f"{year_month} 沒有月營收資料")
+
+    return {
+        "status": "success",
+        "data": {
+            **agg,
+            "scope": "listed",
+            "unit": "千元",
+            "industries": revenue_by_industry(db, year_month),
+        },
+    }

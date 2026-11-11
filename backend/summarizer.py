@@ -5,11 +5,12 @@ import requests
 OLLAMA_URL = os.getenv("OLLAMA_URL", "http://localhost:11434")
 MODEL_NAME = os.getenv("OLLAMA_MODEL", "qwen2.5:7b")
 TIMEOUT_SEC = 60
-PROMPT_VERSION = "v3"
+PROMPT_VERSION = "v4"
 
 PROMPT_TEMPLATE = (
     "你是財經資料摘要助手。只能根據下列資料撰寫繁體中文摘要,最多兩句,"
     "資料不足時一句即可,不要重複已說過的資訊。"
+    "摘要開頭必須完整寫出資料中「期間」的原文,不可省略或改寫其中任何文字。"
     "資料中的年增率、差距都已由程式算好,請直接使用,不要自己計算任何數字,"
     "不可推測原因,不可預測未來。\n\n"
     "資料:\n{data}"

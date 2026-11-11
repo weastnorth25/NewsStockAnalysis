@@ -75,3 +75,44 @@ class NewsListResponse(BaseModel):
        limit: int
        offset: int
        data: List[NewsItem]
+
+class AiSummaryItem(BaseModel):
+    id: int
+    scope: Optional[str] = None
+    summary_type: Optional[str] = None
+    ref: Optional[str] = None
+    summary_text: str
+    model_name: Optional[str] = None
+    prompt_version: Optional[str] = None
+    created_at: Optional[datetime] = None
+
+    class Config:
+        from_attributes = True
+
+class AiSummaryListResponse(BaseModel):
+    status: str
+    total: int
+    data: List[AiSummaryItem]
+
+class IndustryRevenue(BaseModel):
+    industry: str
+    companies: int
+    revenue_thousand: int
+    share_pct: float
+    yoy_pct: float
+    contribution_pts: float
+
+class MarketRevenueData(BaseModel):
+    year_month: str
+    scope: str
+    unit: str
+    reported_companies: int
+    comparable_companies: int
+    revenue_total_thousand: int
+    year_ago_total_thousand: int
+    yoy_pct: float
+    industries: List[IndustryRevenue]
+
+class MarketRevenueResponse(BaseModel):
+    status: str
+    data: MarketRevenueData
