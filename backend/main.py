@@ -1,4 +1,5 @@
 import os 
+from market_aggregate import market_revenue_summary, revenue_by_industry, latest_revenue_month
 from typing import Optional
 from fastapi import FastAPI, HTTPException, Request, Depends, Query
 from fastapi.responses import JSONResponse
@@ -368,3 +369,25 @@ def get_ai_summaries(
     latest = latest[:limit]
 
     return {"status": "success", "total": len(latest), "data": latest}
+
+@app.get("/api/market/revenue", response_model=schemas.MarketRevenueResponse)
+def get_market_revenue(year_month: Optional[str] = None, db: Session = Depends(get_db)):
+    """上市公司月營收合計與各產業拆解。不帶 year_month 就取最新一個月。金額單位:千元。"""
+    if not year_month:
+        year_month = latest_revenue_month(db)
+    if not year_month:
+        raise HTTPException(status_code=404, detail="目前沒有月營收資料")
+
+    agg = market_revenue_summary(db, year_month)
+    if agg is None:
+        raise HTTPException(status_code=404, detail=f"{year_month} 沒有月營收資料")
+
+    return {
+        "status": "success",
+        "data": {
+            **agg,
+            "scope": "listed",
+            "unit": "千元",
+            "industries": revenue_by_industry(db, year_month),
+        },
+    }

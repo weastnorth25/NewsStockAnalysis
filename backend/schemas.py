@@ -93,3 +93,26 @@ class AiSummaryListResponse(BaseModel):
     status: str
     total: int
     data: List[AiSummaryItem]
+
+class IndustryRevenue(BaseModel):
+    industry: str
+    companies: int
+    revenue_thousand: int
+    share_pct: float
+    yoy_pct: float
+    contribution_pts: float
+
+class MarketRevenueData(BaseModel):
+    year_month: str
+    scope: str
+    unit: str
+    reported_companies: int
+    comparable_companies: int
+    revenue_total_thousand: int
+    year_ago_total_thousand: int
+    yoy_pct: float
+    industries: List[IndustryRevenue]
+
+class MarketRevenueResponse(BaseModel):
+    status: str
+    data: MarketRevenueData
