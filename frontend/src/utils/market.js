@@ -37,3 +37,16 @@ export function calcSentiment(score) {
   if (score >= -2.0) return { label: '偏空', color: '#34d399', textClass: 'text-emerald-500', temp }
   return               { label: '大賣', color: '#059669', textClass: 'text-emerald-600', temp }
 }
+
+// ─── 新聞情緒分數（0～100）分級 ───────────────────────────────────
+// 跟市場強弱一樣紅＝樂觀、綠＝悲觀；40～60 算中性。bg/fg 給新手版色塊用（淺底深字，對比足夠）
+export const SENTIMENT_NEUTRAL = [40, 60]
+
+export function sentimentLevel(v) {
+  if (v == null) return { label: '--',     color: '#cbd5e1', textClass: 'text-gray-400',    bg: '#f3f4f6', fg: '#6b7280' }
+  if (v >= 75)   return { label: '很樂觀', color: '#dc2626', textClass: 'text-red-600',     bg: '#dc2626', fg: '#fff' }
+  if (v > 60)    return { label: '偏樂觀', color: '#f87171', textClass: 'text-red-500',     bg: '#fee2e2', fg: '#991b1b' }
+  if (v >= 40)   return { label: '中性',   color: '#94a3b8', textClass: 'text-slate-500',   bg: '#f1f5f9', fg: '#334155' }
+  if (v > 25)    return { label: '偏悲觀', color: '#34d399', textClass: 'text-emerald-600', bg: '#d1fae5', fg: '#065f46' }
+  return           { label: '很悲觀', color: '#059669', textClass: 'text-emerald-600', bg: '#059669', fg: '#fff' }
+}

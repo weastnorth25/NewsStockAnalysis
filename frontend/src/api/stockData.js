@@ -9,7 +9,7 @@ import {
 const PERIODS = { '1M': '1mo', '3M': '3mo', '6M': '6mo', '1Y': '1y' }
 const unavailable = new Set()
 
-async function tryReal(name, request, fallback) {
+export async function tryReal(name, request, fallback) {
   if (!unavailable.has(name)) {
     try {
       const res = await request()
