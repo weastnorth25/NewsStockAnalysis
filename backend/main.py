@@ -27,6 +27,7 @@ import requests
 #from bs4 import BeautifulSoup #yahoo
 import xml.etree.ElementTree as ET #解析網頁xml
 
+from stock_financials import build_financials
 
 #把models的數據轉出來
 models.Base.metadata.create_all(bind=engine)
@@ -516,3 +517,24 @@ def get_peers(ticker: str, period: str = "3mo", peers: str = ""):
             "points": [{"date": r["date"], "close": r["close"]} for r in rows],
         })
     return {"series": series}
+
+
+_financials_cache = TTLCache(maxsize=2000, ttl=6 * 3600)   # 財報一天變不了幾次,快取 6 小時
+
+
+@app.get("/api/stock/{code}/financials")
+def get_stock_financials(code: str, db: Session = Depends(get_db)):
+    """個股財報摘要:估值、近 8 季明細、近 12 個月營收。金額單位億元。"""
+    code = code.upper().replace(".TWO", "").replace(".TW", "")
+    if not re.fullmatch(r"[0-9A-Z]{4,6}", code):
+        raise HTTPException(status_code=422, detail="股票代號格式不正確")
+    if code in _financials_cache:
+        return _financials_cache[code]
+    try:
+        result = build_financials(code, db)
+    except LookupError:
+        raise HTTPException(status_code=404, detail="找不到該股票的財報資料，請確認代號是否正確。")
+    except Exception:
+        raise HTTPException(status_code=502, detail="暫時無法取得財報資料，請稍後再試。")
+    _financials_cache[code] = result
+    return result
