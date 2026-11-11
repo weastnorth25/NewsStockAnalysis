@@ -6,7 +6,7 @@ from fastapi.responses import JSONResponse
 from fastapi.security import HTTPBearer,HTTPAuthorizationCredentials
 import yfinance as yf #導入yahoo股市股票資訊
 
-from database import engine , SessionLocal  #導入engine
+from database import engine , SessionLocal  ##Í導入engine
 import models #database struct
 import schemas #接口
 from sqlalchemy.orm import Session
