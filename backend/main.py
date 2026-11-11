@@ -28,6 +28,7 @@ import requests
 import xml.etree.ElementTree as ET #解析網頁xml
 
 from stock_financials import build_financials
+from stock_institutional import build_institutional, build_performance
 
 #把models的數據轉出來
 models.Base.metadata.create_all(bind=engine)
@@ -537,4 +538,57 @@ def get_stock_financials(code: str, db: Session = Depends(get_db)):
     except Exception:
         raise HTTPException(status_code=502, detail="暫時無法取得財報資料，請稍後再試。")
     _financials_cache[code] = result
+    return result
+
+
+
+_institutional_cache = TTLCache(maxsize=2000, ttl=3600)        # 法人資料每天收盤後更新一次
+_institutional_perf_cache = TTLCache(maxsize=2000, ttl=24 * 3600)
+
+
+def _clean_code(code: str) -> str:
+    code = code.upper().replace(".TWO", "").replace(".TW", "")
+    if not re.fullmatch(r"[0-9A-Z]{4,6}", code):
+        raise HTTPException(status_code=422, detail="股票代號格式不正確")
+    return code
+
+
+@app.get("/api/stock/{code}/institutional")
+def get_stock_institutional(code: str, days: int = Query(10, ge=1, le=60)):
+    """近 N 個交易日三大法人買賣超,單位:張。"""
+    code = _clean_code(code)
+    key = (code, days)
+    if key in _institutional_cache:
+        return _institutional_cache[key]
+    try:
+        result = build_institutional(code, days)
+    except LookupError:
+        raise HTTPException(status_code=404, detail="找不到該股票的法人買賣資料，請確認代號是否正確。")
+    except Exception:
+        raise HTTPException(status_code=502, detail="暫時無法取得法人買賣資料，請稍後再試。")
+    _institutional_cache[key] = result
+    return result
+
+
+@app.get("/api/stock/{code}/institutional-performance")
+def get_stock_institutional_performance(code: str):
+    """法人買超日之後的股價表現(近 3 年統計)。"""
+    code = _clean_code(code)
+    if code in _institutional_perf_cache:
+        return _institutional_perf_cache[code]
+    try:
+        closes = {}
+        for suffix in (".TW", ".TWO"):   # 先試上市,沒有再試上櫃
+            series = yf.Ticker(code + suffix).history(period="3y")["Close"].dropna()
+            if not series.empty:
+                closes = {idx.strftime("%Y-%m-%d"): float(v) for idx, v in series.items()}
+                break
+        if not closes:
+            raise LookupError(code)
+        result = build_performance(code, closes)
+    except LookupError:
+        raise HTTPException(status_code=404, detail="找不到該股票的資料，請確認代號是否正確。")
+    except Exception:
+        raise HTTPException(status_code=502, detail="暫時無法取得資料，請稍後再試。")
+    _institutional_perf_cache[code] = result
     return result
