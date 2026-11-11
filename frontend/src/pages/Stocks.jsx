@@ -1,4 +1,4 @@
-// 股票頁面（個股 dashboard）：左側股票列表，右側依選中股票顯示卡片網格
+// 股票頁面（個股 dashboard）：左側可收合的自選股抽屜，右側依選中股票顯示卡片網格
 // 專業模式 ProStock、新手模式 BeginnerStock；資料在這層依序載入（報價 → 歷史股價 → 同業），避免後端 yfinance 被並行請求鎖住
 import { useEffect, useState } from 'react'
 import { useSearchParams, useNavigate } from 'react-router-dom'
@@ -14,6 +14,7 @@ import ProStock from '../components/stock/ProStock'
 import BeginnerStock from '../components/stock/BeginnerStock'
 import { buildPeerLines } from '../utils/peerLines'
 import usePeerSelection from '../hooks/usePeerSelection'
+import WatchlistPanel, { WatchlistToggle } from '../components/stock/WatchlistPanel'
 
 export default function Stocks() {
   const { isPro } = useMode()
@@ -49,16 +50,22 @@ export default function Stocks() {
 
   // ─── 自選股 ───
   const isGuest = localStorage.getItem('token') === 'guest'
-  const [watchlistSymbols, setWatchlistSymbols] = useState(() => new Set())
+  // watchlist：[{ symbol, name }]，symbol 是 strip 掉 .TW 的顯示格式
+  const [watchlist, setWatchlist] = useState([])
+  const [watchlistStatus, setWatchlistStatus] = useState(isGuest ? 'guest' : 'loading')
+  const [watchlistOpen, setWatchlistOpen] = useState(false)
   const [watchlistBusy, setWatchlistBusy] = useState(false)
-  const inWatchlist = watchlistSymbols.has(symbol)
+  const inWatchlist = watchlist.some((s) => s.symbol === symbol)
 
   // 載入一次自選股清單（後端存的是 .TW 格式，前端統一 strip 後存）
   useEffect(() => {
     if (isGuest) return
     fetchWatchlist()
-      .then((items) => setWatchlistSymbols(new Set(items.map((i) => toDisplaySymbol(i.symbol)))))
-      .catch(() => {})
+      .then((items) => {
+        setWatchlist(items.map((i) => ({ symbol: toDisplaySymbol(i.symbol), name: i.company_name })))
+        setWatchlistStatus('ok')
+      })
+      .catch(() => setWatchlistStatus('error'))
   }, [isGuest])
 
   const toggleWatchlist = async () => {
@@ -66,10 +73,10 @@ export default function Stocks() {
     try {
       if (inWatchlist) {
         await removeFromWatchlist(toFullTicker(symbol))
-        setWatchlistSymbols((prev) => { const n = new Set(prev); n.delete(symbol); return n })
+        setWatchlist((prev) => prev.filter((s) => s.symbol !== symbol))
       } else {
         await addToWatchlist(toFullTicker(symbol))
-        setWatchlistSymbols((prev) => new Set(prev).add(symbol))
+        setWatchlist((prev) => [...prev, { symbol, name }])
       }
     } catch (err) {
       alert('操作失敗：' + (err.response?.data?.detail || err.message))
@@ -85,25 +92,20 @@ export default function Stocks() {
 
   return (
     <div className="flex flex-col gap-4">
-      <h1 className="text-2xl font-semibold text-gray-900">股票</h1>
+      <div className="flex items-center gap-3">
+        <h1 className="text-2xl font-semibold text-gray-900">股票</h1>
+        <WatchlistToggle open={watchlistOpen} count={watchlist.length} onToggle={() => setWatchlistOpen((o) => !o)} />
+      </div>
 
-      <div className="flex gap-4 items-start">
-        {/* 左側：股票清單 */}
-        <div className="w-36 shrink-0 bg-white rounded-xl border border-gray-200 overflow-hidden">
-          {mockStockList.map((stock) => (
-            <button
-              key={stock.symbol}
-              type="button"
-              onClick={() => navigate(`/stocks?ticker=${stock.symbol}`)}
-              className={`w-full text-left px-4 py-3 text-sm border-b border-gray-100 last:border-0 transition-colors ${
-                symbol === stock.symbol ? 'text-blue-600 font-semibold bg-blue-50' : 'text-gray-700 hover:bg-gray-50'
-              }`}
-            >
-              <p>{stock.symbol}</p>
-              <p className="text-xs text-gray-500 font-normal truncate">{stock.name}</p>
-            </button>
-          ))}
-        </div>
+      <div className="flex items-start">
+        {/* 左側：自選股抽屜（預設收合） */}
+        <WatchlistPanel
+          open={watchlistOpen}
+          items={watchlist}
+          status={watchlistStatus}
+          current={symbol}
+          onSelect={(code) => navigate(`/stocks?ticker=${code}`)}
+        />
 
         {/* 右側：個股 dashboard */}
         <div className="flex-1 min-w-0 flex flex-col gap-4">
