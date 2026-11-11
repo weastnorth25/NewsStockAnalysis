@@ -1,4 +1,4 @@
-// 首頁・專業模式（草稿 A）：KPI 列 → 加權指數走勢＋市場強弱／三大法人 → 新聞、漲跌幅排行、近期總經事件
+// 首頁・專業模式（草稿 A）：KPI 列 → 加權指數走勢＋市場強弱／三大法人 → 新聞情緒走勢 → 新聞、漲跌幅排行、近期總經事件
 import { useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 import { AreaChart, Area, XAxis, YAxis, Tooltip, CartesianGrid, ResponsiveContainer } from 'recharts'
@@ -6,6 +6,7 @@ import { changeClass, fmtPct, fmtNum, calcSentiment } from '../../utils/market'
 import { mockInstitutional, mockMovers, mockIndexHistory } from '../../data/homeMock'
 import { mockNews } from '../../data/mockData'
 import MacroUpcomingCard from '../macro/MacroUpcomingCard'
+import { SentimentTrendPro } from './SentimentTrend'
 
 const PRO_KPIS = [
   { ticker: '^TWII', label: '加權指數' },
@@ -152,6 +153,8 @@ export default function ProHome({ quotes, score }) {
         <IndexTrendCard quote={quotes['^TWII']} />
         <StrengthCard score={score} />
       </div>
+
+      <SentimentTrendPro lastClose={quotes['^TWII']?.data?.current_price} />
 
       <div className="grid grid-cols-1 lg:grid-cols-3 gap-4">
         <Card className="flex flex-col gap-2.5">
