@@ -13,7 +13,12 @@ from sqlalchemy.orm import Session
 from passlib.context import CryptContext
 
 import jwt
-from datetime import timedelta,datetime
+
+import sys
+from pathlib import Path
+from datetime import timedelta, datetime, time, timezone
+from cachetools import TTLCache
+
 
 from fastapi.middleware.cors import CORSMiddleware #CORS 跨域請求
 
@@ -391,3 +396,32 @@ def get_market_revenue(year_month: Optional[str] = None, db: Session = Depends(g
             "industries": revenue_by_industry(db, year_month),
         },
     }
+
+
+
+sys.path.insert(0, str(Path(__file__).resolve().parent.parent / "ai_model" / "volatility"))
+from volatility_model import predict_volatility
+
+_volatility_cache = TTLCache(maxsize=3000, ttl=3600)  # 同一檔股票 1 小時內不重抓
+_TAIPEI = timezone(timedelta(hours=8))
+
+
+@app.get("/api/stock/{ticker}/volatility")
+def get_stock_volatility(ticker: str):
+    if ticker in _volatility_cache:
+        return _volatility_cache[ticker]
+
+    closes = yf.Ticker(ticker).history(period="6mo", auto_adjust=True)["Close"]
+    if closes.empty:
+        raise HTTPException(status_code=404, detail="找不到該股票的交易資料，請確認代號是否正確。")
+
+    # 盤中最後一筆是跳動中的價格,不是收盤價,要去掉
+    now = datetime.now(_TAIPEI)
+    if closes.index[-1].date() == now.date() and now.time() < time(13, 35):
+        closes = closes.iloc[:-1]
+
+    result = predict_volatility(closes)
+    if result["status"] in ("insufficient_data", "invalid_data"):
+        raise HTTPException(status_code=422, detail=result["message"])
+    _volatility_cache[ticker] = result
+    return result
