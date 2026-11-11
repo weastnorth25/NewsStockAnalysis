@@ -1,4 +1,5 @@
 import os 
+import re
 from market_aggregate import market_revenue_summary, revenue_by_industry, latest_revenue_month
 from typing import Optional
 from fastapi import FastAPI, HTTPException, Request, Depends, Query
@@ -425,3 +426,93 @@ def get_stock_volatility(ticker: str):
         raise HTTPException(status_code=422, detail=result["message"])
     _volatility_cache[ticker] = result
     return result
+_PERIODS = {"1mo", "3mo", "6mo", "1y"}
+_TICKER_RE = re.compile(r"^[A-Za-z0-9.^=\-]{1,15}$")
+_history_cache = TTLCache(maxsize=2000, ttl=600)   # 同一檔、同一區間 10 分鐘內不重抓
+
+
+def _currency_of(ticker: str) -> str:
+    if ticker.startswith("^"):
+        return ""
+    for suffix, cur in ((".TWO", "TWD"), (".TW", "TWD"), (".KS", "KRW"), (".HK", "HKD"), (".CO", "DKK"), (".T", "JPY")):
+        if ticker.endswith(suffix):
+            return cur
+    return "USD"
+
+
+def _load_history(ticker: str, period: str) -> list:
+    """抓每日股價,回傳 [{date, open, high, low, close, volume}]。台股成交量換算成「張」。"""
+    key = (ticker, period)
+    if key in _history_cache:
+        return _history_cache[key]
+
+    df = yf.Ticker(ticker).history(period=period)
+    if df.empty:
+        return []
+    df = df.dropna(subset=["Close"])
+    in_lots = ticker.endswith((".TW", ".TWO"))   # 台股 1 張 = 1000 股
+
+    rows = []
+    for r in df.itertuples():
+        vol = r.Volume if r.Volume == r.Volume else 0   # NaN 當 0
+        rows.append({
+            "date": r.Index.strftime("%Y-%m-%d"),
+            "open": round(float(r.Open), 2),
+            "high": round(float(r.High), 2),
+            "low": round(float(r.Low), 2),
+            "close": round(float(r.Close), 2),
+            "volume": int(vol // 1000) if in_lots else int(vol),
+        })
+    if rows:
+        _history_cache[key] = rows
+    return rows
+
+
+@app.get("/api/stock/{ticker}/history")
+def get_stock_history(ticker: str, period: str = "3mo"):
+    """歷史股價。period: 1mo / 3mo / 6mo / 1y。"""
+    if period not in _PERIODS:
+        raise HTTPException(status_code=422, detail="period 只接受 1mo、3mo、6mo、1y")
+    if not _TICKER_RE.match(ticker):
+        raise HTTPException(status_code=422, detail="股票代號格式不正確")
+    try:
+        rows = _load_history(ticker, period)
+    except Exception:
+        raise HTTPException(status_code=502, detail="暫時無法取得股價資料，請稍後再試。")
+    if not rows:
+        raise HTTPException(status_code=404, detail="找不到該股票的交易資料，請確認代號是否正確。")
+    return rows
+
+
+@app.get("/api/peers/{ticker}")
+def get_peers(ticker: str, period: str = "3mo", peers: str = ""):
+    """同業比較。peers 用逗號分隔,例如 ?peers=NVDA,AMD,^GSPC。第一條線是主角。"""
+    if period not in _PERIODS:
+        raise HTTPException(status_code=422, detail="period 只接受 1mo、3mo、6mo、1y")
+    if not _TICKER_RE.match(ticker):
+        raise HTTPException(status_code=422, detail="股票代號格式不正確")
+
+    tickers = [ticker]
+    for p in peers.split(","):
+        p = p.strip()
+        if p and p not in tickers and _TICKER_RE.match(p):
+            tickers.append(p)
+    tickers = tickers[:9]   # 主角 + 最多 8 個比較對象
+
+    series = []
+    for i, t in enumerate(tickers):
+        try:
+            rows = _load_history(t, period)
+        except Exception:
+            rows = []
+        if not rows:
+            if i == 0:
+                raise HTTPException(status_code=404, detail="找不到該股票的交易資料，請確認代號是否正確。")
+            continue   # 某個比較對象抓不到就略過,不讓整張圖失敗
+        series.append({
+            "ticker": t,
+            "name": t,
+            "currency": _currency_of(t),
+            "points": [{"date": r["date"], "close": r["close"]} for r in rows],
+        })
+    return {"series": series}
