@@ -30,6 +30,10 @@ import xml.etree.ElementTree as ET #解析網頁xml
 from stock_financials import build_financials
 from stock_institutional import build_institutional, build_performance
 
+from datetime import date
+from macro_events import to_frontend
+
+
 #把models的數據轉出來
 models.Base.metadata.create_all(bind=engine)
 
@@ -592,3 +596,51 @@ def get_stock_institutional_performance(code: str):
         raise HTTPException(status_code=502, detail="暫時無法取得資料，請稍後再試。")
     _institutional_perf_cache[code] = result
     return result
+
+
+_twii_cache = TTLCache(maxsize=1, ttl=6 * 3600)
+
+
+def _twii_closes():
+    """加權指數近 2 年收盤價:(交易日清單, {日期: 收盤價})。抓不到就回傳空的,事件照樣顯示。"""
+    if "v" in _twii_cache:
+        return _twii_cache["v"]
+    try:
+        series = yf.Ticker("^TWII").history(period="2y")["Close"].dropna()
+        closes = {idx.strftime("%Y-%m-%d"): float(v) for idx, v in series.items()}
+    except Exception:
+        closes = {}
+    value = (sorted(closes), closes)
+    if closes:
+        _twii_cache["v"] = value
+    return value
+
+
+@app.get("/api/macro/events")
+def get_macro_events(
+    start: Optional[date] = Query(None, alias="from"),
+    end: Optional[date] = Query(None, alias="to"),
+    db: Session = Depends(get_db),
+):
+    """總經日曆。不帶參數時回傳前 45 天到後 45 天的事件。時間是 UTC。"""
+    today = datetime.utcnow().date()
+    start = start or today - timedelta(days=45)
+    end = end or today + timedelta(days=45)
+
+    M = models.MacroEvent
+    events = (
+        db.query(M)
+        .filter(M.datetime_utc >= datetime.combine(start, time.min),
+                M.datetime_utc <= datetime.combine(end, time.max))
+        .order_by(M.datetime_utc)
+        .all()
+    )
+    if not events:
+        return []
+
+    history = {}
+    for h in db.query(M).filter(M.series.in_({e.series for e in events})).all():
+        history.setdefault(h.series, []).append(h)
+
+    days, closes = _twii_closes()
+    return [to_frontend(e, history.get(e.series, []), days, closes) for e in events]
