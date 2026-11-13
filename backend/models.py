@@ -144,3 +144,21 @@ class MonthlyRevenue(Base):
     __table_args__ = (
         UniqueConstraint("symbol", "year_month", name="uq_monthly_revenue_symbol_month"),
     )
+
+class MacroEvent(Base):
+    __tablename__ = "macro_events"
+
+    id = Column(String(60), primary_key=True)        # 例如 us-cpi-2026-10
+    series = Column(String(40), index=True)          # 同一種指標用同一個代號,例如 us-cpi
+    datetime_utc = Column(DateTime, index=True)      # 公布時間(UTC)
+    country = Column(String(4))                      # US / TW / JP
+    category = Column(String(10))                    # rate / cpi / job / econ / tw
+    importance = Column(String(10))                  # high / medium / low
+    name = Column(String(100))
+    short = Column(String(30))
+    expected = Column(String(40))                    # 預期值,可為空
+    previous = Column(String(40))                    # 前值
+    actual = Column(String(40))                      # 實際值,還沒公布就是空的
+    result = Column(String(40))                      # better / worse / inline,或文字如「降息 1 碼」
+    ai_summary = Column(Text)
+    updated_at = Column(DateTime, default=datetime.utcnow, onupdate=datetime.utcnow)
