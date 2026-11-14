@@ -28,8 +28,7 @@ import requests
 import xml.etree.ElementTree as ET #解析網頁xml
 
 from stock_financials import build_financials
-from stock_institutional import build_institutional, build_performance
-
+from stock_institutional import build_institutional, build_performance, build_signals
 from datetime import date
 from macro_events import to_frontend
 
@@ -671,3 +670,41 @@ def get_sentiment_trend(days: int = Query(22, ge=1, le=250), db: Session = Depen
         .all()
     )
     return _daily_sentiment(rows, days)
+
+_signals_cache = TTLCache(maxsize=500, ttl=24 * 3600)   # 訊號一天最多多一筆,快取一天
+_twii_3y_cache = TTLCache(maxsize=1, ttl=6 * 3600)
+
+
+def _closes_3y(ticker: str) -> dict:
+    """近 3 年收盤價 {日期: 價格};查無資料回傳空的。"""
+    df = yf.Ticker(ticker).history(period="3y")
+    if df.empty or "Close" not in df.columns:
+        return {}
+    return {idx.strftime("%Y-%m-%d"): float(v) for idx, v in df["Close"].dropna().items()}
+
+
+@app.get("/api/stock/{code}/institutional-signals")
+def get_stock_institutional_signals(code: str):
+    """三大法人「連續買超 3 日」訊號的逐筆明細與之後的報酬(近 3 年)。"""
+    code = _clean_code(code)
+    if code in _signals_cache:
+        return _signals_cache[code]
+    try:
+        closes = {}
+        for suffix in (".TW", ".TWO"):   # 先試上市,沒有再試上櫃
+            closes = _closes_3y(code + suffix)
+            if closes:
+                break
+        if not closes:
+            raise LookupError(code)
+        if "v" not in _twii_3y_cache:
+            twii = _closes_3y("^TWII")
+            if twii:                      # 抓不到大盤時不快取,下次再試
+                _twii_3y_cache["v"] = twii
+        result = build_signals(code, closes, _twii_3y_cache.get("v", {}))
+    except LookupError:
+        raise HTTPException(status_code=404, detail="找不到該股票的資料，請確認代號是否正確。")
+    except Exception:
+        raise HTTPException(status_code=502, detail="暫時無法取得資料，請稍後再試。")
+    _signals_cache[code] = result
+    return result

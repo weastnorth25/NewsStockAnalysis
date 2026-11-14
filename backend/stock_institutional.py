@@ -34,13 +34,34 @@ def daily_net(code: str, lookback_days: int) -> dict:
     return out
 
 
+def _field_by_date(dataset: str, code: str, start: str, field: str) -> dict:
+    """{日期: 某個欄位的值}。抓不到就回傳空的,不讓整支 API 失敗(這兩個欄位只是附加資訊)。"""
+    try:
+        return {r["date"]: r.get(field) for r in finmind(dataset, code, start)}
+    except Exception:
+        return {}
+
+
 def build_institutional(code: str, days: int = 10) -> list:
-    """近 N 個交易日三大法人買賣超(張):[{date, foreign, trust, dealer}]。查無資料丟 LookupError。"""
-    net = daily_net(code, lookback_days=days * 2 + 20)   # 多抓一些,扣掉假日後仍夠 N 個交易日
+    """
+    近 N 個交易日三大法人買賣超(張),加上外資持股比例與融資餘額:
+    [{date, foreign, trust, dealer, foreignRatio, margin}]。查無資料丟 LookupError。
+    foreignRatio:外資持股比例(%);margin:融資餘額(張)。當天沒有資料時為 None。
+    """
+    lookback = days * 2 + 20                     # 多抓一些,扣掉假日後仍夠 N 個交易日
+    net = daily_net(code, lookback_days=lookback)
     if not net:
         raise LookupError(code)
+    start = (date.today() - timedelta(days=lookback)).isoformat()
+    ratio = _field_by_date("TaiwanStockShareholding", code, start, "ForeignInvestmentSharesRatio")
+    margin = _field_by_date("TaiwanStockMarginPurchaseShortSale", code, start, "MarginPurchaseTodayBalance")
     return [
-        {"date": d, **{k: round(v / LOT) for k, v in net[d].items()}}
+        {
+            "date": d,
+            **{k: round(v / LOT) for k, v in net[d].items()},
+            "foreignRatio": ratio.get(d),
+            "margin": margin.get(d),
+        }
         for d in sorted(net)[-days:]
     ]
 
@@ -84,3 +105,67 @@ def build_performance(code: str, closes: dict) -> list:
             "baselineAvgReturn20d": base_ret,
         })
     return out
+
+
+HORIZONS = (1, 5, 10, 20, 60)   # 買進後第幾個交易日
+STREAK = 3                       # 連續買超幾日算一次訊號
+INVESTORS = ("foreign", "trust", "dealer")
+
+
+def find_signals(net: dict, key: str, streak: int = STREAK) -> list:
+    """
+    某類法人「連續買超 streak 日」的訊號:[(觸發日, 連續 streak 日的買超合計張數)]。
+    連買到第 streak 天時觸發;同一波連買只算一次,要等連買中斷後才能再觸發。
+    """
+    out, run = [], []
+    for d in sorted(net):
+        v = net[d][key]
+        if v > 0:
+            run.append(v)
+            if len(run) == streak:
+                out.append((d, round(sum(run) / LOT)))
+        else:
+            run = []
+    return out
+
+
+def _returns_after(day: str, days: list, pos: dict, prices: dict) -> dict:
+    """
+    day 收盤買進後,第 N 個交易日的報酬(%)。「第 N 個交易日」一律用個股的交易日(days)決定,
+    個股和大盤才會是同一段期間;還沒滿 N 天,或那天沒有價格,就是 None。
+    """
+    i = pos.get(day)
+    out = {}
+    for n in HORIZONS:
+        a = prices.get(day)
+        b = prices.get(days[i + n]) if i is not None and i + n < len(days) else None
+        out[str(n)] = round((b / a - 1) * 100, 1) if a and b else None
+    return out
+
+
+def build_signals(code: str, closes: dict, market: dict) -> dict:
+    """
+    近 3 年三大法人「連續買超 3 日」訊號的逐筆明細,第 3 天收盤買進。
+    closes:個股 {日期: 收盤價};market:加權指數 {日期: 收盤價}(抓不到可給空的)。
+    returns 是個股報酬、market 是同期加權指數報酬,單位 %。events 由新到舊。
+    """
+    net = daily_net(code, lookback_days=3 * 365 + 10)
+    if not net:
+        raise LookupError(code)
+    s_days = sorted(closes)
+    s_pos = {d: i for i, d in enumerate(s_days)}
+
+    events = []
+    for key in INVESTORS:
+        for d, amount in find_signals(net, key):
+            if d not in s_pos:          # 那天沒有股價(資料缺漏),無法計算報酬就略過
+                continue
+            events.append({
+                "investor": key,
+                "date": d,
+                "amount": amount,
+                "returns": _returns_after(d, s_days, s_pos, closes),
+                "market": _returns_after(d, s_days, s_pos, market),
+            })
+    events.sort(key=lambda e: (e["date"], e["investor"]), reverse=True)
+    return {"signal": f"連續買超 {STREAK} 日", "years": 3, "events": events}
