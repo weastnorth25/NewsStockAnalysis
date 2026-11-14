@@ -116,7 +116,7 @@ const STOCK_NAMES = {
  * @param {string} fallback 找不到時的備用值（通常是 API 回的英文名）
  */
 export function getStockName(symbol, fallback = '') {
-  const clean = symbol.replace(/\.TW$/i, '').toUpperCase()
+  const clean = symbol.replace(/\.TWO?$/i, '').toUpperCase()
   return STOCK_NAMES[clean] || fallback
 }
 

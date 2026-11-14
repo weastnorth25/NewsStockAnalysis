@@ -17,10 +17,36 @@ api.interceptors.request.use((config) => {
 
 const round2 = (v) => Math.round(v * 100) / 100
 
+// ─── 上市（.TW）／上櫃（.TWO）────────────────────────────────────
+// 只看代號分不出是上市還是上櫃，先當上市（.TW）查；查不到再試上櫃（.TWO），成功就記在瀏覽器，下次直接用 .TWO
+const OTC_KEY = 'otcSymbols'
+const otc = (() => {
+  try { return new Set(JSON.parse(localStorage.getItem(OTC_KEY)) ?? []) } catch { return new Set() }
+})()
+function rememberOtc(code) {
+  otc.add(code)
+  try { localStorage.setItem(OTC_KEY, JSON.stringify([...otc])) } catch { /* 存不了就只記在這次 */ }
+}
+
+// request(ticker) 失敗、而且 ticker 是「數字代號.TW」時，換成 .TWO 再試一次
+export async function withTwSuffix(ticker, request) {
+  try {
+    return await request(ticker)
+  } catch (err) {
+    const m = ticker.match(/^(\d[0-9A-Z]*)\.TW$/)
+    if (!m) throw err
+    const res = await request(`${m[1]}.TWO`)
+    rememberOtc(m[1])
+    return res
+  }
+}
+
 // 取得單一股票即時資訊
 // 即時報價 API 用到 yfinance 的 info，常被 Yahoo 限流（400）；失敗時改用歷史股價最後兩天的收盤價算出價格與漲跌
 // 回傳多兩個欄位：from_history（true 代表是收盤價，不是即時）、as_of（那天的日期）
-export const fetchStockInfo = async (ticker) => {
+export const fetchStockInfo = (ticker) => withTwSuffix(ticker, quoteOrLastClose)
+
+async function quoteOrLastClose(ticker) {
   try {
     const res = await api.get(`/api/stock/${ticker}`)
     return res.data
@@ -63,14 +89,13 @@ export const fetchCurrentUser = async () => {
   return res.data  // { id, username, email, created_at }
 }
 
-// 把顯示用 symbol 轉成 yfinance 完整 ticker（台股加 .TW，指數/美股原樣）
-// 後端目前不會自動加 .TW，所以前端統一補上後再送
+// 把顯示用 symbol 轉成 yfinance 完整 ticker：台股（數字開頭）加 .TW，已知是上櫃的加 .TWO，指數/美股原樣
+// 後端目前不會自動加後綴，所以前端統一補上後再送
 export const toFullTicker = (symbol) =>
-  symbol.includes('.') || symbol.startsWith('^') ? symbol : `${symbol}.TW`
+  /^\d[0-9A-Z]*$/.test(symbol) ? `${symbol}${otc.has(symbol) ? '.TWO' : '.TW'}` : symbol
 
-// 把後端回來的完整 ticker 轉成顯示用 symbol（strip .TW）
-export const toDisplaySymbol = (symbol) =>
-  symbol.endsWith('.TW') ? symbol.slice(0, -3) : symbol
+// 把後端回來的完整 ticker 轉成顯示用 symbol（去掉 .TW／.TWO）
+export const toDisplaySymbol = (symbol) => symbol.replace(/\.TWO?$/, '')
 
 // 取得使用者自選股（含即時價格）
 export const fetchWatchlist = async () => {

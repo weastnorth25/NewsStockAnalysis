@@ -1,4 +1,4 @@
-// 個股・專業模式（草稿 A）：KPI 列 → 股價＋成交量、AI 分析 → 國際同業走勢 → 財報、籌碼 → 新聞、法人績效（總經事件只放首頁）
+// 個股・專業模式（草稿 A）：KPI 列 → 股價＋成交量、AI 分析 → 國際同業走勢 → 財報、籌碼 → 新聞、波動預測、法人績效（總經事件只放首頁）
 import { useNavigate } from 'react-router-dom'
 import { changeClass, fmtPct, fmtUnit } from '../../utils/market'
 import { buildProsCons, streak } from '../../utils/stockInsights'
@@ -6,6 +6,7 @@ import { toPctRows } from '../../utils/series'
 import { PriceVolumeChart, PeerChart, EpsBarChart, InstitutionalBarChart } from './StockCharts'
 import { MockBadge } from './StockHeader'
 import { perfSummary } from '../../utils/perfStats'
+import VolatilityCard from './VolatilityCard'
 
 const Card = ({ className = '', children }) => (
   <div className={`bg-white rounded-xl border border-gray-200 p-4 min-w-0 flex flex-col gap-2.5 ${className}`}>{children}</div>
@@ -138,7 +139,7 @@ export default function ProStock({ d }) {
         </Card>
       </div>
 
-      <div className="grid grid-cols-1 lg:grid-cols-2 gap-4">
+      <div className="grid grid-cols-1 lg:grid-cols-3 gap-4">
         <Card>
           <CardTitle link={<button type="button" onClick={() => navigate('/news')} className="text-xs text-blue-600">全部新聞</button>}>相關新聞・情緒</CardTitle>
           {d.news.length === 0 && <p className="text-sm text-gray-400">尚無相關新聞</p>}
@@ -150,6 +151,8 @@ export default function ProStock({ d }) {
             </button>
           ))}
         </Card>
+
+        <VolatilityCard vol={d.vol} />
 
         <Card>
           <CardTitle mock={d.perf.data?.isMock} link={<button type="button" onClick={() => navigate(`/institutions?ticker=${d.symbol}`)} className="text-xs text-blue-600">法人績效</button>}>法人買超後績效（本股）</CardTitle>

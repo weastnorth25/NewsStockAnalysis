@@ -1,7 +1,8 @@
 // 個股 dashboard 用的資料 API：先呼叫後端，後端還沒做（404）或失敗就改用示意資料
-// 每支 API 一個工作階段只試一次，失敗後直接用示意資料，不會一直重打
+// 後端「沒有這支 API」（404 Not Found）時記下來，這個工作階段之後直接用示意資料，不會一直重打；
+// 其他失敗（某支股票查不到、暫時被限流）只影響這一次，換股票還會再試
 // 回傳 { data, isMock }，畫面依 isMock 顯示「示意」標籤
-import api, { toFullTicker } from './stock'
+import api, { toFullTicker, withTwSuffix } from './stock'
 import {
   mockHistory, mockFundamentals, mockInstitutional, mockChips, mockInstitutionalPerf, MOCK_LAST_CLOSE,
 } from '../data/stockMock'
@@ -14,8 +15,8 @@ export async function tryReal(name, request, fallback) {
     try {
       const res = await request()
       return { data: res.data, isMock: false }
-    } catch {
-      unavailable.add(name)
+    } catch (err) {
+      if (err.response?.status === 404 && err.response.data?.detail === 'Not Found') unavailable.add(name)
     }
   }
   return { data: fallback(), isMock: true }
@@ -26,7 +27,7 @@ export async function tryReal(name, request, fallback) {
 export const fetchHistory = (symbol, range, lastClose) =>
   tryReal(
     'history',
-    () => api.get(`/api/stock/${toFullTicker(symbol)}/history`, { params: { period: PERIODS[range] } }),
+    () => withTwSuffix(toFullTicker(symbol), (t) => api.get(`/api/stock/${t}/history`, { params: { period: PERIODS[range] } })),
     () => mockHistory(symbol, lastClose ?? 100, range),
   )
 
@@ -35,9 +36,9 @@ export const fetchHistory = (symbol, range, lastClose) =>
 export const fetchPeers = (symbol, range, { peers, benchmarks }, lastClose) =>
   tryReal(
     'peers',
-    () => api.get(`/api/peers/${toFullTicker(symbol)}`, {
+    () => withTwSuffix(toFullTicker(symbol), (t) => api.get(`/api/peers/${t}`, {
       params: { period: PERIODS[range], peers: [...peers, ...benchmarks].map((p) => p.ticker).join(',') },
-    }),
+    })),
     () => ({
       series: [
         { ticker: toFullTicker(symbol), name: symbol, points: mockHistory(symbol, lastClose ?? 100, range) },
@@ -67,7 +68,7 @@ export const fetchChips = (symbol, lastClose) =>
     async () => {
       const [inst, hist] = await Promise.all([
         api.get(`/api/stock/${symbol}/institutional`, { params: { days: 60 } }),
-        api.get(`/api/stock/${toFullTicker(symbol)}/history`, { params: { period: '3mo' } }),
+        withTwSuffix(toFullTicker(symbol), (t) => api.get(`/api/stock/${t}/history`, { params: { period: '3mo' } })),
       ])
       const closeOf = Object.fromEntries(hist.data.map((r) => [r.date, r.close]))
       const rows = inst.data.filter((r) => closeOf[r.date] != null).map((r) => ({ ...r, close: closeOf[r.date] }))
