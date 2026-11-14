@@ -1,6 +1,6 @@
 // 個股・專業模式（草稿 A）：KPI 列 → 股價＋成交量、AI 分析 → 國際同業走勢 → 財報、籌碼 → 新聞、總經、法人績效
 import { useNavigate } from 'react-router-dom'
-import { changeClass, fmtPct } from '../../utils/market'
+import { changeClass, fmtPct, fmtUnit } from '../../utils/market'
 import { buildProsCons, streak } from '../../utils/stockInsights'
 import { toPctRows } from '../../utils/series'
 import { PriceVolumeChart, PeerChart, EpsBarChart, InstitutionalBarChart } from './StockCharts'
@@ -49,10 +49,13 @@ export default function ProStock({ d }) {
   return (
     <div className="flex flex-col gap-4">
       <div className="grid grid-cols-[repeat(auto-fit,minmax(150px,1fr))] gap-3">
-        <Kpi label="本益比" value={f?.pe} sub={f ? `同業平均 ${f.peerPe}` : ''} />
+        <Kpi label="本益比" value={f ? fmtUnit(f.pe) : null} sub={f?.peerPe != null ? `同業平均 ${f.peerPe}` : ''} />
         <Kpi label="EPS（近四季）" value={f?.eps4q} sub={f ? `年增 ${fmtPct(f.epsYoY, 0)}` : ''} />
         <Kpi label="營收年增率" value={f ? fmtPct(f.revYoY, 1) : null} sub={f?.revStreak ? `連 ${f.revStreak} 月正成長` : ''} valueClass={f ? changeClass(f.revYoY) : ''} />
-        <Kpi label="毛利率" value={f ? `${f.grossMargin}%` : null} sub={f ? `較上季 ${f.grossMarginChg > 0 ? '+' : ''}${f.grossMarginChg}pt` : ''} />
+        {/* 金融股沒有毛利率，改顯示 ROE */}
+        {f && f.grossMargin == null
+          ? <Kpi label="ROE（近四季）" value={fmtUnit(f.roe, '%')} sub="股東權益報酬率" />
+          : <Kpi label="毛利率" value={f ? `${f.grossMargin}%` : null} sub={f?.grossMarginChg != null ? `較上季 ${f.grossMarginChg > 0 ? '+' : ''}${f.grossMarginChg}pt` : ''} />}
         <Kpi label="外資動向" value={inst ? (foreignStreak > 0 ? `連買 ${foreignStreak} 日` : foreignStreak < 0 ? `連賣 ${-foreignStreak} 日` : '買賣互見') : null}
           sub={inst ? `10 日 ${foreign10 > 0 ? '+' : ''}${foreign10.toLocaleString()} 張` : ''} valueClass={changeClass(foreignStreak)} />
         <Kpi label="新聞情緒" value={avgSent != null ? avgSent.toFixed(2) : '—'} sub={`近期 ${d.news.length} 則`} valueClass={avgSent == null ? 'text-gray-400' : avgSent >= 0.7 ? 'text-red-500' : avgSent < 0.5 ? 'text-emerald-500' : ''} />
@@ -116,8 +119,8 @@ export default function ProStock({ d }) {
           {f && (
             <div className="grid grid-cols-3 gap-2 text-xs">
               <div><p className="text-gray-500">營收年增</p><p className={`font-bold ${changeClass(f.revYoY)}`}>{fmtPct(f.revYoY, 1)}</p></div>
-              <div><p className="text-gray-500">營業利益率</p><p className="font-bold">{f.opMargin}%</p></div>
-              <div><p className="text-gray-500">ROE</p><p className="font-bold">{f.roe}%</p></div>
+              <div><p className="text-gray-500">營業利益率</p><p className="font-bold">{fmtUnit(f.opMargin, '%')}</p></div>
+              <div><p className="text-gray-500">ROE</p><p className="font-bold">{fmtUnit(f.roe, '%')}</p></div>
             </div>
           )}
         </Card>

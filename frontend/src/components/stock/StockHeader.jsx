@@ -59,6 +59,8 @@ export default function StockHeader({ symbol, name, industry, quote, watch, rang
             <span className={`text-[15px] font-medium ${changeClass(d.change_pct)}`}>
               {d.change > 0 ? '+' : ''}{fmtNum(d.change)}（{d.change_pct > 0 ? '+' : ''}{d.change_pct}%）
             </span>
+            {/* 即時報價抓不到時用的是歷史收盤價，標出日期 */}
+            {d.from_history && <span className="text-xs text-gray-500">收盤價・{Number(d.as_of.slice(5, 7))}/{Number(d.as_of.slice(8, 10))}</span>}
           </p>
         )}
       </div>

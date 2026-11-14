@@ -84,18 +84,18 @@ export function PeerChart({ series, lines, height = 260, showAxis = true }) {
           content={({ active, payload, label }) => active && payload?.length ? (
             <TooltipBox>
               <span className="text-gray-400">{label}</span>
-              {lines.map((l) => {
-                const row = payload[0].payload
-                if (row[l.ticker] == null) return null
-                return (
+              {/* 依當天漲跌幅由高到低排，順序跟圖上線的上下位置一致；各家幣別不同，股價不能直接比大小 */}
+              {lines
+                .filter((l) => payload[0].payload[l.ticker] != null)
+                .sort((x, y) => payload[0].payload[y.ticker] - payload[0].payload[x.ticker])
+                .map((l) => (
                   <span key={l.ticker} className="flex items-center gap-2">
                     <span className="w-2.5 h-0.5" style={{ background: l.color }} />
                     <span className="flex-1">{l.name}</span>
-                    <span className="text-gray-300">{l.currency ?? ''}{fmtNum(row._close[l.ticker])}</span>
-                    <span className="font-bold w-14 text-right">{fmtPct(row[l.ticker], 1)}</span>
+                    <span className="text-gray-300">{l.currency ?? ''}{fmtNum(payload[0].payload._close[l.ticker])}</span>
+                    <span className="font-bold w-14 text-right">{fmtPct(payload[0].payload[l.ticker], 1)}</span>
                   </span>
-                )
-              })}
+                ))}
             </TooltipBox>
           ) : null}
         />
