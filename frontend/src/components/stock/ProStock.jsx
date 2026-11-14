@@ -7,6 +7,7 @@ import { PriceVolumeChart, PeerChart, EpsBarChart, InstitutionalBarChart } from 
 import { MockBadge } from './StockHeader'
 import { perfSummary } from '../../utils/perfStats'
 import VolatilityCard from './VolatilityCard'
+import { TONE, scoreTone } from '../../utils/news'
 
 const Card = ({ className = '', children }) => (
   <div className={`bg-white rounded-xl border border-gray-200 p-4 min-w-0 flex flex-col gap-2.5 ${className}`}>{children}</div>
@@ -41,7 +42,10 @@ export default function ProStock({ d }) {
   const perf = d.perf.data?.data ? perfSummary(d.perf.data.data) : null
   const history = d.history.data?.data
   const peerSeries = d.peers.data?.data?.series
-  const avgSent = d.news.length ? d.news.reduce((s, n) => s + n.sentiment, 0) / d.news.length : null
+  // 新聞情緒：相關新聞 sentiment_score（−1 ~ +1）的平均，沒有分數的新聞不算
+  const scored = d.news.filter((n) => n.score != null)
+  const avgSent = scored.length ? scored.reduce((s, n) => s + n.score, 0) / scored.length : null
+  const sentTone = scoreTone(avgSent)
   const { pros, cons } = buildProsCons(f, inst, avgSent)
   const foreignStreak = inst ? streak(inst.map((r) => r.foreign)) : 0
   const foreign10 = inst ? inst.reduce((s, r) => s + r.foreign, 0) : 0
@@ -59,7 +63,8 @@ export default function ProStock({ d }) {
           : <Kpi label="毛利率" value={f ? `${f.grossMargin}%` : null} sub={f?.grossMarginChg != null ? `較上季 ${f.grossMarginChg > 0 ? '+' : ''}${f.grossMarginChg}pt` : ''} />}
         <Kpi label="外資動向" value={inst ? (foreignStreak > 0 ? `連買 ${foreignStreak} 日` : foreignStreak < 0 ? `連賣 ${-foreignStreak} 日` : '買賣互見') : null}
           sub={inst ? `10 日 ${foreign10 > 0 ? '+' : ''}${foreign10.toLocaleString()} 張` : ''} valueClass={changeClass(foreignStreak)} />
-        <Kpi label="新聞情緒" value={avgSent != null ? avgSent.toFixed(2) : '—'} sub={`近期 ${d.news.length} 則`} valueClass={avgSent == null ? 'text-gray-400' : avgSent >= 0.7 ? 'text-red-500' : avgSent < 0.5 ? 'text-emerald-500' : ''} />
+        <Kpi label="新聞情緒" value={avgSent != null ? `${avgSent > 0 ? '+' : ''}${avgSent.toFixed(2)}` : '—'}
+          sub={sentTone ? `${TONE[sentTone].label}・近期 ${scored.length} 則` : '近期沒有相關新聞'} valueClass={sentTone ? TONE[sentTone].text : 'text-gray-400'} />
       </div>
       {(d.fund.data?.isMock || d.inst.data?.isMock) && <p className="text-xs text-gray-500 -mt-2">財報、籌碼為示意資料，待後端 API 完成</p>}
 
@@ -142,12 +147,15 @@ export default function ProStock({ d }) {
       <div className="grid grid-cols-1 lg:grid-cols-3 gap-4">
         <Card>
           <CardTitle link={<button type="button" onClick={() => navigate('/news')} className="text-xs text-blue-600">全部新聞</button>}>相關新聞・情緒</CardTitle>
-          {d.news.length === 0 && <p className="text-sm text-gray-400">尚無相關新聞</p>}
+          {d.newsLoading && <p className="text-sm text-gray-400">載入中...</p>}
+          {!d.newsLoading && d.news.length === 0 && <p className="text-sm text-gray-400">尚無相關新聞</p>}
           {d.news.slice(0, 4).map((n) => (
-            <button key={n.id} type="button" onClick={() => navigate('/news', { state: { selectedId: n.id } })}
+            <button key={n.id} type="button" onClick={() => navigate('/news', { state: { news: n } })}
               className="grid grid-cols-[1fr_44px] gap-2.5 items-center text-left pb-2 border-b border-gray-100 last:border-0 group">
               <span className="text-[13px] leading-relaxed group-hover:text-blue-600 line-clamp-2">{n.title}</span>
-              <span className={`text-right text-[13px] font-bold ${n.sentiment >= 0.7 ? 'text-red-500' : n.sentiment < 0.5 ? 'text-emerald-500' : 'text-gray-600'}`}>{n.sentiment.toFixed(2)}</span>
+              <span className={`text-right text-[13px] font-bold ${n.tone ? TONE[n.tone].text : 'text-gray-400'}`}>
+                {n.score != null ? `${n.score > 0 ? '+' : ''}${n.score.toFixed(2)}` : '—'}
+              </span>
             </button>
           ))}
         </Card>

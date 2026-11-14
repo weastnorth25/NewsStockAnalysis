@@ -3,8 +3,11 @@ import { useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 import { AreaChart, Area, XAxis, YAxis, Tooltip, CartesianGrid, ResponsiveContainer } from 'recharts'
 import { changeClass, fmtPct, fmtNum, calcSentiment } from '../../utils/market'
-import { mockInstitutional, mockMovers, mockIndexHistory } from '../../data/homeMock'
-import { mockNews } from '../../data/mockData'
+import { mockInstitutional, mockMovers } from '../../data/homeMock'
+import { fetchHistory } from '../../api/stockData'
+import useAsync from '../../hooks/useAsync'
+import { fetchNews } from '../../api/news'
+import { TONE } from '../../utils/news'
 import MacroUpcomingCard from '../macro/MacroUpcomingCard'
 import { SentimentTrendPro } from './SentimentTrend'
 import { MarketRevenuePro } from './MarketRevenue'
@@ -44,10 +47,17 @@ function KpiCard({ label, quote, digits = 2 }) {
   )
 }
 
+// 1W 沒有對應的後端區間，抓 1M 再取最後 5 天
+const RANGE_QUERY = { '1W': '1M', '1M': '1M', '3M': '3M', '6M': '6M' }
+const md = (iso) => `${Number(iso.slice(5, 7))}/${Number(iso.slice(8, 10))}`
+
 function IndexTrendCard({ quote }) {
   const [range, setRange] = useState('1M')
   const last = quote?.data?.current_price
-  const data = last ? mockIndexHistory(last, range) : []
+  // 真的歷史股價（/history），後端失敗才用示意資料
+  const hist = useAsync(range, () => fetchHistory('^TWII', RANGE_QUERY[range], last ?? 20000))
+  const rows = hist.data?.data ?? []
+  const data = (range === '1W' ? rows.slice(-5) : rows).map((r) => ({ date: md(r.date), close: r.close }))
   const up = data.length > 1 && data.at(-1).close >= data[0].close
   const color = up ? '#dc2626' : '#16a34a'
 
@@ -56,7 +66,7 @@ function IndexTrendCard({ quote }) {
       <div className="flex justify-between items-center gap-2">
         <div className="flex items-center gap-2">
           <p className="text-sm font-bold text-gray-900">加權指數走勢</p>
-          <MockBadge />
+          {hist.data?.isMock && <MockBadge />}
         </div>
         <div className="flex gap-1 bg-gray-100 rounded-lg p-0.5">
           {RANGES.map((r) => (
@@ -72,8 +82,8 @@ function IndexTrendCard({ quote }) {
           ))}
         </div>
       </div>
-      {!last ? (
-        <p className="text-sm text-gray-400 h-[220px] flex items-center justify-center">{quote?.error ? '無法取得資料' : '載入中...'}</p>
+      {!data.length ? (
+        <p className="text-sm text-gray-400 h-[220px] flex items-center justify-center">{hist.error ? '無法取得資料' : '載入中...'}</p>
       ) : (
         <ResponsiveContainer width="100%" height={220}>
           <AreaChart data={data} margin={{ top: 5, right: 8, left: 0, bottom: 0 }}>
@@ -136,13 +146,9 @@ function StrengthCard({ score }) {
   )
 }
 
-const sentimentTag = (v) =>
-  v >= 0.7 ? { label: '正面', className: 'bg-red-100 text-red-800' }
-  : v >= 0.5 ? { label: '中性', className: 'bg-gray-100 text-gray-700' }
-  : { label: '負面', className: 'bg-emerald-100 text-emerald-800' }
-
 export default function ProHome({ quotes, score }) {
   const navigate = useNavigate()
+  const news = useAsync('home-news-4', () => fetchNews({ limit: 4 }))
 
   return (
     <div className="flex flex-col gap-4">
@@ -165,20 +171,19 @@ export default function ProHome({ quotes, score }) {
             <p className="text-sm font-bold text-gray-900">今日重點新聞</p>
             <button type="button" onClick={() => navigate('/news')} className="text-xs text-blue-600 hover:text-blue-700">全部新聞</button>
           </div>
-          {mockNews.slice(0, 4).map((n) => {
-            const tag = sentimentTag(n.sentiment)
-            return (
-              <button
-                key={n.id}
-                type="button"
-                onClick={() => navigate('/news', { state: { selectedId: n.id } })}
-                className="flex gap-2.5 items-start text-left pb-2 border-b border-gray-100 last:border-0 group"
-              >
-                <span className={`shrink-0 text-[11px] px-2 py-0.5 rounded-full ${tag.className}`}>{tag.label}</span>
-                <span className="text-[13px] leading-relaxed text-gray-800 group-hover:text-blue-600">{n.title}</span>
-              </button>
-            )
-          })}
+          {news.loading && <p className="text-sm text-gray-400">載入中...</p>}
+          {news.error && <p className="text-sm text-gray-400">暫時無法取得新聞</p>}
+          {news.data?.items.map((n) => (
+            <button
+              key={n.id}
+              type="button"
+              onClick={() => navigate('/news', { state: { news: n } })}
+              className="flex gap-2.5 items-start text-left pb-2 border-b border-gray-100 last:border-0 group"
+            >
+              {n.tone && <span className={`shrink-0 text-[11px] px-2 py-0.5 rounded-full ${TONE[n.tone].tag}`}>{TONE[n.tone].label}</span>}
+              <span className="text-[13px] leading-relaxed text-gray-800 group-hover:text-blue-600">{n.title}</span>
+            </button>
+          ))}
         </Card>
 
         <Card className="flex flex-col gap-2">

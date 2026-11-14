@@ -5,7 +5,8 @@ import { useSearchParams, useNavigate } from 'react-router-dom'
 import { useMode } from '../context/mode'
 import { fetchStockInfo, fetchWatchlist, addToWatchlist, removeFromWatchlist, toFullTicker, toDisplaySymbol } from '../api/stock'
 import { fetchHistory, fetchPeers, fetchFundamentals, fetchInstitutional, fetchInstitutionalPerf } from '../api/stockData'
-import { mockStockList, mockStockDetail, mockNews } from '../data/mockData'
+import { mockStockList, mockStockDetail } from '../data/mockData'
+import { fetchStockNews } from '../api/news'
 import { getStockName } from '../data/stockNames'
 import { getPeers, INDUSTRY_LABELS } from '../data/industryPeers'
 import useAsync from '../hooks/useAsync'
@@ -47,7 +48,9 @@ export default function Stocks() {
   const perf = useAsync(symbol, () => fetchInstitutionalPerf(symbol))
 
   const name = mockStockList.find((s) => s.symbol === symbol)?.name || getStockName(symbol, quote.data?.company_name) || symbol
-  const news = mockNews.filter((n) => n.relatedStocks?.includes(symbol))
+  // 相關新聞：先找後端標的這支股票的新聞，沒有就用公司名稱搜標題
+  const newsRes = useAsync(symbol, () => fetchStockNews(symbol, name))
+  const news = newsRes.data?.items ?? []
 
   // 同業圖的線條設定：主角 → 同業 → 基準指數
   const peerLines = buildPeerLines(symbol, name, chosen.peers, chosen.benchmarks)
@@ -90,7 +93,7 @@ export default function Stocks() {
   }
 
   const d = {
-    symbol, name, range, setRange, quote, history, peers, fund, inst, perf, vol, news, peerLines,
+    symbol, name, range, setRange, quote, history, peers, fund, inst, perf, vol, news, newsLoading: newsRes.loading, peerLines,
     industryLabel: INDUSTRY_LABELS[peerSet.industryKey],
   }
 
