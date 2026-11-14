@@ -8,6 +8,8 @@ import { fmtNum, fmtPct } from '../../utils/market'
 import { MARGIN_LINES } from './constants'
 
 const AXIS = { fontSize: 11, fill: '#6b7280' }
+// 張數刻度：一萬以上用「萬」，例如 5,000、1萬、1.5萬
+const lotsTick = (v) => (Math.abs(v) >= 10000 ? `${v / 10000}萬` : v.toLocaleString())
 const md = (iso) => `${Number(iso.slice(5, 7))}/${Number(iso.slice(8, 10))}`
 
 const TooltipBox = ({ children }) => (
@@ -114,8 +116,10 @@ export function EpsBarChart({ quarters, values, height = 150 }) {
   return (
     <ResponsiveContainer width="100%" height={height}>
       <BarChart data={rows} margin={{ top: 5, right: 4, left: 0, bottom: 0 }}>
+        <CartesianGrid stroke="#e5e7eb" vertical={false} />
         <XAxis dataKey="q" tick={AXIS} tickLine={false} axisLine={false} />
-        <YAxis hide />
+        {/* 刻度由 recharts 依資料大小自動取整（例如 0、10、20、30） */}
+        <YAxis tick={AXIS} tickLine={false} axisLine={false} width={36} tickCount={5} />
         <Tooltip formatter={(v) => [v, 'EPS']} cursor={{ fill: '#f3f4f6' }} />
         <Bar dataKey="eps" radius={[3, 3, 0, 0]}>
           {rows.map((r, i) => <Cell key={r.q} fill={i === rows.length - 1 ? '#2563eb' : '#bfdbfe'} />)}
@@ -175,8 +179,9 @@ export function InstitutionalBarChart({ rows, dataKey = 'foreign', height = 150 
   return (
     <ResponsiveContainer width="100%" height={height}>
       <BarChart data={rows} margin={{ top: 5, right: 4, left: 0, bottom: 0 }}>
+        <CartesianGrid stroke="#e5e7eb" vertical={false} />
         <XAxis dataKey="date" tickFormatter={md} tick={AXIS} tickLine={false} axisLine={false} interval={1} />
-        <YAxis hide />
+        <YAxis tick={AXIS} tickLine={false} axisLine={false} width={44} tickCount={5} tickFormatter={lotsTick} />
         <ReferenceLine y={0} stroke="#d1d5db" />
         <Tooltip formatter={(v) => [`${v > 0 ? '+' : ''}${v.toLocaleString()} 張`, '外資']} labelFormatter={md} cursor={{ fill: '#f3f4f6' }} />
         <Bar dataKey={dataKey} radius={[2, 2, 0, 0]}>
