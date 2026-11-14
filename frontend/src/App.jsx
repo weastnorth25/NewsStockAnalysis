@@ -13,8 +13,6 @@ import Peers from './pages/Peers'
 import Financials from './pages/Financials'
 import Chips from './pages/Chips'
 import InstitutionPerf from './pages/InstitutionPerf'
-import PaperTrading from './pages/PaperTrading'
-import Portfolio from './pages/Portfolio'
 import { ModeProvider } from './context/ModeProvider'
 
 // 簡單的 Auth Guard：沒有 token 就跳回登入頁
@@ -55,8 +53,6 @@ export default function App() {
             <Route path="financials"    element={<Financials />} />
             <Route path="chips"         element={<Chips />} />
             <Route path="institutions"  element={<InstitutionPerf />} />
-            <Route path="paper-trading" element={<PaperTrading />} />
-            <Route path="portfolio"     element={<Portfolio />} />
           </Route>
 
           {/* 其他路徑一律跳 dashboard */}

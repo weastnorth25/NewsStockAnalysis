@@ -25,23 +25,24 @@ const linkClass = ({ isActive }) =>
       : 'text-gray-600 hover:text-gray-900 hover:bg-gray-50'
   }`
 
-export default function Sidebar({ open }) {
+export default function Sidebar({ open, onNavigate }) {
   return (
     <aside
-      className={`w-48 bg-white border-r border-gray-200 fixed left-0 top-14 bottom-0 z-10 transition-transform duration-200 ${
+      id="main-sidebar"
+      className={`w-48 bg-white border-r border-gray-200 fixed left-0 top-14 bottom-0 z-30 transition-transform duration-200 ${
         open ? 'translate-x-0' : '-translate-x-full'
       }`}
     >
       <nav className="px-3 py-4 space-y-1 h-full overflow-y-auto">
         {navItems.map((item) => (
-          <NavLink key={item.to} to={item.to} className={linkClass}>
+          <NavLink key={item.to} to={item.to} className={linkClass} onClick={onNavigate}>
             {item.label}
           </NavLink>
         ))}
 
         <p className="px-3 pt-4 pb-1 text-xs font-medium text-gray-400">分析工具</p>
         {toolItems.map((item) => (
-          <NavLink key={item.to} to={item.to} className={linkClass}>
+          <NavLink key={item.to} to={item.to} className={linkClass} onClick={onNavigate}>
             {item.label}
           </NavLink>
         ))}
