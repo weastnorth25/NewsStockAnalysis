@@ -105,3 +105,67 @@ def build_performance(code: str, closes: dict) -> list:
             "baselineAvgReturn20d": base_ret,
         })
     return out
+
+
+HORIZONS = (1, 5, 10, 20, 60)   # 買進後第幾個交易日
+STREAK = 3                       # 連續買超幾日算一次訊號
+INVESTORS = ("foreign", "trust", "dealer")
+
+
+def find_signals(net: dict, key: str, streak: int = STREAK) -> list:
+    """
+    某類法人「連續買超 streak 日」的訊號:[(觸發日, 連續 streak 日的買超合計張數)]。
+    連買到第 streak 天時觸發;同一波連買只算一次,要等連買中斷後才能再觸發。
+    """
+    out, run = [], []
+    for d in sorted(net):
+        v = net[d][key]
+        if v > 0:
+            run.append(v)
+            if len(run) == streak:
+                out.append((d, round(sum(run) / LOT)))
+        else:
+            run = []
+    return out
+
+
+def _returns_after(day: str, days: list, pos: dict, prices: dict) -> dict:
+    """
+    day 收盤買進後,第 N 個交易日的報酬(%)。「第 N 個交易日」一律用個股的交易日(days)決定,
+    個股和大盤才會是同一段期間;還沒滿 N 天,或那天沒有價格,就是 None。
+    """
+    i = pos.get(day)
+    out = {}
+    for n in HORIZONS:
+        a = prices.get(day)
+        b = prices.get(days[i + n]) if i is not None and i + n < len(days) else None
+        out[str(n)] = round((b / a - 1) * 100, 1) if a and b else None
+    return out
+
+
+def build_signals(code: str, closes: dict, market: dict) -> dict:
+    """
+    近 3 年三大法人「連續買超 3 日」訊號的逐筆明細,第 3 天收盤買進。
+    closes:個股 {日期: 收盤價};market:加權指數 {日期: 收盤價}(抓不到可給空的)。
+    returns 是個股報酬、market 是同期加權指數報酬,單位 %。events 由新到舊。
+    """
+    net = daily_net(code, lookback_days=3 * 365 + 10)
+    if not net:
+        raise LookupError(code)
+    s_days = sorted(closes)
+    s_pos = {d: i for i, d in enumerate(s_days)}
+
+    events = []
+    for key in INVESTORS:
+        for d, amount in find_signals(net, key):
+            if d not in s_pos:          # 那天沒有股價(資料缺漏),無法計算報酬就略過
+                continue
+            events.append({
+                "investor": key,
+                "date": d,
+                "amount": amount,
+                "returns": _returns_after(d, s_days, s_pos, closes),
+                "market": _returns_after(d, s_days, s_pos, market),
+            })
+    events.sort(key=lambda e: (e["date"], e["investor"]), reverse=True)
+    return {"signal": f"連續買超 {STREAK} 日", "years": 3, "events": events}
