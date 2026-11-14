@@ -1,9 +1,10 @@
-// 首頁・新手模式（草稿 B）：市場溫度計＋白話重點 → 三張指數卡 → 最近兩週市場心情 → 這週要注意、大家在看的新聞
+// 首頁・新手模式（草稿 B）：市場溫度計＋白話重點 → 三張指數卡 → 最近兩週市場心情 → 上市公司上個月賺得怎麼樣 → 這週要注意、大家在看的新聞
 import { useNavigate } from 'react-router-dom'
 import { changeClass, fmtPct, fmtNum, calcSentiment } from '../../utils/market'
 import { mockNews } from '../../data/mockData'
 import MacroUpcomingCard from '../macro/MacroUpcomingCard'
 import { SentimentTrendBeginner } from './SentimentTrend'
+import { MarketRevenueBeginner } from './MarketRevenue'
 
 const BEGINNER_INDICES = [
   { ticker: '^TWII', label: '台股加權指數', hint: '代表台灣上市公司整體表現' },
@@ -103,6 +104,8 @@ export default function BeginnerHome({ quotes, score }) {
       </div>
 
       <SentimentTrendBeginner />
+
+      <MarketRevenueBeginner />
 
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-4">
         <MacroUpcomingCard variant="beginner" limit={3} />

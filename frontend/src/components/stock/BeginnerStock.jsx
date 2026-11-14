@@ -1,4 +1,4 @@
-// 個股・新手模式：AI 健檢燈號（附名詞解釋）→ 股價走勢一句話 → 大戶動向、跟國外對手比（總經事件只放首頁）→ 白話新聞
+// 個股・新手模式：AI 健檢燈號（附名詞解釋）→ 股價走勢一句話 → 大戶動向、跟國外對手比、波動預測（總經事件只放首頁）→ 白話新聞
 import { useNavigate } from 'react-router-dom'
 import { changeClass, fmtPct, fmtNum } from '../../utils/market'
 import { buildChecks, buildSummary } from '../../utils/stockInsights'
@@ -7,6 +7,7 @@ import { SimplePriceChart, PeerChart } from './StockCharts'
 import { RangeTabs, MockBadge } from './StockHeader'
 import { RANGES_BEGINNER } from './constants'
 import TermTip from '../TermTip'
+import VolatilityCard from './VolatilityCard'
 
 const RANGE_WORD = { '1M': '1 個月', '3M': '3 個月', '6M': '6 個月', '1Y': '1 年' }
 
@@ -89,7 +90,7 @@ export default function BeginnerStock({ d }) {
         )}
       </div>
 
-      <div className="grid grid-cols-1 lg:grid-cols-2 gap-4">
+      <div className="grid grid-cols-1 lg:grid-cols-3 gap-4">
         <div className="bg-white rounded-xl border border-gray-200 p-5 flex flex-col gap-3 min-w-0">
           <div className="flex items-center gap-2">
             <p className="text-base font-bold text-gray-900">大戶在做什麼？</p>
@@ -138,6 +139,8 @@ export default function BeginnerStock({ d }) {
             </>
           )}
         </div>
+
+        <VolatilityCard vol={d.vol} name={d.name} beginner />
       </div>
 
       <div className="bg-white rounded-xl border border-gray-200 p-5 flex flex-col gap-3">

@@ -14,6 +14,7 @@ import ProStock from '../components/stock/ProStock'
 import BeginnerStock from '../components/stock/BeginnerStock'
 import { buildPeerLines } from '../utils/peerLines'
 import usePeerSelection from '../hooks/usePeerSelection'
+import { fetchVolatility } from '../api/volatility'
 import WatchlistPanel, { WatchlistToggle } from '../components/stock/WatchlistPanel'
 
 export default function Stocks() {
@@ -36,6 +37,9 @@ export default function Stocks() {
   const peerKey = chosen.peers.map((p) => p.ticker).join(',')
   const peers = useAsync(settled(history) && chosen.peers.length ? `${symbol}|${range}|${peerKey}` : null,
     () => fetchPeers(symbol, range, chosen, lastClose))
+
+  // 波動預測也是後端用 yfinance 抓股價，等歷史股價回來再打，不跟前面的請求擠在一起
+  const vol = useAsync(settled(history) ? symbol : null, () => fetchVolatility(symbol))
 
   // 財報、籌碼、法人績效（目前是示意資料，之後走資料庫，不經過 yfinance）
   const fund = useAsync(symbol, () => fetchFundamentals(symbol))
@@ -86,7 +90,7 @@ export default function Stocks() {
   }
 
   const d = {
-    symbol, name, range, setRange, quote, history, peers, fund, inst, perf, news, peerLines,
+    symbol, name, range, setRange, quote, history, peers, fund, inst, perf, vol, news, peerLines,
     industryLabel: INDUSTRY_LABELS[peerSet.industryKey],
   }
 
