@@ -42,6 +42,7 @@ def crawl_one(src: str, fetcher: ns.Fetcher, classify, db, args) -> dict:
     if db is not None:   # 先扣掉已經存過的，不用再抓全文、再分類
         seen = store.existing_urls(db, [a.url for a in arts])
         arts = [a for a in arts if a.url not in seen]
+        db.commit()   # 查完先釋放連線,不要在抓內文時一直佔著
     arts = arts[: args.limit]
     stats["new"] = len(arts)
 
