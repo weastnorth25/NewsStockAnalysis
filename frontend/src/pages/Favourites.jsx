@@ -79,17 +79,17 @@ function StockRow({ item, detail, onClick, onRemove, removing }) {
 
 export default function Favourites() {
   const navigate = useNavigate()
+  const isGuest = localStorage.getItem('token') === 'guest'
+
   const [watchlist, setWatchlist] = useState([])
   const [details,   setDetails]   = useState({})       // { symbol: stockInfo }
-  const [loading,   setLoading]   = useState(true)
+  const [loading,   setLoading]   = useState(!isGuest) // 遊客沒有自選股，一開始就不是載入中
   const [error,     setError]     = useState(null)
   const [removing,  setRemoving]  = useState(null)     // symbol being removed
 
-  const isGuest = localStorage.getItem('token') === 'guest'
-
   // 載入自選股清單，再順序抓每支股票完整資料
   useEffect(() => {
-    if (isGuest) { setLoading(false); return }
+    if (isGuest) return
 
     let cancelled = false
     ;(async () => {
@@ -115,7 +115,7 @@ export default function Favourites() {
       }
     })()
     return () => { cancelled = true }
-  }, [])
+  }, [isGuest])
 
   const handleRemove = async (symbol) => {
     setRemoving(symbol)

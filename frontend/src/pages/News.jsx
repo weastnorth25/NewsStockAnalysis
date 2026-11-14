@@ -1,20 +1,16 @@
 // 新聞頁面：左側為新聞列表，右側顯示選中文章的完整內容與相關股票連結（目前使用假資料）
-import { useState, useEffect } from 'react'
+import { useState } from 'react'
 import { useLocation, useNavigate } from 'react-router-dom'
 import { mockNews } from '../data/mockData'
 
 export default function News() {
   const location = useLocation()
   const navigate = useNavigate()
-  const [selected, setSelected] = useState(mockNews[0])
+  const [pickedId, setPickedId] = useState(null)
 
-  // 從 Dashboard 點新聞過來時，自動選中該篇
-  useEffect(() => {
-    if (location.state?.selectedId) {
-      const found = mockNews.find((n) => n.id === location.state.selectedId)
-      if (found) setSelected(found)
-    }
-  }, [location.state])
+  // 選中的文章：這頁點過的優先，其次是從首頁／個股頁點新聞帶過來的 id，都沒有就第一篇
+  const selectedId = pickedId ?? location.state?.selectedId
+  const selected = mockNews.find((n) => n.id === selectedId) ?? mockNews[0]
 
   return (
     <div>
@@ -27,7 +23,7 @@ export default function News() {
           {mockNews.map((news, idx) => (
             <div key={news.id}>
               <div
-                onClick={() => setSelected(news)}
+                onClick={() => setPickedId(news.id)}
                 className={`p-4 cursor-pointer transition-colors ${
                   selected?.id === news.id ? 'bg-blue-50' : 'hover:bg-gray-50'
                 }`}

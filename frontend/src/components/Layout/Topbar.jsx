@@ -4,7 +4,7 @@ import { useNavigate, NavLink } from 'react-router-dom'
 import Logo from '../Logo'
 import { useMode } from '../../context/mode'
 
-export default function Topbar({ onToggleSidebar }) {
+export default function Topbar({ onToggleSidebar, sidebarOpen }) {
   const [query, setQuery] = useState('')
   const [menuOpen, setMenuOpen] = useState(false)
   const menuRef = useRef(null)
@@ -39,13 +39,15 @@ export default function Topbar({ onToggleSidebar }) {
   }
 
   return (
-    <header className="fixed top-0 left-0 right-0 h-14 bg-white border-b border-gray-200 flex items-center px-4 z-20 gap-4">
+    <header className="fixed top-0 left-0 right-0 h-14 bg-white border-b border-gray-200 flex items-center px-2 sm:px-4 z-20 gap-2 sm:gap-4">
 
       {/* 漢堡：切換 Sidebar */}
       <button
         onClick={onToggleSidebar}
         className="p-2 rounded-md hover:bg-gray-100 text-gray-600 shrink-0"
         aria-label="切換選單"
+        aria-expanded={sidebarOpen}
+        aria-controls="main-sidebar"
       >
         <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
           <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 6h16M4 12h16M4 18h16" />
@@ -53,7 +55,8 @@ export default function Topbar({ onToggleSidebar }) {
       </button>
 
       {/* 搜尋股票 */}
-      <form onSubmit={handleSearch} className="w-72 shrink-0">
+      {/* 手機寬度縮小搜尋欄、藏 Logo，避免跟右邊的按鈕擠在一起 */}
+      <form onSubmit={handleSearch} className="w-36 sm:w-72 min-w-0 shrink">
         <div className="flex items-center bg-gray-100 rounded-full px-3 py-1.5 gap-2">
           <svg className="w-3.5 h-3.5 text-gray-400 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M21 21l-4.35-4.35M17 11A6 6 0 1 1 5 11a6 6 0 0 1 12 0z" />
@@ -69,7 +72,7 @@ export default function Topbar({ onToggleSidebar }) {
       </form>
 
       {/* 置中 Logo（絕對定位，跟其他元素獨立） */}
-      <div className="absolute left-1/2 -translate-x-1/2">
+      <div className="absolute left-1/2 -translate-x-1/2 hidden md:block">
         <Logo />
       </div>
 
