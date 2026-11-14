@@ -97,48 +97,59 @@ def read_root():
     return {"message": "Backend Server is working !"}
 
 # 指定查詢股票路徑
+_quote_cache = TTLCache(maxsize=2000, ttl=60)   # 同一檔 60 秒內不重抓,減少被 Yahoo 限流
+
+
+def _quote(ticker: str):
+    """用近 5 天日線算最新價與漲跌(不用 stock.info,它很容易被 Yahoo 擋成 429)。查無資料回傳 None。"""
+    if ticker in _quote_cache:
+        return _quote_cache[ticker]
+    df = yf.Ticker(ticker).history(period="5d")
+    if df.empty or "Close" not in df.columns:
+        return None
+    closes = df["Close"].dropna()
+    if closes.empty:
+        return None
+    current = round(float(closes.iloc[-1]), 2)
+    prev = round(float(closes.iloc[-2]), 2) if len(closes) >= 2 else current
+    change = round(current - prev, 2)
+    vols = df["Volume"].dropna() if "Volume" in df.columns else []
+    q = {
+        "current_price": current,
+        "prev_close": prev,
+        "change": change,
+        "change_pct": round(change / prev * 100, 2) if prev else 0,
+        "volume": int(vols.iloc[-1]) if len(vols) else 0,
+    }
+    _quote_cache[ticker] = q
+    return q
+
+
+def _company_info(db, ticker: str):
+    """台股名稱與產業從 monthly_revenue 表查(證交所資料);查不到(美股、上櫃)回傳 (None, None)。"""
+    code = ticker.split(".")[0].upper()
+    M = models.MonthlyRevenue
+    row = db.query(M.company_name, M.industry).filter(M.symbol == code).order_by(M.year_month.desc()).first()
+    return (row[0], row[1]) if row else (None, None)
+
+
 @app.get("/api/stock/{ticker}")
-def get_stock_info(ticker: str):
-    """
-    透過股票代號 (例如：2330.TW, AAPL) 取得股票基本資訊與最新價格。
-    """
+def get_stock_info(ticker: str, db: Session = Depends(get_db)):
+    """透過股票代號(例如 2330.TW、AAPL)取得最新價格與漲跌。"""
     try:
-        stock = yf.Ticker(ticker)
-
-        # 抓取近兩日歷史，用來計算今日漲跌
-        hist = stock.history(period="2d")
-
-        if hist.empty:
-            raise HTTPException(status_code=404, detail="找不到該股票的交易資料，請確認代號是否正確。")
-
-        current_price = round(float(hist['Close'].iloc[-1]), 2)
-
-        # 計算漲跌金額與漲跌幅
-        if len(hist) >= 2:
-            prev_close   = round(float(hist['Close'].iloc[-2]), 2)
-            change       = round(current_price - prev_close, 2)
-            change_pct   = round((change / prev_close) * 100, 2) if prev_close else 0
-        else:
-            # 只有一筆資料時，從 info 取 previousClose
-            prev_close   = stock.info.get('previousClose') or current_price
-            change       = round(current_price - prev_close, 2)
-            change_pct   = round((change / prev_close) * 100, 2) if prev_close else 0
-
-        volume = int(hist['Volume'].iloc[-1]) if 'Volume' in hist.columns else 0
-
-        return {
-            "symbol":        ticker,
-            "company_name":  stock.info.get('shortName', '未知名稱'),
-            "current_price": current_price,
-            "prev_close":    prev_close,
-            "change":        change,
-            "change_pct":    change_pct,   # 正數=漲, 負數=跌
-            "volume":        volume,
-            "currency":      stock.info.get('currency', 'TWD'),
-            "sector":        stock.info.get('sector', '未知產業'),
-        }
-    except Exception as e:
-        raise HTTPException(status_code=400, detail=str(e))
+        q = _quote(ticker)
+    except Exception:
+        raise HTTPException(status_code=502, detail="暫時無法取得報價，請稍後再試。")
+    if q is None:
+        raise HTTPException(status_code=404, detail="找不到該股票的交易資料，請確認代號是否正確。")
+    name, industry = _company_info(db, ticker)
+    return {
+        "symbol": ticker,
+        "company_name": name or ticker,
+        **q,
+        "currency": _currency_of(ticker) or "TWD",
+        "sector": industry or "未知產業",
+    }
     
 
 #註冊json傳給前端
@@ -257,39 +268,19 @@ def get_user_watchlist(db: Session = Depends(get_db),current_user: models.User =
 
     result_list = []
 
-    #抓取每一檔股票，透過 yfinance 抓取即時價格與名稱
     for item in watchlist_items:
         try:
-            stock = yf.Ticker(item.symbol)
-            hist = stock.history(period="1d")
-            
-            #確保資料表不是空的，且裡面真的有 Close 欄位
-            if not hist.empty and 'Close' in hist.columns and len(hist['Close']) > 0:
-                #拿最後一筆資料 (iloc[-1] 比 iloc[0] 更安全，確保是最新價)
-                current_price = round(float(hist['Close'].iloc[-1]), 2) 
-            else:
-                current_price = 0.0 #處置股或無交易時，預設為 0
-                
-            #有些處置股連 info 都會抓不到，所以也要加上防禦
-            company_name = stock.info.get('shortName', '暫無名稱') if stock.info else '暫無名稱'
-
-            #正常組合資料
-            result_list.append({
-                "id": item.id,
-                "symbol": item.symbol,
-                "company_name": company_name,
-                "current_price": current_price
-            })
-            
+            q = _quote(item.symbol)
         except Exception as e:
-            # 出現錯誤還是要把資料塞給前端，只是標示為無資料
             print(f"抓取 {item.symbol} 失敗: {e}")
-            result_list.append({
-                "id": item.id,
-                "symbol": item.symbol,
-                "company_name": "無報價資料 (處置/暫停交易)",
-                "current_price": 0.0
-            })
+            q = None
+        name, _ = _company_info(db, item.symbol)
+        result_list.append({
+            "id": item.id,
+            "symbol": item.symbol,
+            "company_name": name or (item.symbol if q else "無報價資料 (處置/暫停交易)"),
+            "current_price": q["current_price"] if q else 0.0,
+        })
 
     return result_list
 
@@ -418,9 +409,13 @@ def get_stock_volatility(ticker: str):
     if ticker in _volatility_cache:
         return _volatility_cache[ticker]
 
-    closes = yf.Ticker(ticker).history(period="6mo", auto_adjust=True)["Close"]
-    if closes.empty:
+    try:
+        df = yf.Ticker(ticker).history(period="6mo", auto_adjust=True)
+    except Exception:
+        raise HTTPException(status_code=502, detail="暫時無法取得股價資料，請稍後再試。")
+    if df.empty or "Close" not in df.columns or df["Close"].dropna().empty:
         raise HTTPException(status_code=404, detail="找不到該股票的交易資料，請確認代號是否正確。")
+    closes = df["Close"].dropna()
 
     # 盤中最後一筆是跳動中的價格,不是收盤價,要去掉
     now = datetime.now(_TAIPEI)
