@@ -5,6 +5,7 @@ import { buildProsCons, streak } from '../../utils/stockInsights'
 import { toPctRows } from '../../utils/series'
 import { PriceVolumeChart, PeerChart, EpsBarChart, InstitutionalBarChart } from './StockCharts'
 import { MockBadge } from './StockHeader'
+import { allStats } from '../../utils/perfStats'
 
 const Card = ({ className = '', children }) => (
   <div className={`bg-white rounded-xl border border-gray-200 p-4 min-w-0 flex flex-col gap-2.5 ${className}`}>{children}</div>
@@ -36,7 +37,7 @@ export default function ProStock({ d }) {
   const navigate = useNavigate()
   const f = d.fund.data?.data
   const inst = d.inst.data?.data
-  const perf = d.perf.data?.data
+  const perf = d.perf.data?.data ? allStats(d.perf.data.data.events) : null
   const history = d.history.data?.data
   const peerSeries = d.peers.data?.data?.series
   const avgSent = d.news.length ? d.news.reduce((s, n) => s + n.sentiment, 0) / d.news.length : null
@@ -124,7 +125,7 @@ export default function ProStock({ d }) {
           )}
         </Card>
         <Card>
-          <CardTitle mock={d.inst.data?.isMock}>法人籌碼・近 10 日外資</CardTitle>
+          <CardTitle mock={d.inst.data?.isMock} link={<button type="button" onClick={() => navigate(`/chips?ticker=${d.symbol}`)} className="text-xs text-blue-600">法人籌碼</button>}>法人籌碼・近 10 日外資</CardTitle>
           {inst ? <InstitutionalBarChart rows={inst} /> : <Loading />}
           {inst && (
             <div className="grid grid-cols-3 gap-2 text-xs">
@@ -151,7 +152,7 @@ export default function ProStock({ d }) {
         </Card>
 
         <Card>
-          <CardTitle mock={d.perf.data?.isMock}>法人買超後績效（本股）</CardTitle>
+          <CardTitle mock={d.perf.data?.isMock} link={<button type="button" onClick={() => navigate(`/institutions?ticker=${d.symbol}`)} className="text-xs text-blue-600">法人績效</button>}>法人買超後績效（本股）</CardTitle>
           {!perf ? <Loading h={100} /> : (
             <table className="w-full text-[13px]">
               <thead><tr className="text-gray-500"><th className="font-normal text-left py-1.5">法人</th><th className="font-normal text-right">5 日勝率</th><th className="font-normal text-right">20 日均報酬</th></tr></thead>
@@ -159,8 +160,8 @@ export default function ProStock({ d }) {
                 {perf.map((p) => (
                   <tr key={p.name} className="border-t border-gray-100">
                     <td className="py-2">{p.name}</td>
-                    <td className="text-right">{p.winRate5d}%</td>
-                    <td className={`text-right font-medium ${changeClass(p.avgReturn20d)}`}>{fmtPct(p.avgReturn20d, 1)}</td>
+                    <td className="text-right">{p.at(5).winRate}%</td>
+                    <td className={`text-right font-medium ${changeClass(p.at(20).avgReturn)}`}>{fmtPct(p.at(20).avgReturn, 1)}</td>
                   </tr>
                 ))}
               </tbody>

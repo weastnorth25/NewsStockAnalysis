@@ -139,24 +139,74 @@ function buildMonthly(f, r) {
 
 const round1 = (v) => Math.round(v * 10) / 10
 
-// ─── 籌碼：近 10 日三大法人買賣超（張）───────────────────────────
-export function mockInstitutional(code) {
-  const r = seededRandom('inst' + code)
-  const bias = code === '2330' ? 2200 : (r() - 0.4) * 2000
-  return tradingDays(10).map((date, i) => ({
-    date,
-    foreign: Math.round(bias * (0.4 + i * 0.12) + (r() - 0.5) * 4000),
-    trust:   Math.round((r() - 0.35) * 600),
-    dealer:  Math.round((r() - 0.55) * 400),
-  }))
+// ─── 籌碼：每日三大法人買賣超（張）、收盤價、外資持股比例、融資餘額 ─────────
+// 股價沿用 mockHistory 的 3M 走勢（跟個股頁同一條），法人買賣跟當天漲跌有關聯，看起來才像真的
+// 格式跟之後的 /api/stock/{code}/chips 一樣：[{ date, foreign, trust, dealer, close, foreignRatio, margin }]
+export function mockChips(code, lastClose = 100, days = 60) {
+  const r = seededRandom('chips' + code)
+  const big = code === '2330'
+  const scale = big ? 4000 : 1200 + r() * 1500
+  const bias = big ? 1500 : (r() - 0.4) * scale * 0.4
+  const prices = mockHistory(code, lastClose, '3M')
+  let ratio = big ? 72 : 15 + r() * 40
+  let margin = big ? 34000 : Math.round(scale * (6 + r() * 10))
+  const out = prices.slice(1).map((p, i) => {
+    const ret = (p.close / prices[i].close - 1) * 100
+    const foreign = Math.round(bias + ret * scale * 0.45 + (r() - 0.5) * scale)
+    const trust = Math.round((r() - 0.35) * scale * 0.12 + ret * scale * 0.04)
+    const dealer = Math.round((r() - 0.55) * scale * 0.08)
+    ratio += (foreign / (scale * 6000)) * 100 // 買超張數 ÷ 總張數 → 百分點
+    margin = Math.max(100, Math.round(margin * (1 + ret * 0.004 + (r() - 0.52) * 0.012)))
+    return { date: p.date, foreign, trust, dealer, close: p.close, foreignRatio: Math.round(ratio * 100) / 100, margin }
+  })
+  return out.slice(-days)
 }
 
-// ─── 法人買超後績效（近 3 年統計）──────────────────────────────
+// 個股頁用的近 10 日三大法人：取 mockChips 的最後 10 天，兩頁數字一致
+export function mockInstitutional(code, lastClose) {
+  return mockChips(code, lastClose, 10).map(({ date, foreign, trust, dealer }) => ({ date, foreign, trust, dealer }))
+}
+
+// ─── 法人買超後績效（近 3 年每一次訊號）────────────────────────────
+// 訊號固定為「連續買超 3 日」，第 3 天收盤買進，記錄之後 1／5／10／20／60 個交易日的報酬（%）與同期大盤
+// 格式跟之後的 /api/stock/{code}/institutional-performance 一樣，統計由前端 utils/perfStats.js 算
+export const PERF_HORIZONS = [1, 5, 10, 20, 60]
+
 export function mockInstitutionalPerf(code) {
   const r = seededRandom('perf' + code)
-  return [
-    { name: '外資',   winRate5d: Math.round(52 + r() * 14), avgReturn20d: round1(-1 + r() * 5) },
-    { name: '投信',   winRate5d: Math.round(50 + r() * 12), avgReturn20d: round1(-1 + r() * 4) },
-    { name: '自營商', winRate5d: Math.round(44 + r() * 10), avgReturn20d: round1(-2 + r() * 3) },
+  // Box-Muller：兩個均勻亂數 → 常態分布
+  const normal = (mean, sd) => mean + sd * Math.sqrt(-2 * Math.log(r() || 1e-9)) * Math.cos(2 * Math.PI * r())
+  const days = tradingDays(760)
+  const investors = [
+    { key: 'foreign', count: 35 + Math.floor(r() * 20), edge: 0.05 + r() * 0.05, size: 3000 },
+    { key: 'trust',   count: 15 + Math.floor(r() * 15), edge: 0.03 + r() * 0.06, size: 600 },
+    { key: 'dealer',  count: 25 + Math.floor(r() * 20), edge: -0.03 + r() * 0.04, size: 300 },
   ]
+  const events = []
+  for (const inv of investors) {
+    for (let n = 0; n < inv.count; n++) {
+      const idx = Math.floor(r() * (days.length - 8)) // 最後幾天留給下面固定的那筆
+      // 每段報酬接著前一段累加，1 日 → 60 日是同一條路徑；還沒滿 N 天的填 null（進行中）
+      let ret = 0
+      let mkt = 0
+      let prev = 0
+      const returns = {}
+      const market = {}
+      for (const h of PERF_HORIZONS) {
+        ret += normal(inv.edge * (h - prev), 1.8 * Math.sqrt(h - prev))
+        mkt += normal(0.04 * (h - prev), 1.1 * Math.sqrt(h - prev))
+        prev = h
+        const done = idx + h < days.length
+        returns[h] = done ? Math.round(ret * 10) / 10 : null
+        market[h] = done ? Math.round(mkt * 10) / 10 : null
+      }
+      events.push({ investor: inv.key, date: days[idx], amount: Math.round(inv.size * (1 + r() * 2) * 3), returns, market })
+    }
+  }
+  // 最近一次外資訊號固定放在 3 天前，畫面上一定看得到「進行中」
+  events.push({
+    investor: 'foreign', date: days.at(-3), amount: Math.round(investors[0].size * 6),
+    returns: { 1: 0.6, 5: null, 10: null, 20: null, 60: null }, market: { 1: 0.2, 5: null, 10: null, 20: null, 60: null },
+  })
+  return { signal: '連續買超 3 日', years: 3, events: events.sort((a, b) => a.date.localeCompare(b.date)) }
 }

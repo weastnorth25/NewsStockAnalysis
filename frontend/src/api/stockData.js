@@ -3,7 +3,7 @@
 // 回傳 { data, isMock }，畫面依 isMock 顯示「示意」標籤
 import api, { toFullTicker } from './stock'
 import {
-  mockHistory, mockFundamentals, mockInstitutional, mockInstitutionalPerf, MOCK_LAST_CLOSE,
+  mockHistory, mockFundamentals, mockInstitutional, mockChips, mockInstitutionalPerf, MOCK_LAST_CLOSE,
 } from '../data/stockMock'
 
 const PERIODS = { '1M': '1mo', '3M': '3mo', '6M': '6mo', '1Y': '1y' }
@@ -58,6 +58,12 @@ export const fetchFundamentals = (symbol) =>
 export const fetchInstitutional = (symbol) =>
   tryReal('institutional', () => api.get(`/api/stock/${symbol}/institutional`, { params: { days: 10 } }), () => mockInstitutional(symbol))
 
-// 法人買超後績效：[{ name, winRate5d, avgReturn20d }]
+// 法人籌碼頁：近 60 日每天的三大法人、收盤價、外資持股比例（%）、融資餘額（張）
+// [{ date, foreign, trust, dealer, close, foreignRatio, margin }]，資料來源建議 FinMind
+export const fetchChips = (symbol, lastClose) =>
+  tryReal('chips', () => api.get(`/api/stock/${symbol}/chips`, { params: { days: 60 } }), () => mockChips(symbol, lastClose ?? 100))
+
+// 法人買超後績效：每一次「連續買超 3 日」訊號之後的報酬，統計交給 utils/perfStats.js
+// { signal, years, events: [{ investor: 'foreign'|'trust'|'dealer', date, amount, returns: { 1, 5, 10, 20, 60 }, market: {…} }] }
 export const fetchInstitutionalPerf = (symbol) =>
   tryReal('institutional-perf', () => api.get(`/api/stock/${symbol}/institutional-performance`), () => mockInstitutionalPerf(symbol))
