@@ -34,13 +34,34 @@ def daily_net(code: str, lookback_days: int) -> dict:
     return out
 
 
+def _field_by_date(dataset: str, code: str, start: str, field: str) -> dict:
+    """{日期: 某個欄位的值}。抓不到就回傳空的,不讓整支 API 失敗(這兩個欄位只是附加資訊)。"""
+    try:
+        return {r["date"]: r.get(field) for r in finmind(dataset, code, start)}
+    except Exception:
+        return {}
+
+
 def build_institutional(code: str, days: int = 10) -> list:
-    """近 N 個交易日三大法人買賣超(張):[{date, foreign, trust, dealer}]。查無資料丟 LookupError。"""
-    net = daily_net(code, lookback_days=days * 2 + 20)   # 多抓一些,扣掉假日後仍夠 N 個交易日
+    """
+    近 N 個交易日三大法人買賣超(張),加上外資持股比例與融資餘額:
+    [{date, foreign, trust, dealer, foreignRatio, margin}]。查無資料丟 LookupError。
+    foreignRatio:外資持股比例(%);margin:融資餘額(張)。當天沒有資料時為 None。
+    """
+    lookback = days * 2 + 20                     # 多抓一些,扣掉假日後仍夠 N 個交易日
+    net = daily_net(code, lookback_days=lookback)
     if not net:
         raise LookupError(code)
+    start = (date.today() - timedelta(days=lookback)).isoformat()
+    ratio = _field_by_date("TaiwanStockShareholding", code, start, "ForeignInvestmentSharesRatio")
+    margin = _field_by_date("TaiwanStockMarginPurchaseShortSale", code, start, "MarginPurchaseTodayBalance")
     return [
-        {"date": d, **{k: round(v / LOT) for k, v in net[d].items()}}
+        {
+            "date": d,
+            **{k: round(v / LOT) for k, v in net[d].items()},
+            "foreignRatio": ratio.get(d),
+            "margin": margin.get(d),
+        }
         for d in sorted(net)[-days:]
     ]
 
