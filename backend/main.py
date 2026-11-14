@@ -1,6 +1,6 @@
 import os 
 import re
-from market_aggregate import market_revenue_summary, revenue_by_industry, latest_revenue_month
+from market_aggregate import market_revenue_summary, revenue_by_industry, latest_revenue_month, month_is_complete
 from typing import Optional
 from fastapi import FastAPI, HTTPException, Request, Depends, Query
 from fastapi.responses import JSONResponse
@@ -707,4 +707,29 @@ def get_stock_institutional_signals(code: str):
     except Exception:
         raise HTTPException(status_code=502, detail="暫時無法取得資料，請稍後再試。")
     _signals_cache[code] = result
+    return result
+
+
+_revenue_trend_cache = TTLCache(maxsize=8, ttl=3600)   # 月營收一個月才變一次,快取 1 小時
+
+
+@app.get("/api/market/revenue/trend")
+def get_market_revenue_trend(months: int = Query(12, ge=1, le=36), db: Session = Depends(get_db)):
+    """上市公司月營收合計的每月走勢,由舊到新。金額單位:千元。只包含資料完整的月份。"""
+    if months in _revenue_trend_cache:
+        return _revenue_trend_cache[months]
+
+    M = models.MonthlyRevenue
+    all_months = sorted(r[0] for r in db.query(M.year_month).distinct())
+    data = []
+    for ym in all_months[-(months + 2):]:        # 多看兩個月,最新月份不完整時仍湊得滿
+        if not month_is_complete(db, ym):
+            continue
+        agg = market_revenue_summary(db, ym)
+        if agg:
+            data.append(agg)
+
+    result = {"status": "success", "scope": "listed", "unit": "千元", "data": data[-months:]}
+    if data:
+        _revenue_trend_cache[months] = result
     return result
