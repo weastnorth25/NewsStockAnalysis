@@ -85,13 +85,15 @@ export function proBullets(rows, days) {
   else out.push(`投信${t.word}，${days} 日累計 ${fmtLots(t.net)}`)
   out.push(`自營商${d.word}（${fmtLots(d.net)}），多為避險部位，參考性較低`)
 
+  // 外資持股比例、融資餘額後端可能還沒提供，沒有就跳過
   const r0 = rows[0].foreignRatio
   const r1 = rows.at(-1).foreignRatio
-  const dr = Math.round((r1 - r0) * 100) / 100
+  const dr = r0 != null && r1 != null ? Math.round((r1 - r0) * 100) / 100 : 0
   if (dr !== 0) out.push(`外資持股比例${dr > 0 ? '上升' : '下降'} ${Math.abs(dr).toFixed(2)} 個百分點`)
 
   const m0 = rows[0].margin
   const m1 = rows.at(-1).margin
+  if (m0 == null || m1 == null) return out
   const dm = ((m1 / m0 - 1) * 100)
   const total = f.net + t.net + d.net
   if (dm < -2 && total > 0) out.push(`融資減少 ${Math.abs(dm).toFixed(1)}%、法人買超，籌碼往法人集中`)

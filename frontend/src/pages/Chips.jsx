@@ -37,6 +37,8 @@ function Kpi({ label, value, sub, valueClass = 'text-gray-900' }) {
 }
 
 const signed = (v, digits) => `${v > 0 ? '+' : ''}${v.toFixed(digits)}`
+// 明細表一律顯示完整張數，不換成「萬張」，欄位才對得齊
+const signedInt = (v) => `${v > 0 ? '+' : ''}${v.toLocaleString()}`
 
 function ProView({ all, days }) {
   const rows = all.slice(-days)
@@ -47,8 +49,11 @@ function ProView({ all, days }) {
   // 張 × 1000 股 × 平均股價 → 億元
   const avgClose = rows.reduce((s, r) => s + r.close, 0) / rows.length
   const totalYi = (total * 1000 * avgClose) / 1e8
-  const ratioChg = last.foreignRatio - first.foreignRatio
-  const marginChg = (last.margin / first.margin - 1) * 100
+  // 外資持股比例、融資餘額後端還沒提供時是 undefined，相關卡片整個不顯示
+  const hasRatio = last.foreignRatio != null && first.foreignRatio != null
+  const hasMargin = last.margin != null && first.margin != null
+  const ratioChg = hasRatio ? last.foreignRatio - first.foreignRatio : 0
+  const marginChg = hasMargin ? (last.margin / first.margin - 1) * 100 : 0
   const offset = all.length - rows.length
 
   return (
@@ -57,9 +62,9 @@ function ProView({ all, days }) {
         {INST_KEYS.map((k) => (
           <Kpi key={k.key} label={`${k.name} ${days} 日`} value={fmtLots(nets[k.key])} sub={streakOf(rows, k.key)} valueClass={changeClass(nets[k.key])} />
         ))}
-        <Kpi label="三大法人合計" value={fmtLots(total)} sub={`約 ${signed(totalYi, 1)} 億元`} valueClass={changeClass(total)} />
-        <Kpi label="外資持股比例" value={`${last.foreignRatio.toFixed(2)}%`} sub={`${days} 日 ${signed(ratioChg, 2)} 個百分點`} />
-        <Kpi label="融資餘額" value={fmtLots(last.margin, false)} sub={`${days} 日 ${signed(marginChg, 1)}%`} />
+        <Kpi label="三大法人合計" value={fmtLots(total)} sub={`約 ${totalYi > 0 ? '+' : ''}${totalYi.toLocaleString('en-US', { maximumFractionDigits: 1 })} 億元`} valueClass={changeClass(total)} />
+        {hasRatio && <Kpi label="外資持股比例" value={`${last.foreignRatio.toFixed(2)}%`} sub={`${days} 日 ${signed(ratioChg, 2)} 個百分點`} />}
+        {hasMargin && <Kpi label="融資餘額" value={fmtLots(last.margin, false)} sub={`${days} 日 ${signed(marginChg, 1)}%`} />}
       </div>
 
       <Card>
@@ -76,21 +81,21 @@ function ProView({ all, days }) {
       </Card>
 
       <div className="grid grid-cols-1 lg:grid-cols-3 gap-4">
-        <Card>
+        {hasRatio && <Card>
           <p className="text-sm font-bold text-gray-900">外資持股比例</p>
           <SeriesLineChart rows={rows} dataKey="foreignRatio" color="#2563eb" format={(v) => `${v.toFixed(2)}%`} />
           <p className="text-[13px] text-gray-700">
             {days} 日前 {first.foreignRatio.toFixed(2)}% → 現在 <b>{last.foreignRatio.toFixed(2)}%</b>（{signed(ratioChg, 2)} 個百分點）
           </p>
-        </Card>
-        <Card>
+        </Card>}
+        {hasMargin && <Card>
           <p className="text-sm font-bold text-gray-900">融資餘額（張）</p>
           <SeriesLineChart rows={rows} dataKey="margin" color="#7c3aed" format={(v) => v.toLocaleString()} />
           <p className="text-[13px] text-gray-700">
             融資是散戶借錢買股，增加代表散戶加碼；{days} 日 <b>{signed(marginChg, 1)}%</b>
           </p>
-        </Card>
-        <Card className="bg-slate-50">
+        </Card>}
+        <Card className={`bg-slate-50 ${!hasRatio && !hasMargin ? 'lg:col-span-3' : !hasRatio || !hasMargin ? 'lg:col-span-2' : ''}`}>
           <div className="flex items-center gap-2">
             <span className="text-[11px] font-bold text-blue-700 bg-blue-100 px-2 py-0.5 rounded-full">重點整理</span>
             <span className="text-xs text-gray-500">依籌碼數字自動整理</span>
@@ -120,8 +125,8 @@ function ProView({ all, days }) {
                 return (
                   <tr key={r.date} className="border-t border-gray-100">
                     <td className="py-2">{md(r.date)}</td>
-                    {INST_KEYS.map((k) => <td key={k.key} className={`text-right ${changeClass(r[k.key])}`}>{fmtLots(r[k.key]).replace(' 張', '')}</td>)}
-                    <td className={`text-right font-bold ${changeClass(s)}`}>{fmtLots(s).replace(' 張', '')}</td>
+                    {INST_KEYS.map((k) => <td key={k.key} className={`text-right ${changeClass(r[k.key])}`}>{signedInt(r[k.key])}</td>)}
+                    <td className={`text-right font-bold ${changeClass(s)}`}>{signedInt(s)}</td>
                     <td className="text-right">{r.close.toLocaleString()}</td>
                     <td className={`text-right ${changeClass(chg)}`}>{chg == null ? '--' : signed(chg, 2)}</td>
                   </tr>

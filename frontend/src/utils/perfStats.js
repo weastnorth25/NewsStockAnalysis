@@ -50,3 +50,9 @@ export function statsFor(events, investor) {
 }
 
 export const allStats = (events) => INST_KEYS.map((k) => statsFor(events, k.key))
+
+// 個股頁小卡用的摘要：後端摘要格式直接用，完整格式（events）就自己算
+export function perfSummary(data) {
+  if (Array.isArray(data)) return data
+  return allStats(data.events).map((s) => ({ name: s.name, winRate5d: s.at(5).winRate, avgReturn20d: s.at(20).avgReturn }))
+}

@@ -5,7 +5,7 @@ import { buildProsCons, streak } from '../../utils/stockInsights'
 import { toPctRows } from '../../utils/series'
 import { PriceVolumeChart, PeerChart, EpsBarChart, InstitutionalBarChart } from './StockCharts'
 import { MockBadge } from './StockHeader'
-import { allStats } from '../../utils/perfStats'
+import { perfSummary } from '../../utils/perfStats'
 
 const Card = ({ className = '', children }) => (
   <div className={`bg-white rounded-xl border border-gray-200 p-4 min-w-0 flex flex-col gap-2.5 ${className}`}>{children}</div>
@@ -37,7 +37,7 @@ export default function ProStock({ d }) {
   const navigate = useNavigate()
   const f = d.fund.data?.data
   const inst = d.inst.data?.data
-  const perf = d.perf.data?.data ? allStats(d.perf.data.data.events) : null
+  const perf = d.perf.data?.data ? perfSummary(d.perf.data.data) : null
   const history = d.history.data?.data
   const peerSeries = d.peers.data?.data?.series
   const avgSent = d.news.length ? d.news.reduce((s, n) => s + n.sentiment, 0) / d.news.length : null
@@ -160,8 +160,8 @@ export default function ProStock({ d }) {
                 {perf.map((p) => (
                   <tr key={p.name} className="border-t border-gray-100">
                     <td className="py-2">{p.name}</td>
-                    <td className="text-right">{p.at(5).winRate}%</td>
-                    <td className={`text-right font-medium ${changeClass(p.at(20).avgReturn)}`}>{fmtPct(p.at(20).avgReturn, 1)}</td>
+                    <td className="text-right">{fmtUnit(p.winRate5d, '%')}</td>
+                    <td className={`text-right font-medium ${changeClass(p.avgReturn20d)}`}>{fmtPct(p.avgReturn20d, 1)}</td>
                   </tr>
                 ))}
               </tbody>

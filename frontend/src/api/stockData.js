@@ -58,12 +58,28 @@ export const fetchFundamentals = (symbol) =>
 export const fetchInstitutional = (symbol) =>
   tryReal('institutional', () => api.get(`/api/stock/${symbol}/institutional`, { params: { days: 10 } }), () => mockInstitutional(symbol))
 
-// 法人籌碼頁：近 60 日每天的三大法人、收盤價、外資持股比例（%）、融資餘額（張）
-// [{ date, foreign, trust, dealer, close, foreignRatio, margin }]，資料來源建議 FinMind
+// 法人籌碼頁：近 60 日每天的三大法人＋收盤價 → [{ date, foreign, trust, dealer, close, foreignRatio?, margin? }]
+// 後端 /institutional 只有三大法人，收盤價另外從歷史股價用日期併進來
+// 外資持股比例（%）、融資餘額（張）後端還沒提供，沒有這兩個欄位時畫面會把相關卡片藏起來
 export const fetchChips = (symbol, lastClose) =>
-  tryReal('chips', () => api.get(`/api/stock/${symbol}/chips`, { params: { days: 60 } }), () => mockChips(symbol, lastClose ?? 100))
+  tryReal(
+    'chips',
+    async () => {
+      const [inst, hist] = await Promise.all([
+        api.get(`/api/stock/${symbol}/institutional`, { params: { days: 60 } }),
+        api.get(`/api/stock/${toFullTicker(symbol)}/history`, { params: { period: '3mo' } }),
+      ])
+      const closeOf = Object.fromEntries(hist.data.map((r) => [r.date, r.close]))
+      const rows = inst.data.filter((r) => closeOf[r.date] != null).map((r) => ({ ...r, close: closeOf[r.date] }))
+      if (!rows.length) throw new Error('no chips data')
+      return { data: rows }
+    },
+    () => mockChips(symbol, lastClose ?? 100),
+  )
 
-// 法人買超後績效：每一次「連續買超 3 日」訊號之後的報酬，統計交給 utils/perfStats.js
+// 法人買超後績效，後端目前回傳摘要：[{ name, winRate5d, avgReturn20d, samples, baselineWinRate5d, baselineAvgReturn20d }]
+// 法人績效頁需要的完整格式（統計交給 utils/perfStats.js）：
 // { signal, years, events: [{ investor: 'foreign'|'trust'|'dealer', date, amount, returns: { 1, 5, 10, 20, 60 }, market: {…} }] }
+// 兩種都可能拿到，用 Array.isArray 分辨
 export const fetchInstitutionalPerf = (symbol) =>
   tryReal('institutional-perf', () => api.get(`/api/stock/${symbol}/institutional-performance`), () => mockInstitutionalPerf(symbol))
