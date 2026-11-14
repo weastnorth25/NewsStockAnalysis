@@ -85,6 +85,7 @@ class News(Base):
     category_score = Column(Float)       # 分類信心分數
     sentiment = Column(String(20))       # 情緒標籤（匯入 xlsx 用，爬蟲暫不填）
     source = Column(String(30))          # ctee / cnyes / yahoo
+    sentiment_source = Column(String(30))   # human_reviewed / finbert_v30
 
 class AiChatSession(Base):
     __tablename__="ai_chat_session"

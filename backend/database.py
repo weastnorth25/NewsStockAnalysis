@@ -32,8 +32,11 @@ engine = create_engine(
 '''
 
 # 建立資料庫引擎 (Engine)，是python跟sql的橋梁
-engine = create_engine(SQLALCHEMY_DATABASE_URL)
-
+engine = create_engine(
+    SQLALCHEMY_DATABASE_URL,
+    pool_pre_ping=True,   # 使用連線前先確認還活著,被 Supabase 斷掉的會自動換新的
+    pool_recycle=300,     # 連線最多用 5 分鐘就換新,避免閒置太久被斷
+)
 # 建立對話的 Session(ai的) 工廠 ( 以後 API 要存取資料，都要跟這個工廠拿 Session )
 SessionLocal = sessionmaker(autocommit=False, autoflush=False, bind=engine)
 

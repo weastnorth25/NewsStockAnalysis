@@ -644,3 +644,35 @@ def get_macro_events(
 
     days, closes = _twii_closes()
     return [to_frontend(e, history.get(e.series, []), days, closes) for e in events]
+
+
+
+def _daily_sentiment(rows, days: int) -> list:
+    """rows: [(published_at UTC, sentiment_score)] -> 最近 days 個「有新聞的日子」(台灣日期)。"""
+    buckets = {}
+    for published_at, score in rows:
+        day = (published_at + timedelta(hours=8)).date().isoformat()
+        buckets.setdefault(day, []).append(score)
+    result = []
+    for day in sorted(buckets)[-days:]:
+        scores = buckets[day]
+        mean = sum(scores) / len(scores)
+        result.append({
+            "date": day,
+            "score": max(0, min(100, round((mean + 1) * 50))),   # -1~+1 換算成 0~100,50 是中性
+            "count": len(scores),
+        })
+    return result
+
+
+@app.get("/api/sentiment/trend")
+def get_sentiment_trend(days: int = Query(22, ge=1, le=250), db: Session = Depends(get_db)):
+    """每日新聞情緒走勢:[{date, score, count}],日期是台灣時間。
+    score 用 sentiment_score(正面機率 − 負面機率)的平均換算,不受標籤門檻參數影響。"""
+    since = datetime.utcnow() - timedelta(days=days * 2 + 14)   # 多抓一些,扣掉沒新聞的日子仍夠
+    rows = (
+        db.query(models.News.published_at, models.News.sentiment_score)
+        .filter(models.News.sentiment_score.isnot(None), models.News.published_at >= since)
+        .all()
+    )
+    return _daily_sentiment(rows, days)
