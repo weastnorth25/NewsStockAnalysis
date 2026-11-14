@@ -5,7 +5,7 @@ import { PEER_COLORS, BENCH_STYLES } from '../components/stock/constants'
 // tooltip 顯示當天股價時的貨幣符號
 export function currencyOf(ticker) {
   if (ticker.startsWith('^')) return ''
-  if (ticker.endsWith('.TW')) return 'NT$'
+  if (/\.TWO?$/.test(ticker)) return 'NT$'
   if (ticker.endsWith('.KS')) return '₩'
   if (ticker.endsWith('.HK')) return 'HK$'
   if (ticker.endsWith('.CO')) return 'kr '

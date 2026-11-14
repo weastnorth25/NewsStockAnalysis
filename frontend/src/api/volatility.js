@@ -5,12 +5,14 @@
 //         'illiquid' 成交量太少，HTTP 200 但 status = illiquid，顯示 message
 //         'new'      新上市不到 65 個交易日，後端回 422
 //         'none'     其他錯誤或抓不到
-import api from './stock'
+import api, { toFullTicker } from './stock'
 
-// 台股代號要帶後綴：上市 .TW、上櫃 .TWO；前端不知道是哪一種，先試上市再試上櫃
+// 台股代號要帶後綴：上市 .TW、上櫃 .TWO；已經知道是上櫃（toFullTicker 記得）就直接用，否則先試上市再試上櫃
 // （用錯後綴時後端回 500，不是 404，所以只要不是 422 就換下一個試）
-const candidates = (symbol) =>
-  symbol.includes('.') || !/^\d/.test(symbol) ? [symbol] : [`${symbol}.TW`, `${symbol}.TWO`]
+function candidates(symbol) {
+  const full = toFullTicker(symbol)
+  return full.endsWith('.TW') ? [full, `${full}O`] : [full]
+}
 
 export async function fetchVolatility(symbol) {
   for (const ticker of candidates(symbol)) {
