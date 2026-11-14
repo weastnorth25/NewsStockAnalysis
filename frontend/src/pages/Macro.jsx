@@ -1,4 +1,4 @@
-// 總經日曆頁面：橫向兩週時間軸／月曆兩種檢視，依類別上色與篩選，點事件在下方看詳細與 AI 解讀
+// 總經日曆頁面：橫向兩週時間軸／月曆兩種檢視，依類別上色與篩選，點事件在下方看詳細與事件解讀
 import { useEffect, useMemo, useState } from 'react'
 import { useMode } from '../context/mode'
 import { fetchMacroEvents } from '../api/macro'
@@ -77,7 +77,6 @@ export default function Macro() {
       {/* 標題列 */}
       <div className="flex flex-wrap items-center gap-3">
         <h1 className="text-2xl font-semibold text-gray-900">總經日曆</h1>
-        <span className="text-xs text-amber-800 bg-amber-100 px-2 py-0.5 rounded-full">示意數據</span>
         <span className="text-xs text-gray-500">時間皆為台灣時間・點選事件看詳細</span>
         <div className="flex-1" />
 
@@ -137,7 +136,7 @@ export default function Macro() {
             <MonthView cells={cells} month={month.m} eventsByDay={eventsByDay} todayKey={todayKey} selectedId={selectedId} onSelect={setSelectedId} />
           )}
           <EventDetail event={selected} isPro={isPro} />
-          <p className="text-xs text-gray-500">AI 解讀僅供參考，非投資建議。</p>
+          <p className="text-xs text-gray-500">事件解讀僅供參考，非投資建議。</p>
         </>
       )}
     </div>

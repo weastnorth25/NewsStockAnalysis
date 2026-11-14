@@ -6,6 +6,9 @@ export const changeClass = (v) => (v > 0 ? 'text-red-500' : v < 0 ? 'text-emeral
 // 1.234 → '+1.23%'
 export const fmtPct = (v, digits = 2) => (v == null ? '--' : `${v > 0 ? '+' : ''}${Number(v).toFixed(digits)}%`)
 
+// 可能是 null 的數值（金融股沒有毛利率、上櫃股沒有同業本益比…）：null 顯示 --
+export const fmtUnit = (v, unit = '') => (v == null ? '--' : `${v}${unit}`)
+
 export const fmtNum = (v, digits = 2) =>
   v == null ? '--' : Number(v).toLocaleString('en-US', { minimumFractionDigits: digits, maximumFractionDigits: digits })
 

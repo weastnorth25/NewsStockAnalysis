@@ -1,4 +1,4 @@
-// 選中事件的詳細區：預期／前值／實際、AI 解讀、近期公布後的大盤變化
+// 選中事件的詳細區：預期／前值／實際、事件解讀、近期公布後的大盤變化
 // 專業模式顯示完整數字與表格；新手模式只留結果與白話說明
 import { MACRO_CATEGORIES, IMPORTANCE, COUNTRIES, RESULTS } from '../../data/macroEvents'
 import { toDayKey, formatTime, formatMD, WEEKDAYS, weekdayOf } from '../../utils/macroDate'
@@ -71,7 +71,7 @@ export default function EventDetail({ event, isPro }) {
         )}
 
         <div className="bg-slate-50 rounded-xl p-3.5 flex flex-col gap-1.5">
-          <span className="self-start text-[11px] font-bold text-blue-700 bg-blue-100 px-2 py-0.5 rounded-full">AI 解讀</span>
+          <span className="self-start text-[11px] font-bold text-blue-700 bg-blue-100 px-2 py-0.5 rounded-full">事件解讀</span>
           <p className="text-sm leading-relaxed text-gray-800">{event.aiSummary}</p>
         </div>
       </div>

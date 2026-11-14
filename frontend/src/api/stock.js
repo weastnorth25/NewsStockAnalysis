@@ -15,10 +15,34 @@ api.interceptors.request.use((config) => {
   return config
 })
 
+const round2 = (v) => Math.round(v * 100) / 100
+
 // 取得單一股票即時資訊
+// 即時報價 API 用到 yfinance 的 info，常被 Yahoo 限流（400）；失敗時改用歷史股價最後兩天的收盤價算出價格與漲跌
+// 回傳多兩個欄位：from_history（true 代表是收盤價，不是即時）、as_of（那天的日期）
 export const fetchStockInfo = async (ticker) => {
-  const res = await api.get(`/api/stock/${ticker}`)
-  return res.data
+  try {
+    const res = await api.get(`/api/stock/${ticker}`)
+    return res.data
+  } catch (err) {
+    const res = await api.get(`/api/stock/${ticker}/history`, { params: { period: '1mo' } }).catch(() => null)
+    const rows = res?.data
+    if (!rows?.length) throw err
+    const last = rows.at(-1)
+    const prev = rows.at(-2) ?? last
+    const change = round2(last.close - prev.close)
+    return {
+      symbol: ticker,
+      current_price: last.close,
+      prev_close: prev.close,
+      change,
+      change_pct: prev.close ? round2((change / prev.close) * 100) : 0,
+      // 歷史股價的台股成交量是「張」，即時報價是「股」，這裡換回股，跟即時報價一致
+      volume: /\.TWO?$/.test(ticker) ? last.volume * 1000 : last.volume,
+      from_history: true,
+      as_of: last.date,
+    }
+  }
 }
 
 // 登入

@@ -1,5 +1,6 @@
 // 個股「依數據自動整理」的結論：新手版 AI 健檢燈號、專業版正面／風險因素
 // 目前用規則從財報與籌碼數字推出來，AI 總結 API 完成後替換這個檔案即可
+// 後端欄位可能是 null：金融股沒有毛利率／營益率、上櫃股或算不出來時沒有同業本益比，遇到 null 就跳過那一項
 
 const LIGHT = {
   good: { label: '好',   className: 'bg-red-50',    tagClass: 'text-red-800' },
@@ -14,12 +15,20 @@ export function buildChecks(f, inst) {
   const foreign10 = inst ? sum(inst, 'foreign') : null
   const checks = []
 
-  if (f) {
+  if (f?.grossMargin != null) {
     const gm = f.grossMargin >= 40 ? 'good' : f.grossMargin >= 20 ? 'ok' : 'warn'
     checks.push({ id: 'profit', name: '賺錢能力', light: LIGHT[gm], metric: `毛利率 ${f.grossMargin}%`,
       plain: gm === 'good' ? `每賣 100 元能賺 ${Math.round(f.grossMargin)} 元毛利，很會賺錢。` : gm === 'ok' ? '賺錢能力中等。' : '毛利偏低，賺錢比較辛苦。',
       term: '毛利率：營收扣掉直接成本後剩下的比例，越高代表產品越有競爭力。' })
+  } else if (f?.roe != null) {
+    // 金融股沒有毛利率，改用 ROE 看賺錢能力
+    const r = f.roe >= 15 ? 'good' : f.roe >= 8 ? 'ok' : 'warn'
+    checks.push({ id: 'profit', name: '賺錢能力', light: LIGHT[r], metric: `ROE ${f.roe}%`,
+      plain: r === 'good' ? `股東每投入 100 元，一年能賺 ${Math.round(f.roe)} 元，很會賺錢。` : r === 'ok' ? '賺錢能力中等。' : '用股東的錢賺得比較少。',
+      term: 'ROE（股東權益報酬率）：公司用股東的錢一年能賺多少比例，金融股常用這個看賺錢能力。' })
+  }
 
+  if (f?.revYoY != null) {
     const g = f.revYoY >= 15 ? 'good' : f.revYoY >= 0 ? 'ok' : 'warn'
     checks.push({ id: 'growth', name: '業績成長', light: LIGHT[g], metric: `營收年增 ${f.revYoY > 0 ? '+' : ''}${f.revYoY}%`,
       plain: g === 'good' ? '營收比去年同期明顯成長。' : g === 'ok' ? '營收和去年差不多。' : '營收比去年少，要留意。',
@@ -33,7 +42,7 @@ export function buildChecks(f, inst) {
       term: '外資：外國的大型投資機構，買賣量大，常影響股價方向。' })
   }
 
-  if (f) {
+  if (f?.pe != null && f.peerPe != null) {
     const ratio = f.pe / f.peerPe
     const v = ratio > 1.1 ? 'warn' : ratio < 0.9 ? 'good' : 'ok'
     checks.push({ id: 'value', name: '股價貴不貴', light: LIGHT[v], metric: `本益比 ${f.pe}（同業 ${f.peerPe}）`,
@@ -64,7 +73,7 @@ export function buildProsCons(f, inst, avgSentiment) {
     else if (f.revYoY < 0) cons.push(`營收年減 ${Math.abs(f.revYoY)}%`)
     if (f.grossMarginChg > 0) pros.push(`毛利率 ${f.grossMargin}%，較上季 +${f.grossMarginChg}pt`)
     else if (f.grossMarginChg < 0) cons.push(`毛利率較上季 ${f.grossMarginChg}pt`)
-    const ratio = f.pe / f.peerPe
+    const ratio = f.pe != null && f.peerPe != null ? f.pe / f.peerPe : 1
     if (ratio > 1.1) cons.push(`本益比 ${f.pe}，高於同業平均約 ${Math.round((ratio - 1) * 100)}%`)
     else if (ratio < 0.9) pros.push(`本益比 ${f.pe}，低於同業平均`)
   }
