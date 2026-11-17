@@ -216,7 +216,7 @@ export default function Chips() {
   const symbol = searchParams.get('ticker') || mockStockList[0].symbol
   const name = mockStockList.find((s) => s.symbol === symbol)?.name || getStockName(symbol) || symbol
   const [days, setDays] = useState(20)
-  const chips = useAsync(symbol, () => fetchChips(symbol, mockStockDetail[symbol]?.close))
+  const chips = useAsync(symbol, () => fetchChips(symbol, mockStockDetail[symbol]?.close), { cache: 'chips' })
   const all = chips.data?.data
 
   return (

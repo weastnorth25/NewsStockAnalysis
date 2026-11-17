@@ -32,9 +32,13 @@ function KpiCard({ label, quote, digits = 2 }) {
   const d = quote?.data
   return (
     <Card className="flex flex-col gap-1">
-      <p className="text-xs text-gray-500">{label}</p>
+      <div className="flex justify-between items-baseline gap-1">
+        <p className="text-xs text-gray-500">{label}</p>
+        {/* 顯示的是瀏覽器存的上次報價，背景還在抓新的 */}
+        {quote?.stale && <span className="text-[11px] text-amber-700">{quote.error ? '上次資料' : '更新中…'}</span>}
+      </div>
       {quote?.loading && <p className="text-sm text-gray-400 py-1">載入中...</p>}
-      {quote?.error && <p className="text-sm text-gray-400 py-1">無法取得</p>}
+      {quote?.error && !d && <p className="text-sm text-gray-400 py-1">無法取得</p>}
       {d && (
         <>
           <span className="text-[22px] font-bold text-gray-900">{fmtNum(d.current_price, digits)}</span>
@@ -55,7 +59,7 @@ function IndexTrendCard({ quote }) {
   const [range, setRange] = useState('1M')
   const last = quote?.data?.current_price
   // 真的歷史股價（/history），後端失敗才用示意資料
-  const hist = useAsync(range, () => fetchHistory('^TWII', RANGE_QUERY[range], last ?? 20000))
+  const hist = useAsync(range, () => fetchHistory('^TWII', RANGE_QUERY[range], last ?? 20000), { cache: 'twii' })
   const rows = hist.data?.data ?? []
   const data = (range === '1W' ? rows.slice(-5) : rows).map((r) => ({ date: md(r.date), close: r.close }))
   const up = data.length > 1 && data.at(-1).close >= data[0].close
@@ -148,7 +152,7 @@ function StrengthCard({ score }) {
 
 export default function ProHome({ quotes, score }) {
   const navigate = useNavigate()
-  const news = useAsync('home-news-4', () => fetchNews({ limit: 4 }))
+  const news = useAsync('home-news-4', () => fetchNews({ limit: 4 }), { cache: 'news' })
 
   return (
     <div className="flex flex-col gap-4">

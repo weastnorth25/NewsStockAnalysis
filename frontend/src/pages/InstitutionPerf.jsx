@@ -265,7 +265,7 @@ export default function InstitutionPerf() {
   const symbol = searchParams.get('ticker') || mockStockList[0].symbol
   const name = mockStockList.find((s) => s.symbol === symbol)?.name || getStockName(symbol) || symbol
   // 每一次訊號的明細（/institutional-signals），勝率、報酬分布都在前端算
-  const perf = useAsync(symbol, () => fetchInstitutionalSignals(symbol))
+  const perf = useAsync(symbol, () => fetchInstitutionalSignals(symbol), { cache: 'signals' })
   const p = perf.data?.data
   const isMock = perf.data?.isMock
   const stats = p ? allStats(p.events) : null
