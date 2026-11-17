@@ -78,9 +78,11 @@ export const fetchChips = (symbol, lastClose) =>
     () => mockChips(symbol, lastClose ?? 100),
   )
 
-// 法人買超後績效，後端目前回傳摘要：[{ name, winRate5d, avgReturn20d, samples, baselineWinRate5d, baselineAvgReturn20d }]
-// 法人績效頁需要的完整格式（統計交給 utils/perfStats.js）：
-// { signal, years, events: [{ investor: 'foreign'|'trust'|'dealer', date, amount, returns: { 1, 5, 10, 20, 60 }, market: {…} }] }
-// 兩種都可能拿到，用 Array.isArray 分辨
+// 法人買超後績效摘要（個股頁小卡用）：[{ name, winRate5d, avgReturn20d, samples, baselineWinRate5d, baselineAvgReturn20d }]
 export const fetchInstitutionalPerf = (symbol) =>
   tryReal('institutional-perf', () => api.get(`/api/stock/${symbol}/institutional-performance`), () => mockInstitutionalPerf(symbol))
+
+// 法人訊號明細（法人績效頁用）：每一次「連續買超 3 日」訊號之後的報酬，統計交給 utils/perfStats.js
+// { signal, years, events: [{ investor: 'foreign'|'trust'|'dealer', date, amount, returns: { 1, 5, 10, 20, 60 }, market: {…} }] }
+export const fetchInstitutionalSignals = (symbol) =>
+  tryReal('institutional-signals', () => api.get(`/api/stock/${symbol}/institutional-signals`), () => mockInstitutionalPerf(symbol))

@@ -15,7 +15,8 @@ export const DIST_BUCKETS = [
 ]
 
 export function statsFor(events, investor) {
-  const evs = events.filter((e) => e.investor === investor)
+  // 依日期由舊到新排（後端回傳是新的在前），recent 取最後幾筆才會是最近的訊號
+  const evs = events.filter((e) => e.investor === investor).sort((a, b) => a.date.localeCompare(b.date))
   const horizons = PERF_HORIZONS.map((h) => {
     const done = evs.filter((e) => e.returns[h] != null)
     const vals = done.map((e) => e.returns[h])
