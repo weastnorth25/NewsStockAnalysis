@@ -14,3 +14,9 @@ export async function fetchMarketRevenue() {
     .catch(() => null)
   return { ...data, summary }
 }
+
+// 每月營收合計走勢（由舊到新，只含資料完整的月份）：[{ year_month, revenue_total_thousand, yoy_pct, ... }]
+export async function fetchMarketRevenueTrend(months = 12) {
+  const res = await api.get('/api/market/revenue/trend', { params: { months } })
+  return res.data.data
+}
