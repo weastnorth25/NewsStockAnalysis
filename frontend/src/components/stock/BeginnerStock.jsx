@@ -8,6 +8,7 @@ import { RangeTabs, MockBadge } from './StockHeader'
 import { RANGES_BEGINNER } from './constants'
 import TermTip from '../TermTip'
 import VolatilityCard from './VolatilityCard'
+import { TONE } from '../../utils/news'
 
 const RANGE_WORD = { '1M': '1 個月', '3M': '3 個月', '6M': '6 個月', '1Y': '1 年' }
 
@@ -145,19 +146,17 @@ export default function BeginnerStock({ d }) {
 
       <div className="bg-white rounded-xl border border-gray-200 p-5 flex flex-col gap-3">
         <p className="text-base font-bold text-gray-900">最近的新聞</p>
-        {d.news.length === 0 && <p className="text-sm text-gray-400">尚無相關新聞</p>}
+        {d.newsLoading && <p className="text-sm text-gray-400">載入中...</p>}
+        {!d.newsLoading && d.news.length === 0 && <p className="text-sm text-gray-400">尚無相關新聞</p>}
         <div className="grid grid-cols-[repeat(auto-fit,minmax(260px,1fr))] gap-3">
-          {d.news.slice(0, 3).map((n) => {
-            const good = n.sentiment >= 0.6
-            return (
-              <button key={n.id} type="button" onClick={() => navigate('/news', { state: { selectedId: n.id } })}
-                className="flex flex-col gap-2 text-left p-3.5 border border-gray-200 rounded-lg hover:border-blue-300">
-                <span className={`self-start text-[11px] px-2 py-0.5 rounded-full ${good ? 'bg-red-100 text-red-800' : 'bg-emerald-100 text-emerald-800'}`}>{good ? '利多' : '利空'}</span>
-                <span className="text-sm font-medium leading-relaxed">{n.title}</span>
-                <span className="text-[13px] text-gray-600 leading-relaxed line-clamp-2">{n.summary}</span>
-              </button>
-            )
-          })}
+          {d.news.slice(0, 3).map((n) => (
+            <button key={n.id} type="button" onClick={() => navigate('/news', { state: { news: n } })}
+              className="flex flex-col gap-2 text-left p-3.5 border border-gray-200 rounded-lg hover:border-blue-300">
+              {n.tone && <span className={`self-start text-[11px] px-2 py-0.5 rounded-full ${TONE[n.tone].tag}`}>{TONE[n.tone].plain}</span>}
+              <span className="text-sm font-medium leading-relaxed">{n.title}</span>
+              <span className="text-[13px] text-gray-600 leading-relaxed line-clamp-2">{n.summary}</span>
+            </button>
+          ))}
         </div>
       </div>
     </div>

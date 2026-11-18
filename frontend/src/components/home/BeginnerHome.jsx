@@ -1,7 +1,9 @@
 // 首頁・新手模式（草稿 B）：市場溫度計＋白話重點 → 三張指數卡 → 最近兩週市場心情 → 上市公司上個月賺得怎麼樣 → 這週要注意、大家在看的新聞
 import { useNavigate } from 'react-router-dom'
 import { changeClass, fmtPct, fmtNum, calcSentiment } from '../../utils/market'
-import { mockNews } from '../../data/mockData'
+import useAsync from '../../hooks/useAsync'
+import { fetchNews } from '../../api/news'
+import { TONE } from '../../utils/news'
 import MacroUpcomingCard from '../macro/MacroUpcomingCard'
 import { SentimentTrendBeginner } from './SentimentTrend'
 import { MarketRevenueBeginner } from './MarketRevenue'
@@ -58,6 +60,7 @@ function Thermometer({ score }) {
 
 export default function BeginnerHome({ quotes, score }) {
   const navigate = useNavigate()
+  const news = useAsync('home-news-3', () => fetchNews({ limit: 3 }))
   const points = buildPoints(quotes)
   const loading = Object.values(quotes).some((q) => q.loading)
 
@@ -115,21 +118,20 @@ export default function BeginnerHome({ quotes, score }) {
             <p className="text-base font-bold text-gray-900">大家在看的新聞</p>
             <button type="button" onClick={() => navigate('/news')} className="text-xs text-blue-600 hover:text-blue-700">更多新聞</button>
           </div>
-          {mockNews.slice(0, 3).map((n) => {
-            const good = n.sentiment >= 0.6
-            return (
-              <button
-                key={n.id}
-                type="button"
-                onClick={() => navigate('/news', { state: { selectedId: n.id } })}
-                className="flex flex-col gap-1.5 text-left p-3.5 border border-gray-200 rounded-lg hover:border-blue-300"
-              >
-                <span className={`self-start text-[11px] px-2 py-0.5 rounded-full ${good ? 'bg-red-100 text-red-800' : 'bg-emerald-100 text-emerald-800'}`}>{good ? '利多' : '利空'}</span>
-                <span className="text-sm font-medium leading-relaxed text-gray-900">{n.title}</span>
-                <span className="text-xs text-gray-600 leading-relaxed line-clamp-2">{n.summary}</span>
-              </button>
-            )
-          })}
+          {news.loading && <p className="text-sm text-gray-400">載入中...</p>}
+          {news.error && <p className="text-sm text-gray-400">暫時無法取得新聞</p>}
+          {news.data?.items.map((n) => (
+            <button
+              key={n.id}
+              type="button"
+              onClick={() => navigate('/news', { state: { news: n } })}
+              className="flex flex-col gap-1.5 text-left p-3.5 border border-gray-200 rounded-lg hover:border-blue-300"
+            >
+              {n.tone && <span className={`self-start text-[11px] px-2 py-0.5 rounded-full ${TONE[n.tone].tag}`}>{TONE[n.tone].plain}</span>}
+              <span className="text-sm font-medium leading-relaxed text-gray-900">{n.title}</span>
+              <span className="text-xs text-gray-600 leading-relaxed line-clamp-2">{n.summary}</span>
+            </button>
+          ))}
         </div>
       </div>
     </div>

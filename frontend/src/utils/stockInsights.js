@@ -82,9 +82,10 @@ export function buildProsCons(f, inst, avgSentiment) {
     if (days >= 3) pros.push(`外資連 ${days} 日買超`)
     else if (days <= -3) cons.push(`外資連 ${-days} 日賣超`)
   }
+  // avgSentiment：相關新聞情緒分數平均（−1 ~ +1）
   if (avgSentiment != null) {
-    if (avgSentiment >= 0.7) pros.push('近期新聞情緒偏正面')
-    else if (avgSentiment < 0.5) cons.push('近期新聞情緒偏負面')
+    if (avgSentiment >= 0.2) pros.push('近期新聞情緒偏正面')
+    else if (avgSentiment <= -0.2) cons.push('近期新聞情緒偏負面')
   }
   return { pros, cons }
 }
