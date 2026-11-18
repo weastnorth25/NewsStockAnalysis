@@ -4,14 +4,13 @@
 import { useState } from 'react'
 import { useSearchParams } from 'react-router-dom'
 import { useMode } from '../context/mode'
-import { fetchInstitutionalPerf } from '../api/stockData'
+import { fetchInstitutionalSignals } from '../api/stockData'
 import { mockStockList } from '../data/mockData'
 import { getStockName } from '../data/stockNames'
 import useAsync from '../hooks/useAsync'
 import { changeClass, fmtPct } from '../utils/market'
 import { INST_KEYS, md } from '../utils/chipsInsights'
 import { allStats } from '../utils/perfStats'
-import { mockInstitutionalPerf } from '../data/stockMock'
 import StockPicker from '../components/stock/StockPicker'
 import { MockBadge } from '../components/stock/StockHeader'
 import { HorizonChart, DistChart } from '../components/chips/PerfCharts'
@@ -265,11 +264,10 @@ export default function InstitutionPerf() {
   const [searchParams] = useSearchParams()
   const symbol = searchParams.get('ticker') || mockStockList[0].symbol
   const name = mockStockList.find((s) => s.symbol === symbol)?.name || getStockName(symbol) || symbol
-  const perf = useAsync(symbol, () => fetchInstitutionalPerf(symbol))
-  // 後端目前只回摘要（陣列），這頁需要每一次訊號的資料；拿到摘要就先用示意資料，等後端提供 events
-  const summaryOnly = Array.isArray(perf.data?.data)
-  const p = summaryOnly ? mockInstitutionalPerf(symbol) : perf.data?.data
-  const isMock = summaryOnly || perf.data?.isMock
+  // 每一次訊號的明細（/institutional-signals），勝率、報酬分布都在前端算
+  const perf = useAsync(symbol, () => fetchInstitutionalSignals(symbol))
+  const p = perf.data?.data
+  const isMock = perf.data?.isMock
   const stats = p ? allStats(p.events) : null
 
   return (
@@ -279,7 +277,6 @@ export default function InstitutionPerf() {
         <span className="text-base text-gray-700">{name} <span className="text-gray-500">{symbol}</span></span>
         <MockBadge show={isMock} />
       </div>
-      {summaryOnly && <p className="text-xs text-gray-500 -mt-2">完整回測需要每一次訊號的資料，後端目前只提供摘要，先以示意資料呈現</p>}
       <StockPicker symbol={symbol} />
       {perf.loading && <p className="text-sm text-gray-400">載入中...</p>}
       {perf.error && <p className="text-sm text-gray-400">無法取得法人績效資料</p>}

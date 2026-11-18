@@ -4,7 +4,7 @@ import { useState } from 'react'
 import { ComposedChart, Line, XAxis, YAxis, Tooltip, CartesianGrid, ReferenceArea, ResponsiveContainer } from 'recharts'
 import useAsync from '../../hooks/useAsync'
 import { fetchSentimentTrend } from '../../api/sentiment'
-import { mockIndexHistory } from '../../data/homeMock'
+import { fetchHistory } from '../../api/stockData'
 import { sentimentLevel, SENTIMENT_NEUTRAL, fmtNum } from '../../utils/market'
 
 const RANGES = [{ key: '1M', days: 22 }, { key: '3M', days: 66 }]
@@ -24,20 +24,24 @@ function TrendTooltip({ active, payload, label }) {
   )
 }
 
-// 專業版：lastClose 有值才疊加權指數（示意走勢以最新收盤價往回推）
+// 專業版：疊上真的加權指數歷史收盤（/history），抓不到真資料就只畫情緒線
 export function SentimentTrendPro({ lastClose }) {
   const [range, setRange] = useState(RANGES[0])
   const trend = useAsync(range.key, () => fetchSentimentTrend(range.days))
+  const index = useAsync(range.key, () => fetchHistory('^TWII', range.key, lastClose ?? 20000))
   const rows = trend.data?.data ?? []
 
   // 用日期把指數收盤價併進情緒資料
-  const closeByDate = lastClose
-    ? Object.fromEntries(mockIndexHistory(lastClose, range.days).map((r) => [r.date, r.close]))
-    : {}
+  // 用日期把指數收盤價併進情緒資料（兩邊都轉成 'M/D'）
+  const idxRows = index.data && !index.data.isMock ? index.data.data : []
+  const closeByDate = Object.fromEntries(idxRows.map((r) => [`${Number(r.date.slice(5, 7))}/${Number(r.date.slice(8, 10))}`, r.close]))
+  const hasIndex = idxRows.length > 0
   const data = rows.map((r) => ({ ...r, close: closeByDate[r.date] }))
 
   const last = rows.at(-1)?.score
-  const prev = rows.at(-6)?.score
+  // 跟 5 筆前比；後端有些日子沒有資料，所以直接標出比較的日期
+  const prevRow = rows.at(-6)
+  const prev = prevRow?.score
   const lv = sentimentLevel(last)
 
   return (
@@ -49,7 +53,7 @@ export function SentimentTrendPro({ lastClose }) {
           {last != null && (
             <span className="text-[13px] text-gray-600">
               今日 <b className={lv.textClass}>{last}（{lv.label}）</b>
-              {prev != null && <>・較 5 日前 {last - prev > 0 ? '+' : ''}{last - prev}</>}
+              {prev != null && <>・較 {prevRow.date} {last - prev > 0 ? '+' : ''}{last - prev}</>}
             </span>
           )}
         </div>
@@ -78,12 +82,12 @@ export function SentimentTrendPro({ lastClose }) {
             <XAxis dataKey="date" tick={{ fontSize: 11, fill: '#6b7280' }} tickLine={false} axisLine={false} minTickGap={24} />
             <YAxis yAxisId="s" domain={[0, 100]} ticks={[0, 25, 50, 75, 100]} tick={{ fontSize: 11, fill: '#6b7280' }}
               tickLine={false} axisLine={false} width={32} />
-            {lastClose && (
+            {hasIndex && (
               <YAxis yAxisId="i" orientation="right" domain={['auto', 'auto']} tick={{ fontSize: 11, fill: '#9ca3af' }}
                 tickLine={false} axisLine={false} width={52} tickFormatter={(v) => v.toLocaleString('en-US', { maximumFractionDigits: 0 })} />
             )}
             <Tooltip content={<TrendTooltip />} />
-            {lastClose && <Line yAxisId="i" type="monotone" dataKey="close" stroke="#cbd5e1" strokeWidth={1.5} dot={false} />}
+            {hasIndex && <Line yAxisId="i" type="monotone" dataKey="close" stroke="#cbd5e1" strokeWidth={1.5} dot={false} />}
             <Line yAxisId="s" type="monotone" dataKey="score" stroke="#2563eb" strokeWidth={2} dot={false} activeDot={{ r: 4 }} />
           </ComposedChart>
         </ResponsiveContainer>
@@ -91,7 +95,7 @@ export function SentimentTrendPro({ lastClose }) {
 
       <div className="flex flex-wrap items-center gap-4 text-xs text-gray-500">
         <span className="flex items-center gap-1.5"><span className="w-3 h-0.5 bg-blue-600" />情緒分數（左軸）</span>
-        {lastClose && <span className="flex items-center gap-1.5"><span className="w-3 h-0.5 bg-slate-300" />加權指數（右軸）</span>}
+        {hasIndex && <span className="flex items-center gap-1.5"><span className="w-3 h-0.5 bg-slate-300" />加權指數（右軸）</span>}
         <span className="flex items-center gap-1.5"><span className="w-3 h-2.5 bg-slate-100 rounded-sm" />中性區間 40～60</span>
         <span>每日新聞 AI 情緒分數平均</span>
       </div>
