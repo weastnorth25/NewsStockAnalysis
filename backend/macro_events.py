@@ -30,6 +30,7 @@ def reaction_for(event_utc: datetime, days: list, closes: dict):
     pct = lambda a, b: round((closes[a] / closes[b] - 1) * 100, 1) or 0.0
     return {
         "date": day,
+        "reactionDate": days[i], 
         "change0d": pct(days[i], days[i - 1]),
         "change1d": pct(days[i + 1], days[i]),
     }
@@ -45,7 +46,8 @@ def to_frontend(event, history: list, days: list, closes: dict) -> dict:
     for h in past:
         r = reaction_for(h.datetime_utc, days, closes) if days else None
         if r:
-            reactions.append({"date": r["date"], "result": h.result, "change0d": r["change0d"], "change1d": r["change1d"]})
+            reactions.append({"date": r["date"], "reactionDate": r["reactionDate"], "result": h.result,
+                              "change0d": r["change0d"], "change1d": r["change1d"]})
         if len(reactions) >= REACTIONS_PER_EVENT:
             break
     return {
