@@ -755,3 +755,19 @@ def get_market_revenue_trend(months: int = Query(12, ge=1, le=36), db: Session =
     if data:
         _revenue_trend_cache[months] = result
     return result
+
+@app.get("/api/market/institutional")
+def get_market_institutional(
+    days: int = Query(1, ge=1, le=250),
+    db: Session = Depends(get_db),
+):
+    """全市場三大法人買賣超(億元),正數買超、負數賣超。由舊到新排列,方便畫走勢。"""
+    rows = (db.query(models.MarketInstitutional)
+              .order_by(models.MarketInstitutional.date.desc())
+              .limit(days).all())
+    yi = lambda v: round(v / 1e8, 1) if v is not None else None
+    return [
+        {"date": r.date, "foreign": yi(r.foreign_net),
+         "trust": yi(r.trust_net), "dealer": yi(r.dealer_net)}
+        for r in reversed(rows)
+    ]

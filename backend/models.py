@@ -163,3 +163,13 @@ class MacroEvent(Base):
     result = Column(String(40))                      # better / worse / inline,或文字如「降息 1 碼」
     ai_summary = Column(Text)
     updated_at = Column(DateTime, default=datetime.utcnow, onupdate=datetime.utcnow)
+
+class MarketInstitutional(Base):
+    __tablename__ = "market_institutional"
+
+    date = Column(String(10), primary_key=True)     # 2026-11-19,一天一筆
+    foreign_net = Column(BigInteger)                 # 外資及陸資買賣超,單位:元
+    trust_net = Column(BigInteger)                   # 投信
+    dealer_net = Column(BigInteger)                  # 自營商(自行買賣 + 避險)
+    total_net = Column(BigInteger)                   # 合計
+    fetched_at = Column(DateTime, default=datetime.utcnow)
