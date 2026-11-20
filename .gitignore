@@ -229,3 +229,6 @@ frontend/.vercel       # 如果之後打算部署到 Vercel
 
 #忽略 mac系統隱藏設定檔
 **/.DS_Store
+
+
+backend/logs/
