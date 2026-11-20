@@ -87,7 +87,7 @@ export function SentimentTrendPro({ lastClose }) {
                 tickLine={false} axisLine={false} width={52} tickFormatter={(v) => v.toLocaleString('en-US', { maximumFractionDigits: 0 })} />
             )}
             <Tooltip content={<TrendTooltip />} />
-            {hasIndex && <Line yAxisId="i" type="monotone" dataKey="close" stroke="#cbd5e1" strokeWidth={1.5} dot={false} />}
+            {hasIndex && <Line yAxisId="i" type="monotone" dataKey="close" stroke="#cbd5e1" strokeWidth={1.5} dot={false} connectNulls />}
             <Line yAxisId="s" type="monotone" dataKey="score" stroke="#2563eb" strokeWidth={2} dot={false} activeDot={{ r: 4 }} />
           </ComposedChart>
         </ResponsiveContainer>
