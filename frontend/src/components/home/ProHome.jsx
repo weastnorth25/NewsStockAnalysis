@@ -1,4 +1,4 @@
-// 首頁・專業模式（草稿 A）：KPI 列 → 加權指數走勢＋市場強弱／三大法人 → 新聞情緒走勢 → 上市公司月營收 → 新聞、漲跌幅排行、近期總經事件
+// 首頁・專業模式（草稿 A）：KPI 列 → 加權指數走勢＋市場強弱／三大法人 → 新聞情緒走勢＋今日重點新聞 → 漲跌幅排行＋近期總經事件 → 上市公司月營收
 import { useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 import { AreaChart, Area, XAxis, YAxis, Tooltip, CartesianGrid, ResponsiveContainer } from 'recharts'
@@ -150,10 +150,67 @@ function StrengthCard({ score }) {
   )
 }
 
-export default function ProHome({ quotes, score }) {
+// 跟新聞情緒走勢並排，放 7 則高度剛好
+function NewsCard() {
   const navigate = useNavigate()
-  const news = useAsync('home-news-4', () => fetchNews({ limit: 4 }), { cache: 'news' })
+  const news = useAsync('home-news-7', () => fetchNews({ limit: 7 }), { cache: 'news' })
+  return (
+    <Card className="flex flex-col gap-2.5">
+      <div className="flex justify-between items-center">
+        <p className="text-sm font-bold text-gray-900">今日重點新聞</p>
+        <button type="button" onClick={() => navigate('/news')} className="text-xs text-blue-600 hover:text-blue-700">全部新聞</button>
+      </div>
+      {news.loading && <p className="text-sm text-gray-400">載入中...</p>}
+      {news.error && <p className="text-sm text-gray-400">暫時無法取得新聞</p>}
+      {news.data?.items.map((n) => (
+        <button
+          key={n.id}
+          type="button"
+          onClick={() => navigate('/news', { state: { news: n } })}
+          className="flex gap-2.5 items-start text-left pb-2 border-b border-gray-100 last:border-0 group"
+        >
+          {n.tone && <span className={`shrink-0 text-[11px] px-2 py-0.5 rounded-full ${TONE[n.tone].tag}`}>{TONE[n.tone].label}</span>}
+          <span className="text-[13px] leading-relaxed text-gray-800 group-hover:text-blue-600">{n.title}</span>
+        </button>
+      ))}
+    </Card>
+  )
+}
 
+function MoversCard() {
+  const navigate = useNavigate()
+  return (
+    <Card className="flex flex-col gap-2">
+      <div className="flex items-center gap-2">
+        <p className="text-sm font-bold text-gray-900">漲跌幅排行</p>
+        <MockBadge />
+      </div>
+      <div className="overflow-x-auto">
+        <table className="w-full text-[13px]">
+          <thead>
+            <tr className="text-gray-500 text-left">
+              <th className="font-normal py-1.5">股票</th>
+              <th className="font-normal text-right">股價</th>
+              <th className="font-normal text-right">漲跌</th>
+            </tr>
+          </thead>
+          <tbody>
+            {mockMovers.map((m) => (
+              <tr key={m.code} onClick={() => navigate(`/stocks?ticker=${m.code}`)} className="border-t border-gray-100 cursor-pointer hover:bg-gray-50">
+                <td className="py-2">{m.name} <span className="text-gray-500">{m.code}</span></td>
+                <td className="text-right">{fmtNum(m.price, 1)}</td>
+                <td className={`text-right font-medium ${changeClass(m.changePct)}`}>{fmtPct(m.changePct, 1)}</td>
+              </tr>
+            ))}
+          </tbody>
+        </table>
+      </div>
+    </Card>
+  )
+}
+
+// 版面：指數 KPI → 加權指數走勢｜市場強弱 → 新聞情緒走勢｜今日重點新聞 → 漲跌幅排行｜近期總經事件 → 上市公司月營收
+export default function ProHome({ quotes, score }) {
   return (
     <div className="flex flex-col gap-4">
       <div className="grid grid-cols-[repeat(auto-fit,minmax(170px,1fr))] gap-4">
@@ -165,60 +222,17 @@ export default function ProHome({ quotes, score }) {
         <StrengthCard score={score} />
       </div>
 
-      <SentimentTrendPro lastClose={quotes['^TWII']?.data?.current_price} />
+      <div className="grid grid-cols-1 lg:grid-cols-2 gap-4">
+        <SentimentTrendPro lastClose={quotes['^TWII']?.data?.current_price} />
+        <NewsCard />
+      </div>
 
-      <MarketRevenuePro />
-
-      <div className="grid grid-cols-1 lg:grid-cols-3 gap-4">
-        <Card className="flex flex-col gap-2.5">
-          <div className="flex justify-between items-center">
-            <p className="text-sm font-bold text-gray-900">今日重點新聞</p>
-            <button type="button" onClick={() => navigate('/news')} className="text-xs text-blue-600 hover:text-blue-700">全部新聞</button>
-          </div>
-          {news.loading && <p className="text-sm text-gray-400">載入中...</p>}
-          {news.error && <p className="text-sm text-gray-400">暫時無法取得新聞</p>}
-          {news.data?.items.map((n) => (
-            <button
-              key={n.id}
-              type="button"
-              onClick={() => navigate('/news', { state: { news: n } })}
-              className="flex gap-2.5 items-start text-left pb-2 border-b border-gray-100 last:border-0 group"
-            >
-              {n.tone && <span className={`shrink-0 text-[11px] px-2 py-0.5 rounded-full ${TONE[n.tone].tag}`}>{TONE[n.tone].label}</span>}
-              <span className="text-[13px] leading-relaxed text-gray-800 group-hover:text-blue-600">{n.title}</span>
-            </button>
-          ))}
-        </Card>
-
-        <Card className="flex flex-col gap-2">
-          <div className="flex items-center gap-2">
-            <p className="text-sm font-bold text-gray-900">漲跌幅排行</p>
-            <MockBadge />
-          </div>
-          <div className="overflow-x-auto">
-            <table className="w-full text-[13px]">
-              <thead>
-                <tr className="text-gray-500 text-left">
-                  <th className="font-normal py-1.5">股票</th>
-                  <th className="font-normal text-right">股價</th>
-                  <th className="font-normal text-right">漲跌</th>
-                </tr>
-              </thead>
-              <tbody>
-                {mockMovers.map((m) => (
-                  <tr key={m.code} onClick={() => navigate(`/stocks?ticker=${m.code}`)} className="border-t border-gray-100 cursor-pointer hover:bg-gray-50">
-                    <td className="py-2">{m.name} <span className="text-gray-500">{m.code}</span></td>
-                    <td className="text-right">{fmtNum(m.price, 1)}</td>
-                    <td className={`text-right font-medium ${changeClass(m.changePct)}`}>{fmtPct(m.changePct, 1)}</td>
-                  </tr>
-                ))}
-              </tbody>
-            </table>
-          </div>
-        </Card>
-
+      <div className="grid grid-cols-1 lg:grid-cols-2 gap-4">
+        <MoversCard />
         <MacroUpcomingCard variant="pro" limit={4} />
       </div>
+
+      <MarketRevenuePro />
     </div>
   )
 }
