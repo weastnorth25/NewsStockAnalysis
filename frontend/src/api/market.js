@@ -20,3 +20,16 @@ export async function fetchMarketRevenueTrend(months = 12) {
   const res = await api.get('/api/market/revenue/trend', { params: { months } })
   return res.data.data
 }
+
+// 全市場三大法人買賣超（億元，正數買超），由舊到新：[{ date, foreign, trust, dealer }]
+// 資料來源：證交所三大法人買賣金額統計表，後端每天收盤後更新
+export async function fetchMarketInstitutional(days = 1) {
+  const res = await api.get('/api/market/institutional', { params: { days } })
+  return res.data
+}
+
+// 全市場漲跌幅排行（後端已排除成交量太小的股票）：{ date, gainers: [{ code, name, price, changePct }], losers: [...] }
+export async function fetchMarketMovers(limit = 5) {
+  const res = await api.get('/api/market/movers', { params: { limit } })
+  return res.data
+}
