@@ -93,6 +93,8 @@ export default function Stocks() {
     }
   }
 
+  const notFound = !quote.data && quote.error && history.error
+
   const d = {
     symbol, name, range, setRange, quote, history, peers, fund, inst, perf, vol, news, newsLoading: newsRes.loading, peerLines,
     industryLabel: INDUSTRY_LABELS[peerSet.industryKey],
@@ -126,7 +128,13 @@ export default function Stocks() {
             range={range}
             onRange={isPro ? setRange : null}
           />
-          {isPro ? <ProStock d={d} /> : <BeginnerStock d={d} />}
+          {/* 報價和歷史股價都查不到：多半是代號打錯或已下市，不顯示整頁空卡片 */}
+          {notFound ? (
+            <div className="bg-white rounded-xl border border-gray-200 p-8 text-center flex flex-col gap-2">
+              <p className="text-base font-bold text-gray-900">找不到「{symbol}」的股價資料</p>
+              <p className="text-sm text-gray-500">請確認代號是否正確，可以在上方搜尋框輸入代號或公司名稱。</p>
+            </div>
+          ) : isPro ? <ProStock d={d} /> : <BeginnerStock d={d} />}
         </div>
       </div>
     </div>

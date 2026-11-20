@@ -1,6 +1,6 @@
-// 個股 dashboard 用的資料 API：先呼叫後端，後端還沒做（404）或失敗就改用示意資料
-// 後端「沒有這支 API」（404 Not Found）時記下來，這個工作階段之後直接用示意資料，不會一直重打；
-// 其他失敗（某支股票查不到、暫時被限流）只影響這一次，換股票還會再試
+// 個股 dashboard 用的資料 API：先呼叫後端；只有後端「沒有這支 API」（404 Not Found）時才改用示意資料，
+// 並記下來，這個工作階段之後直接用示意資料，不會一直重打
+// 其他失敗（查不到這支股票、美股沒有台股財報、暫時被限流）直接丟出錯誤，畫面顯示「無法取得」，不用假資料頂替
 // 回傳 { data, isMock }，畫面依 isMock 顯示「示意」標籤
 import api, { toFullTicker, withTwSuffix } from './stock'
 import {
@@ -16,7 +16,8 @@ export async function tryReal(name, request, fallback) {
       const res = await request()
       return { data: res.data, isMock: false }
     } catch (err) {
-      if (err.response?.status === 404 && err.response.data?.detail === 'Not Found') unavailable.add(name)
+      if (!(err.response?.status === 404 && err.response.data?.detail === 'Not Found')) throw err
+      unavailable.add(name)
     }
   }
   return { data: fallback(), isMock: true }

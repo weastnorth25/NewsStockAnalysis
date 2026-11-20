@@ -23,7 +23,10 @@ const CardTitle = ({ children, mock, link }) => (
   </div>
 )
 
-const Loading = ({ h = 150 }) => <div className="flex items-center justify-center text-sm text-gray-400" style={{ height: h }}>載入中...</div>
+// failed：這張卡片的資料抓不到（查無資料或後端失敗），不再顯示載入中
+const Loading = ({ h = 150, failed = false }) => (
+  <div className="flex items-center justify-center text-sm text-gray-400" style={{ height: h }}>{failed ? '暫時沒有這項資料' : '載入中...'}</div>
+)
 
 function Kpi({ label, value, sub, valueClass = 'text-gray-900' }) {
   return (
@@ -76,7 +79,7 @@ export default function ProStock({ d }) {
             <span className="flex items-center gap-1"><span className="w-3 h-0.5 bg-orange-600" />20 日均線</span>
             <span className="flex items-center gap-1"><span className="w-2.5 h-2.5 bg-slate-300" />成交量</span>
           </div>
-          {history ? <PriceVolumeChart history={history} /> : <Loading h={260} />}
+          {history ? <PriceVolumeChart history={history} /> : <Loading h={260} failed={!!d.history.error} />}
         </Card>
 
         <Card className="bg-slate-50">
@@ -104,7 +107,7 @@ export default function ProStock({ d }) {
         ) : (
           <div className="flex flex-wrap gap-5">
             <div className="flex-[999_1_520px] min-w-0">
-              {peerSeries ? <PeerChart series={peerSeries} lines={d.peerLines} /> : <Loading h={260} />}
+              {peerSeries ? <PeerChart series={peerSeries} lines={d.peerLines} /> : <Loading h={260} failed={!!d.peers.error} />}
             </div>
             <div className="flex-[1_1_240px] min-w-0 flex flex-col gap-2">
               <p className="text-xs text-gray-500">區間漲跌</p>
@@ -123,7 +126,7 @@ export default function ProStock({ d }) {
       <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
         <Card>
           <CardTitle mock={d.fund.data?.isMock} link={<button type="button" onClick={() => navigate(`/financials?ticker=${d.symbol}`)} className="text-xs text-blue-600">財報分析</button>}>財報摘要・每季 EPS</CardTitle>
-          {f ? <EpsBarChart quarters={f.quarters} values={f.quarterlyEps} /> : <Loading />}
+          {f ? <EpsBarChart quarters={f.quarters} values={f.quarterlyEps} /> : <Loading failed={!!d.fund.error} />}
           {f && (
             <div className="grid grid-cols-3 gap-2 text-xs">
               <div><p className="text-gray-500">營收年增</p><p className={`font-bold ${changeClass(f.revYoY)}`}>{fmtPct(f.revYoY, 1)}</p></div>
@@ -134,7 +137,7 @@ export default function ProStock({ d }) {
         </Card>
         <Card>
           <CardTitle mock={d.inst.data?.isMock} link={<button type="button" onClick={() => navigate(`/chips?ticker=${d.symbol}`)} className="text-xs text-blue-600">法人籌碼</button>}>法人籌碼・近 10 日外資</CardTitle>
-          {inst ? <InstitutionalBarChart rows={inst} /> : <Loading />}
+          {inst ? <InstitutionalBarChart rows={inst} /> : <Loading failed={!!d.inst.error} />}
           {inst && (
             <div className="grid grid-cols-3 gap-2 text-xs">
               {[['外資', 'foreign'], ['投信', 'trust'], ['自營商', 'dealer']].map(([label, key]) => {
@@ -166,7 +169,7 @@ export default function ProStock({ d }) {
 
         <Card>
           <CardTitle mock={d.perf.data?.isMock} link={<button type="button" onClick={() => navigate(`/institutions?ticker=${d.symbol}`)} className="text-xs text-blue-600">法人績效</button>}>法人買超後績效（本股）</CardTitle>
-          {!perf ? <Loading h={100} /> : (
+          {!perf ? <Loading h={100} failed={!!d.perf.error} /> : (
             <table className="w-full text-[13px]">
               <thead><tr className="text-gray-500"><th className="font-normal text-left py-1.5">法人</th><th className="font-normal text-right">5 日勝率</th><th className="font-normal text-right">20 日均報酬</th></tr></thead>
               <tbody>

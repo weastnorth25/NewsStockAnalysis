@@ -82,7 +82,7 @@ export default function BeginnerStock({ d }) {
           </div>
           <RangeTabs value={d.range} onChange={d.setRange} options={RANGES_BEGINNER} />
         </div>
-        {history ? <SimplePriceChart history={history} /> : <div className="h-[200px] flex items-center justify-center text-sm text-gray-400">載入中...</div>}
+        {history ? <SimplePriceChart history={history} /> : <div className="h-[200px] flex items-center justify-center text-sm text-gray-400">{d.history.error ? '暫時沒有股價資料' : '載入中...'}</div>}
         {changePct != null && (
           <p className="text-sm text-gray-700">
             {RANGE_WORD[d.range]}前 {fmtNum(first)} 元 → 現在 {fmtNum(last)} 元，
@@ -97,7 +97,7 @@ export default function BeginnerStock({ d }) {
             <p className="text-base font-bold text-gray-900">大戶在做什麼？</p>
             <MockBadge show={d.inst.data?.isMock} />
           </div>
-          {!inst && <p className="text-sm text-gray-400">載入中...</p>}
+          {!inst && <p className="text-sm text-gray-400">{d.inst.error ? '暫時沒有法人資料' : '載入中...'}</p>}
           {inst && INST_LABELS.map(([key, label]) => {
             const v = inst.reduce((s, r) => s + r[key], 0)
             return (
@@ -122,7 +122,7 @@ export default function BeginnerStock({ d }) {
           ) : (
             <>
               <p className="text-xs text-gray-500">近 {RANGE_WORD[d.range]}漲跌幅（從同一起點出發）</p>
-              {series ? <PeerChart series={series} lines={lines} height={140} showAxis={false} /> : <div className="h-[140px] flex items-center justify-center text-sm text-gray-400">載入中...</div>}
+              {series ? <PeerChart series={series} lines={lines} height={140} showAxis={false} /> : <div className="h-[140px] flex items-center justify-center text-sm text-gray-400">{d.peers.error ? '暫時沒有同業資料' : '載入中...'}</div>}
               <div className="grid grid-cols-2 gap-x-3 gap-y-1.5">
                 {lines.map((l, i) => (
                   <div key={l.ticker} className="flex items-center gap-1.5 text-[13px]">

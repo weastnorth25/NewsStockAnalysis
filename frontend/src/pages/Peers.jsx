@@ -133,7 +133,7 @@ export default function Peers() {
         ) : series ? (
           <PeerChart series={series} lines={lines} height={isPro ? 380 : 300} />
         ) : (
-          <div className="h-[380px] flex items-center justify-center text-sm text-gray-400">載入中...</div>
+          <div className="h-[380px] flex items-center justify-center text-sm text-gray-400">{result.error ? '暫時無法取得股價資料' : '載入中...'}</div>
         )}
       </div>
 

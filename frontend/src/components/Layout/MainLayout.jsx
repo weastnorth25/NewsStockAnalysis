@@ -1,6 +1,6 @@
 // 主版型：頂部列（Topbar）跨滿全寬，Sidebar 可由 Topbar 的漢堡按鈕展開/收合
 // 桌機：側邊欄預設展開，把內容往右推；手機（< 768px）：預設收合，展開時蓋在內容上面，點旁邊或點選項就收起來
-import { useState } from 'react'
+import { Suspense, useState } from 'react'
 import { Outlet } from 'react-router-dom'
 import Sidebar from './Sidebar'
 import Topbar from './Topbar'
@@ -23,7 +23,10 @@ export default function MainLayout() {
       )}
       <Sidebar open={open} onNavigate={isMobile ? () => setMobileOpen(false) : undefined} />
       <main className={`pt-14 p-4 md:p-6 transition-[margin] duration-200 ${!isMobile && desktopOpen ? 'ml-48' : 'ml-0'}`}>
-        <Outlet />
+        {/* 頁面程式還在下載時（lazy 載入）顯示，頂部列和側邊欄照常顯示 */}
+        <Suspense fallback={<p className="text-sm text-gray-400 py-10 text-center">載入中...</p>}>
+          <Outlet />
+        </Suspense>
       </main>
     </div>
   )
