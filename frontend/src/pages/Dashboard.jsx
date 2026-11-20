@@ -1,5 +1,5 @@
 // 首頁：專業模式顯示 Power BI 式卡片網格（ProHome），新手模式顯示白話重點版（BeginnerHome）
-// 指數報價在這一層依序載入一次，兩種模式共用，切換模式不會重新抓
+// 指數報價在這一層同時載入一次，兩種模式共用，切換模式不會重新抓
 import { useMode } from '../context/mode'
 import useIndexQuotes from '../hooks/useIndexQuotes'
 import { weightedScore } from '../utils/market'
