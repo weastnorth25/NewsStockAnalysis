@@ -97,7 +97,7 @@ def build_quarterly(income_rows: list, balance_rows: list) -> tuple:
     for d in sorted(income)[-8:]:
         inc, bal = income[d], balance.get(d, {})
         rev = inc.get("Revenue")
-        net = inc.get("IncomeAfterTaxes")
+        net = inc.get("IncomeAfterTaxes") or inc.get("IncomeAfterTax")   # 一般公司 / 金融股欄位名稱不同
         net_parent = inc.get("EquityAttributableToOwnersOfParent", net)   # 損益表裡這個代碼是「歸屬母公司淨利」
         equity = bal.get("EquityAttributableToOwnersOfParent") or bal.get("Equity")
         y, m = int(d[:4]), int(d[5:7])
