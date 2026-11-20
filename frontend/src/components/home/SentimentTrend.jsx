@@ -72,8 +72,8 @@ export function SentimentTrendPro({ lastClose }) {
         </div>
       </div>
 
-      {trend.loading ? (
-        <p className="text-sm text-gray-400 h-[220px] flex items-center justify-center">載入中...</p>
+      {trend.loading || !rows.length ? (
+        <p className="text-sm text-gray-400 h-[220px] flex items-center justify-center">{trend.error ? '暫時無法取得情緒資料' : '載入中...'}</p>
       ) : (
         <ResponsiveContainer width="100%" height={220}>
           <ComposedChart data={data} margin={{ top: 5, right: 8, left: 0, bottom: 0 }}>
@@ -126,6 +126,7 @@ export function SentimentTrendBeginner() {
       </div>
       {sentence && <p className={`text-[15px] font-medium ${sentence.className}`}>{sentence.text}</p>}
       {trend.loading && <p className="text-sm text-gray-400">載入中...</p>}
+      {trend.error && !rows.length && <p className="text-sm text-gray-400">暫時無法取得情緒資料</p>}
 
       <div className="grid grid-cols-5 sm:grid-cols-10 gap-2">
         {rows.map((r) => {
