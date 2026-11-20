@@ -32,6 +32,8 @@ from stock_institutional import build_institutional, build_performance, build_si
 from datetime import date
 from macro_events import to_frontend
 
+from market_movers import fetch_day_all, build_movers
+
 
 #把models的數據轉出來
 models.Base.metadata.create_all(bind=engine)
@@ -589,6 +591,18 @@ def get_stock_institutional(code: str, days: int = Query(10, ge=1, le=60)):
     _institutional_cache[key] = result
     return result
 
+_movers_cache = TTLCache(maxsize=1, ttl=600)   # 全市場資料 10 分鐘抓一次
+
+@app.get("/api/market/movers")
+def get_market_movers(limit: int = Query(5, ge=1, le=50)):
+    rows = _movers_cache.get("all")
+    if rows is None:
+        try:
+            rows = fetch_day_all()
+        except Exception:
+            raise HTTPException(status_code=502, detail="證交所資料暫時抓不到,請稍後再試。")
+        _movers_cache["all"] = rows
+    return build_movers(rows, limit=limit)
 
 @app.get("/api/stock/{code}/institutional-performance")
 def get_stock_institutional_performance(code: str):
