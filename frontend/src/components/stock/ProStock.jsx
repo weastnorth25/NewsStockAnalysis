@@ -98,7 +98,9 @@ export default function ProStock({ d }) {
         </CardTitle>
         <p className="text-xs text-gray-500 -mt-1">以區間第一天為 0% 起點・與上方區間（{d.range}）連動・滑鼠移到圖上看當天股價</p>
         {!d.peerLines.length || d.peerLines.length === 1 ? (
-          <p className="text-sm text-gray-400 py-8 text-center">這支股票的產業還沒有建立國際同業名單</p>
+          <p className="text-sm text-gray-500 py-8 text-center">
+            這個產業沒有預設的國際同業，可以按右上角「調整比較對象」自己加入
+          </p>
         ) : (
           <div className="flex flex-wrap gap-5">
             <div className="flex-[999_1_520px] min-w-0">

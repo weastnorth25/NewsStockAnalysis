@@ -1,17 +1,18 @@
-// 頂部列：漢堡選單 + 搜尋欄 + 置中 Logo + 新手/專業模式切換 + 右側帳戶下拉選單（含 Settings / Logout）
+// 頂部列：漢堡選單 + 搜尋欄（代號或名稱）+ 置中 Logo + 新手/專業模式切換 + 右側帳戶下拉選單（含 Settings / Logout）
 import { useState, useRef, useEffect } from 'react'
 import { useNavigate, NavLink } from 'react-router-dom'
 import Logo from '../Logo'
+import StockSearch from './StockSearch'
+import { useDisplayName } from '../../utils/settings'
 import { useMode } from '../../context/mode'
 
 export default function Topbar({ onToggleSidebar, sidebarOpen }) {
-  const [query, setQuery] = useState('')
   const [menuOpen, setMenuOpen] = useState(false)
   const menuRef = useRef(null)
   const navigate = useNavigate()
   const { isPro, toggleMode } = useMode()
 
-  const displayName = localStorage.getItem('displayName') || '使用者'
+  const displayName = useDisplayName() || '使用者'
   const isGuest     = localStorage.getItem('token') === 'guest'
 
   // 點選單外面就關掉
@@ -23,14 +24,6 @@ export default function Topbar({ onToggleSidebar, sidebarOpen }) {
     return () => document.removeEventListener('mousedown', handler)
   }, [])
 
-  const handleSearch = (e) => {
-    e.preventDefault()
-    const ticker = query.trim().toUpperCase()
-    if (!ticker) return
-    navigate(`/stocks?ticker=${ticker}`)
-    setQuery('')
-  }
-
   const handleLogout = () => {
     localStorage.removeItem('token')
     localStorage.removeItem('displayName')
@@ -39,7 +32,7 @@ export default function Topbar({ onToggleSidebar, sidebarOpen }) {
   }
 
   return (
-    <header className="fixed top-0 left-0 right-0 h-14 bg-white border-b border-gray-200 flex items-center px-2 sm:px-4 z-20 gap-2 sm:gap-4">
+    <header className="fixed top-0 left-0 right-0 h-14 bg-white border-b border-gray-200 flex items-center px-2 sm:px-4 z-40 gap-2 sm:gap-4">
 
       {/* 漢堡：切換 Sidebar */}
       <button
@@ -54,22 +47,8 @@ export default function Topbar({ onToggleSidebar, sidebarOpen }) {
         </svg>
       </button>
 
-      {/* 搜尋股票 */}
-      {/* 手機寬度縮小搜尋欄、藏 Logo，避免跟右邊的按鈕擠在一起 */}
-      <form onSubmit={handleSearch} className="w-36 sm:w-72 min-w-0 shrink">
-        <div className="flex items-center bg-gray-100 rounded-full px-3 py-1.5 gap-2">
-          <svg className="w-3.5 h-3.5 text-gray-400 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M21 21l-4.35-4.35M17 11A6 6 0 1 1 5 11a6 6 0 0 1 12 0z" />
-          </svg>
-          <input
-            type="text"
-            value={query}
-            onChange={(e) => setQuery(e.target.value)}
-            placeholder="搜尋股票代號..."
-            className="bg-transparent text-sm text-gray-700 placeholder-gray-400 outline-none w-full"
-          />
-        </div>
-      </form>
+      {/* 搜尋股票：代號或中文名稱，手機寬度會縮小 */}
+      <StockSearch />
 
       {/* 置中 Logo（絕對定位，跟其他元素獨立） */}
       <div className="absolute left-1/2 -translate-x-1/2 hidden md:block">

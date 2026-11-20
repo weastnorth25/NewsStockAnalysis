@@ -11,6 +11,7 @@ import { changeClass } from '../utils/market'
 import { INST_KEYS, fmtLots, actionOf, streakOf, beginnerSummary, foreignPriceSentence, proBullets, md } from '../utils/chipsInsights'
 import StockPicker from '../components/stock/StockPicker'
 import { MockBadge } from '../components/stock/StockHeader'
+import { getSetting } from '../utils/settings'
 import { InstStackChart, ForeignPriceChart, SeriesLineChart } from '../components/chips/ChipsCharts'
 
 const DAY_OPTIONS = [5, 20, 60]
@@ -215,7 +216,7 @@ export default function Chips() {
   const [searchParams] = useSearchParams()
   const symbol = searchParams.get('ticker') || mockStockList[0].symbol
   const name = mockStockList.find((s) => s.symbol === symbol)?.name || getStockName(symbol) || symbol
-  const [days, setDays] = useState(20)
+  const [days, setDays] = useState(() => getSetting('chipsDays'))
   const chips = useAsync(symbol, () => fetchChips(symbol, mockStockDetail[symbol]?.close), { cache: 'chips' })
   const all = chips.data?.data
 

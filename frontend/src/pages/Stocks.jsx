@@ -16,6 +16,7 @@ import BeginnerStock from '../components/stock/BeginnerStock'
 import { buildPeerLines } from '../utils/peerLines'
 import usePeerSelection from '../hooks/usePeerSelection'
 import { fetchVolatility } from '../api/volatility'
+import { getSetting } from '../utils/settings'
 import WatchlistPanel, { WatchlistToggle } from '../components/stock/WatchlistPanel'
 
 export default function Stocks() {
@@ -23,7 +24,7 @@ export default function Stocks() {
   const [searchParams] = useSearchParams()
   const navigate = useNavigate()
   const symbol = searchParams.get('ticker') || mockStockList[0].symbol
-  const [range, setRange] = useState('3M')
+  const [range, setRange] = useState(() => getSetting('defaultRange'))
 
   // ① 即時報價 → ② 歷史股價 → ③ 同業，前一支有結果（成功或失敗）才打下一支
   // 注意不能用 !loading 判斷：還沒開始載入時 loading 也是 false
@@ -32,7 +33,7 @@ export default function Stocks() {
   const lastClose = quote.data?.current_price ?? mockStockDetail[symbol]?.close
   const history = useAsync(settled(quote) ? `${symbol}|${range}` : null, () => fetchHistory(symbol, range, lastClose), { cache: 'history' })
   // 同業：產業預設，或使用者在「國際同業對比」頁自選過的清單（兩頁共用）
-  const peerSet = getPeers(symbol, quote.data?.industry_key)
+  const peerSet = getPeers(symbol, quote.data)
   const selection = usePeerSelection(symbol, peerSet.peers)
   const chosen = { peers: selection.peers, benchmarks: peerSet.benchmarks }
   const peerKey = chosen.peers.map((p) => p.ticker).join(',')

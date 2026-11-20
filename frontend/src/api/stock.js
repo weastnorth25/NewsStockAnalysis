@@ -1,5 +1,6 @@
 // 所有後端 API 呼叫集中在這裡，包含登入、註冊、股票查詢、自選股，並自動附加 JWT token
 import axios from 'axios'
+import { OTC } from '../data/twStocks'
 
 // Axios 實例，baseURL 從 VITE_API_URL 讀取（生產環境連 Render，未設定則走 vite proxy）
 const api = axios.create({
@@ -89,10 +90,10 @@ export const fetchCurrentUser = async () => {
   return res.data  // { id, username, email, created_at }
 }
 
-// 把顯示用 symbol 轉成 yfinance 完整 ticker：台股（數字開頭）加 .TW，已知是上櫃的加 .TWO，指數/美股原樣
+// 把顯示用 symbol 轉成 yfinance 完整 ticker：台股（數字開頭）加 .TW，上櫃（官方清單或之前查到過）加 .TWO，指數/美股原樣
 // 後端目前不會自動加後綴，所以前端統一補上後再送
 export const toFullTicker = (symbol) =>
-  /^\d[0-9A-Z]*$/.test(symbol) ? `${symbol}${otc.has(symbol) ? '.TWO' : '.TW'}` : symbol
+  /^\d[0-9A-Z]*$/.test(symbol) ? `${symbol}${otc.has(symbol) || OTC[symbol] ? '.TWO' : '.TW'}` : symbol
 
 // 把後端回來的完整 ticker 轉成顯示用 symbol（去掉 .TW／.TWO）
 export const toDisplaySymbol = (symbol) => symbol.replace(/\.TWO?$/, '')
