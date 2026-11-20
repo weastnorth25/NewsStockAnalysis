@@ -33,7 +33,7 @@ export default function Peers() {
   const [range, setRange] = useState('3M')
   const [custom, setCustom] = useState('')
 
-  const quote = useAsync(symbol, () => fetchStockInfo(toFullTicker(symbol)))
+  const quote = useAsync(symbol, () => fetchStockInfo(toFullTicker(symbol)), { cache: 'quote' })
   const settled = quote.data != null || quote.error != null
   const lastClose = quote.data?.current_price ?? mockStockDetail[symbol]?.close
   const name = mockStockList.find((s) => s.symbol === symbol)?.name || getStockName(symbol, quote.data?.company_name) || symbol
@@ -45,7 +45,7 @@ export default function Peers() {
   const chosen = { peers: selection.peers, benchmarks }
   const key = [...chosen.peers, ...benchmarks].map((p) => p.ticker).join(',')
   const result = useAsync(settled && chosen.peers.length ? `${symbol}|${range}|${key}` : null,
-    () => fetchPeers(symbol, range, chosen, lastClose))
+    () => fetchPeers(symbol, range, chosen, lastClose), { cache: 'peers' })
 
   const lines = buildPeerLines(symbol, name, chosen.peers, benchmarks)
   const series = result.data?.data?.series

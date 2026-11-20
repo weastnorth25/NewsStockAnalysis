@@ -13,7 +13,7 @@ function fmtMoney(thousand) {
 const monthOf = (ym) => Number(ym.slice(5, 7))
 
 function useRevenue() {
-  return useAsync('market-revenue', fetchMarketRevenue)
+  return useAsync('market-revenue', fetchMarketRevenue, { cache: 'revenue' })
 }
 
 const AXIS = { fontSize: 11, fill: '#6b7280' }
@@ -21,7 +21,7 @@ const AXIS = { fontSize: 11, fill: '#6b7280' }
 const toTrillion = (thousand) => Math.round((thousand / 1e9) * 100) / 100
 
 function useTrend() {
-  const r = useAsync('market-revenue-trend', () => fetchMarketRevenueTrend(12))
+  const r = useAsync('market-revenue-trend', () => fetchMarketRevenueTrend(12), { cache: 'revenue' })
   const rows = (r.data ?? []).map((m) => ({
     label: `${monthOf(m.year_month)}月`,
     ym: m.year_month,

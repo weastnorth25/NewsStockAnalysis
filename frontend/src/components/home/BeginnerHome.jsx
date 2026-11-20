@@ -60,7 +60,7 @@ function Thermometer({ score }) {
 
 export default function BeginnerHome({ quotes, score }) {
   const navigate = useNavigate()
-  const news = useAsync('home-news-3', () => fetchNews({ limit: 3 }))
+  const news = useAsync('home-news-3', () => fetchNews({ limit: 3 }), { cache: 'news' })
   const points = buildPoints(quotes)
   const loading = Object.values(quotes).some((q) => q.loading)
 
@@ -92,8 +92,9 @@ export default function BeginnerHome({ quotes, score }) {
                 <p className="text-sm font-bold text-gray-900">{idx.label}</p>
                 {word && <span className={`text-xs font-medium px-2 py-0.5 rounded-full ${word.className}`}>{word.text}</span>}
               </div>
+              {q?.stale && <p className="text-[11px] text-amber-700 -mb-1">{q.error ? '上次的資料' : '上次的資料・更新中…'}</p>}
               {q?.loading && <p className="text-sm text-gray-400 py-2">載入中...</p>}
-              {q?.error && <p className="text-sm text-gray-400 py-2">無法取得資料</p>}
+              {q?.error && !d && <p className="text-sm text-gray-400 py-2">無法取得資料</p>}
               {d && (
                 <div className="flex items-baseline gap-2">
                   <span className="text-[26px] font-bold text-gray-900">{fmtNum(d.current_price, idx.digits ?? 2)}</span>

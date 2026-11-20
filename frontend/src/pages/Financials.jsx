@@ -219,7 +219,7 @@ export default function Financials() {
   const [searchParams] = useSearchParams()
   const symbol = searchParams.get('ticker') || mockStockList[0].symbol
   const name = mockStockList.find((s) => s.symbol === symbol)?.name || getStockName(symbol) || symbol
-  const fund = useAsync(symbol, () => fetchFundamentals(symbol))
+  const fund = useAsync(symbol, () => fetchFundamentals(symbol), { cache: 'fund' })
   const f = fund.data?.data
 
   return (

@@ -1,5 +1,6 @@
 // 個股標題列：自選星星（名稱前）、名稱、代號、產業、股價漲跌；專業版右側放時間區間切換
 import { changeClass, fmtNum } from '../../utils/market'
+import { savedAtLabel } from '../../utils/apiCache'
 import { RANGES_PRO } from './constants'
 
 export function RangeTabs({ value, onChange, options }) {
@@ -52,15 +53,19 @@ export default function StockHeader({ symbol, name, industry, quote, watch, rang
           {industry && <span className="text-[11px] text-gray-700 bg-gray-100 px-2 py-0.5 rounded-full">{industry}</span>}
         </div>
         {quote.loading && <p className="text-sm text-gray-400">載入中...</p>}
-        {quote.error && <p className="text-sm text-gray-400">無法取得即時報價</p>}
+        {quote.error && !d && <p className="text-sm text-gray-400">無法取得即時報價</p>}
         {d && (
           <p className="flex items-baseline gap-2.5">
             <span className="text-3xl font-bold text-gray-900">{fmtNum(d.current_price)}</span>
             <span className={`text-[15px] font-medium ${changeClass(d.change_pct)}`}>
               {d.change > 0 ? '+' : ''}{fmtNum(d.change)}（{d.change_pct > 0 ? '+' : ''}{d.change_pct}%）
             </span>
-            {/* 即時報價抓不到時用的是歷史收盤價，標出日期 */}
-            {d.from_history && <span className="text-xs text-gray-500">收盤價・{Number(d.as_of.slice(5, 7))}/{Number(d.as_of.slice(8, 10))}</span>}
+            {/* 舊資料（瀏覽器存的上次報價）優先標示；否則即時報價抓不到時用的是歷史收盤價，標出日期 */}
+            {quote.stale ? (
+              <span className="text-xs text-amber-700">上次資料・{savedAtLabel(quote.savedAt)}・{quote.error ? '暫時無法更新' : '更新中…'}</span>
+            ) : d.from_history && (
+              <span className="text-xs text-gray-500">收盤價・{Number(d.as_of.slice(5, 7))}/{Number(d.as_of.slice(8, 10))}</span>
+            )}
           </p>
         )}
       </div>

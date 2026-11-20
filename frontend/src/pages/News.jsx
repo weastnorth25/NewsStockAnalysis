@@ -99,7 +99,7 @@ export default function News() {
   const [picked, setPicked] = useState(null)
 
   // 篩選條件或筆數改變就重抓（後端一次最多 100 筆）
-  const res = useAsync(`${category}|${q}|${limit}`, () => fetchNews({ category: category ?? undefined, q: q || undefined, limit }))
+  const res = useAsync(`${category}|${q}|${limit}`, () => fetchNews({ category: category ?? undefined, q: q || undefined, limit }), { cache: 'newslist' })
   const items = res.data?.items ?? []
   const total = res.data?.total ?? 0
 

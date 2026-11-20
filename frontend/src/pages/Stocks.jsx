@@ -28,28 +28,28 @@ export default function Stocks() {
   // ① 即時報價 → ② 歷史股價 → ③ 同業，前一支有結果（成功或失敗）才打下一支
   // 注意不能用 !loading 判斷：還沒開始載入時 loading 也是 false
   const settled = (r) => r.data != null || r.error != null
-  const quote = useAsync(symbol, () => fetchStockInfo(toFullTicker(symbol)))
+  const quote = useAsync(symbol, () => fetchStockInfo(toFullTicker(symbol)), { cache: 'quote' })
   const lastClose = quote.data?.current_price ?? mockStockDetail[symbol]?.close
-  const history = useAsync(settled(quote) ? `${symbol}|${range}` : null, () => fetchHistory(symbol, range, lastClose))
+  const history = useAsync(settled(quote) ? `${symbol}|${range}` : null, () => fetchHistory(symbol, range, lastClose), { cache: 'history' })
   // 同業：產業預設，或使用者在「國際同業對比」頁自選過的清單（兩頁共用）
   const peerSet = getPeers(symbol, quote.data?.industry_key)
   const selection = usePeerSelection(symbol, peerSet.peers)
   const chosen = { peers: selection.peers, benchmarks: peerSet.benchmarks }
   const peerKey = chosen.peers.map((p) => p.ticker).join(',')
   const peers = useAsync(settled(history) && chosen.peers.length ? `${symbol}|${range}|${peerKey}` : null,
-    () => fetchPeers(symbol, range, chosen, lastClose))
+    () => fetchPeers(symbol, range, chosen, lastClose), { cache: 'peers' })
 
   // 波動預測也是後端用 yfinance 抓股價，等歷史股價回來再打，不跟前面的請求擠在一起
-  const vol = useAsync(settled(history) ? symbol : null, () => fetchVolatility(symbol))
+  const vol = useAsync(settled(history) ? symbol : null, () => fetchVolatility(symbol), { cache: 'vol' })
 
   // 財報、籌碼、法人績效（目前是示意資料，之後走資料庫，不經過 yfinance）
-  const fund = useAsync(symbol, () => fetchFundamentals(symbol))
-  const inst = useAsync(symbol, () => fetchInstitutional(symbol))
-  const perf = useAsync(symbol, () => fetchInstitutionalPerf(symbol))
+  const fund = useAsync(symbol, () => fetchFundamentals(symbol), { cache: 'fund' })
+  const inst = useAsync(symbol, () => fetchInstitutional(symbol), { cache: 'inst' })
+  const perf = useAsync(symbol, () => fetchInstitutionalPerf(symbol), { cache: 'perf' })
 
   const name = mockStockList.find((s) => s.symbol === symbol)?.name || getStockName(symbol, quote.data?.company_name) || symbol
   // 相關新聞：先找後端標的這支股票的新聞，沒有就用公司名稱搜標題
-  const newsRes = useAsync(symbol, () => fetchStockNews(symbol, name))
+  const newsRes = useAsync(symbol, () => fetchStockNews(symbol, name), { cache: 'stocknews' })
   const news = newsRes.data?.items ?? []
 
   // 同業圖的線條設定：主角 → 同業 → 基準指數

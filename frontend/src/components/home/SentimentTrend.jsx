@@ -27,8 +27,8 @@ function TrendTooltip({ active, payload, label }) {
 // 專業版：疊上真的加權指數歷史收盤（/history），抓不到真資料就只畫情緒線
 export function SentimentTrendPro({ lastClose }) {
   const [range, setRange] = useState(RANGES[0])
-  const trend = useAsync(range.key, () => fetchSentimentTrend(range.days))
-  const index = useAsync(range.key, () => fetchHistory('^TWII', range.key, lastClose ?? 20000))
+  const trend = useAsync(range.key, () => fetchSentimentTrend(range.days), { cache: 'sentiment' })
+  const index = useAsync(range.key, () => fetchHistory('^TWII', range.key, lastClose ?? 20000), { cache: 'twii' })
   const rows = trend.data?.data ?? []
 
   // 用日期把指數收盤價併進情緒資料
@@ -114,7 +114,7 @@ function trendSentence(rows) {
 }
 
 export function SentimentTrendBeginner() {
-  const trend = useAsync('10d', () => fetchSentimentTrend(10))
+  const trend = useAsync('10d', () => fetchSentimentTrend(10), { cache: 'sentiment' })
   const rows = trend.data?.data ?? []
   const sentence = trendSentence(rows)
 
