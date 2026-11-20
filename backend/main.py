@@ -341,6 +341,28 @@ def get_news_from_db(
     return {"status": "success", "total": total, "limit": limit,
             "offset": offset, "data": data}
 
+@app.get("/api/news/{news_id}")
+def get_news_detail(news_id: int, db: Session = Depends(get_db)):
+    n = db.get(models.News, news_id)
+    if n is None:
+        raise HTTPException(status_code=404, detail="找不到這則新聞")
+    return {
+        "status": "success",
+        "data": {
+            "id": n.id,
+            "title": n.title,
+            "content": n.content,
+            "url": n.url,
+            "source": n.source,
+            "category": n.category,
+            "category_score": n.category_score,
+            "sentiment": n.sentiment,
+            "sentiment_score": n.sentiment_score,
+            "sentiment_source": n.sentiment_source,
+            "related_stocks": n.related_stocks,
+            "published_at": n.published_at,
+        },
+    }
 @app.get("/api/summaries", response_model=schemas.AiSummaryListResponse)
 def get_ai_summaries(
     scope: Optional[str] = None,
