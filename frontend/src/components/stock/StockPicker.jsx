@@ -2,6 +2,7 @@
 import { useState } from 'react'
 import { useLocation, useNavigate } from 'react-router-dom'
 import { mockStockList } from '../../data/mockData'
+import { searchStocks } from '../../data/stockNames'
 
 export default function StockPicker({ symbol }) {
   const navigate = useNavigate()
@@ -11,7 +12,9 @@ export default function StockPicker({ symbol }) {
   const go = (code) => navigate(`${pathname}?ticker=${code}`)
   const submit = (e) => {
     e.preventDefault()
-    const code = input.trim().toUpperCase()
+    // 可以打代號或名稱（例如「長榮」），有符合的名稱就用第一筆，否則當代號查
+    const q = input.trim()
+    const code = searchStocks(q)[0]?.code ?? q.toUpperCase()
     if (code) go(code)
     setInput('')
   }
@@ -32,12 +35,12 @@ export default function StockPicker({ symbol }) {
         </button>
       ))}
       <form onSubmit={submit} className="flex items-center gap-1">
-        <label className="sr-only" htmlFor="stock-picker-input">輸入股票代號</label>
+        <label className="sr-only" htmlFor="stock-picker-input">輸入股票代號或名稱</label>
         <input
           id="stock-picker-input"
           value={input}
           onChange={(e) => setInput(e.target.value)}
-          placeholder="輸入代號"
+          placeholder="代號或名稱"
           className="w-24 px-2.5 py-1.5 text-[13px] border border-gray-200 rounded-full outline-none focus:border-blue-300"
         />
       </form>

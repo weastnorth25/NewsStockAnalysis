@@ -12,6 +12,7 @@ import Peers from './pages/Peers'
 import Financials from './pages/Financials'
 import Chips from './pages/Chips'
 import InstitutionPerf from './pages/InstitutionPerf'
+import { getSetting } from './utils/settings'
 import { ModeProvider } from './context/ModeProvider'
 
 // 簡單的 Auth Guard：沒有 token 就跳回登入頁
@@ -38,7 +39,7 @@ export default function App() {
               </RequireAuth>
             }
           >
-            <Route index element={<Navigate to="/dashboard" replace />} />
+            <Route index element={<Navigate to={getSetting('landingPage')} replace />} />
             <Route path="dashboard"  element={<Dashboard />} />
             <Route path="news"       element={<News />} />
             <Route path="stocks"     element={<Stocks />} />

@@ -10,6 +10,8 @@ export function currencyOf(ticker) {
   if (ticker.endsWith('.HK')) return 'HK$'
   if (ticker.endsWith('.CO')) return 'kr '
   if (ticker.endsWith('.T')) return '¥'
+  if (ticker.endsWith('.SW')) return 'CHF '
+  if (/\.(DE|PA|MI|MC)$/.test(ticker)) return '€'
   return 'US$'
 }
 

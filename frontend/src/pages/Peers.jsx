@@ -15,6 +15,7 @@ import { changeClass, fmtPct, fmtNum } from '../utils/market'
 import StockPicker from '../components/stock/StockPicker'
 import { PeerChart } from '../components/stock/StockCharts'
 import { RangeTabs, MockBadge } from '../components/stock/StockHeader'
+import { getSetting } from '../utils/settings'
 import { RANGES_PRO } from '../components/stock/constants'
 
 const RANGE_WORD = { '1M': '1 個月', '3M': '3 個月', '6M': '6 個月', '1Y': '1 年' }
@@ -30,7 +31,7 @@ export default function Peers() {
   const { isPro } = useMode()
   const [searchParams] = useSearchParams()
   const symbol = searchParams.get('ticker') || mockStockList[0].symbol
-  const [range, setRange] = useState('3M')
+  const [range, setRange] = useState(() => getSetting('defaultRange'))
   const [custom, setCustom] = useState('')
 
   const quote = useAsync(symbol, () => fetchStockInfo(toFullTicker(symbol)), { cache: 'quote' })
@@ -38,7 +39,7 @@ export default function Peers() {
   const lastClose = quote.data?.current_price ?? mockStockDetail[symbol]?.close
   const name = mockStockList.find((s) => s.symbol === symbol)?.name || getStockName(symbol, quote.data?.company_name) || symbol
 
-  const peerSet = getPeers(symbol, quote.data?.industry_key)
+  const peerSet = getPeers(symbol, quote.data)
   const selection = usePeerSelection(symbol, peerSet.peers)
   // 新手版只留 S&P 500 當基準，不放產業指數
   const benchmarks = isPro ? peerSet.benchmarks : peerSet.benchmarks.filter((b) => b.ticker === '^GSPC')

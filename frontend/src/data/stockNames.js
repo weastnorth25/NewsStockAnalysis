@@ -1,5 +1,6 @@
 // 台股代號 → 中文名稱對照表（yfinance 只回傳英文，用這個補中文）
-// 涵蓋台灣常見股票，找不到的才 fallback 到英文
+// 完整清單在 twStocks.js（全部上市櫃，由 scripts/build-stock-list.mjs 產生）；這裡是手動補充／覆寫的常用名稱
+import { LISTED, OTC } from './twStocks'
 
 const STOCK_NAMES = {
   // ── 半導體 ──
@@ -91,8 +92,6 @@ const STOCK_NAMES = {
   '00850': '元大臺灣ESG永續',
 
   // ── 其他熱門 ──
-  '9999': '通用股份',
-  '1079': '泰?',
   '8753': '陞泰',
   '7077': '汎宇電商',
   '2409': '友達',
@@ -101,13 +100,25 @@ const STOCK_NAMES = {
   '5388': '中磊',
   '3059': '華晶科',
   '6669': '緯穎',
-  '3考': '緯穎',
   '2337': '旺宏',
   '4919': '新唐',
   '6274': '台燿',
   '3533': '嘉澤',
   '2344': '華邦電',
   '2401': '凌陽',
+
+  // ── 上櫃熱門 ──
+  '6488': '環球晶',
+  '5347': '世界先進',
+  '3105': '穩懋',
+  '8299': '群聯',
+  '5483': '中美晶',
+  '3529': '力旺',
+  '6147': '頎邦',
+  '3680': '家登',
+  '8069': '元太',
+  '4966': '譜瑞-KY',
+  '3324': '雙鴻',
 }
 
 /**
@@ -117,7 +128,17 @@ const STOCK_NAMES = {
  */
 export function getStockName(symbol, fallback = '') {
   const clean = symbol.replace(/\.TWO?$/i, '').toUpperCase()
-  return STOCK_NAMES[clean] || fallback
+  return STOCK_NAMES[clean] || LISTED[clean] || OTC[clean] || fallback
+}
+
+// 搜尋框用：代號開頭相符、或名稱包含關鍵字（例如「台積」「2330」「聯」），代號完全相符排最前面
+export function searchStocks(query, limit = 8) {
+  const q = query.trim().toUpperCase()
+  if (!q) return []
+  const hits = Object.entries({ ...LISTED, ...OTC, ...STOCK_NAMES })
+    .filter(([code, name]) => code.startsWith(q) || name.toUpperCase().includes(q))
+    .map(([code, name]) => ({ code, name, rank: code === q || name === q ? 0 : code.startsWith(q) || name.startsWith(q) ? 1 : 2 }))
+  return hits.sort((a, b) => a.rank - b.rank || a.code.localeCompare(b.code)).slice(0, limit)
 }
 
 export default STOCK_NAMES
