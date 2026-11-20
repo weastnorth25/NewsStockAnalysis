@@ -7,7 +7,6 @@ const navItems = [
   { to: '/favourites', label: '自選' },
   { to: '/news',       label: '新聞' },
   { to: '/macro',      label: '總經日曆' },
-  { to: '/sentiment',  label: '市場情緒' },
 ]
 
 // 股票分析工具：都是針對單一股票，共用網址上的 ?ticker=

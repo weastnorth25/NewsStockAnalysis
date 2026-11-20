@@ -3,7 +3,7 @@ import { useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 import { AreaChart, Area, XAxis, YAxis, Tooltip, CartesianGrid, ResponsiveContainer } from 'recharts'
 import { changeClass, fmtPct, fmtNum, calcSentiment } from '../../utils/market'
-import { mockInstitutional, mockMovers } from '../../data/homeMock'
+import { fetchMarketInstitutional, fetchMarketMovers } from '../../api/market'
 import { fetchHistory } from '../../api/stockData'
 import useAsync from '../../hooks/useAsync'
 import { fetchNews } from '../../api/news'
@@ -110,10 +110,15 @@ function IndexTrendCard({ quote }) {
   )
 }
 
+const INST_ROWS = [['foreign', '外資'], ['trust', '投信'], ['dealer', '自營商']]
+
 function StrengthCard({ score }) {
   const s = calcSentiment(score)
   const dash = Math.round((s.temp / 100) * 314)
-  const maxAbs = Math.max(...mockInstitutional.map((i) => Math.abs(i.value)))
+  // 全市場三大法人：取最新一天（收盤後才有當天資料，盤中顯示的是前一個交易日）
+  const inst = useAsync('market-inst', () => fetchMarketInstitutional(1), { cache: 'mktinst' })
+  const day = inst.data?.at(-1)
+  const maxAbs = day ? Math.max(...INST_ROWS.map(([k]) => Math.abs(day[k] ?? 0)), 1) : 1
 
   return (
     <Card className="flex flex-col gap-3.5">
@@ -132,17 +137,16 @@ function StrengthCard({ score }) {
         </div>
       </div>
       <div className="border-t border-gray-100 pt-3 flex flex-col gap-2.5">
-        <div className="flex items-center gap-2">
-          <p className="text-xs text-gray-500">今日三大法人買賣超（億）</p>
-          <MockBadge />
-        </div>
-        {mockInstitutional.map((i) => (
-          <div key={i.name} className="grid grid-cols-[52px_1fr_56px] items-center gap-2 text-[13px]">
-            <span>{i.name}</span>
+        <p className="text-xs text-gray-500">三大法人買賣超（億）{day && `・${md(day.date)}`}</p>
+        {inst.loading && <p className="text-sm text-gray-400">載入中...</p>}
+        {!day && !inst.loading && <p className="text-sm text-gray-400">暫時無法取得</p>}
+        {day && INST_ROWS.map(([k, name]) => (
+          <div key={k} className="grid grid-cols-[52px_1fr_64px] items-center gap-2 text-[13px]">
+            <span>{name}</span>
             <div className="h-2 bg-gray-100 rounded">
-              <div className={`h-2 rounded ${i.value >= 0 ? 'bg-red-500' : 'bg-emerald-500'}`} style={{ width: `${(Math.abs(i.value) / maxAbs) * 100}%` }} />
+              <div className={`h-2 rounded ${day[k] >= 0 ? 'bg-red-500' : 'bg-emerald-500'}`} style={{ width: `${(Math.abs(day[k] ?? 0) / maxAbs) * 100}%` }} />
             </div>
-            <span className={`text-right font-medium ${changeClass(i.value)}`}>{i.value > 0 ? '+' : ''}{i.value}</span>
+            <span className={`text-right font-medium ${changeClass(day[k])}`}>{day[k] > 0 ? '+' : ''}{day[k]?.toLocaleString() ?? '--'}</span>
           </div>
         ))}
       </div>
@@ -177,34 +181,43 @@ function NewsCard() {
   )
 }
 
+// 漲幅前 5、跌幅前 5 分兩欄（窄螢幕上下排），點股票進個股頁
 function MoversCard() {
   const navigate = useNavigate()
+  const movers = useAsync('market-movers', () => fetchMarketMovers(5), { cache: 'movers' })
+  const d = movers.data
+  const list = (title, rows) => (
+    <div className="min-w-0">
+      <p className="text-xs text-gray-500 mb-1">{title}</p>
+      <table className="w-full text-[13px]">
+        <tbody>
+          {rows.map((m) => (
+            <tr key={m.code} onClick={() => navigate(`/stocks?ticker=${m.code}`)} className="border-t border-gray-100 cursor-pointer hover:bg-gray-50">
+              <td className="py-2 truncate max-w-0 w-full">{m.name} <span className="text-gray-500">{m.code}</span></td>
+              <td className="text-right px-2">{fmtNum(m.price, m.price >= 100 ? 1 : 2)}</td>
+              <td className={`text-right font-medium ${changeClass(m.changePct)}`}>{fmtPct(m.changePct, 1)}</td>
+            </tr>
+          ))}
+          {rows.length === 0 && <tr><td className="py-2 text-gray-400">今天沒有</td></tr>}
+        </tbody>
+      </table>
+    </div>
+  )
   return (
     <Card className="flex flex-col gap-2">
       <div className="flex items-center gap-2">
         <p className="text-sm font-bold text-gray-900">漲跌幅排行</p>
-        <MockBadge />
+        {d?.date && <span className="text-xs text-gray-500">{md(d.date)}・上市股票</span>}
       </div>
-      <div className="overflow-x-auto">
-        <table className="w-full text-[13px]">
-          <thead>
-            <tr className="text-gray-500 text-left">
-              <th className="font-normal py-1.5">股票</th>
-              <th className="font-normal text-right">股價</th>
-              <th className="font-normal text-right">漲跌</th>
-            </tr>
-          </thead>
-          <tbody>
-            {mockMovers.map((m) => (
-              <tr key={m.code} onClick={() => navigate(`/stocks?ticker=${m.code}`)} className="border-t border-gray-100 cursor-pointer hover:bg-gray-50">
-                <td className="py-2">{m.name} <span className="text-gray-500">{m.code}</span></td>
-                <td className="text-right">{fmtNum(m.price, 1)}</td>
-                <td className={`text-right font-medium ${changeClass(m.changePct)}`}>{fmtPct(m.changePct, 1)}</td>
-              </tr>
-            ))}
-          </tbody>
-        </table>
-      </div>
+      {movers.loading && <p className="text-sm text-gray-400">載入中...</p>}
+      {!d && !movers.loading && <p className="text-sm text-gray-400">暫時無法取得</p>}
+      {d && (
+        <div className="grid grid-cols-1 sm:grid-cols-2 gap-x-5 gap-y-3">
+          {list('漲幅前 5 名', d.gainers)}
+          {list('跌幅前 5 名', d.losers)}
+        </div>
+      )}
+      <p className="text-xs text-gray-500 mt-auto">已排除成交量太小的股票</p>
     </Card>
   )
 }

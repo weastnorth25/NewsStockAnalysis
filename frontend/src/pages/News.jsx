@@ -1,9 +1,9 @@
 // 新聞頁面：左側新聞列表（可依分類篩選、搜尋標題、載入更多），右側顯示選中的新聞
-// 資料來自後端每天爬蟲的 /api/news；目前只有摘要＋原文連結，後端提供全文（content）或 AI 重點後會自動顯示
+// 資料來自後端每天爬蟲的 /api/news（列表）與 /api/news/{id}（單篇全文）；後端提供 AI 重點後會自動顯示
 import { useState } from 'react'
 import { useLocation, useNavigate } from 'react-router-dom'
 import useAsync from '../hooks/useAsync'
-import { fetchNews } from '../api/news'
+import { fetchNews, fetchNewsDetail } from '../api/news'
 import { NEWS_CATEGORIES, TONE, newsTime } from '../utils/news'
 import { getStockName } from '../data/stockNames'
 
@@ -17,6 +17,10 @@ function ToneTag({ tone }) {
 function NewsDetail({ n, onBack }) {
   const navigate = useNavigate()
   const tone = n.tone && TONE[n.tone]
+  // 列表只有摘要，選到這則再抓全文；全文還沒回來前先顯示摘要
+  const detail = useAsync(n.id, () => fetchNewsDetail(n.id), { cache: 'newsdetail' })
+  const content = detail.data?.content ?? n.content
+  const aiSummary = detail.data?.aiSummary ?? n.aiSummary
   return (
     <article className="bg-white rounded-xl border border-gray-200 p-6 min-w-0 flex flex-col gap-5">
       {onBack && (
@@ -32,17 +36,19 @@ function NewsDetail({ n, onBack }) {
         </div>
       </div>
 
-      {n.aiSummary && (
+      {aiSummary && (
         <div className="bg-slate-50 rounded-lg p-4 flex flex-col gap-1.5">
           <span className="self-start text-[11px] font-bold text-blue-700 bg-blue-100 px-2 py-0.5 rounded-full">AI 重點</span>
-          <p className="text-sm leading-relaxed text-gray-800">{n.aiSummary}</p>
+          <p className="text-sm leading-relaxed text-gray-800">{aiSummary}</p>
         </div>
       )}
 
       <div className="text-[15px] text-gray-700 leading-loose whitespace-pre-line border-t border-gray-100 pt-5">
-        {n.content ?? n.summary}
+        {content ?? n.summary}
       </div>
-      {!n.content && <p className="text-xs text-gray-500 -mt-3">目前只顯示新聞開頭，完整內文請看原文。</p>}
+      {!content && (
+        <p className="text-xs text-gray-500 -mt-3">{detail.loading ? '正在載入全文…' : '目前只顯示新聞開頭，完整內文請看原文。'}</p>
+      )}
       {n.url && (
         <a href={n.url} target="_blank" rel="noopener noreferrer" className="self-start text-sm text-blue-600 hover:text-blue-700">
           閱讀原文（{n.source}）↗

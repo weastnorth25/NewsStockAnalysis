@@ -6,7 +6,6 @@ import Dashboard from './pages/Dashboard'
 import News from './pages/News'
 import Stocks from './pages/Stocks'
 import Favourites from './pages/Favourites'
-import Sentiment from './pages/Sentiment'
 import Settings from './pages/Settings'
 import Macro from './pages/Macro'
 import Peers from './pages/Peers'
@@ -44,7 +43,6 @@ export default function App() {
             <Route path="news"       element={<News />} />
             <Route path="stocks"     element={<Stocks />} />
             <Route path="favourites" element={<Favourites />} />
-            <Route path="sentiment"  element={<Sentiment />} />
             <Route path="settings"   element={<Settings />} />
 
             {/* 分析工具 */}
