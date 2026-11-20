@@ -1,5 +1,5 @@
-// 依序載入多個指數／報價（避免後端 yfinance 內建 SQLite 快取被並行請求鎖住）
-// 回傳 { '^TWII': { loading, data, error, stale }, ... }，每抓完一支就更新一次，畫面可以逐步顯示
+// 首頁的多個指數報價：同時發出請求，誰先回來就先顯示（後端已有自己的快取，不必再一支一支排隊）
+// 回傳 { '^TWII': { loading, data, error, stale }, ... }
 // 一開始先拿瀏覽器存的上次報價（stale），後端休眠開機時首頁也不會空白
 import { useEffect, useState } from 'react'
 import { fetchStockInfo } from '../api/stock'
@@ -16,20 +16,18 @@ export default function useIndexQuotes(tickers) {
 
   useEffect(() => {
     let cancelled = false
-    ;(async () => {
-      for (const ticker of key.split(',')) {
-        if (cancelled) return
-        try {
-          const data = await fetchStockInfo(ticker)
+    for (const ticker of key.split(',')) {
+      fetchStockInfo(ticker)
+        .then((data) => {
           if (cancelled) return
           setQuotes((prev) => ({ ...prev, [ticker]: { data, loading: false } }))
           writeCache(`quote|${ticker}`, data)
-        } catch {
+        })
+        .catch(() => {
           // 抓失敗：有舊資料就繼續顯示舊的
           if (!cancelled) setQuotes((prev) => ({ ...prev, [ticker]: prev[ticker]?.data ? { ...prev[ticker], error: true } : { error: true, loading: false } }))
-        }
-      }
-    })()
+        })
+    }
     return () => { cancelled = true }
   }, [key])
 
