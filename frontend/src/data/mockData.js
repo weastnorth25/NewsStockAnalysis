@@ -458,36 +458,6 @@ export const mockCompanyInfo = {
   },
 }
 
-// ─── 市場情緒（論壇貼文）─────────────────────────────────────────
-export const FORUM_SOURCES = [
-  { key: 'ptt',      label: 'PTT 股票板',    color: '#8b5cf6' },
-  { key: 'mobile01', label: 'Mobile01',     color: '#f97316' },
-  { key: 'dcard',    label: 'Dcard 投資理財', color: '#3b82f6' },
-  { key: 'buffett',  label: '巴菲特投資聯盟', color: '#10b981' },
-]
-
-export const mockForumPosts = [
-  { id: 1,  source: 'ptt',      title: '台積電法說超猛，外資狂買連 3 天', excerpt: '昨天法說會講得超好的，AI 訂單滿到 2027，魏哲家整個信心爆棚...', author: 'investor2024', likes: 412, replies: 156, sentiment: 0.85, mentionedStocks: ['2330'], postedAt: '2026/6/3 14:32' },
-  { id: 2,  source: 'mobile01', title: '台積電法說感想：先進製程真的猛',     excerpt: '聽完 2nm 試產進度提前真的有夠樂觀，蘋果也下了大單，這支怎麼可能不漲？', author: 'tech_lover',   likes: 289, replies: 102, sentiment: 0.78, mentionedStocks: ['2330'], postedAt: '2026/6/3 11:15' },
-  { id: 3,  source: 'ptt',      title: '鴻海電動車到底有沒有救？',         excerpt: 'Stellantis 暫緩採購，這對鴻海打擊不小，雖然劉揚偉嘴硬說沒事，但市場明顯不買單。', author: 'stock_doubt',  likes: 178, replies: 234, sentiment: 0.32, mentionedStocks: ['2317'], postedAt: '2026/6/2 22:08' },
-  { id: 4,  source: 'dcard',    title: '第一次買 0050 該注意什麼？',        excerpt: '小資族剛開始投資，看大家都推薦 0050，殖利率穩定看起來蠻香的，請問現在是好時機嗎？', author: '理財新手',      likes: 156, replies: 78,  sentiment: 0.72, mentionedStocks: ['0050'], postedAt: '2026/6/2 19:45' },
-  { id: 5,  source: 'buffett',  title: '聯發科新晶片發表會技術分析',         excerpt: '天璣 9500 採 3nm 製程，NPU 算力提升 80%，搭配小米 OPPO vivo 旗艦機，第三季業績可期。', author: '價值投資人',    likes: 245, replies: 67,  sentiment: 0.80, mentionedStocks: ['2454'], postedAt: '2026/6/2 16:22' },
-  { id: 6,  source: 'ptt',      title: '廣達被狂炒到底還能買嗎',           excerpt: 'AI 伺服器庫存週數上升到 6 週，是真的需求降溫還是公司在洗盤？等回檔再進場吧。', author: 'wait_pullback', likes: 198, replies: 145, sentiment: 0.42, mentionedStocks: ['2382'], postedAt: '2026/6/2 13:10' },
-  { id: 7,  source: 'mobile01', title: '緯創 AI server 出貨優於預期',       excerpt: '4 月營收年增 45%，GB200 訂單滿到 2027，墨西哥新廠又要量產，這支至少抱到年底。', author: 'long_term_buy', likes: 167, replies: 54,  sentiment: 0.83, mentionedStocks: ['3231'], postedAt: '2026/6/1 21:32' },
-  { id: 8,  source: 'ptt',      title: '中美貿易戰升溫快跑啊',             excerpt: '美方又擴大半導體出口管制，台積電聯發科首當其衝，大盤要小心一波修正。', author: 'risk_alert',    likes: 524, replies: 412, sentiment: 0.18, mentionedStocks: ['2330', '2454'], postedAt: '2026/6/1 17:48' },
-  { id: 9,  source: 'dcard',    title: '富邦金配息 4.5 元爽爆',            excerpt: '殖利率超過 5%，金融股穩定配息真的太香，已經放一年多了，繼續抱。', author: 'dividend_fan',  likes: 89,  replies: 32,  sentiment: 0.78, mentionedStocks: ['2881'], postedAt: '2026/6/1 14:25' },
-  { id: 10, source: 'buffett',  title: '國泰金 Q1 財報拆解：美債部位的隱憂', excerpt: '海外債券評價損失擴大，Q1 EPS 衰退 18%，雖然管理層說已調整部位，但下半年觀察期還沒過。', author: '財報控',        likes: 156, replies: 89,  sentiment: 0.35, mentionedStocks: ['2882'], postedAt: '2026/5/31 22:14' },
-  { id: 11, source: 'ptt',      title: '台積電 2nm 試產良率 75% 是真的嗎？', excerpt: '法說上講得這麼漂亮，但供應鏈消息說有幾個良率挑戰還沒解決，到底要不要信？', author: 'skeptic_user',  likes: 234, replies: 178, sentiment: 0.58, mentionedStocks: ['2330'], postedAt: '2026/5/31 19:30' },
-  { id: 12, source: 'mobile01', title: '鴻海印度產線量產實況分享',          excerpt: '朋友在清奈廠工作，產線跑得不錯，月產能 100 萬支 iPhone 17，年底要拉到 250 萬。', author: 'india_insider',  likes: 124, replies: 45,  sentiment: 0.70, mentionedStocks: ['2317'], postedAt: '2026/5/31 12:08' },
-  { id: 13, source: 'ptt',      title: '聯發科市占被高通搶走怎麼辦',         excerpt: 'Q1 全球 5G 晶片市占從 35% 跌到 32%，高通驍龍 8 Gen 4 確實強，要繼續抱嗎？', author: 'mtk_holder',    likes: 167, replies: 134, sentiment: 0.30, mentionedStocks: ['2454'], postedAt: '2026/5/30 20:42' },
-  { id: 14, source: 'dcard',    title: '0050 跌一下就慌的我...',           excerpt: 'ETF 不是要長期持有嗎？看到帳面虧 5% 就睡不著，是不是我心臟太弱了？', author: 'newbie_invest', likes: 312, replies: 198, sentiment: 0.50, mentionedStocks: ['0050'], postedAt: '2026/5/30 15:18' },
-  { id: 15, source: 'buffett',  title: '廣達 Q1 EPS 4.85 元年增 65%',       excerpt: '本業強到爆，AI 伺服器毛利率突破 15%，全年成長 30% 應該穩了，目標價上看 400。', author: '長線價值',      likes: 198, replies: 56,  sentiment: 0.86, mentionedStocks: ['2382'], postedAt: '2026/5/29 21:55' },
-  { id: 16, source: 'ptt',      title: '台積電遭日廠 Rapidus 搶單？',       excerpt: '日本人搶幾顆試產訂單就在那邊歡呼，台積電年產能 100 倍以上，影響根本可以忽略。', author: 'taiwan_pride',  likes: 289, replies: 156, sentiment: 0.35, mentionedStocks: ['2330'], postedAt: '2026/5/29 18:20' },
-  { id: 17, source: 'mobile01', title: '緯創墨西哥新廠落成有感',            excerpt: '近北美客戶又能拿關稅優惠，AI 伺服器產能再增 40%，業績應該還會繼續炸。', author: 'tech_analyst',  likes: 145, replies: 38,  sentiment: 0.75, mentionedStocks: ['3231'], postedAt: '2026/5/28 16:42' },
-  { id: 18, source: 'ptt',      title: '富邦金併購大眾銀行傳聞',            excerpt: '380 億的併購案如果真的成，中南部分行直接補齊，但短期可能會稀釋 EPS。', author: 'finance_track', likes: 134, replies: 78,  sentiment: 0.65, mentionedStocks: ['2881'], postedAt: '2026/5/28 11:30' },
-  { id: 19, source: 'dcard',    title: '國泰金 5 月獲利強彈了！',           excerpt: '單月稅後 95 億，年初被美債拖累的部分終於追回來，繼續存股下去。', author: 'cathay_lover',  likes: 87,  replies: 24,  sentiment: 0.78, mentionedStocks: ['2882'], postedAt: '2026/5/27 19:08' },
-  { id: 20, source: 'ptt',      title: '鴻海 Q1 EPS 3.12 元符合預期',       excerpt: '其實沒有特別驚喜，但 AI 伺服器拉動下半年應該會更好，劉揚偉說 Q2 季增雙位數。', author: 'foxconn_buy',   likes: 156, replies: 67,  sentiment: 0.62, mentionedStocks: ['2317'], postedAt: '2026/5/27 14:55' },
-]
 
 // 把「2026年5月25日」轉成 Date 物件
 function parseChineseDate(str) {
