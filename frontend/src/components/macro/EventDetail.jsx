@@ -80,7 +80,7 @@ export default function EventDetail({ event, isPro }) {
       <div className="flex-[1_1_320px] min-w-0 flex flex-col gap-3">
         <div className="flex justify-between items-baseline">
           <p className="text-sm font-bold text-gray-900">近期公布後的變化</p>
-          <span className="text-xs text-gray-500">加權指數漲跌</span>
+          <span className="text-xs text-gray-500">加權指數漲跌・台灣收盤後公布的從隔天算</span>
         </div>
 
         {reactions.length === 0 ? (
@@ -91,7 +91,7 @@ export default function EventDetail({ event, isPro }) {
               <table className="w-full text-[13px]">
                 <thead>
                   <tr className="text-gray-500 text-left">
-                    <th className="font-normal py-1.5">公布日</th>
+                    <th className="font-normal py-1.5">台股反應日</th>
                     <th className="font-normal">結果</th>
                     <th className="font-normal text-right">當天</th>
                     <th className="font-normal text-right">隔天</th>
@@ -100,7 +100,7 @@ export default function EventDetail({ event, isPro }) {
                 <tbody>
                   {reactions.map((r) => (
                     <tr key={r.date} className="border-t border-gray-100">
-                      <td className="py-2.5">{formatMD(r.date)}</td>
+                      <td className="py-2.5">{formatMD(r.reactionDate ?? r.date)}</td>
                       <td><span className={`text-xs px-2 py-0.5 rounded-full ${resultMeta(r.result).className}`}>{resultMeta(r.result).label}</span></td>
                       <td className={`text-right font-bold ${pctClass(r.change0d)}`}>{fmtPct(r.change0d)}</td>
                       <td className={`text-right font-medium ${pctClass(r.change1d)}`}>{fmtPct(r.change1d)}</td>
@@ -116,7 +116,7 @@ export default function EventDetail({ event, isPro }) {
           </>
         ) : (
           <p className="text-sm leading-relaxed text-gray-700 bg-gray-50 rounded-lg p-3.5">
-            過去 {reactions.length} 次公布當天，台股有 <b>{ups} 次上漲</b>，平均
+            過去 {reactions.length} 次公布後的第一個交易日，台股有 <b>{ups} 次上漲</b>，平均
             <b className={pctClass(avg)}> {fmtPct(avg)}</b>。
           </p>
         )}
