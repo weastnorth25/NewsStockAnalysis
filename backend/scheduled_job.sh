@@ -9,8 +9,10 @@ LOG="logs/job_$(date +%Y%m%d_%H%M).log"
 
 {
   echo "=== $(date '+%F %T') 開始 ==="
-  python crawl_news.py                    || echo "!! 爬新聞失敗"
+    python crawl_news.py                    || echo "!! 爬新聞失敗"
   python tag_news_sentiment.py --apply    || echo "!! 標情緒失敗"
+  python summarize_news.py --apply        || echo "!! AI 重點失敗"
   python run_daily.py                     || echo "!! 月營收失敗"
+  python market_institutional.py          || echo "!! 三大法人失敗"
   echo "=== $(date '+%F %T') 結束 ==="
 } 2>&1 | tee -a "$LOG"

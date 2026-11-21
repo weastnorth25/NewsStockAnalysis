@@ -68,7 +68,8 @@ class NewsItem(BaseModel):
     sentiment_score: Optional[float] = None
     related_stocks: Optional[str] = None
     published_at: Optional[datetime] = None
-
+    ai_summary: Optional[str] = None
+    
 class NewsListResponse(BaseModel):
        status: str
        total: int
