@@ -337,6 +337,7 @@ def get_news_from_db(
             "category_score": n.category_score,
             "sentiment": n.sentiment,
             "sentiment_score": n.sentiment_score,
+            "ai_summary": n.ai_summary,
             "related_stocks": n.related_stocks,
             "published_at": n.published_at,
         })
@@ -361,6 +362,7 @@ def get_news_detail(news_id: int, db: Session = Depends(get_db)):
             "sentiment": n.sentiment,
             "sentiment_score": n.sentiment_score,
             "sentiment_source": n.sentiment_source,
+            "ai_summary": n.ai_summary,
             "related_stocks": n.related_stocks,
             "published_at": n.published_at,
         },

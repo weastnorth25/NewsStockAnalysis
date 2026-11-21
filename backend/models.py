@@ -22,14 +22,6 @@ class User(Base):
     password_hash = Column(String(255))
     #utcnow 自動填入當前時間
     created_at = Column(DateTime,default=datetime.utcnow) #註冊時間
-'''    
-class UserWatchlist(Base):
-    __tablename__="user_watchlist"
-
-    id=Column(Integer,primary_key=True,index=True)
-    user_id=Column(Integer,ForeignKey('user.id'))
-    stock_id=Column(Integer,ForeignKey('stock.id'))
-'''
 
 class Stock(Base):
     __tablename__="stock"
@@ -86,6 +78,9 @@ class News(Base):
     sentiment = Column(String(20))       # 情緒標籤（匯入 xlsx 用，爬蟲暫不填）
     source = Column(String(30))          # ctee / cnyes / yahoo
     sentiment_source = Column(String(30))   # human_reviewed / finbert_v30
+    
+    ai_summary = Column(Text)                     # AI 重點,每點一行
+    ai_summary_model = Column(String(50))         # 產生的模型與 prompt 版本,或略過原因
 
 class AiChatSession(Base):
     __tablename__="ai_chat_session"
