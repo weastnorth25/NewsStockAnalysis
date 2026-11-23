@@ -39,7 +39,10 @@ function NewsDetail({ n, onBack }) {
       {aiSummary && (
         <div className="bg-slate-50 rounded-lg p-4 flex flex-col gap-1.5">
           <span className="self-start text-[11px] font-bold text-blue-700 bg-blue-100 px-2 py-0.5 rounded-full">AI 重點</span>
-          <p className="text-sm leading-relaxed text-gray-800">{aiSummary}</p>
+          {/* 後端格式：每點一行（\n 分隔），不含項目符號 */}
+          <ul className="list-disc pl-5 flex flex-col gap-1 text-sm leading-relaxed text-gray-800">
+            {aiSummary.split('\n').filter((line) => line.trim()).map((line) => <li key={line}>{line}</li>)}
+          </ul>
         </div>
       )}
 
