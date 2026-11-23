@@ -1,11 +1,15 @@
 // 頂部搜尋框：可以打代號（2330）或中文名稱（台積電、台積），輸入時跳出建議清單
 // 鍵盤：↑↓ 選擇、Enter 前往、Esc 關閉；沒有符合的名稱時，Enter 直接把輸入當代號查
 import { useRef, useState } from 'react'
-import { useNavigate } from 'react-router-dom'
+import { useLocation, useNavigate } from 'react-router-dom'
 import { searchStocks } from '../../data/stockNames'
+
+// 這幾頁都是看單一股票：在這些頁搜尋就留在原頁換股票，其他頁一律去股票頁
+const STOCK_PAGES = ['/stocks', '/peers', '/financials', '/chips', '/institutions']
 
 export default function StockSearch() {
   const navigate = useNavigate()
+  const { pathname } = useLocation()
   const [query, setQuery] = useState('')
   const [open, setOpen] = useState(false)
   const [active, setActive] = useState(0)
@@ -15,7 +19,7 @@ export default function StockSearch() {
   const showList = open && query.trim() !== '' && hits.length > 0
 
   const go = (code) => {
-    navigate(`/stocks?ticker=${code}`)
+    navigate(`${STOCK_PAGES.includes(pathname) ? pathname : '/stocks'}?ticker=${code}`)
     setQuery('')
     setOpen(false)
   }

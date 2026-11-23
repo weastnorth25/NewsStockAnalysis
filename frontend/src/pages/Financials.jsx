@@ -1,5 +1,4 @@
 // 財報分析頁面：專業模式看估值、月營收、三率、每季 EPS 與完整財報表；新手模式看健檢燈號與白話說明
-import { useSearchParams } from 'react-router-dom'
 import { useMode } from '../context/mode'
 import { fetchFundamentals } from '../api/stockData'
 import { mockStockList } from '../data/mockData'
@@ -8,7 +7,9 @@ import useAsync from '../hooks/useAsync'
 import { buildChecks, buildSummary, buildProsCons } from '../utils/stockInsights'
 import { nextMonthlyRevenue, nextQuarterlyReport } from '../utils/reportDates'
 import { changeClass, fmtPct, fmtUnit } from '../utils/market'
-import StockPicker from '../components/stock/StockPicker'
+import { WatchlistToggle, WatchlistLayout } from '../components/stock/WatchlistPanel'
+import useTicker from '../hooks/useTicker'
+import useWatchlist from '../hooks/useWatchlist'
 import { MonthlyRevenueChart, MarginTrendChart, EpsBarChart } from '../components/stock/StockCharts'
 import { MockBadge } from '../components/stock/StockHeader'
 import { MARGIN_LINES } from '../components/stock/constants'
@@ -216,8 +217,8 @@ function BeginnerView({ f, name }) {
 
 export default function Financials() {
   const { isPro } = useMode()
-  const [searchParams] = useSearchParams()
-  const symbol = searchParams.get('ticker') || mockStockList[0].symbol
+  const symbol = useTicker()
+  const wl = useWatchlist()
   const name = mockStockList.find((s) => s.symbol === symbol)?.name || getStockName(symbol) || symbol
   const fund = useAsync(symbol, () => fetchFundamentals(symbol), { cache: 'fund' })
   const f = fund.data?.data
@@ -227,14 +228,16 @@ export default function Financials() {
       <div className="flex flex-wrap items-center gap-3">
         <h1 className="text-2xl font-semibold text-gray-900">財報分析</h1>
         <span className="text-base text-gray-700">{name} <span className="text-gray-500">{symbol}</span></span>
+        <WatchlistToggle open={wl.open} count={wl.items.length} onToggle={wl.toggleOpen} />
         <MockBadge show={fund.data?.isMock} />
         <div className="flex-1" />
         <ReportDates />
       </div>
-      <StockPicker symbol={symbol} />
-      {fund.loading && <p className="text-sm text-gray-400">載入中...</p>}
-      {fund.error && <p className="text-sm text-gray-400">無法取得財報資料</p>}
-      {f && (isPro ? <ProView f={f} /> : <BeginnerView f={f} name={name} />)}
+      <WatchlistLayout wl={wl} symbol={symbol}>
+        {fund.loading && <p className="text-sm text-gray-400">載入中...</p>}
+        {fund.error && <p className="text-sm text-gray-400">無法取得財報資料</p>}
+        {f && (isPro ? <ProView f={f} /> : <BeginnerView f={f} name={name} />)}
+      </WatchlistLayout>
     </div>
   )
 }

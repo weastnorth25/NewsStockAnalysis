@@ -1,7 +1,6 @@
 // 法人籌碼頁面：專業模式看三大法人每日買賣超＋股價、外資持股比例、融資餘額與每日明細；新手模式看「大戶在買還是賣」的白話整理
 // 資料一次抓 60 天，切換 5／20／60 日只在前端切片，不重打 API
 import { useState } from 'react'
-import { useSearchParams } from 'react-router-dom'
 import { useMode } from '../context/mode'
 import { fetchChips } from '../api/stockData'
 import { mockStockList, mockStockDetail } from '../data/mockData'
@@ -9,7 +8,9 @@ import { getStockName } from '../data/stockNames'
 import useAsync from '../hooks/useAsync'
 import { changeClass } from '../utils/market'
 import { INST_KEYS, fmtLots, actionOf, streakOf, beginnerSummary, foreignPriceSentence, proBullets, md } from '../utils/chipsInsights'
-import StockPicker from '../components/stock/StockPicker'
+import { WatchlistToggle, WatchlistLayout } from '../components/stock/WatchlistPanel'
+import useTicker from '../hooks/useTicker'
+import useWatchlist from '../hooks/useWatchlist'
 import { MockBadge } from '../components/stock/StockHeader'
 import { getSetting } from '../utils/settings'
 import { InstStackChart, ForeignPriceChart, SeriesLineChart } from '../components/chips/ChipsCharts'
@@ -213,8 +214,8 @@ function BeginnerView({ all }) {
 
 export default function Chips() {
   const { isPro } = useMode()
-  const [searchParams] = useSearchParams()
-  const symbol = searchParams.get('ticker') || mockStockList[0].symbol
+  const symbol = useTicker()
+  const wl = useWatchlist()
   const name = mockStockList.find((s) => s.symbol === symbol)?.name || getStockName(symbol) || symbol
   const [days, setDays] = useState(() => getSetting('chipsDays'))
   const chips = useAsync(symbol, () => fetchChips(symbol, mockStockDetail[symbol]?.close), { cache: 'chips' })
@@ -225,6 +226,7 @@ export default function Chips() {
       <div className="flex flex-wrap items-center gap-3">
         <h1 className="text-2xl font-semibold text-gray-900">法人籌碼</h1>
         <span className="text-base text-gray-700">{name} <span className="text-gray-500">{symbol}</span></span>
+        <WatchlistToggle open={wl.open} count={wl.items.length} onToggle={wl.toggleOpen} />
         <MockBadge show={chips.data?.isMock} />
         <div className="flex-1" />
         {isPro && (
@@ -243,10 +245,11 @@ export default function Chips() {
           </div>
         )}
       </div>
-      <StockPicker symbol={symbol} />
-      {chips.loading && <p className="text-sm text-gray-400">載入中...</p>}
-      {chips.error && <p className="text-sm text-gray-400">無法取得籌碼資料</p>}
-      {all?.length > 0 && (isPro ? <ProView all={all} days={days} /> : <BeginnerView all={all} />)}
+      <WatchlistLayout wl={wl} symbol={symbol}>
+        {chips.loading && <p className="text-sm text-gray-400">載入中...</p>}
+        {chips.error && <p className="text-sm text-gray-400">無法取得籌碼資料</p>}
+        {all?.length > 0 && (isPro ? <ProView all={all} days={days} /> : <BeginnerView all={all} />)}
+      </WatchlistLayout>
     </div>
   )
 }

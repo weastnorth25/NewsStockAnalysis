@@ -9,7 +9,7 @@ const navItems = [
   { to: '/macro',      label: '總經日曆' },
 ]
 
-// 股票分析工具：都是針對單一股票，共用網址上的 ?ticker=
+// 股票分析工具：都是針對單一股票，沒帶 ?ticker= 時顯示上次看的那支（hooks/useTicker）
 const toolItems = [
   { to: '/peers',         label: '國際同業對比' },
   { to: '/financials',    label: '財報分析' },

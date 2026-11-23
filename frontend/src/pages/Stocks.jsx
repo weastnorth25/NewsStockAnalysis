@@ -1,9 +1,8 @@
-// 股票頁面（個股 dashboard）：左側可收合的自選股抽屜，右側依選中股票顯示卡片網格
+// 股票頁面（個股 dashboard）：左側可收合的自選股抽屜（與分析工具頁共用），右側依選中股票顯示卡片網格
 // 專業模式 ProStock、新手模式 BeginnerStock；資料在這層依序載入（報價 → 歷史股價 → 同業），避免後端 yfinance 被並行請求鎖住
-import { useEffect, useState } from 'react'
-import { useSearchParams, useNavigate } from 'react-router-dom'
+import { useState } from 'react'
 import { useMode } from '../context/mode'
-import { fetchStockInfo, fetchWatchlist, addToWatchlist, removeFromWatchlist, toFullTicker, toDisplaySymbol } from '../api/stock'
+import { fetchStockInfo, toFullTicker } from '../api/stock'
 import { fetchHistory, fetchPeers, fetchFundamentals, fetchInstitutional, fetchInstitutionalPerf } from '../api/stockData'
 import { mockStockList, mockStockDetail } from '../data/mockData'
 import { fetchStockNews } from '../api/news'
@@ -17,13 +16,13 @@ import { buildPeerLines } from '../utils/peerLines'
 import usePeerSelection from '../hooks/usePeerSelection'
 import { fetchVolatility } from '../api/volatility'
 import { getSetting } from '../utils/settings'
-import WatchlistPanel, { WatchlistToggle } from '../components/stock/WatchlistPanel'
+import { WatchlistToggle, WatchlistLayout } from '../components/stock/WatchlistPanel'
+import useTicker from '../hooks/useTicker'
+import useWatchlist from '../hooks/useWatchlist'
 
 export default function Stocks() {
   const { isPro } = useMode()
-  const [searchParams] = useSearchParams()
-  const navigate = useNavigate()
-  const symbol = searchParams.get('ticker') || mockStockList[0].symbol
+  const symbol = useTicker()
   const [range, setRange] = useState(() => getSetting('defaultRange'))
 
   // ① 即時報價 → ② 歷史股價 → ③ 同業，前一支有結果（成功或失敗）才打下一支
@@ -56,42 +55,7 @@ export default function Stocks() {
   // 同業圖的線條設定：主角 → 同業 → 基準指數
   const peerLines = buildPeerLines(symbol, name, chosen.peers, chosen.benchmarks)
 
-  // ─── 自選股 ───
-  const isGuest = localStorage.getItem('token') === 'guest'
-  // watchlist：[{ symbol, name }]，symbol 是 strip 掉 .TW 的顯示格式
-  const [watchlist, setWatchlist] = useState([])
-  const [watchlistStatus, setWatchlistStatus] = useState(isGuest ? 'guest' : 'loading')
-  const [watchlistOpen, setWatchlistOpen] = useState(false)
-  const [watchlistBusy, setWatchlistBusy] = useState(false)
-  const inWatchlist = watchlist.some((s) => s.symbol === symbol)
-
-  // 載入一次自選股清單（後端存的是 .TW 格式，前端統一 strip 後存）
-  useEffect(() => {
-    if (isGuest) return
-    fetchWatchlist()
-      .then((items) => {
-        setWatchlist(items.map((i) => ({ symbol: toDisplaySymbol(i.symbol), name: i.company_name })))
-        setWatchlistStatus('ok')
-      })
-      .catch(() => setWatchlistStatus('error'))
-  }, [isGuest])
-
-  const toggleWatchlist = async () => {
-    setWatchlistBusy(true)
-    try {
-      if (inWatchlist) {
-        await removeFromWatchlist(toFullTicker(symbol))
-        setWatchlist((prev) => prev.filter((s) => s.symbol !== symbol))
-      } else {
-        await addToWatchlist(toFullTicker(symbol))
-        setWatchlist((prev) => [...prev, { symbol, name }])
-      }
-    } catch (err) {
-      alert('操作失敗：' + (err.response?.data?.detail || err.message))
-    } finally {
-      setWatchlistBusy(false)
-    }
-  }
+  const wl = useWatchlist()
 
   const notFound = !quote.data && quote.error && history.error
 
@@ -104,39 +68,28 @@ export default function Stocks() {
     <div className="flex flex-col gap-4">
       <div className="flex items-center gap-3">
         <h1 className="text-2xl font-semibold text-gray-900">股票</h1>
-        <WatchlistToggle open={watchlistOpen} count={watchlist.length} onToggle={() => setWatchlistOpen((o) => !o)} />
+        <WatchlistToggle open={wl.open} count={wl.items.length} onToggle={wl.toggleOpen} />
       </div>
 
-      <div className="flex items-start">
-        {/* 左側：自選股抽屜（預設收合） */}
-        <WatchlistPanel
-          open={watchlistOpen}
-          items={watchlist}
-          status={watchlistStatus}
-          current={symbol}
-          onSelect={(code) => navigate(`/stocks?ticker=${code}`)}
+      {/* 左側自選股抽屜（預設收合），右側個股 dashboard */}
+      <WatchlistLayout wl={wl} symbol={symbol}>
+        <StockHeader
+          symbol={symbol}
+          name={name}
+          industry={INDUSTRY_LABELS[peerSet.industryKey]}
+          quote={quote}
+          watch={{ visible: !wl.isGuest, active: wl.has(symbol), busy: wl.busy, toggle: () => wl.toggle(symbol, name) }}
+          range={range}
+          onRange={isPro ? setRange : null}
         />
-
-        {/* 右側：個股 dashboard */}
-        <div className="flex-1 min-w-0 flex flex-col gap-4">
-          <StockHeader
-            symbol={symbol}
-            name={name}
-            industry={INDUSTRY_LABELS[peerSet.industryKey]}
-            quote={quote}
-            watch={{ visible: !isGuest, active: inWatchlist, busy: watchlistBusy, toggle: toggleWatchlist }}
-            range={range}
-            onRange={isPro ? setRange : null}
-          />
-          {/* 報價和歷史股價都查不到：多半是代號打錯或已下市，不顯示整頁空卡片 */}
-          {notFound ? (
-            <div className="bg-white rounded-xl border border-gray-200 p-8 text-center flex flex-col gap-2">
-              <p className="text-base font-bold text-gray-900">找不到「{symbol}」的股價資料</p>
-              <p className="text-sm text-gray-500">請確認代號是否正確，可以在上方搜尋框輸入代號或公司名稱。</p>
-            </div>
-          ) : isPro ? <ProStock d={d} /> : <BeginnerStock d={d} />}
-        </div>
-      </div>
+        {/* 報價和歷史股價都查不到：多半是代號打錯或已下市，不顯示整頁空卡片 */}
+        {notFound ? (
+          <div className="bg-white rounded-xl border border-gray-200 p-8 text-center flex flex-col gap-2">
+            <p className="text-base font-bold text-gray-900">找不到「{symbol}」的股價資料</p>
+            <p className="text-sm text-gray-500">請確認代號是否正確，可以在上方搜尋框輸入代號或公司名稱。</p>
+          </div>
+        ) : isPro ? <ProStock d={d} /> : <BeginnerStock d={d} />}
+      </WatchlistLayout>
     </div>
   )
 }
