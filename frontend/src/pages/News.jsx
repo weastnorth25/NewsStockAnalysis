@@ -138,7 +138,7 @@ export default function News() {
         ))}
       </div>
 
-      {res.error && <p className="text-sm text-gray-500">暫時無法取得新聞，請稍後再試。</p>}
+      {res.error && <p className="text-sm text-gray-500">{items.length ? '暫時無法更新，以下是上次取得的新聞。' : '暫時無法取得新聞，請稍後再試。'}</p>}
 
       <div className="grid grid-cols-1 lg:grid-cols-[384px_minmax(0,1fr)] gap-4 items-start">
         {/* 左：列表（手機版選了新聞就先藏起來，看內文） */}

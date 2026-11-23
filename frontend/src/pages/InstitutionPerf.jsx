@@ -281,7 +281,7 @@ export default function InstitutionPerf() {
       </div>
       <WatchlistLayout wl={wl} symbol={symbol}>
         {perf.loading && <p className="text-sm text-gray-400">載入中...</p>}
-        {perf.error && <p className="text-sm text-gray-400">無法取得法人績效資料</p>}
+        {perf.error && !p && <p className="text-sm text-gray-400">無法取得法人績效資料</p>}
         {stats && (isPro
           ? <ProView stats={stats} signal={p.signal} years={p.years} />
           : <BeginnerView stats={stats} name={name} years={p.years} />)}

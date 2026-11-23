@@ -247,7 +247,7 @@ export default function Chips() {
       </div>
       <WatchlistLayout wl={wl} symbol={symbol}>
         {chips.loading && <p className="text-sm text-gray-400">載入中...</p>}
-        {chips.error && <p className="text-sm text-gray-400">無法取得籌碼資料</p>}
+        {chips.error && !chips.data && <p className="text-sm text-gray-400">無法取得籌碼資料</p>}
         {all?.length > 0 && (isPro ? <ProView all={all} days={days} /> : <BeginnerView all={all} />)}
       </WatchlistLayout>
     </div>
