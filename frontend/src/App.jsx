@@ -3,18 +3,20 @@ import { lazy } from 'react'
 import { BrowserRouter, Routes, Route, Navigate } from 'react-router-dom'
 import MainLayout from './components/Layout/MainLayout'
 import Login from './pages/Login'
+import { pageLoaders } from './pages/loaders'
 // 各頁面用 lazy 載入：打開哪一頁才下載那一頁的程式，第一次開網站要下載的檔案比較小
 // 載入中的畫面放在 MainLayout 的 Suspense（頂部列和側邊欄不會跟著消失）
-const Dashboard       = lazy(() => import('./pages/Dashboard'))
-const News            = lazy(() => import('./pages/News'))
-const Stocks          = lazy(() => import('./pages/Stocks'))
-const Favourites      = lazy(() => import('./pages/Favourites'))
-const Settings        = lazy(() => import('./pages/Settings'))
-const Macro           = lazy(() => import('./pages/Macro'))
-const Peers           = lazy(() => import('./pages/Peers'))
-const Financials      = lazy(() => import('./pages/Financials'))
-const Chips           = lazy(() => import('./pages/Chips'))
-const InstitutionPerf = lazy(() => import('./pages/InstitutionPerf'))
+// 進網站後 utils/prefetch.js 會在背景把其他頁面先下載好
+const Dashboard       = lazy(pageLoaders.Dashboard)
+const News            = lazy(pageLoaders.News)
+const Stocks          = lazy(pageLoaders.Stocks)
+const Favourites      = lazy(pageLoaders.Favourites)
+const Settings        = lazy(pageLoaders.Settings)
+const Macro           = lazy(pageLoaders.Macro)
+const Peers           = lazy(pageLoaders.Peers)
+const Financials      = lazy(pageLoaders.Financials)
+const Chips           = lazy(pageLoaders.Chips)
+const InstitutionPerf = lazy(pageLoaders.InstitutionPerf)
 import { getSetting } from './utils/settings'
 import { ModeProvider } from './context/ModeProvider'
 

@@ -3,12 +3,15 @@
 // 超過 7 天的舊資料不用；存滿了（瀏覽器約 5MB）就把這些快取清掉重來
 const PREFIX = 'apiCache:'
 const MAX_AGE = 7 * 24 * 3600 * 1000
+// 幾分鐘內剛抓的（多半是背景預先載入的）當成最新資料，畫面不標「上次資料」
+const RECENT = 5 * 60 * 1000
 
 export function readCache(id) {
   try {
     const hit = JSON.parse(localStorage.getItem(PREFIX + id))
-    if (!hit || Date.now() - hit.t > MAX_AGE) return null
-    return hit
+    const age = Date.now() - hit?.t
+    if (!hit || age > MAX_AGE) return null
+    return { ...hit, recent: age < RECENT }
   } catch {
     return null
   }

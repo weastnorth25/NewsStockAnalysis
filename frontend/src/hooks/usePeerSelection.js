@@ -5,7 +5,8 @@ import { useState } from 'react'
 const MAX_PEERS = 5
 const storageKey = (symbol) => `peers:${symbol}`
 
-function loadSaved(symbol) {
+// 使用者自選過的同業清單（沒有就是 null）；背景預先載入也用這個
+export function loadSaved(symbol) {
   try {
     const raw = localStorage.getItem(storageKey(symbol))
     return raw ? JSON.parse(raw) : null

@@ -1,11 +1,13 @@
 // 主版型：頂部列（Topbar）跨滿全寬，Sidebar 可由 Topbar 的漢堡按鈕展開/收合
 // 頂部列是 fixed（高 56px），內容上方留 頂部列高度 + 間距（pt-18／pt-20）
+// 進網站後在背景預先載入其他頁面（utils/prefetch.js）
 // 桌機：側邊欄預設展開，把內容往右推；手機（< 768px）：預設收合，展開時蓋在內容上面，點旁邊或點選項就收起來
-import { Suspense, useState } from 'react'
+import { Suspense, useEffect, useState } from 'react'
 import { Outlet } from 'react-router-dom'
 import Sidebar from './Sidebar'
 import Topbar from './Topbar'
 import useMediaQuery from '../../hooks/useMediaQuery'
+import prefetchApp from '../../utils/prefetch'
 
 export default function MainLayout() {
   const isMobile = useMediaQuery('(max-width: 767px)')
@@ -15,6 +17,9 @@ export default function MainLayout() {
   const open = isMobile ? mobileOpen : desktopOpen
 
   const toggle = () => (isMobile ? setMobileOpen((o) => !o) : setDesktopOpen((o) => !o))
+
+  // 目前這頁先載入，之後在背景把其他頁面的程式和資料抓好（整個工作階段只做一次）
+  useEffect(() => { prefetchApp() }, [])
 
   return (
     <div className="min-h-screen bg-gray-100">

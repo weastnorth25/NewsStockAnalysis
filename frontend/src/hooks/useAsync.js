@@ -5,6 +5,7 @@
 // 第三個參數 { cache: '名稱' }：先顯示上次存在瀏覽器的資料，背景再抓新的（後端休眠開機要 30～60 秒，不用一直轉圈）
 //   有舊資料時回傳 stale: true、savedAt（存的時間），loading 為 false，畫面直接顯示舊資料
 //   抓失敗時也繼續顯示舊資料（stale 加上 error）
+//   幾分鐘內剛存的（utils/prefetch.js 背景先抓好的）直接顯示，不標 stale
 import { useEffect, useMemo, useState } from 'react'
 import { readCache, writeCache } from '../utils/apiCache'
 
@@ -33,6 +34,8 @@ export default function useAsync(key, load, { cache } = {}) {
   const cached = useMemo(() => (!ok && cacheId ? readCache(cacheId) : null), [ok, cacheId])
 
   if (ok) return { data: result.data, error: null, loading: false, stale: false }
+  // 幾分鐘內剛抓的（例如背景預先載入）直接當成最新資料，不顯示「上次資料」
+  if (cached?.recent && !(fresh && result.error)) return { data: cached.data, error: null, loading: false, stale: false }
   if (cached) return { data: cached.data, error: fresh ? result.error : null, loading: false, stale: true, savedAt: cached.t }
   return {
     data: null,
