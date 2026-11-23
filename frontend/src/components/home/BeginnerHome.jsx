@@ -77,7 +77,7 @@ export default function BeginnerHome({ quotes, score }) {
               <span>{p.text}</span>
             </div>
           ))}
-          <p className="text-xs text-gray-500">依今日行情自動整理，AI 總結開發中・非投資建議</p>
+          <p className="text-xs text-gray-500">依今日行情以規則自動整理・非投資建議</p>
         </div>
       </div>
 

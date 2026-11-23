@@ -89,7 +89,7 @@ function ProView({ f }) {
           {pros.length ? pros.map((p) => <p key={p} className="text-[13px] leading-relaxed">・{p}</p>) : <p className="text-[13px] text-gray-400">—</p>}
           <p className="text-xs font-bold text-orange-800">風險因素</p>
           {cons.length ? cons.map((c) => <p key={c} className="text-[13px] leading-relaxed">・{c}</p>) : <p className="text-[13px] text-gray-400">—</p>}
-          <p className="text-xs text-gray-500 mt-auto pt-2">AI 分析開發中・非投資建議</p>
+          <p className="text-xs text-gray-500 mt-auto pt-2">以規則自動判斷・非投資建議</p>
         </Card>
       </div>
 
@@ -175,7 +175,7 @@ function BeginnerView({ f, name }) {
             </div>
           ))}
         </div>
-        <p className="text-xs text-gray-500">依財報數字自動判斷，AI 分析開發中・非投資建議</p>
+        <p className="text-xs text-gray-500">依財報數字以規則自動判斷・非投資建議</p>
       </Card>
 
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-4">

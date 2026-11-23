@@ -24,7 +24,8 @@ export function RangeTabs({ value, onChange, options }) {
   )
 }
 
-export const MockBadge = ({ show = true }) =>
+// show 沒給（例如資料還在載入或抓失敗，isMock 是 undefined）就不顯示
+export const MockBadge = ({ show = false }) =>
   show ? <span className="text-[11px] text-amber-800 bg-amber-100 px-1.5 py-0.5 rounded">示意</span> : null
 
 export default function StockHeader({ symbol, name, industry, quote, watch, range, onRange }) {

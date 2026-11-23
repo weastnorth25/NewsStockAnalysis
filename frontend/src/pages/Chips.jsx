@@ -103,7 +103,7 @@ function ProView({ all, days }) {
             <span className="text-xs text-gray-500">依籌碼數字自動整理</span>
           </div>
           {proBullets(rows, days).map((b) => <p key={b} className="text-[13px] leading-relaxed">・{b}</p>)}
-          <p className="text-xs text-gray-500 mt-auto">AI 分析開發中・非投資建議</p>
+          <p className="text-xs text-gray-500 mt-auto">以規則自動判斷・非投資建議</p>
         </Card>
       </div>
 

@@ -71,7 +71,7 @@ export default function BeginnerStock({ d }) {
             </div>
           ))}
         </div>
-        <p className="text-xs text-gray-500">依財報和籌碼數字自動判斷，AI 分析開發中・非投資建議</p>
+        <p className="text-xs text-gray-500">依財報和籌碼數字以規則自動判斷・非投資建議</p>
       </div>
 
       <div className="bg-white rounded-xl border border-gray-200 p-5 flex flex-col gap-2.5">
