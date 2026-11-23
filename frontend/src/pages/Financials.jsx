@@ -235,7 +235,7 @@ export default function Financials() {
       </div>
       <WatchlistLayout wl={wl} symbol={symbol}>
         {fund.loading && <p className="text-sm text-gray-400">載入中...</p>}
-        {fund.error && <p className="text-sm text-gray-400">無法取得財報資料</p>}
+        {fund.error && !fund.data && <p className="text-sm text-gray-400">無法取得財報資料</p>}
         {f && (isPro ? <ProView f={f} /> : <BeginnerView f={f} name={name} />)}
       </WatchlistLayout>
     </div>

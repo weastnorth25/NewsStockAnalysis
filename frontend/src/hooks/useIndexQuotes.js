@@ -24,8 +24,8 @@ export default function useIndexQuotes(tickers) {
           writeCache(`quote|${ticker}`, data)
         })
         .catch(() => {
-          // 抓失敗：有舊資料就繼續顯示舊的
-          if (!cancelled) setQuotes((prev) => ({ ...prev, [ticker]: prev[ticker]?.data ? { ...prev[ticker], error: true } : { error: true, loading: false } }))
+          // 抓失敗：有舊資料就繼續顯示舊的，並標成上次資料（就算是幾分鐘內剛存的，也要讓使用者知道沒更新成功）
+          if (!cancelled) setQuotes((prev) => ({ ...prev, [ticker]: prev[ticker]?.data ? { ...prev[ticker], error: true, stale: true } : { error: true, loading: false } }))
         })
     }
     return () => { cancelled = true }

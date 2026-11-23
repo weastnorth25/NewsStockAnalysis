@@ -120,7 +120,7 @@ export default function BeginnerHome({ quotes, score }) {
             <button type="button" onClick={() => navigate('/news')} className="text-xs text-blue-600 hover:text-blue-700">更多新聞</button>
           </div>
           {news.loading && <p className="text-sm text-gray-400">載入中...</p>}
-          {news.error && <p className="text-sm text-gray-400">暫時無法取得新聞</p>}
+          {news.error && !news.data && <p className="text-sm text-gray-400">暫時無法取得新聞</p>}
           {news.data?.items.map((n) => (
             <button
               key={n.id}
