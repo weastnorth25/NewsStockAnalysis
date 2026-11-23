@@ -1,4 +1,6 @@
-// 股票頁左側的自選股抽屜：預設收合，按「自選股」才展開；寬度用 transition 做滑出效果（跟主側邊欄一樣）
+// 自選股抽屜：股票頁和四個分析工具頁共用，預設收合，按「自選股」才展開
+// 點抽屜裡的股票會留在目前這一頁、換成那支股票
+import { useLocation, useNavigate } from 'react-router-dom'
 import { getStockName } from '../../data/stockNames'
 
 export function WatchlistToggle({ open, count, onToggle }) {
@@ -58,6 +60,19 @@ export default function WatchlistPanel({ open, items, status, current, onSelect 
           </button>
         ))
       )}
+    </div>
+  )
+}
+
+// 版型：左側抽屜＋右側內容；wl 是 useWatchlist() 的回傳值
+export function WatchlistLayout({ wl, symbol, children }) {
+  const navigate = useNavigate()
+  const { pathname } = useLocation()
+  return (
+    <div className="flex items-start">
+      <WatchlistPanel open={wl.open} items={wl.items} status={wl.status} current={symbol}
+        onSelect={(code) => navigate(`${pathname}?ticker=${code}`)} />
+      <div className="flex-1 min-w-0 flex flex-col gap-4">{children}</div>
     </div>
   )
 }

@@ -2,7 +2,6 @@
 // 專業模式看勝率、平均／超額報酬、報酬分布與三大法人比較；新手模式用「10 次有幾次賺錢」白話呈現
 // 回測條件先固定，統計由 utils/perfStats.js 從每一次訊號算出來
 import { useState } from 'react'
-import { useSearchParams } from 'react-router-dom'
 import { useMode } from '../context/mode'
 import { fetchInstitutionalSignals } from '../api/stockData'
 import { mockStockList } from '../data/mockData'
@@ -11,7 +10,9 @@ import useAsync from '../hooks/useAsync'
 import { changeClass, fmtPct } from '../utils/market'
 import { INST_KEYS, md } from '../utils/chipsInsights'
 import { allStats } from '../utils/perfStats'
-import StockPicker from '../components/stock/StockPicker'
+import { WatchlistToggle, WatchlistLayout } from '../components/stock/WatchlistPanel'
+import useTicker from '../hooks/useTicker'
+import useWatchlist from '../hooks/useWatchlist'
 import { MockBadge } from '../components/stock/StockHeader'
 import { HorizonChart, DistChart } from '../components/chips/PerfCharts'
 
@@ -261,8 +262,8 @@ function BeginnerView({ stats, name, years }) {
 
 export default function InstitutionPerf() {
   const { isPro } = useMode()
-  const [searchParams] = useSearchParams()
-  const symbol = searchParams.get('ticker') || mockStockList[0].symbol
+  const symbol = useTicker()
+  const wl = useWatchlist()
   const name = mockStockList.find((s) => s.symbol === symbol)?.name || getStockName(symbol) || symbol
   // 每一次訊號的明細（/institutional-signals），勝率、報酬分布都在前端算
   const perf = useAsync(symbol, () => fetchInstitutionalSignals(symbol), { cache: 'signals' })
@@ -275,14 +276,16 @@ export default function InstitutionPerf() {
       <div className="flex flex-wrap items-center gap-3">
         <h1 className="text-2xl font-semibold text-gray-900">法人績效</h1>
         <span className="text-base text-gray-700">{name} <span className="text-gray-500">{symbol}</span></span>
+        <WatchlistToggle open={wl.open} count={wl.items.length} onToggle={wl.toggleOpen} />
         <MockBadge show={isMock} />
       </div>
-      <StockPicker symbol={symbol} />
-      {perf.loading && <p className="text-sm text-gray-400">載入中...</p>}
-      {perf.error && <p className="text-sm text-gray-400">無法取得法人績效資料</p>}
-      {stats && (isPro
-        ? <ProView stats={stats} signal={p.signal} years={p.years} />
-        : <BeginnerView stats={stats} name={name} years={p.years} />)}
+      <WatchlistLayout wl={wl} symbol={symbol}>
+        {perf.loading && <p className="text-sm text-gray-400">載入中...</p>}
+        {perf.error && <p className="text-sm text-gray-400">無法取得法人績效資料</p>}
+        {stats && (isPro
+          ? <ProView stats={stats} signal={p.signal} years={p.years} />
+          : <BeginnerView stats={stats} name={name} years={p.years} />)}
+      </WatchlistLayout>
     </div>
   )
 }
