@@ -42,7 +42,7 @@ export default function Stocks() {
   // 波動預測也是後端用 yfinance 抓股價，等歷史股價回來再打，不跟前面的請求擠在一起
   const vol = useAsync(settled(history) ? symbol : null, () => fetchVolatility(symbol), { cache: 'vol' })
 
-  // 財報、籌碼、法人績效（目前是示意資料，之後走資料庫，不經過 yfinance）
+  // 財報、籌碼、法人績效（後端從資料庫讀，不經過 yfinance）
   const fund = useAsync(symbol, () => fetchFundamentals(symbol), { cache: 'fund' })
   const inst = useAsync(symbol, () => fetchInstitutional(symbol), { cache: 'inst' })
   const perf = useAsync(symbol, () => fetchInstitutionalPerf(symbol), { cache: 'perf' })

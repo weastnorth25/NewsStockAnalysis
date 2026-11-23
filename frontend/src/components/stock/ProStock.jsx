@@ -91,7 +91,7 @@ export default function ProStock({ d }) {
           {pros.length ? pros.map((p) => <p key={p} className="text-[13px] leading-relaxed">・{p}</p>) : <p className="text-[13px] text-gray-400">—</p>}
           <p className="text-xs font-bold text-orange-800 mt-1">風險因素</p>
           {cons.length ? cons.map((c) => <p key={c} className="text-[13px] leading-relaxed">・{c}</p>) : <p className="text-[13px] text-gray-400">—</p>}
-          <p className="text-xs text-gray-500 mt-auto pt-2">AI 分析開發中・非投資建議</p>
+          <p className="text-xs text-gray-500 mt-auto pt-2">以規則自動判斷・非投資建議</p>
         </Card>
       </div>
 
