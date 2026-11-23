@@ -15,6 +15,10 @@ export default function useTicker() {
     if (fromUrl) try { localStorage.setItem(KEY, fromUrl) } catch { /* 存不了就只在這頁有效 */ }
   }, [fromUrl])
 
-  if (fromUrl) return fromUrl
+  return fromUrl || storedTicker()
+}
+
+// 上次看的股票（沒有就預設台積電）；背景預先載入也用這支
+export function storedTicker() {
   try { return localStorage.getItem(KEY) || DEFAULT } catch { return DEFAULT }
 }

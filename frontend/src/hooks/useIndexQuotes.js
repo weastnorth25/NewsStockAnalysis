@@ -7,7 +7,7 @@ import { readCache, writeCache } from '../utils/apiCache'
 
 const initial = (t) => {
   const hit = readCache(`quote|${t}`)
-  return hit ? { data: hit.data, loading: false, stale: true, savedAt: hit.t } : { loading: true }
+  return hit ? { data: hit.data, loading: false, stale: !hit.recent, savedAt: hit.t } : { loading: true }
 }
 
 export default function useIndexQuotes(tickers) {
