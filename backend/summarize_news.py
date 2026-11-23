@@ -12,6 +12,7 @@
 - 內文太短不摘要,標記 skipped_short。以上兩種之後都不再重試。
 - 防止模型亂編數字:重點裡出現的每個數字都必須在原文裡找得到,否則重試一次,
   還是不行就標記 rejected,不寫入重點。
+- 模型輸出會用 OpenCC 轉成繁體(需 pip install opencc-python-reimplemented)。
 - ai_summary 格式:每點一行,用換行(\n)分隔,不含項目符號。
 """
 from __future__ import annotations
@@ -19,12 +20,19 @@ from __future__ import annotations
 import argparse
 import os
 import re
+import unicodedata
 
 import requests
 
+try:                                    # 模型偶爾混入簡體字,用 OpenCC 轉成台灣繁體
+    from opencc import OpenCC
+    _cc = OpenCC("s2tw")
+except ImportError:
+    _cc = None
+
 OLLAMA_URL = os.getenv("OLLAMA_URL", "http://localhost:11434")
 MODEL_NAME = os.getenv("OLLAMA_MODEL", "qwen2.5:7b")
-PROMPT_VERSION = "news_v1"
+PROMPT_VERSION = "news_v3"
 MODEL_TAG = f"{MODEL_NAME}|{PROMPT_VERSION}"
 TIMEOUT_SEC = 120
 MIN_CHARS = 150          # 內文少於這個字數就不摘要
@@ -33,17 +41,69 @@ TEMPLATE_PREFIXES = ("盤中速報", "鉅亨速報 - Factset")   # 模板速報,
 
 PROMPT = (
     "你是財經新聞重點整理助手。請只根據下面的新聞內容,用繁體中文列出 3 點重點。\n"
-        "規則:只能使用繁體中文字、每點一行、每點不超過 40 字、不要編號、不要加標題或結語。"
-    "只能使用內文中出現的事實與數字,不可推測原因、不可預測股價、不可給投資建議。\n\n"
+    "規則:只能使用繁體中文字、每點一行、每點不超過 40 字、不要編號、不要加標題或結語。"
+    "只能使用內文中出現的事實與數字,數字必須照原文寫法照抄,不可換算單位或四捨五入(例如「25 兆 9,780 億」不可改寫成「25.97 兆」),不可推測原因、不可預測股價、不可給投資建議。\n\n"
     "標題:{title}\n內文:{content}"
 )
 
 _BULLET = re.compile(r"^[\s\-*•‧·●○▪︎・]*(?:\d+[.、)]|[一二三][、.])?\s*")
 _NUM = re.compile(r"\d+(?:\.\d+)?")
 
+# 中文數字:二十四．九二、一．六三、一五〇〇、一千五百、1千5百 這類寫法
+_CN_DIGIT = {"零": 0, "〇": 0, "一": 1, "二": 2, "兩": 2, "三": 3, "四": 4,
+             "五": 5, "六": 6, "七": 7, "八": 8, "九": 9}
+_CN_UNIT = {"十": 10, "百": 100, "千": 1000}
+_CN_CHARS = "零〇一二兩三四五六七八九十百千"
+_CN_RUN = re.compile(rf"[0-9{_CN_CHARS}]+(?:\.[0-9零〇一二三四五六七八九]+)?")
+
+
+def _digit(ch: str) -> int:
+    return int(ch) if ch.isdigit() else _CN_DIGIT[ch]
+
+
+def _cn_int(part: str) -> int:
+    """整數部分:有十百千就照位數算(二十四 → 24),沒有就逐字轉(一五〇〇 → 1500)。"""
+    if not any(ch in _CN_UNIT for ch in part):
+        return int("".join(str(_digit(ch)) for ch in part))
+    total, cur = 0, None
+    for ch in part:
+        if ch in _CN_UNIT:
+            total += (1 if cur is None else cur) * _CN_UNIT[ch]
+            cur = None
+        else:
+            cur = (cur or 0) * 10 + _digit(ch)
+    return total + (cur or 0)
+
+
+def _cn_number(run: str) -> str | None:
+    """'二十四.九二' -> '24.92';'一五〇〇' -> '1500';純阿拉伯數字或看不懂回傳 None。"""
+    if not any(ch in _CN_CHARS for ch in run):
+        return None                                   # 純阿拉伯數字交給 _NUM 處理
+    int_part, _, dec_part = run.partition(".")
+    try:
+        value = str(_cn_int(int_part))
+        if dec_part:
+            value += "." + "".join(str(_digit(ch)) for ch in dec_part)
+    except (KeyError, ValueError):
+        return None
+    return _canon(value)
+
+
+def _canon(n: str) -> str:
+    """'1.50' -> '1.5'、'3.0' -> '3',讓同一個數字的不同寫法比對得上。"""
+    return n.rstrip("0").rstrip(".") if "." in n else n
+
 
 def _numbers(text: str) -> set[str]:
-    return set(_NUM.findall(text.replace(",", "").replace(",", "")))
+    # 全形數字與符號轉半形(例如 2 1 3 . 4 → 213.4)
+    text = unicodedata.normalize("NFKC", text)
+    text = re.sub(r"(?<=\d),(?=\d{3})", "", text)   # 只去掉數字中間的千分位逗號
+    nums = {_canon(n) for n in _NUM.findall(text)}
+    for run in _CN_RUN.findall(text):          # 中文數字也換算成阿拉伯數字
+        value = _cn_number(run)
+        if value is not None:
+            nums.add(value)
+    return nums
 
 
 def clean(raw: str) -> list[str]:
@@ -61,6 +121,10 @@ def numbers_ok(points: list[str], source: str) -> bool:
     return _numbers(" ".join(points)) <= _numbers(source)
 
 
+def to_traditional(text: str) -> str:
+    return _cc.convert(text) if _cc else text
+
+
 def ask(title: str, content: str) -> list[str]:
     resp = requests.post(
         f"{OLLAMA_URL}/api/generate",
@@ -69,7 +133,7 @@ def ask(title: str, content: str) -> list[str]:
         timeout=TIMEOUT_SEC,
     )
     resp.raise_for_status()
-    return clean(resp.json()["response"])
+    return clean(to_traditional(resp.json()["response"]))
 
 
 def summarize(title: str, content: str) -> tuple[str | None, str]:
